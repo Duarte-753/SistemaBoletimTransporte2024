@@ -1,0 +1,72 @@
+﻿@{
+    ViewData["Title"] = "Detalhes Usuário";
+}
+@model UsuarioModel
+
+<div class="text-center">
+
+    <h1 class="display-4">Detalhes usuário</h1>
+    <br />
+
+</div>
+
+<form asp-controller="Usuario" asp-action="Editar" class="post">
+
+    <input type="hidden" asp-for="Id"/>
+
+     
+
+    <div class="row">
+
+        <div class="col-3">
+            <label for="dataUltimaAlteracao">Ultima alteração:</label>
+            <input type="text" asp-for="DataUltimaAtualizacao" class="form-control">
+        </div>
+
+        <div class="col-3">
+            <label for="codigofuncional">Código Funcional:</label>
+            <input type="text" asp-for="CodigoFuncional" class="form-control" >
+        </div>
+
+        <div class="col-3">
+            <label for="nome">Nome:</label>
+            <input type="text" asp-for="Nome" class="form-control" >
+        </div>
+
+        <div class="col-3">
+            <label for="usuario">Usuário:</label>
+            <input type="text" asp-for="Usuario" class="form-control" >
+        </div>
+        
+    </div>
+
+    <div class="row">
+
+        <div class="col-4">
+            <label for="email">Email:</label>
+            <input type="text" asp-for="Email" class="form-control">
+        </div>
+
+        <div class="col-4">
+            <label for="celular">Celular:</label>
+            <input type="text" asp-for="Celular" class="form-control">
+        </div>
+
+        <div class="col-4">
+            <label for="perfil">Perfil:</label>
+            <input type="text" asp-for="Perfil" class="form-control">
+        </div>
+
+    </div>
+
+    <br />
+
+    <a class="btn btn-secondary" asp-controller="Usuario" asp-action="Index" role="button">Voltar</a>
+    <a class="btn btn-success" asp-controller="Usuario" asp-action="UsuarioReport" role="button">Salvar em PDF</a>
+    
+
+</form>
+
+
+
+

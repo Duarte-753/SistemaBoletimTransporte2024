@@ -1,0 +1,70 @@
+﻿@model VeiculoModel
+@{
+    ViewData["Title"] = "Editar Veículo";
+}
+
+
+<div class="text-center">
+
+    <h1 class="display-4">Editar o Veículo</h1>
+    <br />
+
+</div>
+
+<form asp-controller="Veiculo" asp-action="Editar" method="post">
+
+    <input type="hidden" asp-for="Id" />
+
+    <div class="row">
+
+        <div class="col-3">
+            <label for="prefixo">Prefixo:</label>
+            <input type="text" asp-for="Prefixo" class="form-control" placeholder="Exemplo: 0015999">
+            @Html.ValidationMessageFor(x => x.Prefixo)
+        </div>
+        <div class="col-3">
+            <label for="nome">Veiculo:</label>
+            <input type="text" asp-for="Veiculo" class="form-control" placeholder="Exemplo: VW Nova Saveiro RB MBVD">
+            @Html.ValidationMessageFor(x => x.Veiculo)
+        </div>
+        <div class="col-3">
+            <label for="cor">Cor:</label>
+            <input type="text" asp-for="Cor" class="form-control" placeholder="Exemplo: Branco">
+            @Html.ValidationMessageFor(x => x.Cor)
+        </div>
+        <div class="col-3">
+            <label for="placa">Placa:</label>
+            <input type="text" asp-for="Placa" class="form-control" placeholder="Exemplo: FBA-1221">
+            @Html.ValidationMessageFor(x => x.Placa)
+        </div>
+        
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-3">
+            <label for="quilometragem">Quilometragem:</label>
+            <input type="text" asp-for="Quilometragem" class="form-control" placeholder="Exemplo: 514326">
+            @Html.ValidationMessageFor(x => x.Quilometragem)
+        </div>
+        <div class="col-3">
+            <label for="ano">Ano:</label>
+            <input type="text" asp-for="Ano" class="form-control" placeholder="Exemplo: 1997">
+            @Html.ValidationMessageFor(x => x.Ano)
+        </div>
+        <div class="col-3">
+            <label for="valor">Valor:</label>
+            <input type="text" asp-for="Valor" class="form-control" placeholder="Exemplo: 25000">
+            @Html.ValidationMessageFor(x => x.Valor)
+        </div>      
+    </div>
+
+    <br />
+
+    <button type="submit" class="btn btn-warning">Editar</button>
+    <a class="btn btn-secondary" asp-controller="Veiculo" asp-action="Index" role="button">Voltar</a>
+</form>
+
+
+

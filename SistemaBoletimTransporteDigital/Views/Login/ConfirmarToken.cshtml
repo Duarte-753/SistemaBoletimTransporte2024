@@ -1,0 +1,32 @@
+﻿@{
+    Layout = "_LayoutDeslogado";
+    ViewData["Title"] = "Login";
+}
+@model TokenModel
+
+@if (TempData["MensagemErro"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" aria-label="Close">X</button>
+        @TempData["MensagemErro"]
+    </div>
+}
+@if (TempData["MensagemSucesso"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" aria-label="Close">X</button>
+        @TempData["MensagemSucesso"]
+    </div>
+}
+
+<form asp-controller="Login" asp-action="ConfirmarToken" method="post">
+
+    <div class="mb-3">
+        <label for="token" class="form-label">Digite o Token que recebeu no seu email:</label>
+        <input type="text" asp-for="Token" class="form-control" id="token">
+        @Html.ValidationMessageFor(x => x.Token)
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Confirmar Token</button>
+</form>

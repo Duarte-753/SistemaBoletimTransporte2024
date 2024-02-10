@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="11/13/2023 23:34:02" ReportInfo.Modified="11/29/2023 19:54:51" ReportInfo.CreatorVersion="2023.3.0.0">
+  <Dictionary>
+    <BusinessObjectDataSource Name="Lista de Usuário" ReferenceName="Lista de Usuário" DataType="System.Int32" Enabled="true">
+      <Column Name="Id" DataType="System.Int32"/>
+      <Column Name="CodigoFuncional" DataType="System.String"/>
+      <Column Name="Nome" DataType="System.String"/>
+      <Column Name="Usuario" DataType="System.String"/>
+      <Column Name="Senha" DataType="System.String"/>
+      <Column Name="Email" DataType="System.String"/>
+      <Column Name="Celular" DataType="System.String"/>
+      <Column Name="Perfil" DataType="System.Int32"/>
+      <Column Name="DataCriacao" DataType="System.DateTime"/>
+      <Column Name="DataUltimaAtualizacao" DataType="System.DateTime"/>
+    </BusinessObjectDataSource>
+  </Dictionary>
+  <ReportPage Name="Page1" Watermark.Font="Arial, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="56.7">
+      <TextObject Name="Text6" Width="94.5" Height="18.9" Text="[Date]" Font="Arial, 10pt"/>
+      <TextObject Name="Text9" Left="217.35" Top="9.45" Width="274.05" Height="28.35" Text="Ficha do Funcionário" Font="Arial, 20pt"/>
+      <LineObject Name="Line3" Left="217.35" Top="37.8" Width="255.15"/>
+    </ReportTitleBand>
+    <PageHeaderBand Name="PageHeader1" Top="60.7" Width="718.2" Height="18.9"/>
+    <DataBand Name="Data1" Top="83.6" Width="718.2" Height="226.8" DataSource="Lista de Usuário">
+      <TextObject Name="Text14" Left="141.75" Top="18.9" Width="113.4" Height="18.9" Text="[Lista de Usuário.CodigoFuncional]" Font="Arial, 10pt"/>
+      <TextObject Name="Text1" Left="28.35" Top="18.9" Width="122.85" Height="18.9" Text="Codigo Funcional:" Font="Arial, 10pt"/>
+      <TextObject Name="Text15" Left="340.2" Top="18.9" Width="94.5" Height="18.9" Text="[Lista de Usuário.Usuario]" Font="Arial, 10pt"/>
+      <TextObject Name="Text2" Left="283.5" Top="18.9" Width="94.5" Height="18.9" Text="Usuário:" Font="Arial, 10pt"/>
+      <TextObject Name="Text16" Left="75.6" Top="94.5" Width="160.65" Height="18.9" Text="[Lista de Usuário.Perfil]" Font="Arial, 10pt"/>
+      <TextObject Name="Text3" Left="28.35" Top="94.5" Width="94.5" Height="18.9" Text="Perfil:" Font="Arial, 10pt"/>
+      <TextObject Name="Text17" Left="75.6" Top="160.65" Width="226.8" Height="18.9" Text="[Lista de Usuário.Email]" Font="Arial, 10pt"/>
+      <TextObject Name="Text4" Left="28.35" Top="160.65" Width="94.5" Height="18.9" Text="E-mail:" Font="Arial, 10pt"/>
+      <TextObject Name="Text18" Left="453.6" Top="160.65" Width="170.1" Height="18.9" Text="[Lista de Usuário.Celular]" Font="Arial, 10pt"/>
+      <TextObject Name="Text5" Left="321.3" Top="160.65" Width="141.75" Height="18.9" Text="Celular para contato:" Font="Arial, 10pt"/>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="314.4" Width="718.2" Height="28.35">
+      <TextObject Name="Text7" Left="47.25" Top="9.45" Width="56.7" Height="18.9" Text="[Page]" Font="Arial, 10pt"/>
+      <TextObject Name="Text8" Left="633.15" Top="9.45" Width="75.6" Height="18.9" Text="[TotalPages]" Font="Arial, 10pt"/>
+      <TextObject Name="Text10" Top="9.45" Width="94.5" Height="18.9" Text="Página " Font="Arial, 10pt"/>
+      <TextObject Name="Text11" Left="567" Top="9.45" Width="66.15" Height="18.9" Text="Total de" Font="Arial, 10pt"/>
+      <TextObject Name="Text12" Left="652.05" Top="9.45" Width="66.15" Height="18.9" Text="página(s)" Font="Arial, 10pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

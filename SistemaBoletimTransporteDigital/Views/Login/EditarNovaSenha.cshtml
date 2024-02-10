@@ -1,0 +1,37 @@
+﻿
+@model UsuarioModel
+@{
+    Layout = "_LayoutDeslogado";
+    ViewData["Title"] = "Nova senha";
+}
+
+
+
+<div class="text-center">
+
+    <h1 class="display-4">Nova senha</h1>
+    <br />
+
+</div>
+
+<form asp-controller="Login" asp-action="EditarNovaSenha" method="post">
+
+    <input type="hidden" asp-for="Id" />
+
+    <div class="row">
+             
+        <div class="col-3">
+            <label for="senha">Nova Senha:</label>
+            <input type="password" asp-for="Senha" class="form-control" placeholder="Crie uma nova senha para esse usuário.">
+            @Html.ValidationMessageFor(x => x.Senha)
+        </div>
+
+    </div> 
+
+    <br />
+    <button type="submit" class="btn btn-warning">Atualizar Senha</button>
+    
+</form>
+
+
+

@@ -1,0 +1,134 @@
+﻿using Microsoft.EntityFrameworkCore;
+using SistemaBoletimTransporteDigital.Data;
+using SistemaBoletimTransporteDigital.Models;
+using System.Diagnostics.CodeAnalysis;
+
+namespace SistemaBoletimTransporteDigital.Repositorio
+{
+    public class UsuarioRepositorio : IUsuarioRepositorio
+    {
+        private readonly BancoContext _bancoContext;
+
+        public UsuarioRepositorio(BancoContext bancoContext) // construtor
+        {
+            this._bancoContext = bancoContext;
+        }
+
+        public UsuarioModel BuscarPorLogin(string login)
+        {
+            return _bancoContext.Usuario.First(x => x.Usuario == login);
+        }
+
+        public UsuarioModel BuscarPorEmailLogin(string email, string login)
+        {
+            return _bancoContext.Usuario.First(x => x.Usuario == login & x.Email == email);
+        }
+
+
+        public UsuarioModel ListarPorId(int id)
+        {
+          return _bancoContext.Usuario.First(x => x.Id == id);
+        }
+
+        public UsuarioModel BuscarPorToken(string token)
+        {
+            return _bancoContext.Usuario.First(x => x.Senha == token);
+        }
+
+        public List<UsuarioModel> BuscarUsuario() // buscar os dados do banco da tabela Usuario
+        {
+           return _bancoContext.Usuario.ToList();
+        }
+
+        public UsuarioModel Adicionar(UsuarioModel usuario)
+        {
+            // gravar no banco de dados
+            usuario.SetSenhaHash();
+            _bancoContext.Usuario.Add(usuario);
+            _bancoContext.SaveChanges();
+
+            return usuario;
+            
+        }
+
+        public UsuarioModel Atualizar(UsuarioModel usuario)
+        {
+            UsuarioModel usuarioDB = ListarPorId(usuario.Id);
+
+            if (usuarioDB == null) throw new System.Exception("Houve um erro na atualização do usuário!");
+
+            usuarioDB.CodigoFuncional = usuario.CodigoFuncional;
+            usuarioDB.Nome= usuario.Nome;
+            usuarioDB.Usuario = usuario.Usuario;
+            usuarioDB.Senha = usuario.Senha;
+            usuarioDB.Email = usuario.Email;
+            usuarioDB.Celular = usuario.Celular;
+            usuarioDB.Perfil = usuario.Perfil;
+            usuarioDB.DataUltimaAtualizacao = usuario.DataUltimaAtualizacao;
+            
+           
+
+            _bancoContext.Usuario.Update(usuarioDB);
+            _bancoContext.SaveChanges();
+
+            return usuarioDB;
+        }
+
+        public bool Apagar(int id)
+        {
+            UsuarioModel usuarioDB = ListarPorId(id);
+
+            if (usuarioDB == null) throw new System.Exception("Houve um erro na exclusão do usuário!");
+
+            _bancoContext.Usuario.Remove(usuarioDB);
+            _bancoContext.SaveChanges();
+
+            return true;
+        }
+
+        public UsuarioModel EditarUsuario(UsuarioModel usuario)
+        {
+            UsuarioModel usuarioDB = ListarPorId(usuario.Id);
+
+            if (usuarioDB == null) throw new System.Exception("Houve um erro na atualização do usuário!");
+
+            usuarioDB.CodigoFuncional = usuario.CodigoFuncional;
+            usuarioDB.Nome = usuario.Nome;
+            usuarioDB.Usuario = usuario.Usuario;
+            usuarioDB.Senha = usuario.Senha;
+            usuarioDB.SetSenhaHash();
+            usuarioDB.Email = usuario.Email;
+            usuarioDB.Celular = usuario.Celular;
+            usuarioDB.Perfil = usuario.Perfil;
+            usuarioDB.DataUltimaAtualizacao = usuario.DataUltimaAtualizacao;
+
+
+
+            _bancoContext.Usuario.Update(usuarioDB);
+            _bancoContext.SaveChanges();
+
+            return usuarioDB;
+        }
+
+        public UsuarioModel EditarNovaSenha(UsuarioModel usuario)
+        {
+            UsuarioModel usuarioDB = ListarPorId(usuario.Id);
+
+            if (usuarioDB == null) throw new System.Exception("Houve um erro na atualização do usuário!");
+
+            
+            usuarioDB.Senha = usuario.Senha;
+            usuarioDB.SetSenhaHash();
+            usuarioDB.DataUltimaAtualizacao = usuario.DataUltimaAtualizacao;
+
+
+
+            _bancoContext.Usuario.Update(usuarioDB);
+            _bancoContext.SaveChanges();
+
+            return usuarioDB;
+        }
+
+
+    }
+}
