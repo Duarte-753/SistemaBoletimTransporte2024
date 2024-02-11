@@ -7,6 +7,7 @@ namespace SistemaBoletimTransporteDigital.Models
         
 
         [Required(ErrorMessage = "Digite o Token recebido")]
+        [MaxLength(8)]
         public string Token { get; set; }
     }
 }
