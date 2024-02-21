@@ -6,7 +6,7 @@ namespace SistemaBoletimTransporteDigital.Helper
     public static class Criptografia
     {
 
-        public static string GerarHash(this string valor) // o this gera metodo de extensão para poder usar em usuariomodel
+        public static string GerarHash(this string valor) // este metodo de extensão para poder usar em usuariomodel
         {
             var hash = SHA1.Create();
             var encoding = new ASCIIEncoding();

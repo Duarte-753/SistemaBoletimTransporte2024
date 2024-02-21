@@ -68,7 +68,7 @@ namespace SistemaBoletimTransporteDigital
                      
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=LandingPage}/{action=Index}/{id?}");
+                pattern: "{controller=Login}/{action=Index}/{id?}");
 
             string wwwroot = app.Environment.WebRootPath;
             RotativaConfiguration.Setup(wwwroot, "Rotativa");//usar o caminho pasta Rotativa do wwwroot
