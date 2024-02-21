@@ -7,7 +7,7 @@ namespace SistemaBoletimTransporteDigital.Controllers
     {
         public IActionResult PDF_Teste()
         {
-            return new ViewAsPdf("PDF_Teste") { FileName = ""};
+            return new ViewAsPdf("PDF_Teste") { FileName = ".pdf"};
         }
     }
 }
