@@ -1,6 +1,6 @@
 {
-  "name": "PWA Teste",
-  "short_name": "PWA Demo Test",
+  "name": "SBTD",
+  "short_name": "SBTD",
   "description": "Create PWA em ASP.NET Core.",
   "icons": [
     {
