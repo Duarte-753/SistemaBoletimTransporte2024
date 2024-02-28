@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "Corrida";
+}
+@model CorridaModel
+
+<div class="text-center">
+
+    <h1 class="display-4">Iniciar uma nova corrida</h1>
+    <br />
+
+</div>
+
+<form asp-controller="Corrida" asp-action="Criar" method="post">
+
+    <div class="row">
+
+        <div class="col-3">
+            <label for="perfil">Selecionar Carro:</label>
+            <select name="VeiculoId" class="form-control">
+                @foreach (var item in Model.ListaVeiculos)
+                {
+                    <option value="@item.Id">@item.Veiculo+" Placa: "+@item.Placa</option>
+                }
+            </select>
+        </div>
+
+    </div>
+
+    <br />
+
+    <button type="submit" class="btn btn-success">Iniciar Corrida</button>
+    <a class="btn btn-secondary" asp-controller="Corrida" asp-action="Index" role="button">Voltar</a>
+</form>

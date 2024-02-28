@@ -12,5 +12,6 @@ namespace SistemaBoletimTransporteDigital.Data
         }
         public DbSet<UsuarioModel> Usuario { get; set; }
         public DbSet<VeiculoModel> Veiculos { get; set; }
+        public DbSet<CorridaModel> Corridas { get; set; }
     }
 }
