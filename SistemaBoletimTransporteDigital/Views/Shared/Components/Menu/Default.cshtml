@@ -35,21 +35,21 @@
         @if (Model.Perfil == SistemaBoletimTransporteDigital.Enums.PerfilEnum.motorista)
         {
             <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Relatorio" asp-action="Index">Corrida</a>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Corrida" asp-action="Index">Corrida</a>
             </li>
         }
 
         @if (Model.Perfil == SistemaBoletimTransporteDigital.Enums.PerfilEnum.motorista)
         {
             <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Relatorio" asp-action="Index">Avarias</a>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Avaria" asp-action="Index">Avarias</a>
             </li>
         }
 
         @if (Model.Perfil == SistemaBoletimTransporteDigital.Enums.PerfilEnum.motorista)
         {
             <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Relatorio" asp-action="Index">Boletim</a>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Boletim" asp-action="Index">Boletim</a>
             </li>
         }
 
