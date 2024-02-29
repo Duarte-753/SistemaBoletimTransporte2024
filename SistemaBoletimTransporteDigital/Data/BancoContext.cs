@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SistemaBoletimTransporteDigital.Data.Map;
 using SistemaBoletimTransporteDigital.Models;
 
 namespace SistemaBoletimTransporteDigital.Data
@@ -12,6 +13,12 @@ namespace SistemaBoletimTransporteDigital.Data
         }
         public DbSet<UsuarioModel> Usuario { get; set; }
         public DbSet<VeiculoModel> Veiculos { get; set; }
-        
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new CorridasMap());
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

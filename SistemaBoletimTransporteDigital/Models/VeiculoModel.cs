@@ -31,5 +31,7 @@ namespace SistemaBoletimTransporteDigital.Models
 
         public DateTime DataUltimaAtualizacao { get; set; } = DateTime.Now;
 
+        public virtual List<CorridaModel> Corridas { get; set; }
+
     }
 }
