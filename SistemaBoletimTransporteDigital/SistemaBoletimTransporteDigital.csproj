@@ -37,6 +37,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\images\" />
+    <Folder Include="wwwroot\BK_BANCO_DADOS_SQL\" />
     <Folder Include="wwwroot\Rotativa\" />
   </ItemGroup>
 
