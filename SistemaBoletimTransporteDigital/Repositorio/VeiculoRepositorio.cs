@@ -59,6 +59,7 @@ namespace SistemaBoletimTransporteDigital.Repositorio
             return _bancoContext.Veiculos.ToList();
         }
 
+
         public VeiculoModel EditarVeiculo(VeiculoModel veiculo)
         {
             VeiculoModel veiculoDB = ListarPorIdVeiculos(veiculo.Id);
