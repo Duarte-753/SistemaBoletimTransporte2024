@@ -12,8 +12,8 @@ using SistemaBoletimTransporteDigital.Data;
 namespace SistemaBoletimTransporteDigital.Migrations
 {
     [DbContext(typeof(BancoContext))]
-    [Migration("20230914002109_UpdateUsuarioColCriacaoData")]
-    partial class UpdateUsuarioColCriacaoData
+    [Migration("20240229161951_CriacaoBanco")]
+    partial class CriacaoBanco
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,6 +25,39 @@ namespace SistemaBoletimTransporteDigital.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("SistemaBoletimTransporteDigital.Models.CorridaModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("DataFinalCorrida")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DataInicioCorrida")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DescricaoCorrida")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("UsuarioID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("VeiculoID")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UsuarioID");
+
+                    b.HasIndex("VeiculoID");
+
+                    b.ToTable("Corridas");
+                });
+
             modelBuilder.Entity("SistemaBoletimTransporteDigital.Models.UsuarioModel", b =>
                 {
                     b.Property<int>("Id")
@@ -35,11 +68,13 @@ namespace SistemaBoletimTransporteDigital.Migrations
 
                     b.Property<string>("Celular")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(11)
+                        .HasColumnType("nvarchar(11)");
 
                     b.Property<string>("CodigoFuncional")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<DateTime>("DataCriacao")
                         .HasColumnType("datetime2");
@@ -49,22 +84,26 @@ namespace SistemaBoletimTransporteDigital.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
                     b.Property<string>("Nome")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
                     b.Property<int>("Perfil")
                         .HasColumnType("int");
 
                     b.Property<string>("Senha")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("Usuario")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.HasKey("Id");
 
@@ -116,6 +155,31 @@ namespace SistemaBoletimTransporteDigital.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Veiculos");
+                });
+
+            modelBuilder.Entity("SistemaBoletimTransporteDigital.Models.CorridaModel", b =>
+                {
+                    b.HasOne("SistemaBoletimTransporteDigital.Models.UsuarioModel", "Usuario")
+                        .WithMany("Corridas")
+                        .HasForeignKey("UsuarioID");
+
+                    b.HasOne("SistemaBoletimTransporteDigital.Models.VeiculoModel", "Veiculo")
+                        .WithMany("Corridas")
+                        .HasForeignKey("VeiculoID");
+
+                    b.Navigation("Usuario");
+
+                    b.Navigation("Veiculo");
+                });
+
+            modelBuilder.Entity("SistemaBoletimTransporteDigital.Models.UsuarioModel", b =>
+                {
+                    b.Navigation("Corridas");
+                });
+
+            modelBuilder.Entity("SistemaBoletimTransporteDigital.Models.VeiculoModel", b =>
+                {
+                    b.Navigation("Corridas");
                 });
 #pragma warning restore 612, 618
         }
