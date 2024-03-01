@@ -13,6 +13,10 @@ $(document).ready(function () {
     getDatatable('#table-veiculo')
 });
 
+$(document).ready(function () {
+    getDatatable('#table-corrida')
+});
+
 
 function getDatatable(id) {
     $(id).DataTable({

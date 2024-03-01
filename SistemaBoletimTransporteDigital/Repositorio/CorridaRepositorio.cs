@@ -7,7 +7,6 @@ namespace SistemaBoletimTransporteDigital.Repositorio
     {
         private readonly BancoContext _bancoContext;
        
-
         public CorridaRepositorio(BancoContext bancoContext) // construtor
         {
             this._bancoContext = bancoContext;

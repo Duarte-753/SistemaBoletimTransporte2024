@@ -33,15 +33,13 @@ namespace SistemaBoletimTransporteDigital
             // Para usar as interface temos que listar ela aqui em baixo em services (instanciamos as interface)
 
             builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>(); // Helper httpcontext da classe sessão
-            builder.Services.AddFastReport();
-            
-
-            builder.Services.AddScoped<IRelatorioUsuarioRepositorio, RelatorioUsuarioRepositorio>();
-           
+            builder.Services.AddFastReport();            
+            builder.Services.AddScoped<IRelatorioUsuarioRepositorio, RelatorioUsuarioRepositorio>();          
             builder.Services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
             builder.Services.AddScoped<IVeiculoRepositorio, VeiculoRepositorio>();
             builder.Services.AddScoped<ISessao, Sessao>(); // quando chamar a interface vai chamar a classe referente a ela
             builder.Services.AddScoped<IEmail, Email>();
+            builder.Services.AddScoped<ICorridaRepositorio, CorridaRepositorio>();
             builder.Services.AddSession(o =>
             {
                 o.Cookie.HttpOnly = true;

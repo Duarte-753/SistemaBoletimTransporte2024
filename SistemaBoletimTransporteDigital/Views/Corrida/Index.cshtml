@@ -1,5 +1,84 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Corridas";
 }
+@model List<CorridaModel>
+
+
+<div class="text-center">
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+        <a class="btn btn-success" role="button" asp-controller="Corrida" asp-action="CriarCorrida">Criar corrida</a>
+    </div>
+
+    <br />
+
+    @if (TempData["MensagemSucesso"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" aria-label="Close">X</button>
+            @TempData["MensagemSucesso"]
+        </div>
+    }
+    @if (TempData["MensagemErro"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" aria-label="Close">X</button>
+            @TempData["MensagemErro"]
+        </div>
+    }
+
+    <br />
+
+    <h1 class="display-4">Suas Corridas</h1>
+
+    <br />
+
+    <table class="table table-dark table-hover" id="table-corrida">
+        <thead>
+            <tr>
+                <th scope="col">Motorista:</th>
+                <th scope="col">Descrição da Corrida:</th>
+                <th scope="col">Inicio:</th>
+                <th scope="col">Final:</th>
+                <th scope="col">Veículo:</th>
+                <th scope="col">Placa:</th>
+                <th scope="col">Cor:</th>
+                <th scope="col">KM:</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @if (Model != null && Model.Any())
+            {
+
+                @foreach (CorridaModel corrida in Model)
+                {
+                    <tr>
+                        <th scope="row">@corrida.Usuario</th>
+                        <td>@corrida.DescricaoCorrida</td>
+                        <td>@corrida.DataInicioCorrida</td>
+                        <td>@corrida.DataFinalCorrida</td>
+                        <td>@corrida.Veiculo</td>
+                        <td>@corrida.Veiculo</td>
+                        <td>@corrida.Veiculo</td>
+                        <td>@corrida.Veiculo</td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <a role="button" class="btn btn-warning" asp-route-id="@corrida.Id" asp-controller="corrida" asp-action="Editar">Terminar</a>
+                                <a role="button" class="btn btn-info" asp-route-id="@corrida.Id" asp-controller="corrida" asp-action="Detalhes">Detalhes</a>
+                                <a role="button" class="btn btn-danger" asp-route-id="@corrida.Id" asp-controller="corrida" asp-action="ApagarConfirmacao">Excluir</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+
+            }
+
+        </tbody>
+    </table>
+</div>
+
+
+
