@@ -12,9 +12,19 @@
 
         public int UsuarioID { get; set; }
 
+        //public string NomeUsuarioMotorista { get; set; }
+
         public UsuarioModel? Usuario { get; set; }
 
         public int VeiculoID { get; set; }
+
+       // public string NomeVeiculo { get; set; }
+
+      //  public string CorVeiculo { get; set; }
+
+       // public string PlacaVeiculo { get; set; }
+
+       // public string KmVeiculo { get; set; }
 
         public VeiculoModel? Veiculo { get; set; }
     }
