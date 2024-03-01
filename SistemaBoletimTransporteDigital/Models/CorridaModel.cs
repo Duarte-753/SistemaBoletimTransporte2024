@@ -1,6 +1,6 @@
 ﻿namespace SistemaBoletimTransporteDigital.Models
 {
-    public class CorridaModel
+    public class CorridaModel 
     {
         public int Id { get; set; }
 
@@ -10,11 +10,11 @@
 
         public string? DescricaoCorrida { get; set; }
 
-        public int? UsuarioID { get; set; }
+        public int UsuarioID { get; set; }
 
         public UsuarioModel? Usuario { get; set; }
 
-        public int? VeiculoID { get; set; }
+        public int VeiculoID { get; set; }
 
         public VeiculoModel? Veiculo { get; set; }
     }

@@ -12,7 +12,6 @@ namespace SistemaBoletimTransporteDigital.Controllers
 
         public CorridaController(ICorridaRepositorio corridaRepositorio , ISessao sessao)
         {
-
             _corridaRepositorio = corridaRepositorio;
             _sessao = sessao;
         }
