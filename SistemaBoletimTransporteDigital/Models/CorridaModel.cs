@@ -1,4 +1,6 @@
-﻿namespace SistemaBoletimTransporteDigital.Models
+﻿using SistemaBoletimTransporteDigital.Enums;
+
+namespace SistemaBoletimTransporteDigital.Models
 {
     public class CorridaModel 
     {
@@ -10,6 +12,8 @@
 
         public string? DescricaoCorrida { get; set; }
 
+        public StatusCorridaEnum? StatusDaCorrida { get; set; }
+
         public int UsuarioID { get; set; }
 
         //public string NomeUsuarioMotorista { get; set; }
@@ -20,7 +24,7 @@
 
        // public string NomeVeiculo { get; set; }
 
-      //  public string CorVeiculo { get; set; }
+       //  public string CorVeiculo { get; set; }
 
        // public string PlacaVeiculo { get; set; }
 

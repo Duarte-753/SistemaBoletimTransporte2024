@@ -37,13 +37,15 @@ namespace SistemaBoletimTransporteDigital.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("DescricaoCorrida")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("UsuarioID")
+                    b.Property<int?>("StatusDaCorrida")
                         .HasColumnType("int");
 
-                    b.Property<int?>("VeiculoID")
+                    b.Property<int>("UsuarioID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("VeiculoID")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -158,11 +160,15 @@ namespace SistemaBoletimTransporteDigital.Migrations
                 {
                     b.HasOne("SistemaBoletimTransporteDigital.Models.UsuarioModel", "Usuario")
                         .WithMany("Corridas")
-                        .HasForeignKey("UsuarioID");
+                        .HasForeignKey("UsuarioID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("SistemaBoletimTransporteDigital.Models.VeiculoModel", "Veiculo")
                         .WithMany("Corridas")
-                        .HasForeignKey("VeiculoID");
+                        .HasForeignKey("VeiculoID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Usuario");
 
