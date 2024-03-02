@@ -19,6 +19,9 @@ namespace SistemaBoletimTransporteDigital.Data
         {
             modelBuilder.ApplyConfiguration(new CorridasMap());
 
+            modelBuilder.Entity<CorridaModel>()
+            .Ignore(c => c.VeiculosDisponiveis);
+
             base.OnModelCreating(modelBuilder);
         }
     }

@@ -1,4 +1,5 @@
 ﻿using SistemaBoletimTransporteDigital.Enums;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SistemaBoletimTransporteDigital.Models
 {
@@ -14,22 +15,27 @@ namespace SistemaBoletimTransporteDigital.Models
 
         public StatusCorridaEnum? StatusDaCorrida { get; set; }
 
+
+
+
         public int UsuarioID { get; set; }
-
-        //public string NomeUsuarioMotorista { get; set; }
-
+      
         public UsuarioModel? Usuario { get; set; }
 
         public int VeiculoID { get; set; }
+        //public string NomeUsuarioMotorista { get; set; }
 
-       // public string NomeVeiculo { get; set; }
+        // public string NomeVeiculo { get; set; }
 
-       //  public string CorVeiculo { get; set; }
+        //  public string CorVeiculo { get; set; }
 
-       // public string PlacaVeiculo { get; set; }
+        // public string PlacaVeiculo { get; set; }
 
-       // public string KmVeiculo { get; set; }
+        // public string KmVeiculo { get; set; }
 
         public VeiculoModel? Veiculo { get; set; }
+
+        [NotMapped]
+        public virtual List<VeiculoModel> VeiculosDisponiveis { get; set; }
     }
 }

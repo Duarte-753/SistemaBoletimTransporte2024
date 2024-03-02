@@ -4,19 +4,15 @@ using SistemaBoletimTransporteDigital.Models;
 
 namespace SistemaBoletimTransporteDigital.Data.Map
 {
-    public class CorridasMap : IEntityTypeConfiguration<CorridaModel>
+    public class VeiculoDisponivelMap : IEntityTypeConfiguration<VeiculoModel>
     {
-        public void Configure(EntityTypeBuilder<CorridaModel> builder)
+        public void Configure(EntityTypeBuilder<VeiculoModel> builder)
         {
             builder.HasKey(x => x.Id); // chave primaria da Corrida
 
             // Definindo relação com Usuario como chave estrangeira
-            builder.HasOne<UsuarioModel>(c => c.Usuario);
-
-            // Definindo relação com Veiculo como chave estrangeira
-            builder.HasOne<VeiculoModel>(c => c.Veiculo);
-                  
-                   
+            builder.HasOne<CorridaModel>(c => c.CorridaT);
+                         
         }
     }
 }

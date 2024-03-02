@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SistemaBoletimTransporteDigital.Models
 {
@@ -31,7 +32,14 @@ namespace SistemaBoletimTransporteDigital.Models
 
         public DateTime DataUltimaAtualizacao { get; set; } = DateTime.Now;
 
+
+
         public virtual List<CorridaModel>? Corridas { get; set; }
+
+        public int CorridaID { get; set; }
+
+        [NotMapped]
+        public CorridaModel? CorridaT { get; set; }
 
     }
 }
