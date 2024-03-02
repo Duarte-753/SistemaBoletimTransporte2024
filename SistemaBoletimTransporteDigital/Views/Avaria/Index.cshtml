@@ -51,71 +51,7 @@
 
             @if (Model != null && Model.Any())
             {
-                @foreach (AvariaModel corrida in Model)
-                {
-                    <tr>
-                        <th scope="row">
-                            @if (corrida.Usuario != null)
-                            {
-                                @corrida.Usuario.Nome
-                            }
-                            else
-                            {
-                                @Html.DisplayFor(modelItem => corrida.VeiculoID)
-                            }
-                        </th>
-                        <td>@corrida.DescricaoCorrida</td>
-                        <td>@corrida.DataInicioCorrida</td>
-                        <td>@corrida.DataFinalCorrida</td>
-                        <td>
-                            @if (corrida.Veiculo != null)
-                            {
-                                @corrida.Veiculo.Veiculo
-                            }
-                            else
-                            {
-                                @Html.DisplayFor(modelItem => corrida.Veiculo)
-                            }
-                        </td>
-                        <td>
-                            @if (corrida.Veiculo != null)
-                            {
-                                @corrida.Veiculo.Veiculo
-                            }
-                            else
-                            {
-                                @Html.DisplayFor(modelItem => corrida.VeiculoID)
-                            }
-                        </td>
-                        <td>
-                            @if (corrida.Veiculo != null)
-                            {
-                                @corrida.Veiculo.Cor
-                            }
-                            else
-                            {
-                                @Html.DisplayFor(modelItem => corrida.VeiculoID)
-                            }
-                        </td>
-                        <td>
-                            @if (corrida.Veiculo != null)
-                            {
-                                @corrida.Veiculo.Quilometragem
-                            }
-                            else
-                            {
-                                @Html.DisplayFor(modelItem => corrida.VeiculoID)
-                            }
-                        </td>
-                        <td>
-                            <div class="btn-group" role="group" aria-label="Basic example">
-                                <a role="button" class="btn btn-warning" asp-route-id="@corrida.Id" asp-controller="corrida" asp-action="Editar">Terminar</a>
-                                <a role="button" class="btn btn-info" asp-route-id="@corrida.Id" asp-controller="corrida" asp-action="Detalhes">Detalhes</a>
-                                <a role="button" class="btn btn-danger" asp-route-id="@corrida.Id" asp-controller="corrida" asp-action="ApagarConfirmacao">Excluir</a>
-                            </div>
-                        </td>
-                    </tr>
-                }
+                
             }
 
         </tbody>
