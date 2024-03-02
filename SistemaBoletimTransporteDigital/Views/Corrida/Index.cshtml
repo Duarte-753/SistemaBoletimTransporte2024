@@ -1,10 +1,8 @@
-﻿
-@{
+﻿@{
     Layout = "_Layout";
     ViewData["Title"] = "Corridas";
 }
 @model List<CorridaModel>
-
 
 <div class="text-center">
 
@@ -63,20 +61,20 @@
                             }
                             else
                             {
-                                @Html.DisplayFor(modelItem => corrida.UsuarioID)
+                                @Html.DisplayFor(modelItem => corrida.VeiculoID)
                             }
                         </th>
                         <td>@corrida.DescricaoCorrida</td>
                         <td>@corrida.DataInicioCorrida</td>
                         <td>@corrida.DataFinalCorrida</td>
-                        <td>                         
+                        <td>
                             @if (corrida.Veiculo != null)
                             {
                                 @corrida.Veiculo.Veiculo
                             }
                             else
                             {
-                                @Html.DisplayFor(modelItem => corrida.VeiculoID)
+                                @Html.DisplayFor(modelItem => corrida.Veiculo)
                             }
                         </td>
                         <td>

@@ -19,8 +19,10 @@ namespace SistemaBoletimTransporteDigital.Controllers
         }
         public IActionResult Index()
         {
+            
             UsuarioModel usuarioLogado = _sessao.BuscarSessaoDoUsuario();
             List<CorridaModel> corridas = _corridaRepositorio.BuscarCorrida(usuarioLogado.Id); // buscando somente a corrida do usuario
+
             return View(corridas);
         }
 
