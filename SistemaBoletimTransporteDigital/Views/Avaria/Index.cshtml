@@ -1,3 +1,126 @@
 ﻿@{
-    ViewData["Title"] = "Avaria";
+    Layout = "_Layout";
+    ViewData["Title"] = "Avarias";
 }
+@model List<AvariaModel>
+
+<div class="text-center">
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+        <a class="btn btn-success" role="button" asp-controller="Avaria" asp-action="CriarAvaria">Fazer Avaria do Veiculo</a>
+    </div>
+
+    <br />
+
+    @if (TempData["MensagemSucesso"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" aria-label="Close">X</button>
+            @TempData["MensagemSucesso"]
+        </div>
+    }
+    @if (TempData["MensagemErro"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" aria-label="Close">X</button>
+            @TempData["MensagemErro"]
+        </div>
+    }
+
+    <br />
+
+    <h1 class="display-4">Suas Corridas</h1>
+
+    <br />
+
+    <table class="table table-dark table-hover" id="table-corrida" style="width:100%">
+        <thead>
+            <tr>
+                <th scope="col">Motorista:</th>
+                <th scope="col">Descrição da Corrida:</th>
+                <th scope="col">Inicio:</th>
+                <th scope="col">Final:</th>
+                <th scope="col">Veículo:</th>
+                <th scope="col">Placa:</th>
+                <th scope="col">Cor:</th>
+                <th scope="col">KM:</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @if (Model != null && Model.Any())
+            {
+                @foreach (CorridaModel corrida in Model)
+                {
+                    <tr>
+                        <th scope="row">
+                            @if (corrida.Usuario != null)
+                            {
+                                @corrida.Usuario.Nome
+                            }
+                            else
+                            {
+                                @Html.DisplayFor(modelItem => corrida.VeiculoID)
+                            }
+                        </th>
+                        <td>@corrida.DescricaoCorrida</td>
+                        <td>@corrida.DataInicioCorrida</td>
+                        <td>@corrida.DataFinalCorrida</td>
+                        <td>
+                            @if (corrida.Veiculo != null)
+                            {
+                                @corrida.Veiculo.Veiculo
+                            }
+                            else
+                            {
+                                @Html.DisplayFor(modelItem => corrida.Veiculo)
+                            }
+                        </td>
+                        <td>
+                            @if (corrida.Veiculo != null)
+                            {
+                                @corrida.Veiculo.Veiculo
+                            }
+                            else
+                            {
+                                @Html.DisplayFor(modelItem => corrida.VeiculoID)
+                            }
+                        </td>
+                        <td>
+                            @if (corrida.Veiculo != null)
+                            {
+                                @corrida.Veiculo.Cor
+                            }
+                            else
+                            {
+                                @Html.DisplayFor(modelItem => corrida.VeiculoID)
+                            }
+                        </td>
+                        <td>
+                            @if (corrida.Veiculo != null)
+                            {
+                                @corrida.Veiculo.Quilometragem
+                            }
+                            else
+                            {
+                                @Html.DisplayFor(modelItem => corrida.VeiculoID)
+                            }
+                        </td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <a role="button" class="btn btn-warning" asp-route-id="@corrida.Id" asp-controller="corrida" asp-action="Editar">Terminar</a>
+                                <a role="button" class="btn btn-info" asp-route-id="@corrida.Id" asp-controller="corrida" asp-action="Detalhes">Detalhes</a>
+                                <a role="button" class="btn btn-danger" asp-route-id="@corrida.Id" asp-controller="corrida" asp-action="ApagarConfirmacao">Excluir</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+
+        </tbody>
+    </table>
+</div>
+
+
+
