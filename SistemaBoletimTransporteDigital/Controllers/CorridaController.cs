@@ -23,13 +23,13 @@ namespace SistemaBoletimTransporteDigital.Controllers
             UsuarioModel usuarioLogado = _sessao.BuscarSessaoDoUsuario();
             List<CorridaModel> corridas = _corridaRepositorio.BuscarCorrida(usuarioLogado.Id); // buscando somente a corrida do usuario
 
+
             return View(corridas);
         }
 
         public IActionResult CriarCorrida()
         {
             var corrida = new CorridaModel();
-            // Suponha que você tenha uma maneira de obter a lista de veículos disponíveis, por exemplo, de um serviço de banco de dados
             corrida.VeiculosDisponiveis = _veiculoRepositorio.BuscarVeiculos();
             return View(corrida);
         }
