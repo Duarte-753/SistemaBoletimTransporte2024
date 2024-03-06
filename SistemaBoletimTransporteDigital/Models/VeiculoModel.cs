@@ -36,7 +36,7 @@ namespace SistemaBoletimTransporteDigital.Models
 
         public virtual List<CorridaModel>? Corridas { get; set; }
 
-        public int CorridaID { get; set; }
+        //public int CorridaID { get; set; }
 
         [NotMapped]
         public CorridaModel? CorridaT { get; set; }

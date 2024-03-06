@@ -23,6 +23,8 @@ namespace SistemaBoletimTransporteDigital.Controllers
             UsuarioModel usuarioLogado = _sessao.BuscarSessaoDoUsuario();
             List<CorridaModel> corridas = _corridaRepositorio.BuscarCorrida(usuarioLogado.Id); // buscando somente a corrida do usuario
 
+            var corrida = new CorridaModel();
+            corrida.VeiculosDisponiveis = _veiculoRepositorio.BuscarVeiculos();
 
             return View(corridas);
         }
@@ -31,7 +33,30 @@ namespace SistemaBoletimTransporteDigital.Controllers
         {
             var corrida = new CorridaModel();
             corrida.VeiculosDisponiveis = _veiculoRepositorio.BuscarVeiculos();
+
             return View(corrida);
+        }
+
+        // // // // // // // // // // // // // // // // // // // // // // // // // // 
+        [HttpPost]
+        public IActionResult CriarCorrida(VeiculoModel veiculoRepositorio)
+        {
+            try
+            {
+                if (ModelState.IsValid) // validação dos campos 
+                {
+                    _veiculoRepositorio.AdicionarVeiculo(veiculoRepositorio);
+                    TempData["MensagemSucesso"] = "Veículo cadastrado com sucesso!";
+                    return RedirectToAction("Index");
+                }
+
+                return View(veiculoRepositorio);
+            }
+            catch (Exception ex)
+            {
+                TempData["MensagemErro"] = $"Erro ao cadastrar o Veículo, tente novamente! detalhe do erro: {ex.Message}";
+                return RedirectToAction("Index");
+            }
         }
     }
 }

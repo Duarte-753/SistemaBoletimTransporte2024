@@ -35,8 +35,7 @@
 
     <table class="table table-dark table-hover" id="table-corrida" style="width:100%">
         <thead>
-            <tr>
-                <th scope="col">Motorista:</th>
+            <tr>            
                 <th scope="col">Descrição da Corrida:</th>
                 <th scope="col">Inicio:</th>
                 <th scope="col">Final:</th>
@@ -53,17 +52,7 @@
             {
                 @foreach (CorridaModel corrida in Model)
                 {
-                    <tr>
-                        <th scope="row">
-                            @if (corrida.Usuario != null)
-                            {
-                                @corrida.Usuario.Nome
-                            }
-                            else
-                            {
-                                @Html.DisplayFor(modelItem => corrida.UsuarioID)
-                            }
-                        </th>
+                    <tr>                      
                         <td>@corrida.DescricaoCorrida</td>
                         <td>@corrida.DataInicioCorrida</td>
                         <td>@corrida.DataFinalCorrida</td>
@@ -80,7 +69,7 @@
                         <td>
                             @if (corrida.Veiculo != null)
                             {
-                                @corrida.Veiculo.Veiculo
+                                @corrida.Veiculo.Placa
                             }
                             else
                             {
