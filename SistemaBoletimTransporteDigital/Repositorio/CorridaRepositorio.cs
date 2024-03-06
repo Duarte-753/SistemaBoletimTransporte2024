@@ -21,7 +21,7 @@ namespace SistemaBoletimTransporteDigital.Repositorio
         {
             // gravar no banco de dados
             corrida.DataFinalCorrida = null;
-            corrida.StatusDaCorrida = Enums.StatusCorridaEnum.EmAndamento;
+            corrida.StatusDaCorrida = Enums.StatusCorridaEnum.Iniciada;
             _bancoContext.Corridas.Add(corrida);       
             _bancoContext.SaveChanges();
 
