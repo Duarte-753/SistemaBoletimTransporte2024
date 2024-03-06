@@ -37,7 +37,7 @@ namespace SistemaBoletimTransporteDigital.Controllers
             return View(corrida);
         }
 
-        // // // // // // // // // // // // // // // // // // // // // // // // // // 
+        // // // // // // // // metodos referente a view// // // // // // // // // // // // // // // // // // 
         [HttpPost]
         public IActionResult CriarCorrida(CorridaModel corridaRepositorio)
         {

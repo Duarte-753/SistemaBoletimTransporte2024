@@ -17,7 +17,7 @@ namespace SistemaBoletimTransporteDigital.Repositorio
             return _bancoContext.Corridas.Where(x => x.UsuarioID == usuarioId).ToList();
         }
 
-        public CorridaModel Adicionar(CorridaModel corrida)
+        public CorridaModel AdicionarCorrida(CorridaModel corrida)
         {
             // gravar no banco de dados
             
@@ -27,5 +27,7 @@ namespace SistemaBoletimTransporteDigital.Repositorio
             return corrida;
 
         }
+
+        
     }
 }
