@@ -1,14 +1,33 @@
-﻿@{
+﻿@using SistemaBoletimTransporteDigital.Enums;
+@{
     Layout = "_Layout";
     ViewData["Title"] = "Corridas";
 }
 @model List<CorridaModel>
 
+
 <div class="text-center">
 
-    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-        <a class="btn btn-success" role="button" asp-controller="Corrida" asp-action="CriarCorrida">Criar corrida</a>
-    </div>
+    @if (Model != null && Model.Any())
+    {
+        foreach (CorridaModel corrida in Model)
+        {
+            @if (corrida.StatusDaCorrida == StatusCorridaEnum.Finalizada)// Só vai aparecer o botão de iniciar corrida se não tiver corrida para terminar
+            {
+                <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                    <a class="btn btn-success" role="button" asp-controller="Corrida" asp-action="CriarCorrida">Criar corrida</a>
+                </div>
+            }
+
+            @if (corrida.StatusDaCorrida == StatusCorridaEnum.EmAndamento)
+            {
+                <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                    <a class="btn btn-danger" role="button" asp-controller="Corrida" asp-action="FinalizarCorrida">Finalizar a Corrida</a>
+                </div>
+            }
+        }
+        
+    }  
 
     <br />
 

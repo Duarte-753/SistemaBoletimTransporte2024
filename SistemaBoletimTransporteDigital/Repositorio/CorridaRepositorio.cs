@@ -20,8 +20,9 @@ namespace SistemaBoletimTransporteDigital.Repositorio
         public CorridaModel AdicionarCorrida(CorridaModel corrida)
         {
             // gravar no banco de dados
-            
-            _bancoContext.Corridas.Add(corrida);
+            corrida.DataFinalCorrida = null;
+            corrida.StatusDaCorrida = Enums.StatusCorridaEnum.EmAndamento;
+            _bancoContext.Corridas.Add(corrida);       
             _bancoContext.SaveChanges();
 
             return corrida;

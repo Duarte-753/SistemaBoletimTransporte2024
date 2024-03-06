@@ -1,4 +1,5 @@
 ﻿using SistemaBoletimTransporteDigital.Enums;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SistemaBoletimTransporteDigital.Models
@@ -11,12 +12,14 @@ namespace SistemaBoletimTransporteDigital.Models
 
         public DateTime? DataFinalCorrida { get; set; } = DateTime.Now;
 
+
+        [Required(ErrorMessage = "Descreva onde vai utilizar o Veículo escolhido")] //Faz o Campo de baixo ser obrigatório   
         public string? DescricaoCorrida { get; set; }
 
         public StatusCorridaEnum? StatusDaCorrida { get; set; }
 
 
-
+        /////////////////////////////////////////////////////////////////////////////////////////
 
         public int UsuarioID { get; set; }
       
@@ -36,6 +39,7 @@ namespace SistemaBoletimTransporteDigital.Models
         public VeiculoModel? Veiculo { get; set; }
 
         [NotMapped]
+        [Required(ErrorMessage = "Selecione os Veículo")]
         public virtual List<VeiculoModel> VeiculosDisponiveis { get; set; }
     }
 }
