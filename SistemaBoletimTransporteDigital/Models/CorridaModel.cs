@@ -9,7 +9,7 @@ namespace SistemaBoletimTransporteDigital.Models
 
         public DateTime DataInicioCorrida { get; set; } = DateTime.Now;
 
-        public DateTime DataFinalCorrida { get; set; } = DateTime.Now;
+        public DateTime? DataFinalCorrida { get; set; } = DateTime.Now;
 
         public string? DescricaoCorrida { get; set; }
 
