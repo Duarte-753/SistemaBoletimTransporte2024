@@ -37,6 +37,11 @@ namespace SistemaBoletimTransporteDigital.Controllers
             return View(corrida);
         }
 
+        public IActionResult ConfirmacaoIniciarCorrida()
+        {
+            return View();
+        }
+
         // // // // // // // // metodos referente a view// // // // // // // // // // // // // // // // // // 
         [HttpPost]
         public IActionResult CriarCorrida(CorridaModel corridaRepositorio)
@@ -46,8 +51,7 @@ namespace SistemaBoletimTransporteDigital.Controllers
                 if (ModelState.IsValid) // validação dos campos 
                 {
                     _corridaRepositorio.AdicionarCorrida(corridaRepositorio);
-                    TempData["MensagemSucesso"] = "Corrida iniciada com sucesso!";
-                    return RedirectToAction("Index");
+                    return RedirectToAction("ConfirmacaoIniciarCorrida");
                 }
 
                 return View(corridaRepositorio);
