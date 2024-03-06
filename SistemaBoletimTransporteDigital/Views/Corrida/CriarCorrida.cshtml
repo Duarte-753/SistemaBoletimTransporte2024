@@ -22,16 +22,22 @@
             @Html.ValidationMessageFor(x => x.DescricaoCorrida)
         </div>
 
-        <div class="col-5">
+        <div class="col-4">
             <label for="veiculo">Veiculo:</label>
             <select asp-for="VeiculoID" class="form-control">
                 <option value="">Selecione</option>
                 @foreach (var veiculo in Model.VeiculosDisponiveis)
                 {
-                    <option value="@veiculo.Id">@veiculo.Veiculo | Cor: @veiculo.Cor | Placa: @veiculo.Placa</option>
+                    <option value="@veiculo.Id"> @veiculo.Veiculo | Cor: @veiculo.Cor | Placa: @veiculo.Placa</option>
                 }
             </select>
             @Html.ValidationMessageFor(x => x.VeiculoID)
+        </div>
+
+        <div class="col-4">
+            <label for="descricaocorrida">Descrição da corrida:</label>
+            <input type="text" asp-for="DescricaoCorrida" class="form-control" placeholder="Exemplo: Indo para escola Etec...">
+            @Html.ValidationMessageFor(x => x.DescricaoCorrida)
         </div>
 
     </div>

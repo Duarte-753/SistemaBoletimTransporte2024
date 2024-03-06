@@ -39,22 +39,22 @@ namespace SistemaBoletimTransporteDigital.Controllers
 
         // // // // // // // // // // // // // // // // // // // // // // // // // // 
         [HttpPost]
-        public IActionResult CriarCorrida(VeiculoModel veiculoRepositorio)
+        public IActionResult CriarCorrida(CorridaModel corridaRepositorio)
         {
             try
             {
                 if (ModelState.IsValid) // validação dos campos 
                 {
-                    _veiculoRepositorio.AdicionarVeiculo(veiculoRepositorio);
-                    TempData["MensagemSucesso"] = "Veículo cadastrado com sucesso!";
+                    _corridaRepositorio.AdicionarCorrida(corridaRepositorio);
+                    TempData["MensagemSucesso"] = "Corrida iniciada com sucesso!";
                     return RedirectToAction("Index");
                 }
 
-                return View(veiculoRepositorio);
+                return View(corridaRepositorio);
             }
             catch (Exception ex)
             {
-                TempData["MensagemErro"] = $"Erro ao cadastrar o Veículo, tente novamente! detalhe do erro: {ex.Message}";
+                TempData["MensagemErro"] = $"Erro ao iniciar a corrida, tente novamente! detalhe do erro: {ex.Message}";
                 return RedirectToAction("Index");
             }
         }

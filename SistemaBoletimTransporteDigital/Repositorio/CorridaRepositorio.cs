@@ -16,5 +16,16 @@ namespace SistemaBoletimTransporteDigital.Repositorio
         {
             return _bancoContext.Corridas.Where(x => x.UsuarioID == usuarioId).ToList();
         }
+
+        public CorridaModel Adicionar(CorridaModel corrida)
+        {
+            // gravar no banco de dados
+            
+            _bancoContext.Corridas.Add(corrida);
+            _bancoContext.SaveChanges();
+
+            return corrida;
+
+        }
     }
 }
