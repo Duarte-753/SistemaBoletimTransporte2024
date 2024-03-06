@@ -2,8 +2,8 @@
 {
     public enum StatusCorridaEnum
     {
-        Iniciada = 1,
-        EmAndamento = 2,
+        
+        Iniciada = 2,
         Finalizada = 3,
     }
 }
