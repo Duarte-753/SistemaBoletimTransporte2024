@@ -19,21 +19,15 @@
                 </div>
             }
 
-            @if (corrida.StatusDaCorrida == StatusCorridaEnum.Iniciada && corrida.StatusDaCorrida == StatusCorridaEnum.Finalizada)
+            @if (corrida.StatusDaCorrida == StatusCorridaEnum.Iniciada)
             {
                 <div class="d-grid gap-2 d-md-flex justify-content-md-start">
                     <a class="btn btn-danger" role="button" asp-controller="Corrida" asp-action="FinalizarCorrida">Finalizar a Corrida</a>
                 </div>
             }
         }
-
     }
-    else
-    {
-        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-            <a class="btn btn-success" role="button" asp-controller="Corrida" asp-action="CriarCorrida">Criar corrida</a>
-        </div>
-    }
+    
 
     <br />
 
@@ -124,7 +118,15 @@
                         <td>
                             @if (corrida.StatusDaCorrida != null)
                             {
-                                <a class="btn btn-success" role="button">@corrida.StatusDaCorrida</a>
+                                @if (corrida.StatusDaCorrida == StatusCorridaEnum.Finalizada)
+                                {
+                                    <a class="btn btn-success" role="button">@corrida.StatusDaCorrida</a>
+                                }
+                                else
+                                {
+                                    <a class="btn btn-warning" role="button">@corrida.StatusDaCorrida</a>
+                                }
+                               
                             }
                             else
                             {
