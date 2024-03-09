@@ -50,10 +50,11 @@ namespace SistemaBoletimTransporteDigital.Controllers
             {
                 if (ModelState.IsValid) // validação dos campos 
                 {
-                    _corridaRepositorio.AdicionarCorrida(corridaRepositorio);
-                    return RedirectToAction("ConfirmacaoIniciarCorrida");
-                }
+                    UsuarioModel usuarioLogado = _sessao.BuscarSessaoDoUsuario();
 
+                    _corridaRepositorio.AdicionarCorrida(corridaRepositorio, usuarioLogado.Id);
+                    return RedirectToAction("Index");
+                }
                 return View(corridaRepositorio);
             }
             catch (Exception ex)

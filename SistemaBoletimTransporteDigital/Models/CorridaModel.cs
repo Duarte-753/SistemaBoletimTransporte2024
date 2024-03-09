@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SistemaBoletimTransporteDigital.Models
 {
-    public class CorridaModel 
+    public class CorridaModel
     {
         public int Id { get; set; }
 
@@ -18,28 +18,16 @@ namespace SistemaBoletimTransporteDigital.Models
 
         public StatusCorridaEnum? StatusDaCorrida { get; set; }
 
-
-        /////////////////////////////////////////////////////////////////////////////////////////
-
         public int UsuarioID { get; set; }
-      
-        public UsuarioModel? Usuario { get; set; }
+
+        public virtual UsuarioModel? Usuario { get; set; }
 
         public int VeiculoID { get; set; }
-        //public string NomeUsuarioMotorista { get; set; }
 
-        // public string NomeVeiculo { get; set; }
-
-        //  public string CorVeiculo { get; set; }
-
-        // public string PlacaVeiculo { get; set; }
-
-        // public string KmVeiculo { get; set; }
-
-        public VeiculoModel? Veiculo { get; set; }
+        public virtual VeiculoModel? Veiculo { get; set; }
 
         [NotMapped]
-        [Required(ErrorMessage = "Selecione os Veículo")]
-        public virtual List<VeiculoModel> VeiculosDisponiveis { get; set; }
+        //[Required(ErrorMessage = "Selecione os Veículo")]
+        public virtual ICollection<VeiculoModel>? VeiculosDisponiveis { get; set; }
     }
 }

@@ -17,11 +17,12 @@ namespace SistemaBoletimTransporteDigital.Repositorio
             return _bancoContext.Corridas.Where(x => x.UsuarioID == usuarioId).ToList();
         }
 
-        public CorridaModel AdicionarCorrida(CorridaModel corrida)
+        public CorridaModel AdicionarCorrida(CorridaModel corrida, int id)
         {
             // gravar no banco de dados
             corrida.DataFinalCorrida = null;
             corrida.StatusDaCorrida = Enums.StatusCorridaEnum.Iniciada;
+            corrida.UsuarioID = id;
             _bancoContext.Corridas.Add(corrida);       
             _bancoContext.SaveChanges();
 
