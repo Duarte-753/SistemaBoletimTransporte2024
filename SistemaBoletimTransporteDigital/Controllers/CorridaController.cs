@@ -66,13 +66,14 @@ namespace SistemaBoletimTransporteDigital.Controllers
             CorridaModel corridaRepositorio = _corridaRepositorio.ListarPorId(id);
             return View(corridaRepositorio);
         }
+
         [HttpPost]
         public IActionResult FinalizarCorrida(CorridaModel corrida)
         {
             if (corrida.Id != 0)
             {
                 _corridaRepositorio.FinalizarCorrida(corrida);
-                return RedirectToAction("Index", "Corrida");
+                return RedirectToAction("CorroKmCorrida", "Corrida");
             }
             else
             {
