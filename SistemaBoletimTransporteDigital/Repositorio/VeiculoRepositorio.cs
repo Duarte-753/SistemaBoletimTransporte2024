@@ -81,6 +81,24 @@ namespace SistemaBoletimTransporteDigital.Repositorio
             return veiculoDB;
         }
 
+        public VeiculoModel KmVeiculo(VeiculoModel veiculo)
+        {
+            VeiculoModel veiculoDB = ListarPorIdVeiculos(veiculo.Id);
+
+            if (veiculoDB == null) throw new System.Exception("Houve um erro na atualização do KM desse veículo!");
+
+            
+            veiculoDB.Quilometragem = veiculo.Quilometragem;
+            
+
+            _bancoContext.Veiculos.Update(veiculoDB);
+            _bancoContext.SaveChanges();
+
+            return veiculoDB;
+        }
+
+        
+
         public VeiculoModel ListarPorIdVeiculos(int id)
         {
             return _bancoContext.Veiculos.First(x => x.Id == id);

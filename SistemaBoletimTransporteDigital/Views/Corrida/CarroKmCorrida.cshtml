@@ -1,0 +1,34 @@
+﻿@using SistemaBoletimTransporteDigital.Enums;
+@model VeiculoModel
+@{
+    ViewData["Title"] = "Quilometragem do Carro";
+}
+
+
+<div class="text-center">
+
+    <h1 class="display-4">Quilometragem do Carro</h1>
+    <br />
+
+</div>
+
+<form asp-controller="Corrida" asp-action="CarroKmCorrida" method="post">
+
+    <input type="hidden" asp-for="Id" />
+
+
+    <div class="col-3">
+        <label for="quilometragem">Quilometragem:</label>
+        <input type="text" asp-for="Quilometragem" class="form-control" placeholder="Exemplo: 514326">
+        @Html.ValidationMessageFor(x => x.Quilometragem)
+    </div>
+
+
+    <br />
+
+    <button type="submit" class="btn btn-warning">Iniciar Corrida</button>
+    
+</form>
+
+
+

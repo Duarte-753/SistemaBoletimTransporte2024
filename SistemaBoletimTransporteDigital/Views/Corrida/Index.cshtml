@@ -19,14 +19,12 @@
                 </div>
             }
 
-            @if (corrida.StatusDaCorrida == StatusCorridaEnum.Iniciada)
-            {
-                <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                    <a class="btn btn-danger" role="button" asp-controller="Corrida" asp-action="FinalizarCorrida">Finalizar a Corrida</a>
-                </div>
-            }
         }
     }
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+        <a class="btn btn-success" role="button" asp-controller="Corrida" asp-action="CriarCorrida">Criar corrida</a>
+    </div>
     
 
     <br />
@@ -118,19 +116,20 @@
                         <td>
                             @if (corrida.StatusDaCorrida != null)
                             {
+
                                 @if (corrida.StatusDaCorrida == StatusCorridaEnum.Finalizada)
                                 {
                                     <a class="btn btn-success" role="button">@corrida.StatusDaCorrida</a>
                                 }
                                 else
                                 {
-                                    <a class="btn btn-warning" role="button">@corrida.StatusDaCorrida</a>
+                                    <a class="btn btn-warning" role="button" asp-route-id="@corrida.Id"  asp-controller="Corrida" asp-action="FinalizarCorrida">@corrida.StatusDaCorrida</a>
                                 }
                                
                             }
                             else
                             {
-                                @Html.DisplayFor(modelItem => corrida.VeiculoID)
+                                @Html.DisplayFor(modelItem => corrida.Id)
                             }
                         </td>
                     </tr>

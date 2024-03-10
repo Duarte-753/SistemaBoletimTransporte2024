@@ -15,6 +15,8 @@ namespace SistemaBoletimTransporteDigital.Repositorio
 
         VeiculoModel EditarVeiculo(VeiculoModel veiculo);
 
+        VeiculoModel KmVeiculo(VeiculoModel veiculo);
+
         bool ApagarVeiculo(int id);
     }
 }

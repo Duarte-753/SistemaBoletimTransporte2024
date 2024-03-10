@@ -37,12 +37,6 @@ namespace SistemaBoletimTransporteDigital.Controllers
             return View(corrida);
         }
 
-        public IActionResult ConfirmacaoIniciarCorrida()
-        {
-            return View();
-        }
-
-        // // // // // // // // metodos referente a view// // // // // // // // // // // // // // // // // // 
         [HttpPost]
         public IActionResult CriarCorrida(CorridaModel corridaRepositorio)
         {
@@ -51,9 +45,10 @@ namespace SistemaBoletimTransporteDigital.Controllers
                 if (ModelState.IsValid) // validação dos campos 
                 {
                     UsuarioModel usuarioLogado = _sessao.BuscarSessaoDoUsuario();
+                    
 
                     _corridaRepositorio.AdicionarCorrida(corridaRepositorio, usuarioLogado.Id);
-                    return RedirectToAction("Index");
+                    return RedirectToAction("CarroKmCorrida");
                 }
                 return View(corridaRepositorio);
             }
@@ -63,5 +58,56 @@ namespace SistemaBoletimTransporteDigital.Controllers
                 return RedirectToAction("Index");
             }
         }
+
+      /* public IActionResult FinalizarCorrida(int id)
+        {
+            CorridaModel corridaRepositorio = _corridaRepositorio.BuscarCorrida(id);
+            return View(corridaRepositorio);
+        }
+        [HttpPost]
+        public IActionResult FinalizarCorrida(int id)
+        {
+            VeiculoModel corridaRepositorio = _veiculoRepositorio.ListarPorIdVeiculos(corridaRepositorio);
+            return View(corridaRepositorio);
+        }*/
+
+        public IActionResult CarroKmCorrida(int id)
+        {
+            try
+            {               
+                VeiculoModel veiculo = _veiculoRepositorio.ListarPorIdVeiculos(id);
+
+                if (veiculo != null)
+                {
+                    return View(veiculo);
+                }
+
+                TempData["MensagemErro"] = "Veículo não encontrado.";
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                TempData["MensagemErro"] = $"Erro ao carregar dados do veículo, tente novamente! Detalhe do erro: {ex.Message}";
+                return RedirectToAction("Index");
+            }
+        }
+
+        [HttpPost]
+        public IActionResult CarroKmCorrida(VeiculoModel veiculoRepositorio)
+        {
+            if (veiculoRepositorio.Id != 0)
+            {
+                _veiculoRepositorio.KmVeiculo(veiculoRepositorio);              
+                return RedirectToAction("Index", "Corrida");
+            }
+            else
+            {
+                TempData["MensagemErro"] = "Erro ao colocar o KM do Veículo, tente novamente!";
+                return RedirectToAction("Index");
+            }
+        }
+
+        
+
     }
 }
