@@ -73,7 +73,7 @@ namespace SistemaBoletimTransporteDigital.Controllers
             if (corrida.Id != 0)
             {
                 _corridaRepositorio.FinalizarCorrida(corrida);
-                return RedirectToAction("CorroKmCorrida", "Corrida");
+                return RedirectToAction("CarroKmCorrida", "Corrida");
             }
             else
             {
