@@ -30,6 +30,24 @@ namespace SistemaBoletimTransporteDigital.Repositorio
 
         }
 
-        
+        public CorridaModel FinalizarCorrida(CorridaModel corrida)
+        {
+           
+            // gravar no banco de dados
+            corrida.DataFinalCorrida = DateTime.Now;
+            corrida.StatusDaCorrida = Enums.StatusCorridaEnum.Finalizada;        
+            _bancoContext.Corridas.Update(corrida);
+            _bancoContext.SaveChanges();
+
+            return corrida;
+
+        }
+
+        public CorridaModel ListarPorId(int id)
+        {
+            return _bancoContext.Corridas.First(x => x.Id == id);
+        }
+
+
     }
 }

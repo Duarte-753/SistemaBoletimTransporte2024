@@ -7,5 +7,9 @@ namespace SistemaBoletimTransporteDigital.Repositorio
         public List<CorridaModel> BuscarCorrida(int usuarioId);
 
         public CorridaModel AdicionarCorrida(CorridaModel corrida, int id);
+
+        CorridaModel ListarPorId(int id);
+
+        CorridaModel FinalizarCorrida(CorridaModel corrida);
     }
 }

@@ -59,37 +59,35 @@ namespace SistemaBoletimTransporteDigital.Controllers
             }
         }
 
-      /* public IActionResult FinalizarCorrida(int id)
+
+
+        public IActionResult FinalizarCorrida(int id)
         {
-            CorridaModel corridaRepositorio = _corridaRepositorio.BuscarCorrida(id);
+            CorridaModel corridaRepositorio = _corridaRepositorio.ListarPorId(id);
             return View(corridaRepositorio);
         }
         [HttpPost]
-        public IActionResult FinalizarCorrida(int id)
+        public IActionResult FinalizarCorrida(CorridaModel corrida)
         {
-            VeiculoModel corridaRepositorio = _veiculoRepositorio.ListarPorIdVeiculos(corridaRepositorio);
-            return View(corridaRepositorio);
-        }*/
+            if (corrida.Id != 0)
+            {
+                _corridaRepositorio.FinalizarCorrida(corrida);
+                return RedirectToAction("Index", "Corrida");
+            }
+            else
+            {
+                TempData["MensagemErro"] = "Erro ao colocar o KM do Veículo, tente novamente!";
+                return RedirectToAction("Index");
+            }
+        }
+
+
 
         public IActionResult CarroKmCorrida(int id)
         {
-            try
-            {               
-                VeiculoModel veiculo = _veiculoRepositorio.ListarPorIdVeiculos(id);
 
-                if (veiculo != null)
-                {
-                    return View(veiculo);
-                }
-
-                TempData["MensagemErro"] = "Veículo não encontrado.";
-                return RedirectToAction("Index");
-            }
-            catch (Exception ex)
-            {
-                TempData["MensagemErro"] = $"Erro ao carregar dados do veículo, tente novamente! Detalhe do erro: {ex.Message}";
-                return RedirectToAction("Index");
-            }
+            VeiculoModel veiculoRepositorio = _veiculoRepositorio.ListarPorIdVeiculos(id);
+            return View(veiculoRepositorio);
         }
 
         [HttpPost]
