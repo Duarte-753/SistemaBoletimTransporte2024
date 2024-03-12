@@ -13,8 +13,18 @@ namespace SistemaBoletimTransporteDigital.Models
         public DateTime? DataFinalCorrida { get; set; } = DateTime.Now;
 
 
-        [Required(ErrorMessage = "Descreva onde vai utilizar o Veículo escolhido")] //Faz o Campo de baixo ser obrigatório   
+        [Required(ErrorMessage = "Descreva onde vai utilizar o Veículo escolhido.")] //Faz o Campo de baixo ser obrigatório   
         public string? DescricaoCorrida { get; set; }
+
+        [Required(ErrorMessage = "Descreva qual KM o veículo está no momento.")] //Faz o Campo de baixo ser obrigatório   
+        public string? KmInicial { get; set; }
+
+        [Required(ErrorMessage = "Descreva qual KM o veículo está no momento.")] //Faz o Campo de baixo ser obrigatório   
+        public string? KmFinal { get; set; }
+
+
+        public string? KmPercorrido { get; set; }
+
 
         public StatusCorridaEnum? StatusDaCorrida { get; set; }
 

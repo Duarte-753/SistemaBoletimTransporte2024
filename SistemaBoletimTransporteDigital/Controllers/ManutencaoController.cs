@@ -2,7 +2,7 @@
 
 namespace SistemaBoletimTransporteDigital.Controllers
 {
-    public class AvariaController : Controller
+    public class ManutencaoController : Controller
     {
         public IActionResult Index()
         {

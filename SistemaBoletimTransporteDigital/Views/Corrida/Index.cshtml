@@ -59,7 +59,9 @@
                 <th scope="col">Veículo:</th>
                 <th scope="col">Placa:</th>
                 <th scope="col">Cor:</th>
-                <th scope="col">KM:</th>
+                <th scope="col">KM Inicial:</th>
+                <th scope="col">KM Final:</th>
+                <th scope="col">KM Percorrido:</th>
                 <th scope="col">Status da Corrida</th>
             </tr>
         </thead>
@@ -104,14 +106,13 @@
                             }
                         </td>
                         <td>
-                            @if (corrida.Veiculo != null)
-                            {
-                                @corrida.Veiculo.Quilometragem
-                            }
-                            else
-                            {
-                                @Html.DisplayFor(modelItem => corrida.VeiculoID)
-                            }
+                            @corrida.KmInicial
+                        </td>
+                        <td>
+                            @corrida.KmFinal
+                        </td>
+                        <td>
+                            @corrida.KmPercorrido
                         </td>
                         <td>
                             @if (corrida.StatusDaCorrida != null)

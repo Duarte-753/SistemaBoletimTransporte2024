@@ -33,6 +33,12 @@
             </select>
             @Html.ValidationMessageFor(x => x.VeiculoID)
         </div>
+
+        <div class="col-4">
+            <label for="kminicial">KM do Veículo:</label>
+            <input type="text" asp-for="KmInicial" class="form-control" placeholder="Exemplo: 4543235...">
+            @Html.ValidationMessageFor(x => x.KmInicial)
+        </div>
       
 
     </div>

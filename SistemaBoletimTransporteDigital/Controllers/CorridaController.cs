@@ -48,7 +48,7 @@ namespace SistemaBoletimTransporteDigital.Controllers
                     
 
                     _corridaRepositorio.AdicionarCorrida(corridaRepositorio, usuarioLogado.Id);
-                    return RedirectToAction("CarroKmCorrida");
+                    return RedirectToAction("Index");
                 }
                 return View(corridaRepositorio);
             }
