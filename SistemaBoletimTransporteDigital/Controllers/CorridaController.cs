@@ -80,33 +80,7 @@ namespace SistemaBoletimTransporteDigital.Controllers
                 TempData["MensagemErro"] = "Erro ao colocar o KM do Veículo, tente novamente!";
                 return RedirectToAction("Index");
             }
-        }
-
-
-
-        public IActionResult CarroKmCorrida(int id)
-        {
-
-            VeiculoModel veiculoRepositorio = _veiculoRepositorio.ListarPorIdVeiculos(id);
-            return View(veiculoRepositorio);
-        }
-
-        [HttpPost]
-        public IActionResult CarroKmCorrida(VeiculoModel veiculoRepositorio)
-        {
-            if (veiculoRepositorio.Id != 0)
-            {
-                _veiculoRepositorio.KmVeiculo(veiculoRepositorio);              
-                return RedirectToAction("Index", "Corrida");
-            }
-            else
-            {
-                TempData["MensagemErro"] = "Erro ao colocar o KM do Veículo, tente novamente!";
-                return RedirectToAction("Index");
-            }
-        }
-
-        
+        }  
 
     }
 }

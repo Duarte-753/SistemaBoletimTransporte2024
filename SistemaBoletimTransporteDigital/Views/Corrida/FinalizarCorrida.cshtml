@@ -1,28 +1,38 @@
 ﻿@using SistemaBoletimTransporteDigital.Enums;
 @model CorridaModel
 @{
-    ViewData["Title"] = "Finalizar a Corrida";
+    ViewData["Title"] = "Finalizar Corrida";
 }
 
 
 <div class="text-center">
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
+
+    <h1 class="display-4">Finalizar a corrida</h1>
     <br />
 
-    <h3>Deseja Finalizar a Corrida?</h3>
-
-    <br />
-
-    <a class="btn btn-danger" role="button" asp-controller="Corrida" asp-action="Index">Cancelar</a>
-    <a class="btn btn-primary" role="button" asp-controller="Corrida" asp-action="FinalizarCorrida" asp-route-id="@Model.Id">Confirmar</a>
 </div>
 
+<form asp-controller="Corrida" asp-action="Finalizarcorrida" method="post">
+
+    <input type="hidden" asp-for="Id" />
+
+    <div class="row">
+
+        <div class="col-4">
+            <label for="kmFinal">KM do Veículo:</label>
+            <input type="text" asp-for="KmFinal" class="form-control" placeholder="Exemplo: 4543235...">
+            @Html.ValidationMessageFor(x => x.KmFinal)
+        </div>
+
+    </div>
+
+   
+
+    <br />
+
+    <button type="submit" class="btn btn-warning">Finalizar</button>
+    <a class="btn btn-secondary" asp-controller="Corrida" asp-action="Index" role="button">Voltar</a>
+</form>
 
 
 
