@@ -24,6 +24,7 @@ namespace SistemaBoletimTransporteDigital.Repositorio
             corrida.StatusDaCorrida = Enums.StatusCorridaEnum.Iniciada;
             corrida.UsuarioID = id;
             
+            
 
             _bancoContext.Corridas.Add(corrida);       
             _bancoContext.SaveChanges();

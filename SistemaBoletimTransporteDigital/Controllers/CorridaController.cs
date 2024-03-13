@@ -40,18 +40,14 @@ namespace SistemaBoletimTransporteDigital.Controllers
             return View(corridas);
         }
 
-        public async Task<IActionResult> CriarCorrida()
+        public IActionResult CriarCorrida()
         {
-            var dropdown = await _context.Veiculos
-                .Select(s => new { Id = s.Id, Veiculo = s.Veiculo + " | " + s.Cor + " | " + s.Placa })
-                .ToListAsync();
+            var corrida = new CorridaModel();
+            corrida.VeiculosDisponiveis = _veiculoRepositorio.BuscarVeiculos();
 
-            ViewData["VeiculosDisponiveis"] = new SelectList(dropdown, "Id", "Veiculo");
-
-
-            return View();
+            return View(corrida);
         }
-
+        
         [HttpPost]
         public IActionResult CriarCorrida(CorridaModel corridaRepositorio)
         {

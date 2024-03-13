@@ -37,7 +37,7 @@ namespace SistemaBoletimTransporteDigital.Models
 
         [NotMapped]
         //[Required(ErrorMessage = "Selecione os Veículo")]
-        public virtual ICollection<VeiculoModel> VeiculosDisponiveis { get; set; }
+        public virtual ICollection<VeiculoModel>? VeiculosDisponiveis { get; set; }
 
     }
 }
