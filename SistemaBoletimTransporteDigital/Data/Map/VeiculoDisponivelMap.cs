@@ -11,7 +11,7 @@ namespace SistemaBoletimTransporteDigital.Data.Map
             builder.HasKey(x => x.Id); // chave primaria da Corrida
 
             // Definindo relação com Usuario como chave estrangeira
-            builder.HasOne<CorridaModel>(c => c.CorridaT);
+           // builder.HasOne<CorridaModel>(c => c.CorridaT);
                          
         }
     }

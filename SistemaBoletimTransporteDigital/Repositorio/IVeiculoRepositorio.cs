@@ -1,4 +1,6 @@
 ﻿using SistemaBoletimTransporteDigital.Models;
+using Implementation = SistemaBoletimTransporteDigital.Repositorio.VeiculoRepositorio;
+
 
 namespace SistemaBoletimTransporteDigital.Repositorio
 {
@@ -6,6 +8,8 @@ namespace SistemaBoletimTransporteDigital.Repositorio
     {
             
         VeiculoModel ListarPorIdVeiculos(int id);
+
+        [ImplementedMethod(nameof(Implementation.BuscarVeiculos))] // apenas um modo de fazer atalho para implementação
 
         List<VeiculoModel> BuscarVeiculos();
 
