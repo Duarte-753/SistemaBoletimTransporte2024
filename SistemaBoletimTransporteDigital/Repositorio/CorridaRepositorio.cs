@@ -32,14 +32,19 @@ namespace SistemaBoletimTransporteDigital.Repositorio
 
         public CorridaModel FinalizarCorrida(CorridaModel corrida)
         {
-           
-            // gravar no banco de dados
-            corrida.DataFinalCorrida = DateTime.Now;
-            corrida.StatusDaCorrida = Enums.StatusCorridaEnum.Finalizada;        
-            _bancoContext.Corridas.Update(corrida);
+
+            CorridaModel corridaDB = ListarPorId(corrida.Id);
+
+            if (corridaDB == null) throw new System.Exception("Houve um erro na atualização da corrida!");
+
+            corridaDB.DataFinalCorrida = corridaDB.DataFinalCorrida;
+            corridaDB.StatusDaCorrida = Enums.StatusCorridaEnum.Finalizada; 
+            corridaDB.KmFinal = corridaDB.KmFinal;
+
+            _bancoContext.Corridas.Update(corridaDB);
             _bancoContext.SaveChanges();
 
-            return corrida;
+            return corridaDB;
 
         }
 

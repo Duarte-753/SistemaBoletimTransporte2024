@@ -68,16 +68,23 @@ namespace SistemaBoletimTransporteDigital.Controllers
         }
 
         [HttpPost]
-        public IActionResult FinalizarCorrida(CorridaModel corrida)
+        public IActionResult FinalizarCorrida(CorridaModel corridaRepositorio)
         {
-            if (corrida.Id != 0)
+            try
             {
-                _corridaRepositorio.FinalizarCorrida(corrida);
-                return RedirectToAction("Index", "Corrida");
+                if (ModelState.IsValid)
+                {                 
+
+                    _corridaRepositorio.FinalizarCorrida(corridaRepositorio);
+                    TempData["MensagemSucesso"] = "Corrida Finalizada com sucesso!";
+                    return RedirectToAction("Index");
+                }
+
+                return View(corridaRepositorio);
             }
-            else
+            catch (Exception ex)
             {
-                TempData["MensagemErro"] = "Erro ao colocar o KM do Veículo, tente novamente!";
+                TempData["MensagemErro"] = $"Erro ao finalizar a corrida, tente novamente! detalhe do erro: {ex.Message}";
                 return RedirectToAction("Index");
             }
         }  
