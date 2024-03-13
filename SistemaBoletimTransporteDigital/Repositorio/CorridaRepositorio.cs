@@ -23,6 +23,8 @@ namespace SistemaBoletimTransporteDigital.Repositorio
             corrida.DataFinalCorrida = null;
             corrida.StatusDaCorrida = Enums.StatusCorridaEnum.Iniciada;
             corrida.UsuarioID = id;
+            
+
             _bancoContext.Corridas.Add(corrida);       
             _bancoContext.SaveChanges();
 
@@ -37,14 +39,15 @@ namespace SistemaBoletimTransporteDigital.Repositorio
 
             if (corridaDB == null) throw new System.Exception("Houve um erro na atualização da corrida!");
 
-            corridaDB.DataFinalCorrida = corridaDB.DataFinalCorrida;
-            corridaDB.StatusDaCorrida = Enums.StatusCorridaEnum.Finalizada; 
-            corridaDB.KmFinal = corridaDB.KmFinal;
+            corridaDB.DataFinalCorrida = corrida.DataFinalCorrida;
+            corridaDB.StatusDaCorrida = Enums.StatusCorridaEnum.Finalizada;
+            corridaDB.KmFinal = corrida.KmFinal;
+            
 
             _bancoContext.Corridas.Update(corridaDB);
             _bancoContext.SaveChanges();
 
-            return corridaDB;
+            return corrida;
 
         }
 

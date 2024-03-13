@@ -14,10 +14,10 @@ namespace SistemaBoletimTransporteDigital.Models
 
 
         [Required(ErrorMessage = "Descreva onde vai utilizar o Veículo escolhido.")] //Faz o Campo de baixo ser obrigatório   
-        public string? DescricaoCorrida { get; set; }
+        public string DescricaoCorrida { get; set; }
 
         [Required(ErrorMessage = "Descreva qual KM o veículo está no momento.")] //Faz o Campo de baixo ser obrigatório   
-        public string? KmInicial { get; set; }
+        public string KmInicial { get; set; }
 
         [Required(ErrorMessage = "Descreva qual KM o veículo está no momento.")] //Faz o Campo de baixo ser obrigatório   
         public string? KmFinal { get; set; }
@@ -38,6 +38,6 @@ namespace SistemaBoletimTransporteDigital.Models
 
         [NotMapped]
         //[Required(ErrorMessage = "Selecione os Veículo")]
-        public virtual ICollection<VeiculoModel>? VeiculosDisponiveis { get; set; }
+        public virtual ICollection<VeiculoModel> VeiculosDisponiveis { get; set; }
     }
 }
