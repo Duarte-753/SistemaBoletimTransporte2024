@@ -43,8 +43,11 @@ namespace SistemaBoletimTransporteDigital.Repositorio
             
             corridaDB.StatusDaCorrida = Enums.StatusCorridaEnum.Finalizada;
             corridaDB.KmFinal = corrida.KmFinal;
-            
-           
+            corridaDB.DataFinalCorrida = corrida.DataFinalCorrida;
+
+            corridaDB.KmPercorrido = 
+
+
             _bancoContext.Corridas.Update(corridaDB);
             _bancoContext.SaveChanges();
 
