@@ -28,7 +28,11 @@
                 <option value="">Selecione</option>
                 @foreach (var veiculo in Model.VeiculosDisponiveis)
                 {
-                    <option value="@veiculo.Id"> @veiculo.Veiculo | Cor: @veiculo.Cor | Placa: @veiculo.Placa</option>
+                    @if (CarroEmUsoEnum.Disponivel == veiculo.CarroEmUso)
+                    {
+                        <option value="@veiculo.Id"> @veiculo.Veiculo | Cor: @veiculo.Cor | Placa: @veiculo.Placa</option>
+                    }
+                    
                 }
             </select>
             @Html.ValidationMessageFor(x => x.VeiculoID)

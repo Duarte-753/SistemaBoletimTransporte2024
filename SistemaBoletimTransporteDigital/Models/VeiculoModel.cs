@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using SistemaBoletimTransporteDigital.Enums;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SistemaBoletimTransporteDigital.Models
@@ -31,6 +32,10 @@ namespace SistemaBoletimTransporteDigital.Models
         public DateTime CadastroSistema { get; set; } = DateTime.Now;
 
         public DateTime DataUltimaAtualizacao { get; set; } = DateTime.Now;
+
+
+
+        public CarroEmUsoEnum? CarroEmUso { get; set; } = CarroEmUsoEnum.Disponivel;
 
 
 
