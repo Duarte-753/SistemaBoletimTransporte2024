@@ -16,12 +16,12 @@ namespace SistemaBoletimTransporteDigital.Models
         [Required(ErrorMessage = "Descreva onde vai utilizar o Veículo escolhido.")] //Faz o Campo de baixo ser obrigatório   
         public string DescricaoCorrida { get; set; }
 
-        public string? KmInicial { get; set; }
+        public int? KmInicial { get; set; }
 
-        public string? KmFinal { get; set; }
+        public int? KmFinal { get; set; }
 
 
-        public string? KmPercorrido { get; set; }
+        public int? KmPercorrido { get; set; }
 
 
         public StatusCorridaEnum? StatusDaCorrida { get; set; }
