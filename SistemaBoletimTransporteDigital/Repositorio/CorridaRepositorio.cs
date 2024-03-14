@@ -33,22 +33,22 @@ namespace SistemaBoletimTransporteDigital.Repositorio
 
         }
 
-        public CorridaModel FinalizarCorrida(CorridaModel corrida)
+        public CorridaModel FinalizarCorrida(CorridaModel corrida, int id)
         {
 
             CorridaModel corridaDB = ListarPorId(corrida.Id);
 
             if (corridaDB == null) throw new System.Exception("Houve um erro na atualização da corrida!");
 
-            corridaDB.DataFinalCorrida = corrida.DataFinalCorrida;
+            
             corridaDB.StatusDaCorrida = Enums.StatusCorridaEnum.Finalizada;
             corridaDB.KmFinal = corrida.KmFinal;
             
-
+           
             _bancoContext.Corridas.Update(corridaDB);
             _bancoContext.SaveChanges();
 
-            return corrida;
+            return corridaDB;
 
         }
 

@@ -14,6 +14,6 @@ namespace SistemaBoletimTransporteDigital.Repositorio
 
         CorridaModel ListarPorId(int id);
 
-        CorridaModel FinalizarCorrida(CorridaModel corrida);
+        CorridaModel FinalizarCorrida(CorridaModel corrida, int id);
     }
 }

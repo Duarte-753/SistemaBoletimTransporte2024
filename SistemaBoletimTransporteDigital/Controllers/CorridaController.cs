@@ -83,10 +83,11 @@ namespace SistemaBoletimTransporteDigital.Controllers
         {
             try
             {
-                if (ModelState.IsValid)
-                {                 
+                if (corridaRepositorio != null)
+                {
+                    UsuarioModel usuarioLogado = _sessao.BuscarSessaoDoUsuario();
 
-                    _corridaRepositorio.FinalizarCorrida(corridaRepositorio);
+                    _corridaRepositorio.FinalizarCorrida(corridaRepositorio, usuarioLogado.Id);
                     TempData["MensagemSucesso"] = "Corrida Finalizada com sucesso!";
                     return RedirectToAction("Index");
                 }
