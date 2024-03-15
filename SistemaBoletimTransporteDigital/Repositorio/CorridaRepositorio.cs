@@ -62,6 +62,30 @@ namespace SistemaBoletimTransporteDigital.Repositorio
             return _bancoContext.Corridas.First(x => x.Id == id);
         }
 
+       //     //    //////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+        public VeiculoModel UsoVeiculo(VeiculoModel veiculo, int id)
+        {
+            VeiculoModel veiculoDB = ListarPorIdVeiculos(veiculo.Id);
+
+            if (veiculoDB == null) throw new System.Exception("Houve um erro na atualização carro em uso do veículo!");
+
+            veiculoDB.CarroEmUso = Enums.CarroEmUsoEnum.EmUso;
+
+
+            _bancoContext.Veiculos.Update(veiculoDB);
+            _bancoContext.SaveChanges();
+
+            return veiculoDB;
+        }
+
+        public VeiculoModel ListarPorIdVeiculos(int id)
+        {
+            return _bancoContext.Veiculos.First(x => x.Id == id);
+        }
+
+
 
     }
 }

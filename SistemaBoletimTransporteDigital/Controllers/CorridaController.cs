@@ -11,7 +11,7 @@ namespace SistemaBoletimTransporteDigital.Controllers
     public class CorridaController : Controller
     {
         private readonly ICorridaRepositorio _corridaRepositorio;
-        private readonly BancoContext _context;
+        private readonly BancoContext _bancoContext;
         private readonly ISessao _sessao;
         private readonly IVeiculoRepositorio _veiculoRepositorio;
 
@@ -20,7 +20,7 @@ namespace SistemaBoletimTransporteDigital.Controllers
             _corridaRepositorio = corridaRepositorio;
             _sessao = sessao;
             _veiculoRepositorio = veiculoRepositorio;
-            _context = context;
+            _bancoContext = context;
         }
         public IActionResult Index()
         {
@@ -55,10 +55,18 @@ namespace SistemaBoletimTransporteDigital.Controllers
             {
                 if (ModelState.IsValid) // validação dos campos 
                 {
-                    UsuarioModel usuarioLogado = _sessao.BuscarSessaoDoUsuario();                    
+                    UsuarioModel usuarioLogado = _sessao.BuscarSessaoDoUsuario();
+
 
                     _corridaRepositorio.AdicionarCorrida(corridaRepositorio, usuarioLogado.Id);
-                    
+
+
+                    var veiculoDB = new VeiculoModel();
+
+                    veiculoDB.CarroEmUso = Enums.CarroEmUsoEnum.EmUso;
+                    _bancoContext.Veiculos.Update(veiculoDB);
+                    _bancoContext.SaveChanges();
+
                     TempData["MensagemSucesso"] = "Corrida Iniciada com sucesso!";
                     return RedirectToAction("Index");
                 }

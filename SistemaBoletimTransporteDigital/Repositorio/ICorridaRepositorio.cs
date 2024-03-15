@@ -15,5 +15,9 @@ namespace SistemaBoletimTransporteDigital.Repositorio
         CorridaModel ListarPorId(int id);
 
         CorridaModel FinalizarCorrida(CorridaModel corrida, int id);
+
+        VeiculoModel UsoVeiculo(VeiculoModel veiculo, int id);
+
+        VeiculoModel ListarPorIdVeiculos(int id);
     }
 }

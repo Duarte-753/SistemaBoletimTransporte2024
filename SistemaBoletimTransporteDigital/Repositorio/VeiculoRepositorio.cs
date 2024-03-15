@@ -104,7 +104,7 @@ namespace SistemaBoletimTransporteDigital.Repositorio
             return _bancoContext.Veiculos.First(x => x.Id == id);
         }
 
-        public VeiculoModel UsoVeiculo(VeiculoModel veiculo)
+        /*public VeiculoModel UsoVeiculo(VeiculoModel veiculo)
         {
             VeiculoModel veiculoDB = ListarPorIdVeiculos(veiculo.Id);
 
@@ -117,6 +117,6 @@ namespace SistemaBoletimTransporteDigital.Repositorio
             _bancoContext.SaveChanges();
 
             return veiculoDB;
-        }
+        }*/
     }
 }
