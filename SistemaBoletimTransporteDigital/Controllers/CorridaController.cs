@@ -60,12 +60,10 @@ namespace SistemaBoletimTransporteDigital.Controllers
 
                     _corridaRepositorio.AdicionarCorrida(corridaRepositorio, usuarioLogado.Id);
 
+                   _corridaRepositorio.UsoVeiculo(corridaRepositorio);
 
-                    var veiculoDB = new VeiculoModel();
 
-                    veiculoDB.CarroEmUso = Enums.CarroEmUsoEnum.EmUso;
-                    _bancoContext.Veiculos.Update(veiculoDB);
-                    _bancoContext.SaveChanges();
+
 
                     TempData["MensagemSucesso"] = "Corrida Iniciada com sucesso!";
                     return RedirectToAction("Index");
@@ -95,8 +93,14 @@ namespace SistemaBoletimTransporteDigital.Controllers
                 if (corridaRepositorio != null)
                 {
                     UsuarioModel usuarioLogado = _sessao.BuscarSessaoDoUsuario();
+                    
 
                     _corridaRepositorio.FinalizarCorrida(corridaRepositorio, usuarioLogado.Id);
+
+                    var buscaVeiculo = _corridaRepositorio.ListarPorId(corridaRepositorio.Id);
+
+                    _corridaRepositorio.NaoUsoVeiculo(buscaVeiculo);
+
                     TempData["MensagemSucesso"] = "Corrida Finalizada com sucesso!";
                     return RedirectToAction("Index");
                 }

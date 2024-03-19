@@ -65,9 +65,30 @@ namespace SistemaBoletimTransporteDigital.Repositorio
        //     //    //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-        public VeiculoModel UsoVeiculo(VeiculoModel veiculo, int id)
+        //public VeiculoModel UsoVeiculo(VeiculoModel veiculo, int id)
+        //{
+        //    VeiculoModel veiculoDB = ListarPorIdVeiculos(veiculo.Id);
+
+        //    if (veiculoDB == null) throw new System.Exception("Houve um erro na atualização carro em uso do veículo!");
+
+        //    veiculoDB.CarroEmUso = Enums.CarroEmUsoEnum.EmUso;
+
+
+        //    _bancoContext.Veiculos.Update(veiculoDB);
+        //    _bancoContext.SaveChanges();
+
+        //    return veiculoDB;
+        //}
+
+        public VeiculoModel ListarPorIdVeiculos(int id)
         {
-            VeiculoModel veiculoDB = ListarPorIdVeiculos(veiculo.Id);
+            return _bancoContext.Veiculos.First(x => x.Id == id);
+        }
+
+        public void UsoVeiculo(CorridaModel corridaRepositorio)
+        {
+            
+            VeiculoModel veiculoDB = ListarPorIdVeiculos(corridaRepositorio.VeiculoID);
 
             if (veiculoDB == null) throw new System.Exception("Houve um erro na atualização carro em uso do veículo!");
 
@@ -77,15 +98,24 @@ namespace SistemaBoletimTransporteDigital.Repositorio
             _bancoContext.Veiculos.Update(veiculoDB);
             _bancoContext.SaveChanges();
 
-            return veiculoDB;
+            return;
         }
 
-        public VeiculoModel ListarPorIdVeiculos(int id)
+        public void NaoUsoVeiculo(CorridaModel corridaRepositorio)
         {
-            return _bancoContext.Veiculos.First(x => x.Id == id);
+            
+
+            VeiculoModel veiculoDB = ListarPorIdVeiculos(corridaRepositorio.VeiculoID);
+
+            if (veiculoDB == null) throw new System.Exception("Houve um erro na atualização carro em uso do veículo!");
+
+            veiculoDB.CarroEmUso = Enums.CarroEmUsoEnum.Disponivel;
+
+
+            _bancoContext.Veiculos.Update(veiculoDB);
+            _bancoContext.SaveChanges();
+
+            return;
         }
-
-
-
     }
 }
