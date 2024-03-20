@@ -17,6 +17,10 @@ $(document).ready(function () {
     getDatatable('#table-corrida')
 });
 
+$(document).ready(function () {
+    getDatatable('#table-manutencao')
+});
+
 
 function getDatatable(id) {
     $(id).DataTable({

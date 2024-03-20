@@ -40,6 +40,7 @@ namespace SistemaBoletimTransporteDigital
             builder.Services.AddScoped<ISessao, Sessao>(); // quando chamar a interface vai chamar a classe referente a ela
             builder.Services.AddScoped<IEmail, Email>();
             builder.Services.AddScoped<ICorridaRepositorio, CorridaRepositorio>();
+            builder.Services.AddScoped<IManutencaoRepositorio, ManutencaoRepositorio>();
             builder.Services.AddSession(o =>
             {
                 o.Cookie.HttpOnly = true;

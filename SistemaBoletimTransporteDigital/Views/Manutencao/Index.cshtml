@@ -1,6 +1,6 @@
 ﻿@{
     Layout = "_Layout";
-    ViewData["Title"] = "Avarias";
+    ViewData["Title"] = "Manutenção";
 }
 @model List<ManutencaoModel>
 
@@ -33,25 +33,31 @@
 
     <br />
 
-    <table class="table table-dark table-hover" id="table-corrida" style="width:100%">
+    <table class="table table-dark table-hover" id="table-manutencao" style="width:100%">
         <thead>
             <tr>
-                <th scope="col">Motorista:</th>
-                <th scope="col">Descrição da Corrida:</th>
-                <th scope="col">Inicio:</th>
-                <th scope="col">Final:</th>
-                <th scope="col">Veículo:</th>
-                <th scope="col">Placa:</th>
-                <th scope="col">Cor:</th>
-                <th scope="col">KM:</th>
-                <th scope="col"></th>
+                <th scope="col">Data Manutenção:</th>
+                <th scope="col">Descrição da manutenção:</th>
+                <th scope="col">Tipo:</th>
             </tr>
         </thead>
         <tbody>
 
             @if (Model != null && Model.Any())
             {
-                
+                @foreach (ManutencaoModel manutencao in Model)
+                {
+                    <tr>
+                        <td>@manutencao.DataManutencao</td>
+                        <td>@manutencao.DescricaoManutencao</td>
+                        <td>@manutencao.TipoManutencao</td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Basic example">                            
+                                <a role="button" class="btn btn-info" asp-route-id="@manutencao.Id" asp-controller="Manutencao" asp-action="Detalhes">Detalhes</a>                              
+                            </div>
+                        </td>                    
+                    </tr>
+                }
             }
 
         </tbody>

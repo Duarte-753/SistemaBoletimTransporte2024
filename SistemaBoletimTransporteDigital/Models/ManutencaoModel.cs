@@ -14,7 +14,9 @@ namespace SistemaBoletimTransporteDigital.Models
             [Required(ErrorMessage = "Descreva a manutenção.")] //Faz o Campo de baixo ser obrigatório   
             public string DescricaoManutencao { get; set; }
 
-            public ManutencaoEnum TipoManutencao { get; set; }
+            public ManutencaoEnum? TipoManutencao { get; set; }
+
+            public string? CaminhoDaImagem { get; set; }
 
             public int UsuarioID { get; set; }
 

@@ -27,7 +27,7 @@
         @if (corrida != null)
         {
             <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-            <a class="btn btn-success" role="button" asp-route-id="@corrida.Id" asp-controller="Corrida" asp-action="FinalizarCorrida">Finalizar a corrida @corrida.StatusDaCorrida</a>
+                <a class="btn btn-primary" role="button" asp-route-id="@corrida.Id" asp-controller="Corrida" asp-action="FinalizarCorrida">Finalizar a corrida @corrida.StatusDaCorrida</a>
             </div>
         }
 
