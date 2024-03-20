@@ -8,24 +8,20 @@
 
 <div class="text-center">
 
-    @if (Model != null && Model.Any())
+    @if (Model != null && Model.Any(corrida => corrida.StatusDaCorrida == StatusCorridaEnum.Iniciada))
     {
-        foreach (CorridaModel corrida in Model)
-        {
-            @if (corrida.StatusDaCorrida == StatusCorridaEnum.Finalizada )// Só vai aparecer o botão de iniciar corrida se não tiver corrida para terminar
-            {
-                <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                    <a class="btn btn-success" role="button" asp-controller="Corrida" asp-action="CriarCorrida">Criar corrida</a>
-                </div>
-            }
-
-        }
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+            <a class="btn btn-danger" role="button">Para Criar uma Corrida Finalize a Iniciada</a>
+        </div>
     }
-
-    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-        <a class="btn btn-success" role="button" asp-controller="Corrida" asp-action="CriarCorrida">Criar corrida</a>
-    </div>
-    
+    else
+    {
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+            <a class="btn btn-success" role="button" asp-controller="Corrida" asp-action="CriarCorrida">Criar corrida</a>
+        </div>
+    }
+ 
+              
 
     <br />
 
