@@ -100,6 +100,7 @@ namespace SistemaBoletimTransporteDigital.Controllers
                     var buscaVeiculo = _corridaRepositorio.ListarPorId(corridaRepositorio.Id);
 
                     _corridaRepositorio.NaoUsoVeiculo(buscaVeiculo);
+                    _corridaRepositorio.CalcKmPercorrido(corridaRepositorio);
 
                     TempData["MensagemSucesso"] = "Corrida Finalizada com sucesso!";
                     return RedirectToAction("Index");

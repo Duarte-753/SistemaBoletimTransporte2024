@@ -23,5 +23,7 @@ namespace SistemaBoletimTransporteDigital.Repositorio
         void UsoVeiculo(CorridaModel corridaRepositorio);
 
         void NaoUsoVeiculo(CorridaModel corridaRepositorio);
+
+        void CalcKmPercorrido(CorridaModel corridaRepositorio);
     }
 }

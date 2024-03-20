@@ -41,15 +41,13 @@ namespace SistemaBoletimTransporteDigital.Repositorio
             CorridaModel corridaDB = ListarPorId(corrida.Id);
 
             if (corridaDB == null) throw new System.Exception("Houve um erro na atualização da corrida!");
-
+            
             
             corridaDB.StatusDaCorrida = Enums.StatusCorridaEnum.Finalizada;
             corridaDB.KmFinal = corrida.KmFinal;
             corridaDB.DataFinalCorrida = corrida.DataFinalCorrida;
-
             
-
-
+           
             _bancoContext.Corridas.Update(corridaDB);
             _bancoContext.SaveChanges();
 
@@ -113,6 +111,25 @@ namespace SistemaBoletimTransporteDigital.Repositorio
 
 
             _bancoContext.Veiculos.Update(veiculoDB);
+            _bancoContext.SaveChanges();
+
+            return;
+        }
+
+        public void CalcKmPercorrido(CorridaModel corridaRepositorio)
+        {
+           CorridaModel corrida = ListarPorId(corridaRepositorio.Id);
+            var CalcI = corrida.KmInicial;
+            var CalcF = corrida.KmFinal;
+
+            var total = CalcF - CalcI;
+
+            if (corrida == null) throw new System.Exception("Houve um erro na atualização carro em uso do veículo!");
+
+            corrida.KmPercorrido = total;
+
+
+            _bancoContext.Corridas.Update(corrida);
             _bancoContext.SaveChanges();
 
             return;
