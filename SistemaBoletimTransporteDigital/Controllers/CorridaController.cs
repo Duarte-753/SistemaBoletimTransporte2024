@@ -14,13 +14,15 @@ namespace SistemaBoletimTransporteDigital.Controllers
         private readonly BancoContext _bancoContext;
         private readonly ISessao _sessao;
         private readonly IVeiculoRepositorio _veiculoRepositorio;
+        private readonly IUsuarioRepositorio _usuarioRepositorio;
 
-        public CorridaController(ICorridaRepositorio corridaRepositorio, ISessao sessao, IVeiculoRepositorio veiculoRepositorio, BancoContext context)
+        public CorridaController(ICorridaRepositorio corridaRepositorio, ISessao sessao, IVeiculoRepositorio veiculoRepositorio, BancoContext context,IUsuarioRepositorio usuario)
         {
             _corridaRepositorio = corridaRepositorio;
             _sessao = sessao;
             _veiculoRepositorio = veiculoRepositorio;
             _bancoContext = context;
+            _usuarioRepositorio = usuario;
         }
         public IActionResult Index()
         {
@@ -57,10 +59,16 @@ namespace SistemaBoletimTransporteDigital.Controllers
                 {
                     UsuarioModel usuarioLogado = _sessao.BuscarSessaoDoUsuario();
 
+                    
+
 
                     _corridaRepositorio.AdicionarCorrida(corridaRepositorio, usuarioLogado.Id);
 
-                   _corridaRepositorio.UsoVeiculo(corridaRepositorio);
+                    _corridaRepositorio.UsoVeiculo(corridaRepositorio);
+
+                    var buscaUsuario = _corridaRepositorio.ListarPorId(corridaRepositorio.Id);
+
+                    _usuarioRepositorio.CorridaStatusUserI(buscaUsuario);
 
 
 
@@ -101,6 +109,10 @@ namespace SistemaBoletimTransporteDigital.Controllers
 
                     _corridaRepositorio.NaoUsoVeiculo(buscaVeiculo);
                     _corridaRepositorio.CalcKmPercorrido(corridaRepositorio);
+
+                    var buscaUsuario = _corridaRepositorio.ListarPorId(corridaRepositorio.Id);
+
+                    _usuarioRepositorio.CorridaStatusUserF(buscaUsuario);
 
                     TempData["MensagemSucesso"] = "Corrida Finalizada com sucesso!";
                     return RedirectToAction("Index");

@@ -24,5 +24,9 @@ namespace SistemaBoletimTransporteDigital.Repositorio
 
         bool Apagar(int id);
 
+          
+        void CorridaStatusUserI(CorridaModel buscaUsuario);
+
+        void CorridaStatusUserF(CorridaModel buscaUsuario);
     }
 }

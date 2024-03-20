@@ -1,4 +1,7 @@
-﻿@model UsuarioModel
+﻿@using SistemaBoletimTransporteDigital.Enums;
+@model UsuarioModel
+
+
 
 
 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Olá, @Model.Nome</a>
@@ -39,12 +42,12 @@
             </li>
         }
 
-        @if (Model.Perfil == SistemaBoletimTransporteDigital.Enums.PerfilEnum.motorista)
+        @* @if (Model.CorridaStatus == SistemaBoletimTransporteDigital.Enums.PerfilEnum.Iniciada)
         {
             <li class="nav-item">
                 <a class="nav-link text-dark" asp-area="" asp-controller="Manutencao" asp-action="Index">Manutenção</a>
             </li>
-        }
+        } *@
 
         @if (Model.Perfil == SistemaBoletimTransporteDigital.Enums.PerfilEnum.motorista)
         {

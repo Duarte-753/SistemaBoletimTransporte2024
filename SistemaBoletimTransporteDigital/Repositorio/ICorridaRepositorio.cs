@@ -20,10 +20,14 @@ namespace SistemaBoletimTransporteDigital.Repositorio
 
         VeiculoModel ListarPorIdVeiculos(int id);
 
+       
+
         void UsoVeiculo(CorridaModel corridaRepositorio);
 
         void NaoUsoVeiculo(CorridaModel corridaRepositorio);
 
         void CalcKmPercorrido(CorridaModel corridaRepositorio);
+        
+        
     }
 }

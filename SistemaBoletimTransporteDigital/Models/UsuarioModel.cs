@@ -37,6 +37,8 @@ namespace SistemaBoletimTransporteDigital.Models
         [Required(ErrorMessage = "Selecione o Perfil do Usuário.")]
         public PerfilEnum? Perfil { get; set; }
 
+        public PerfilEnum? CorridaStatus { get; set; }
+
         public DateTime DataCriacao { get; set; } = DateTime.Now;
 
         public DateTime DataUltimaAtualizacao { get; set; } = DateTime.Now;

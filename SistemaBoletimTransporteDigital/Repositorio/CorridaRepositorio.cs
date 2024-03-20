@@ -26,6 +26,7 @@ namespace SistemaBoletimTransporteDigital.Repositorio
             corrida.StatusDaCorrida = Enums.StatusCorridaEnum.Iniciada;
             corrida.UsuarioID = id;
             
+            
                     
             _bancoContext.Corridas.Add(corrida);       
             _bancoContext.SaveChanges();
@@ -83,6 +84,8 @@ namespace SistemaBoletimTransporteDigital.Repositorio
             return _bancoContext.Veiculos.First(x => x.Id == id);
         }
 
+       
+
         public void UsoVeiculo(CorridaModel corridaRepositorio)
         {
             
@@ -134,5 +137,7 @@ namespace SistemaBoletimTransporteDigital.Repositorio
 
             return;
         }
+
+       
     }
 }

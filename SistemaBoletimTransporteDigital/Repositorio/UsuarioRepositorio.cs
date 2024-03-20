@@ -44,6 +44,7 @@ namespace SistemaBoletimTransporteDigital.Repositorio
         {
             // gravar no banco de dados
             usuario.SetSenhaHash();
+            usuario.CorridaStatus = Enums.PerfilEnum.Finalizada;
             _bancoContext.Usuario.Add(usuario);
             _bancoContext.SaveChanges();
 
@@ -129,6 +130,36 @@ namespace SistemaBoletimTransporteDigital.Repositorio
             return usuarioDB;
         }
 
+       
 
+        public void CorridaStatusUserI(CorridaModel buscaUsuario)
+        {
+            UsuarioModel usuarioDB = ListarPorId(buscaUsuario.UsuarioID);
+
+            if (usuarioDB == null) throw new System.Exception("Houve um erro na atualização do Usuario!");
+
+            usuarioDB.CorridaStatus = Enums.PerfilEnum.Iniciada;
+
+
+            _bancoContext.Usuario.Update(usuarioDB);
+            _bancoContext.SaveChanges();
+
+            return;
+        }
+
+        public void CorridaStatusUserF(CorridaModel buscaUsuario)
+        {
+            UsuarioModel usuarioDB = ListarPorId(buscaUsuario.UsuarioID);
+
+            if (usuarioDB == null) throw new System.Exception("Houve um erro na atualização do Usuario!");
+
+            usuarioDB.CorridaStatus = Enums.PerfilEnum.Finalizada;
+
+
+            _bancoContext.Usuario.Update(usuarioDB);
+            _bancoContext.SaveChanges();
+
+            return;
+        }
     }
 }

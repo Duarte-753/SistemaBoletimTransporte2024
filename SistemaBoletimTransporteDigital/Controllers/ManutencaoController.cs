@@ -8,5 +8,9 @@ namespace SistemaBoletimTransporteDigital.Controllers
         {
             return View();
         }
+        public IActionResult CriarManutencao()
+        {
+            return View();
+        }
     }
 }

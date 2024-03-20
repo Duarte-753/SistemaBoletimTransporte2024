@@ -3,7 +3,8 @@
     public enum PerfilEnum
     {
         Admin = 1,
-        Padrao = 2,
+        Iniciada = 2,
         motorista = 3,
+        Finalizada = 4,
     }
 }
