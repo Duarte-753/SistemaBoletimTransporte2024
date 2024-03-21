@@ -1,5 +1,42 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using SistemaBoletimTransporteDigital.Enums;
+@model ManutencaoModel
 @{
+    ViewData["Title"] = "Criar Manutenção";
 }
+
+<div class="text-center">
+    <h1 class="display-4">Criar Manutenção</h1>
+</div>
+<br />
+
+<form asp-controller="Manutencao" asp-action="CriarManutencao" method="post" enctype="multipart/form-data">
+    
+    <div class="form-group">
+        <label for="DescricaoManutencao">Descrição da Manutenção:</label>
+        <textarea asp-for="DescricaoManutencao" class="form-control"></textarea>
+        <span asp-validation-for="DescricaoManutencao" class="text-danger"></span>
+    </div>
+    <br />
+    <div class="form-group">
+        <label for="TipoManutencao">Tipo de Manutenção:</label>
+        <select asp-for="TipoManutencao" class="form-control">
+            <option value="">Selecione</option>
+            @foreach (var tipo in Enum.GetValues(typeof(SistemaBoletimTransporteDigital.Enums.ManutencaoEnum)))
+            {
+                <option value="@tipo">@tipo</option>
+            }
+        </select>
+        <span asp-validation-for="TipoManutencao" class="text-danger"></span>
+    </div>
+    <br />
+    <div class="form-group">
+        <label for="Imagem">Foto comprovante:</label>
+        <input type="file" name="Imagem" class="form-control-file" />
+    </div>
+    <br />
+
+    <button type="submit" class="btn btn-success">Adicionar Manutenção</button>
+    <a class="btn btn-secondary" asp-controller="Manutencao" asp-action="Index">Voltar</a>
+</form>
+
+

@@ -43,18 +43,29 @@ namespace SistemaBoletimTransporteDigital.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult CriarManutencao(ManutencaoModel manutencaoModel)
+        public IActionResult CriarManutencao(ManutencaoModel manutencaoModel, IFormFile imagem)
         {
-            //string caminhoParaSalvarImagem = caminhoimagem + "\\ImagensManutencoes\\";
-            //string novoNomeOaraImagem = Guid.NewGuid().ToString() +"_"+ foto.FileName;
-            //if( !Directory.Exists(caminhoParaSalvarImagem))
-            //{
-            //    Directory.CreateDirectory(caminhoParaSalvarImagem);
-            //}
-            //using (var Stream = System.IO.File.Create(caminhoParaSalvarImagem + novoNomeOaraImagem))
-            //{
-            //    foto.CopyToAsync(Stream);
-            //}
+            if (imagem != null && imagem.Length > 0)
+            {
+                string caminhoParaSalvarImagem = _caminhoimagem + "\\ImagensManutencoes\\";
+                string novoNomeParaImagem = Guid.NewGuid().ToString() + "_" + imagem.FileName;
+
+                if (!Directory.Exists(caminhoParaSalvarImagem))
+                {
+                    Directory.CreateDirectory(caminhoParaSalvarImagem);
+                }
+
+                string caminhoCompleto = Path.Combine(caminhoParaSalvarImagem, novoNomeParaImagem);
+
+                using (var stream = new FileStream(caminhoCompleto, FileMode.Create))
+                {
+                    imagem.CopyToAsync(stream);
+                }
+
+                // Agora você pode salvar o caminho da imagem no seu modelo de manutenção
+                manutencaoModel.CaminhoDaImagem = caminhoCompleto;
+            }
+
 
 
 
