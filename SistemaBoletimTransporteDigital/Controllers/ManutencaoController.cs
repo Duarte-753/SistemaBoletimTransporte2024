@@ -38,12 +38,12 @@ namespace SistemaBoletimTransporteDigital.Controllers
         }
 
 
-        public IActionResult CriarManutencao()
+        public IActionResult CriarManutencao(int id)
         {
-            return View();
+            return View(id);
         }
         [HttpPost]
-        public IActionResult CriarManutencao(ManutencaoModel manutencaoModel, IFormFile imagem)
+        public IActionResult CriarManutencao(ManutencaoModel manutencaoModel, IFormFile imagem, int id)
         {                   
             try
             {
@@ -66,9 +66,10 @@ namespace SistemaBoletimTransporteDigital.Controllers
                             imagem.CopyToAsync(stream);
                         }
                         string caminhoParaSalvarBD = caminhoCompleto;
+                        int IdCorrida = id;
 
                         UsuarioModel usuarioLogado = _sessao.BuscarSessaoDoUsuario();
-                        _manutencaoRepositorio.AdicionarManutencao(manutencaoModel, usuarioLogado.Id, caminhoParaSalvarBD);
+                        _manutencaoRepositorio.AdicionarManutencao(manutencaoModel, usuarioLogado.Id, caminhoParaSalvarBD, IdCorrida);
                     }
                   
                     TempData["MensagemSucesso"] = "Manutenção feita com sucesso!";

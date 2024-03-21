@@ -10,20 +10,23 @@
 
     @if (Model != null && Model.Any(corrida => corrida.StatusDaCorrida == StatusCorridaEnum.Iniciada))
     {
+        var corrida = Model.FirstOrDefault(c => c.StatusDaCorrida == StatusCorridaEnum.Iniciada);
+
         <div class="d-grid gap-2 d-md-flex justify-content-md-start">
             <a class="btn btn-danger" role="button">Para Criar uma Corrida Finalize a Iniciada</a>
         </div>
 
         <br />
-       
-        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-           <a class="btn btn-warning" role="button"  asp-controller="Manutencao" asp-action="Index">Manutenção do Veículo</a>
-        </div>
 
+        @if (corrida != null)
+        {
+            <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                <a class="btn btn-warning" role="button" asp-route-id="@corrida.Id" asp-controller="Manutencao" asp-action="Index">Manutenção do Veículo</a>
+            </div>
+        }
+        
         <br />
-
-        var corrida = Model.FirstOrDefault(c => c.StatusDaCorrida == StatusCorridaEnum.Iniciada);
-
+       
         @if (corrida != null)
         {
             <div class="d-grid gap-2 d-md-flex justify-content-md-start">
