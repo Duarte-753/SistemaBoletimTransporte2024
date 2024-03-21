@@ -58,20 +58,13 @@ namespace SistemaBoletimTransporteDigital.Controllers
                 if (ModelState.IsValid) // validação dos campos 
                 {
                     UsuarioModel usuarioLogado = _sessao.BuscarSessaoDoUsuario();
-
-                    
-
-
+                  
                     _corridaRepositorio.AdicionarCorrida(corridaRepositorio, usuarioLogado.Id);
-
                     _corridaRepositorio.UsoVeiculo(corridaRepositorio);
 
                     var buscaUsuario = _corridaRepositorio.ListarPorId(corridaRepositorio.Id);
 
                     _usuarioRepositorio.CorridaStatusUserI(buscaUsuario);
-
-
-
 
                     TempData["MensagemSucesso"] = "Corrida Iniciada com sucesso!";
                     return RedirectToAction("Index");
