@@ -29,18 +29,20 @@ namespace SistemaBoletimTransporteDigital.Controllers
         }
      
 
-        public IActionResult Index()
+        public IActionResult Index(int Id)
         {
             UsuarioModel usuarioLogado = _sessao.BuscarSessaoDoUsuario();
-            List<ManutencaoModel> manutencao = _manutencaoRepositorio.BuscarManutencao(usuarioLogado.Id); // buscando somente a corrida do usuario
+            List<ManutencaoModel> manutencao = _manutencaoRepositorio.BuscarManutencao(usuarioLogado.Id); // buscando somente a manutenção do usuario
+            int idveiculo = Id;
+
                 
             return View(manutencao);
         }
 
 
-        public IActionResult CriarManutencao(int id)
+        public IActionResult CriarManutencao()
         {
-            return View(id);
+            return View();
         }
         [HttpPost]
         public IActionResult CriarManutencao(ManutencaoModel manutencaoModel, IFormFile imagem, int id)
