@@ -29,11 +29,11 @@ namespace SistemaBoletimTransporteDigital.Controllers
         }
      
 
-        public IActionResult Index(int Id)
+        public IActionResult Index()
         {
             UsuarioModel usuarioLogado = _sessao.BuscarSessaoDoUsuario();
             List<ManutencaoModel> manutencao = _manutencaoRepositorio.BuscarManutencao(usuarioLogado.Id); // buscando somente a manutenção do usuario
-            int idveiculo = Id;
+            
 
                 
             return View(manutencao);

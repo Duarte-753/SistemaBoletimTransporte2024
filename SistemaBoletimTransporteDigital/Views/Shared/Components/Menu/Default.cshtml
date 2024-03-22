@@ -42,12 +42,12 @@
             </li>
         }
 
-        @* @if (Model.CorridaStatus == SistemaBoletimTransporteDigital.Enums.PerfilEnum.Iniciada)
+        @if (Model.Perfil == SistemaBoletimTransporteDigital.Enums.PerfilEnum.motorista)
         {
             <li class="nav-item">
                 <a class="nav-link text-dark" asp-area="" asp-controller="Manutencao" asp-action="Index">Manutenção</a>
             </li>
-        } *@
+        }
 
         @if (Model.Perfil == SistemaBoletimTransporteDigital.Enums.PerfilEnum.motorista)
         {

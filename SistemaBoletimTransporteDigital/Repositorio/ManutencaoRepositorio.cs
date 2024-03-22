@@ -17,13 +17,12 @@ namespace SistemaBoletimTransporteDigital.Repositorio
 
         public void AdicionarManutencao(ManutencaoModel manutencaoModel, int id, string caminhoParaSalvarBD, int idcorrida)
         {
-            CorridaModel veiculoDB = ListarPorId(idcorrida);
+            CorridaModel corridaDB = ListarPorId(idcorrida);
             // gravar no banco de dados
-            manutencaoModel.CaminhoDaImagem = caminhoParaSalvarBD;          
-            manutencaoModel.UsuarioID = id;
-            manutencaoModel.VeiculoID = veiculoDB.VeiculoID;
-
-
+            manutencaoModel.CaminhoDaImagem = caminhoParaSalvarBD;
+            manutencaoModel.VeiculoID = corridaDB.Id;
+            manutencaoModel.UsuarioID = corridaDB.UsuarioID;
+           
 
             _bancoContext.Manutencoes.Add(manutencaoModel);
             _bancoContext.SaveChanges();

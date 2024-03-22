@@ -16,19 +16,15 @@ namespace SistemaBoletimTransporteDigital.Models
 
             public ManutencaoEnum? TipoManutencao { get; set; }
 
-            public string? CaminhoDaImagem { get; set; }
-
-            public int UsuarioID { get; set; }
-
-            public virtual UsuarioModel? Usuario { get; set; }
+            public string? CaminhoDaImagem { get; set; }        
 
             public int VeiculoID { get; set; }
 
             public virtual VeiculoModel? Veiculo { get; set; }
 
-            [NotMapped]
-            //[Required(ErrorMessage = "Selecione os Veículo")]
-            public virtual ICollection<VeiculoModel>? VeiculosDisponiveis { get; set; }
-        
+            public int UsuarioID { get; set; }
+
+            public virtual UsuarioModel? Usuario { get; set; }    
+
     }
 }
