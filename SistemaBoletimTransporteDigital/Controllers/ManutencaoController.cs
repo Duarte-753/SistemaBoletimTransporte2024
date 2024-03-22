@@ -69,6 +69,8 @@ namespace SistemaBoletimTransporteDigital.Controllers
                         }
                         string caminhoParaSalvarBD = caminhoCompleto;
                         int IdCorrida = id;
+                        manutencaoModel.Id = 0;
+                        
 
                         UsuarioModel usuarioLogado = _sessao.BuscarSessaoDoUsuario();
                         _manutencaoRepositorio.AdicionarManutencao(manutencaoModel, usuarioLogado.Id, caminhoParaSalvarBD, IdCorrida);

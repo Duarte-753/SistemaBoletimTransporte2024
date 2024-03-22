@@ -15,20 +15,33 @@ namespace SistemaBoletimTransporteDigital.Repositorio
 
         }
 
-        public void AdicionarManutencao(ManutencaoModel manutencaoModel, int id, string caminhoParaSalvarBD, int idcorrida)
+        public ManutencaoModel AdicionarManutencao(ManutencaoModel manutencaoModel,int id, string caminhoParaSalvarBD, int idcorrida)
         {
-            CorridaModel corridaDB = ListarPorId(idcorrida);
-            // gravar no banco de dados
-            manutencaoModel.CaminhoDaImagem = caminhoParaSalvarBD;
-            manutencaoModel.VeiculoID = corridaDB.Id;
-            manutencaoModel.UsuarioID = corridaDB.UsuarioID;
-           
+            try
+            {
+                CorridaModel corridaDB = ListarPorId(idcorrida);
 
-            _bancoContext.Manutencoes.Add(manutencaoModel);
-            _bancoContext.SaveChanges();
+                // Gravar no banco de dados
+                manutencaoModel.CaminhoDaImagem = caminhoParaSalvarBD;
+                manutencaoModel.VeiculoID = corridaDB.VeiculoID;
+                manutencaoModel.UsuarioID = id;
+                manutencaoModel.DataManutencao = DateTime.Now;
 
+                _bancoContext.Manutencoes.Add(manutencaoModel);
+                _bancoContext.SaveChanges();
 
-            return;
+                return manutencaoModel;
+            }
+            catch (Exception ex)
+            {
+                // Exibir informações detalhadas sobre a exceção
+                Console.WriteLine($"Erro ao fazer a manutenção: {ex.Message}");
+                if (ex.InnerException != null)
+                {
+                    Console.WriteLine($"Detalhe do erro interno: {ex.InnerException.Message}");
+                }
+                throw; // Re-lança a exceção para que seja tratada em um nível superior
+            }
         }
 
         public List<ManutencaoModel> BuscarManutencao(int usuarioId)

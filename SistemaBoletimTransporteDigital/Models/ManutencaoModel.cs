@@ -6,7 +6,8 @@ namespace SistemaBoletimTransporteDigital.Models
 {
     public class ManutencaoModel
     {
-              
+            //[Key]
+            //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
             public int Id { get; set; }
 
             public DateTime DataManutencao { get; set; } = DateTime.Now;
