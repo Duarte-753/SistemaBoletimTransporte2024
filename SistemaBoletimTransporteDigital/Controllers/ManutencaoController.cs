@@ -49,7 +49,7 @@ namespace SistemaBoletimTransporteDigital.Controllers
         {                   
             try
             {
-                if (ModelState.IsValid) // validação dos campos 
+                if (manutencaoModel != null) // validação dos campos 
                 {
                     if (imagem != null && imagem.Length > 0)
                     {
