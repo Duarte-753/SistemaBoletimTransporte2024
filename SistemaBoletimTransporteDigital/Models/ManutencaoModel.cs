@@ -25,7 +25,10 @@ namespace SistemaBoletimTransporteDigital.Models
 
             public int UsuarioID { get; set; }
 
-            public virtual UsuarioModel? Usuario { get; set; }    
+            public virtual UsuarioModel? Usuario { get; set; }
 
+            public int CorridaID { get; set; }
+
+           
     }
 }

@@ -26,6 +26,7 @@ namespace SistemaBoletimTransporteDigital.Repositorio
                 manutencaoModel.VeiculoID = corridaDB.VeiculoID;
                 manutencaoModel.UsuarioID = id;
                 manutencaoModel.DataManutencao = DateTime.Now;
+                manutencaoModel.CorridaID = idcorrida;
 
                 _bancoContext.Manutencoes.Add(manutencaoModel);
                 _bancoContext.SaveChanges();
