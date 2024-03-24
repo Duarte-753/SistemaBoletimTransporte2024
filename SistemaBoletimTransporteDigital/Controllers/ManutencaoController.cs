@@ -39,6 +39,12 @@ namespace SistemaBoletimTransporteDigital.Controllers
             return View(manutencao);
         }
 
+        public IActionResult DetalhesDaManutencao(int id)
+        {
+            ManutencaoModel manutencaoModel = _manutencaoRepositorio.ListarPorIdManutencao(id);
+            return View(manutencaoModel);
+        }
+
 
         public IActionResult CriarManutencao()
         {

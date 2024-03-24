@@ -8,5 +8,7 @@ namespace SistemaBoletimTransporteDigital.Repositorio
         List<ManutencaoModel> BuscarManutencao(int usuarioId);
 
         CorridaModel ListarPorId(int id);
+
+        ManutencaoModel ListarPorIdManutencao(int id);
     }
 }

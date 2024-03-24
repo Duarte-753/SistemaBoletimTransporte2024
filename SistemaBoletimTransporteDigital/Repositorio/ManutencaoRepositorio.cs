@@ -53,5 +53,10 @@ namespace SistemaBoletimTransporteDigital.Repositorio
         {
             return _bancoContext.Corridas.First(x => x.Id == id);
         }
+
+        public ManutencaoModel ListarPorIdManutencao(int id)
+        {
+            return _bancoContext.Manutencoes.First(x => x.Id == id);
+        }
     }
 }
