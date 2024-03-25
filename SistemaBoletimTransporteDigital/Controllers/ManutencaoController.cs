@@ -52,7 +52,7 @@ namespace SistemaBoletimTransporteDigital.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult CriarManutencao(ManutencaoModel manutencaoModel, IFormFile imagem, int id)
+        public async Task<IActionResult> CriarManutencao(ManutencaoModel manutencaoModel, IFormFile imagem, int id)
         {                   
             try
             {
@@ -79,7 +79,7 @@ namespace SistemaBoletimTransporteDigital.Controllers
                         //_manutencaoRepositorio.AdicionarManutencao(manutencaoModel, usuarioLogado.Id, caminhoParaSalvarBD, IdCorrida);
 
                         string caminhoParaSalvarImagem = _caminhoimagem + "\\ImagensManutencoes\\";
-                        string novoNomeParaImagem = Guid.NewGuid().ToString() + "_" + imagem.FileName;
+                        string novoNomeParaImagem = Guid.NewGuid().ToString() + "_" + imagem.FileName ;
 
                         if (!Directory.Exists(caminhoParaSalvarImagem))
                         {
@@ -88,10 +88,16 @@ namespace SistemaBoletimTransporteDigital.Controllers
 
                         string caminhoCompleto = Path.Combine(caminhoParaSalvarImagem, novoNomeParaImagem);
 
+                        //using (var imagemConvertida = Image.FromStream(imagem.OpenReadStream()))
+                        //{
+                        //    imagemConvertida.Save(caminhoCompleto, ImageFormat.Png); // Salvando a imagem convertida para o formato PNG no caminho especificado
+                        //}
+
                         using (var stream = new FileStream(caminhoCompleto, FileMode.Create))
                         {
-                            imagem.CopyToAsync(stream);
+                            await imagem.CopyToAsync(stream);
                         }
+
                         string caminhoParaSalvarBD = novoNomeParaImagem;
                         int IdCorrida = id;
                         manutencaoModel.Id = 0;
