@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using SistemaBoletimTransporteDigital.Data;
 using SistemaBoletimTransporteDigital.Helper;
 using SistemaBoletimTransporteDigital.Models;
@@ -59,6 +60,24 @@ namespace SistemaBoletimTransporteDigital.Controllers
                 {
                     if (imagem != null && imagem.Length > 0)
                     {
+                        //string caminhoParaSalvarImagem = Path.Combine(_webHostEnvironment.WebRootPath, "ImagensManutencoes");
+                        //string novoNomeParaImagem = Guid.NewGuid().ToString() + "_" + imagem.FileName;
+
+                        //string caminhoCompleto = Path.Combine(caminhoParaSalvarImagem, novoNomeParaImagem);
+
+                        //using (var stream = new FileStream(caminhoCompleto, FileMode.Create))
+                        //{
+                        //    await imagem.CopyToAsync(stream);
+                        //}
+
+                        //string caminhoParaSalvarBD = Path.Combine("/ImagensManutencoes", novoNomeParaImagem);
+
+                        //int IdCorrida = id;
+                        //manutencaoModel.Id = 0;
+
+                        //UsuarioModel usuarioLogado = _sessao.BuscarSessaoDoUsuario();
+                        //_manutencaoRepositorio.AdicionarManutencao(manutencaoModel, usuarioLogado.Id, caminhoParaSalvarBD, IdCorrida);
+
                         string caminhoParaSalvarImagem = _caminhoimagem + "\\ImagensManutencoes\\";
                         string novoNomeParaImagem = Guid.NewGuid().ToString() + "_" + imagem.FileName;
 
@@ -73,7 +92,7 @@ namespace SistemaBoletimTransporteDigital.Controllers
                         {
                             imagem.CopyToAsync(stream);
                         }
-                        string caminhoParaSalvarBD = caminhoCompleto;
+                        string caminhoParaSalvarBD = novoNomeParaImagem;
                         int IdCorrida = id;
                         manutencaoModel.Id = 0;
                         
