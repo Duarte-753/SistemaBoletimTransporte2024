@@ -1,5 +1,4 @@
-using FastReport.Data;
-using FastReport.Web;
+
 using Microsoft.EntityFrameworkCore;
 using Rotativa.AspNetCore;
 using SistemaBoletimTransporteDigital.Data;
@@ -28,12 +27,12 @@ namespace SistemaBoletimTransporteDigital
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             });
 
-            FastReport.Utils.RegisteredObjects.AddConnection(typeof(MsSqlDataConnection));
+            //FastReport.Utils.RegisteredObjects.AddConnection(typeof(MsSqlDataConnection));
 
             // Para usar as interface temos que listar ela aqui em baixo em services (instanciamos as interface)
 
             builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>(); // Helper httpcontext da classe sessão
-            builder.Services.AddFastReport();            
+            //builder.Services.AddFastReport();            
             builder.Services.AddScoped<IRelatorioUsuarioRepositorio, RelatorioUsuarioRepositorio>();          
             builder.Services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
             builder.Services.AddScoped<IVeiculoRepositorio, VeiculoRepositorio>();
@@ -61,7 +60,7 @@ namespace SistemaBoletimTransporteDigital
 
             app.UseAuthorization();
 
-            app.UseFastReport(); // usando fastReport
+            //app.UseFastReport(); // usando fastReport
 
             app.UseSession(); //usar a sessão
                      
