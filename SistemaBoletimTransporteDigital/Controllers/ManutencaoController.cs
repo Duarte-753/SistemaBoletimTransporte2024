@@ -34,9 +34,11 @@ namespace SistemaBoletimTransporteDigital.Controllers
         {
             UsuarioModel usuarioLogado = _sessao.BuscarSessaoDoUsuario();
             List<ManutencaoModel> manutencao = _manutencaoRepositorio.BuscarManutencao(usuarioLogado.Id); // buscando somente a manutenção do usuario
-            
 
-                
+            var manutencaoModel = new ManutencaoModel();
+            manutencaoModel.VeiculosDisponiveis = _veiculoRepositorio.BuscarVeiculos();
+
+
             return View(manutencao);
         }
 

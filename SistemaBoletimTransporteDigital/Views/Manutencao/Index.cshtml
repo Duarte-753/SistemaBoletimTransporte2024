@@ -36,6 +36,8 @@
     <table class="table table-dark table-hover" id="table-manutencao" style="width:100%">
         <thead>
             <tr>
+                <th scope="col">Veículo:</th>
+                <th scope="col">Placa:</th>
                 <th scope="col">Data Manutenção:</th>
                 <th scope="col">Descrição da manutenção:</th>
                 <th scope="col">Tipo:</th>
@@ -49,6 +51,26 @@
                 @foreach (ManutencaoModel manutencao in Model)
                 {
                     <tr>
+                        <td>
+                            @if (manutencao.Veiculo != null)
+                            {
+                                @manutencao.Veiculo.Veiculo
+                            }
+                            else
+                            {
+                                @Html.DisplayFor(modelItem => manutencao.VeiculoID)
+                            }
+                        </td>
+                        <td>
+                            @if (manutencao.Veiculo != null)
+                            {
+                                @manutencao.Veiculo.Placa
+                            }
+                            else
+                            {
+                                @Html.DisplayFor(modelItem => manutencao.VeiculoID)
+                            }
+                        </td>
                         <td>@manutencao.DataManutencao</td>
                         <td>@manutencao.DescricaoManutencao</td>
                         <td>@manutencao.TipoManutencao</td>
