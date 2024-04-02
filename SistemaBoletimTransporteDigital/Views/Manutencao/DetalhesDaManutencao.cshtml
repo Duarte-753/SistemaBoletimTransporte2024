@@ -35,6 +35,20 @@
                         <dd class="col-sm-8">@Html.DisplayFor(modelItem => Model.VeiculoID)</dd>
                     }
                 }
+
+                <dt class="col-sm-4">Placa:</dt>
+
+                @if (Model != null)
+                {
+                    @if (Model != null)
+                    {
+                        <dd class="col-sm-8">@Model.Veiculo.Placa</dd>
+                    }
+                    else
+                    {
+                        <dd class="col-sm-8">@Html.DisplayFor(modelItem => Model.VeiculoID)</dd>
+                    }
+                }
                 
                
             </dl>
