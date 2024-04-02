@@ -16,11 +16,26 @@
                 <dt class="col-sm-4">Data da Manutenção:</dt>
                 <dd class="col-sm-8">@Model.DataManutencao</dd>
 
-                <dt class="col-sm-4">Descrição da Manutenção:</dt>
+                <dt class="col-sm-4">Descrição:</dt>
                 <dd class="col-sm-8">@Model.DescricaoManutencao</dd>
 
                 <dt class="col-sm-4">Tipo de Manutenção:</dt>
                 <dd class="col-sm-8">@Model.TipoManutencao</dd>
+
+                <dt class="col-sm-4">Veículo:</dt>
+
+                @if (Model != null)
+                {
+                    @if (Model != null)
+                    {
+                        <dd class="col-sm-8">@Model.Veiculo.Veiculo</dd>
+                    }
+                    else
+                    {
+                        <dd class="col-sm-8">@Html.DisplayFor(modelItem => Model.VeiculoID)</dd>
+                    }
+                }
+                
                
             </dl>
         </div>
