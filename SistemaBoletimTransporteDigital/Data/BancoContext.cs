@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SistemaBoletimTransporteDigital.Data.Map;
 using SistemaBoletimTransporteDigital.Models;
+using SistemaBoletimTransporteDigital.AppDbSeed;
 
 namespace SistemaBoletimTransporteDigital.Data
 {
@@ -19,6 +20,7 @@ namespace SistemaBoletimTransporteDigital.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new CorridasMap());
+            BdSeed.SeedData(modelBuilder);
 
 
             base.OnModelCreating(modelBuilder);
