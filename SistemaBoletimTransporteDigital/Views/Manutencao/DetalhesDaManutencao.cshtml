@@ -54,6 +54,7 @@
                
             </dl>
         </div>
+
         <div class="col-md-6">
             @if (!string.IsNullOrEmpty(Model.CaminhoDaImagem)) // Verifica se o caminho da imagem não é nulo ou vazio
             {
@@ -63,9 +64,8 @@
                     <a class="btn btn-warning" href="~/ImagensManutencoes/@Model.CaminhoDaImagem" download>
                         Baixar PDF
                     </a>
-
-                    
-                }
+            
+                }               
                 else
                 {
                     <img src="~/ImagensManutencoes/@Model.CaminhoDaImagem" alt="Imagem da Manutenção" style="max-width: 100%; height: auto;" />
@@ -76,7 +76,6 @@
                 <p>Nenhuma imagem disponível</p>
             }
         </div>
-        
         
     </div>
 </div>
