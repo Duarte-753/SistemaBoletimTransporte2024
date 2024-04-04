@@ -62,28 +62,12 @@ namespace SistemaBoletimTransporteDigital.Controllers
         {                   
             try
             {
-                if (manutencaoModel != null) // validação dos campos 
-                {
-                    if (imagem != null && imagem.Length > 0)
+                if (ModelState.IsValid) // validação dos campos 
+                { 
+                    
+                    if (imagem != null && imagem.Length > 0) 
                     {
-                        //string caminhoParaSalvarImagem = Path.Combine(_webHostEnvironment.WebRootPath, "ImagensManutencoes");
-                        //string novoNomeParaImagem = Guid.NewGuid().ToString() + "_" + imagem.FileName;
-
-                        //string caminhoCompleto = Path.Combine(caminhoParaSalvarImagem, novoNomeParaImagem);
-
-                        //using (var stream = new FileStream(caminhoCompleto, FileMode.Create))
-                        //{
-                        //    await imagem.CopyToAsync(stream);
-                        //}
-
-                        //string caminhoParaSalvarBD = Path.Combine("/ImagensManutencoes", novoNomeParaImagem);
-
-                        //int IdCorrida = id;
-                        //manutencaoModel.Id = 0;
-
-                        //UsuarioModel usuarioLogado = _sessao.BuscarSessaoDoUsuario();
-                        //_manutencaoRepositorio.AdicionarManutencao(manutencaoModel, usuarioLogado.Id, caminhoParaSalvarBD, IdCorrida);
-
+                       
                         string caminhoParaSalvarImagem = _caminhoimagem + "\\ImagensManutencoes\\";
                         string novoNomeParaImagem = Guid.NewGuid().ToString() + "_" + imagem.FileName ;
 
@@ -92,12 +76,7 @@ namespace SistemaBoletimTransporteDigital.Controllers
                             Directory.CreateDirectory(caminhoParaSalvarImagem);
                         }
 
-                        string caminhoCompleto = Path.Combine(caminhoParaSalvarImagem, novoNomeParaImagem);
-
-                        //using (var imagemConvertida = Image.FromStream(imagem.OpenReadStream()))
-                        //{
-                        //    imagemConvertida.Save(caminhoCompleto, ImageFormat.Png); // Salvando a imagem convertida para o formato PNG no caminho especificado
-                        //}
+                        string caminhoCompleto = Path.Combine(caminhoParaSalvarImagem, novoNomeParaImagem);                      
 
                         using (var stream = new FileStream(caminhoCompleto, FileMode.Create))
                         {
@@ -111,10 +90,11 @@ namespace SistemaBoletimTransporteDigital.Controllers
 
                         UsuarioModel usuarioLogado = _sessao.BuscarSessaoDoUsuario();
                         _manutencaoRepositorio.AdicionarManutencao(manutencaoModel, usuarioLogado.Id, caminhoParaSalvarBD, IdCorrida);
-                    }
-                  
-                    TempData["MensagemSucesso"] = "Manutenção feita com sucesso!";
-                    return RedirectToAction("Index", "Corrida");
+
+                        TempData["MensagemSucesso"] = "Manutenção feita com sucesso!";
+                        return RedirectToAction("Index", "Corrida");
+                    }                 
+                                  
                 }
                 return View(manutencaoModel);
             }

@@ -14,7 +14,7 @@
     <div class="form-group">
         <label for="DescricaoManutencao">Descrição da Manutenção:</label>
         <textarea asp-for="DescricaoManutencao" class="form-control"></textarea>
-        <span asp-validation-for="DescricaoManutencao" class="text-danger"></span>
+        @Html.ValidationMessageFor(x => x.DescricaoManutencao)
     </div>
     <br />
     <div class="form-group">
@@ -25,8 +25,8 @@
             {
                 <option value="@tipo">@tipo</option>
             }
-        </select>
-        <span asp-validation-for="TipoManutencao" class="text-danger"></span>
+        </select>        
+        @Html.ValidationMessageFor(x => x.TipoManutencao)
     </div>
     <br />
     <div class="form-group">
@@ -34,6 +34,7 @@
         <input type="file" name="Imagem" class="form-control-file" />
     </div>
     <br />
+
 
     <button type="submit" class="btn btn-success">Adicionar Manutenção</button>
     <a class="btn btn-secondary" asp-controller="Manutencao" asp-action="Index">Voltar</a>
