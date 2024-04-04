@@ -1,4 +1,5 @@
 ﻿@model SistemaBoletimTransporteDigital.Models.ManutencaoModel
+@using System.IO
 
 @{
     ViewData["Title"] = "Detalhes da Manutenção";
@@ -53,8 +54,29 @@
                
             </dl>
         </div>
+        <div class="col-md-6">
+            @if (!string.IsNullOrEmpty(Model.CaminhoDaImagem)) // Verifica se o caminho da imagem não é nulo ou vazio
+            {
+                string extension = Model.CaminhoDaImagem.Substring(Model.CaminhoDaImagem.Length - 4); // Obtém os últimos 4 caracteres do caminho
+                if (extension != null && extension.Equals(".pdf", StringComparison.OrdinalIgnoreCase)) // Verifica se a extensão é .pdf (ignorando a diferenciação de maiúsculas e minúsculas)
+                {
+                    <a class="btn btn-warning" href="~/ImagensManutencoes/@Model.CaminhoDaImagem" download>
+                        Baixar PDF
+                    </a>
 
-        <img src="~/ImagensManutencoes/@Model.CaminhoDaImagem" alt="Imagem da Manutenção" style="max-width: 100%; height: auto;" />
+                    
+                }
+                else
+                {
+                    <img src="~/ImagensManutencoes/@Model.CaminhoDaImagem" alt="Imagem da Manutenção" style="max-width: 100%; height: auto;" />
+                }
+            }
+            else
+            {
+                <p>Nenhuma imagem disponível</p>
+            }
+        </div>
+        
         
     </div>
 </div>
