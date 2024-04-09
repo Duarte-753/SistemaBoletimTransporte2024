@@ -1,3 +1,35 @@
 ﻿@{
     ViewData["Title"] = "Boletim";
 }
+
+
+<div class="text-center">
+    <h1 class="display-4">Boletim Mensal</h1>
+</div>
+<br />
+
+
+ <div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <form method="get" asp-controller="Corrida" asp-action="Index">
+                <div class="row">
+                    <div class="col-3">
+                        <label for="dataInicio" class="mr-2">Data de Início:</label>
+                        <input type="date" class="form-control" id="dataInicio" name="dataInicio" />
+                    </div>
+                    <div class="col-3">
+                        <label for="dataFim" class="mr-2">Data Final:</label>
+                        <input type="date" class="form-control" id="dataFim" name="dataFim" />
+                    </div>                   
+                </div>
+            </form>
+        </div>
+    </div>
+ </div> 
+
+<br />
+
+<button type="submit" class="btn btn-success">Baixar Boletim</button>
+<a class="btn btn-secondary" asp-controller="Manutencao" asp-action="Index" role="button">Voltar</a>
+
