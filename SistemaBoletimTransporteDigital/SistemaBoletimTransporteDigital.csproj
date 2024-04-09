@@ -36,9 +36,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\images\" />
     <Folder Include="wwwroot\BK_BANCO_DADOS_SQL\" />
     <Folder Include="wwwroot\ImagensManutencoes\" />
+    <Folder Include="wwwroot\images\NovaPasta\" />
     <Folder Include="wwwroot\Rotativa\" />
   </ItemGroup>
 

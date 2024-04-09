@@ -64,10 +64,10 @@ namespace SistemaBoletimTransporteDigital
             app.UseFastReport(); // usando fastReport
 
             app.UseSession(); //usar a sessão
-                     
+
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Login}/{action=Index}/{id?}");
+                pattern: "{controller=Home}/{action=LandingPage}/{id?}");
 
             string wwwroot = app.Environment.WebRootPath;
             RotativaConfiguration.Setup(wwwroot, "Rotativa");//usar o caminho pasta Rotativa do wwwroot

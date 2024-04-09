@@ -104,10 +104,15 @@ namespace SistemaBoletimTransporteDigital.Controllers
                         
 
                         UsuarioModel usuarioLogado = _sessao.BuscarSessaoDoUsuario();
-                        _manutencaoRepositorio.AdicionarManutencao(manutencaoModel, usuarioLogado.Id, caminhoParaSalvarBD, IdCorrida);
+                        if(caminhoParaSalvarBD != null)
+                        {
+                            _manutencaoRepositorio.AdicionarManutencao(manutencaoModel, usuarioLogado.Id, caminhoParaSalvarBD, IdCorrida);
+                            TempData["MensagemSucesso"] = "Manutenção feita com sucesso!";
+                        }
+                        
                     }
                   
-                    TempData["MensagemSucesso"] = "Manutenção feita com sucesso!";
+                    
                     return RedirectToAction("Index", "Corrida");
                 }
                 return View(manutencaoModel);
