@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿
 using SistemaBoletimTransporteDigital.Data;
 using SistemaBoletimTransporteDigital.Models;
 

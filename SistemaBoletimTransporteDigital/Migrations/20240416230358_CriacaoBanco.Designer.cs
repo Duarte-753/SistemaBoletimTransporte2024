@@ -12,15 +12,15 @@ using SistemaBoletimTransporteDigital.Data;
 namespace SistemaBoletimTransporteDigital.Migrations
 {
     [DbContext(typeof(BancoContext))]
-    [Migration("20240312233248_CriacaoColunaTBcorridas")]
-    partial class CriacaoColunaTBcorridas
+    [Migration("20240416230358_CriacaoBanco")]
+    partial class CriacaoBanco
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.10")
+                .HasAnnotation("ProductVersion", "8.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -43,13 +43,14 @@ namespace SistemaBoletimTransporteDigital.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("KmFinal")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("KmFinal")
+                        .HasColumnType("int");
 
-                    b.Property<string>("KmInicial")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("KmInicial")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("KmPercorrido")
+                        .HasColumnType("int");
 
                     b.Property<int?>("StatusDaCorrida")
                         .HasColumnType("int");
@@ -76,6 +77,12 @@ namespace SistemaBoletimTransporteDigital.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CaminhoDaImagem")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CorridaID")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("DataManutencao")
                         .HasColumnType("datetime2");
@@ -120,6 +127,9 @@ namespace SistemaBoletimTransporteDigital.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
+                    b.Property<int?>("CorridaStatus")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("DataCriacao")
                         .HasColumnType("datetime2");
 
@@ -141,8 +151,8 @@ namespace SistemaBoletimTransporteDigital.Migrations
 
                     b.Property<string>("Senha")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
                     b.Property<string>("Usuario")
                         .IsRequired()
@@ -152,6 +162,50 @@ namespace SistemaBoletimTransporteDigital.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Usuario");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Celular = "11912345678",
+                            CodigoFuncional = "1234",
+                            CorridaStatus = 4,
+                            DataCriacao = new DateTime(2024, 4, 16, 20, 3, 58, 446, DateTimeKind.Local).AddTicks(835),
+                            DataUltimaAtualizacao = new DateTime(2024, 4, 16, 20, 3, 58, 446, DateTimeKind.Local).AddTicks(836),
+                            Email = "julioduartebatista753@gmail.com",
+                            Nome = "admin",
+                            Perfil = 1,
+                            Senha = "d033e22ae348aeb5660fc2140aec35850c4da997",
+                            Usuario = "admin"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Celular = "11912345678",
+                            CodigoFuncional = "567",
+                            CorridaStatus = 4,
+                            DataCriacao = new DateTime(2024, 4, 16, 20, 3, 58, 446, DateTimeKind.Local).AddTicks(881),
+                            DataUltimaAtualizacao = new DateTime(2024, 4, 16, 20, 3, 58, 446, DateTimeKind.Local).AddTicks(881),
+                            Email = "julioduartebatista753@gmail.com",
+                            Nome = "motorista",
+                            Perfil = 3,
+                            Senha = "a61e38f3910fba1d8e1fb97f4b3561df07ab0d81",
+                            Usuario = "motorista"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Celular = "11912345678",
+                            CodigoFuncional = "9876",
+                            CorridaStatus = 4,
+                            DataCriacao = new DateTime(2024, 4, 16, 20, 3, 58, 446, DateTimeKind.Local).AddTicks(899),
+                            DataUltimaAtualizacao = new DateTime(2024, 4, 16, 20, 3, 58, 446, DateTimeKind.Local).AddTicks(899),
+                            Email = "julioduartebatista753@gmail.com",
+                            Nome = "motorista2",
+                            Perfil = 3,
+                            Senha = "b739522c59a564437fc8c6ad639176f704766596",
+                            Usuario = "motorista2"
+                        });
                 });
 
             modelBuilder.Entity("SistemaBoletimTransporteDigital.Models.VeiculoModel", b =>
@@ -168,6 +222,9 @@ namespace SistemaBoletimTransporteDigital.Migrations
 
                     b.Property<DateTime>("CadastroSistema")
                         .HasColumnType("datetime2");
+
+                    b.Property<int?>("CarroEmUso")
+                        .HasColumnType("int");
 
                     b.Property<string>("Cor")
                         .IsRequired()
@@ -199,6 +256,50 @@ namespace SistemaBoletimTransporteDigital.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Veiculos");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Ano = "2014",
+                            CadastroSistema = new DateTime(2024, 4, 16, 20, 3, 58, 446, DateTimeKind.Local).AddTicks(931),
+                            CarroEmUso = 1,
+                            Cor = "Branco",
+                            DataUltimaAtualizacao = new DateTime(2024, 4, 16, 20, 3, 58, 446, DateTimeKind.Local).AddTicks(932),
+                            Placa = "FWF-1232",
+                            Prefixo = "1234-5",
+                            Quilometragem = "12600",
+                            Valor = "259875",
+                            Veiculo = "Golf"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Ano = "2016",
+                            CadastroSistema = new DateTime(2024, 4, 16, 20, 3, 58, 446, DateTimeKind.Local).AddTicks(958),
+                            CarroEmUso = 1,
+                            Cor = "Branco",
+                            DataUltimaAtualizacao = new DateTime(2024, 4, 16, 20, 3, 58, 446, DateTimeKind.Local).AddTicks(958),
+                            Placa = "ASD-2345",
+                            Prefixo = "6789-10",
+                            Quilometragem = "450067",
+                            Valor = "15000",
+                            Veiculo = "Fiat Uno"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Ano = "2024",
+                            CadastroSistema = new DateTime(2024, 4, 16, 20, 3, 58, 446, DateTimeKind.Local).AddTicks(979),
+                            CarroEmUso = 1,
+                            Cor = "Azul",
+                            DataUltimaAtualizacao = new DateTime(2024, 4, 16, 20, 3, 58, 446, DateTimeKind.Local).AddTicks(980),
+                            Placa = "JHF-7653",
+                            Prefixo = "12123-5",
+                            Quilometragem = "100",
+                            Valor = "45000",
+                            Veiculo = "Palio Weekend"
+                        });
                 });
 
             modelBuilder.Entity("SistemaBoletimTransporteDigital.Models.CorridaModel", b =>

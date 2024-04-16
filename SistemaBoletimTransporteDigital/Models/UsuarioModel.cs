@@ -21,7 +21,7 @@ namespace SistemaBoletimTransporteDigital.Models
         public string Usuario { get; set; }
 
         [Required(ErrorMessage ="Digite a senha desse Usuário")]
-        [MaxLength(20)]
+        [MaxLength(40)]
         public string Senha { get; set; }
 
         [Required(ErrorMessage = "Digite um email para recuperação de senha.")]
