@@ -43,7 +43,8 @@ namespace SistemaBoletimTransporteDigital.Controllers
             var viewModel = new BoletimViewModel
             {
                 Filtros = model.Filtros,
-                Dados = model.Dados
+                Dados = model.Dados,
+                
             };
 
             return View(viewModel);
