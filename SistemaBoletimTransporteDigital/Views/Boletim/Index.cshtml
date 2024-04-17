@@ -1,4 +1,4 @@
-﻿@using SistemaBoletimTransporteDigital.ViewModels
+﻿@model SistemaBoletimTransporteDigital.ViewModels.BoletimViewModel
 
 @{
     ViewData["Title"] = "Boletim";
@@ -29,7 +29,7 @@
     </div>
 </div>
 
-@if (Model != null && Model.Count > 0)
+@if (Model != null && Model.Dados != null && Model.Dados.Count > 0)
 {
     <div class="container mt-5">
         <h2>Corridas</h2>
@@ -45,12 +45,12 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var corrida in Model)
+                @foreach (var corrida in Model.Dados)
                 {
                     <tr>
                         <td>@corrida.Id</td>
                         <td>@corrida.DataInicioCorrida.ToShortDateString()</td>
-                        <td>@corrida.DataFinalCorrida.ToShortDateString()</td>
+                        <td>@corrida.DataFinalCorrida?.ToShortDateString()</td>
                         <td>@corrida.DescricaoCorrida</td>
                         <td>@corrida.KmInicial</td>
                         <td>@corrida.KmFinal</td>
@@ -66,41 +66,3 @@ else
         <h2>Nenhuma corrida encontrada para o período selecionado.</h2>
     </div>
 }
-
-
-@* @{
-    ViewData["Title"] = "Boletim";
-}
-
-
-<div class="text-center">
-    <h1 class="display-4">Boletim Mensal</h1>
-</div>
-<br />
-
-
- <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <form method="get" asp-controller="Corrida" asp-action="Index">
-                <div class="row">
-                    <div class="col-3">
-                        <label for="dataInicio" class="mr-2">Data de Início:</label>
-                        <input type="date" class="form-control" id="dataInicio" name="dataInicio" />
-                    </div>
-                    <div class="col-3">
-                        <label for="dataFim" class="mr-2">Data Final:</label>
-                        <input type="date" class="form-control" id="dataFim" name="dataFim" />
-                    </div>                   
-                </div>
-            </form>
-        </div>
-    </div>
- </div> 
-
-<br />
-
-<button type="submit" class="btn btn-success">Baixar Boletim</button>
-<a class="btn btn-secondary" asp-controller="Manutencao" asp-action="Index" role="button">Voltar</a> *@
-
-

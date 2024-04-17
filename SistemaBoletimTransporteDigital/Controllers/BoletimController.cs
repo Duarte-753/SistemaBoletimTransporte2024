@@ -30,14 +30,24 @@ namespace SistemaBoletimTransporteDigital.Controllers
             // Realizar a consulta no banco de dados usando as datas fornecidas
             var corridas = await _bancoContext.Corridas
                 .Where(c => c.DataInicioCorrida >= model.Filtros.DataInicial && c.DataFinalCorrida <= model.Filtros.DataFinal)
-                .Select(c => new BoletimViewModel
+                .Select(c => new DadosViewModel
                 {
-               
+                    Id = c.Id,
+                    DataInicioCorrida = c.DataInicioCorrida,
+                    DataFinalCorrida = c.DataFinalCorrida,
+                    DescricaoCorrida = c.DescricaoCorrida,
+                    KmInicial = c.KmInicial,
+                    KmFinal = c.KmFinal
                 }).ToListAsync();
 
-           
-                return View(corridas);
-            
+            var viewModel = new BoletimViewModel
+            {
+                Filtros = model.Filtros,
+                Dados = model.Dados
+            };
+
+            return View(viewModel);
         }
+
     }
 }
