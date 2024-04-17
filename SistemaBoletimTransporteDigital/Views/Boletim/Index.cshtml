@@ -1,4 +1,79 @@
-﻿@{
+﻿@using SistemaBoletimTransporteDigital.ViewModels
+
+
+@{
+    ViewData["Title"] = "Boletim";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Boletim Mensal</h1>
+</div>
+<br />
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <form method="get" asp-controller="Boletim" asp-action="Index">
+                <div class="row">
+                    <div class="col-3">
+                        <label for="dataInicio" class="mr-2">Data de Início:</label>
+                        <input type="date" class="form-control" id="dataInicio" name="dataInicio" />
+                    </div>
+                    <div class="col-3">
+                        <label for="dataFinal" class="mr-2">Data Final:</label>
+                        <input type="date" class="form-control" id="dataFim" name="dataFinal" />
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-success mt-3">Filtrar</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@if (Model != null && Model.Count > 0)
+{
+    <div class="container mt-5">
+        <h2>Corridas</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Data de Início</th>
+                    <th>Data Final</th>
+                    <th>Descrição</th>
+                    <th>Km Inicial</th>
+                    <th>Km Final</th>
+                    @* <th>Placa</th>
+                    <th>Celular</th>
+                    <th>Quantidade</th> *@
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var corrida in Model)
+                {
+                    <tr>
+                        <td>@corrida.Id</td>
+                        <td>@corrida.DataInicioCorrida.ToShortDateString()</td>
+                        <td>@corrida.DataFinalCorrida.ToShortDateString()</td>
+                        <td>@corrida.DescricaoCorrida</td>
+                        <td>@corrida.KmInicial</td>
+                        <td>@corrida.KmFinal</td>
+                       @*  <td>@corrida.Placa</td>
+                        <td>@corrida.Celular</td>
+                        <td>@corrida.Qtd</td> *@
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <div class="container mt-5">
+        <h2>Nenhuma corrida encontrada para o período selecionado.</h2>
+    </div>
+}
+@* @{
     ViewData["Title"] = "Boletim";
 }
 
@@ -31,5 +106,6 @@
 <br />
 
 <button type="submit" class="btn btn-success">Baixar Boletim</button>
-<a class="btn btn-secondary" asp-controller="Manutencao" asp-action="Index" role="button">Voltar</a>
+<a class="btn btn-secondary" asp-controller="Manutencao" asp-action="Index" role="button">Voltar</a> *@
+
 

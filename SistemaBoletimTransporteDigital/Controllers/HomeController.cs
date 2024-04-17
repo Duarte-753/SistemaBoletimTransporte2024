@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SistemaBoletimTransporteDigital.Helper;
+
 using SistemaBoletimTransporteDigital.Models;
-using SistemaBoletimTransporteDigital.Repositorio;
+
 using System.Diagnostics;
 
 namespace SistemaBoletimTransporteDigital.Controllers

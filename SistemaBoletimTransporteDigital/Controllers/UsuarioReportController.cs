@@ -1,7 +1,6 @@
 ﻿
 using Microsoft.AspNetCore.Mvc;
-using SistemaBoletimTransporteDigital.Helper;
-using SistemaBoletimTransporteDigital.Repositorio;
+
 
 namespace SistemaBoletimTransporteDigital.Controllers
 {
