@@ -14,14 +14,16 @@ namespace SistemaBoletimTransporteDigital.Controllers
         private readonly ICorridaRepositorio _corridaRepositorio;
         private readonly ISessao _sessao;
         private readonly IVeiculoRepositorio _veiculoRepositorio;
+        private readonly IUsuarioRepositorio _usuarioRepositorio;
 
 
-        public BoletimController(ICorridaRepositorio corridaRepositorio, ISessao sessao, IVeiculoRepositorio veiculoRepositorio, BancoContext bancoContext)
+        public BoletimController(ICorridaRepositorio corridaRepositorio, ISessao sessao, IVeiculoRepositorio veiculoRepositorio, BancoContext bancoContext, IUsuarioRepositorio usuarioRepositorio)
         {
             _bancoContext = bancoContext;
             _corridaRepositorio = corridaRepositorio;
             _sessao = sessao;
             _veiculoRepositorio = veiculoRepositorio;
+            _usuarioRepositorio = usuarioRepositorio;
         }
 
         public async Task<IActionResult> Index(BoletimViewModel model)
@@ -71,6 +73,12 @@ namespace SistemaBoletimTransporteDigital.Controllers
                 Dados = corridas// Usar os resultados da consulta como dados
             };
 
+            var corrida = new CorridaModel();
+            corrida.VeiculosDisponiveis = _veiculoRepositorio.BuscarVeiculos();
+
+            var usuario = new UsuarioModel();
+            usuario.UsuariosDisponiveis = _usuarioRepositorio.BuscarUsuario();
+
             return View(viewModel);
         }
 
@@ -86,7 +94,6 @@ namespace SistemaBoletimTransporteDigital.Controllers
                                 c.DataFinalCorrida <= dataFinal &&
                                 c.UsuarioID == usuarioLogado.Id).ToListAsync();
 
-
             var viewModel = new BoletimViewModel
             {
                 Filtros = new Filtro
@@ -96,6 +103,12 @@ namespace SistemaBoletimTransporteDigital.Controllers
                 },
                 Dados = corridas// Usar os resultados da consulta como dados
             };
+
+            var corrida = new CorridaModel();
+            corrida.VeiculosDisponiveis = _veiculoRepositorio.BuscarVeiculos();
+
+            var usuario = new UsuarioModel();
+            usuario.UsuariosDisponiveis = _usuarioRepositorio.BuscarUsuario();
 
             return View(viewModel);
         }   

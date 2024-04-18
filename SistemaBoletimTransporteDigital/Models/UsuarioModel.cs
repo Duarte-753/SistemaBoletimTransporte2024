@@ -1,6 +1,7 @@
 ﻿using SistemaBoletimTransporteDigital.Enums;
 using SistemaBoletimTransporteDigital.Helper;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SistemaBoletimTransporteDigital.Models
 {
@@ -67,6 +68,10 @@ namespace SistemaBoletimTransporteDigital.Models
             return novaSenha;
         }
 
-       
+        [NotMapped]
+        //[Required(ErrorMessage = "Selecione os Veículo")]
+        public virtual ICollection<UsuarioModel>? UsuariosDisponiveis { get; set; }
+
+
     }
 }

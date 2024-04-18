@@ -36,25 +36,47 @@
         <h2>Corridas</h2>
         <table class="table table-dark table-hover" id="table-boletim" style="width:100%">
             <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Data de Início</th>
-                    <th>Data Final</th>
-                    <th>Descrição</th>
-                    <th>Km Inicial</th>
-                    <th>Km Final</th>
+                <tr>                  
+                    <th>Motorista:</th>
+                    <th>Data de Início:</th>
+                    <th>Data Final:</th>
+                    <th>Descrição:</th>
+                    <th>Veículo:</th>
+                    <th>Km Inicial:</th>
+                    <th>Km Final:</th>
+                    <th>Km Percorrido:</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var corrida in Model.Dados)
                 {
-                    <tr>
-                        <td>@corrida.Id</td>
-                        <td>@corrida.DataInicioCorrida.ToShortDateString()</td>
-                        <td>@corrida.DataFinalCorrida?.ToShortDateString()</td>
+                    <tr>                      
+                        <td>                           
+                            @if (corrida.Usuario != null)
+                            {
+                                @corrida.Usuario.Nome
+                            }
+                            else
+                            {
+                                @Html.DisplayFor(modelItem => corrida.UsuarioID)
+                            }
+                        </td>
+                        <td>@corrida.DataInicioCorrida</td> @* .ToShortDateString() *@
+                        <td>@corrida.DataFinalCorrida</td> @* .ToShortDateString() *@
                         <td>@corrida.DescricaoCorrida</td>
+                        <td>
+                            @if (corrida.Veiculo != null)
+                            {
+                                @corrida.Veiculo.Veiculo
+                            }
+                            else
+                            {
+                                @Html.DisplayFor(modelItem => corrida.VeiculoID)
+                            }
+                        </td>
                         <td>@corrida.KmInicial</td>
                         <td>@corrida.KmFinal</td>
+                        <td>@corrida.KmPercorrido</td>                                            
                     </tr>
                 }
             </tbody>
