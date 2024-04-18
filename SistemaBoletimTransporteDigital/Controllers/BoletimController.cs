@@ -44,7 +44,7 @@ namespace SistemaBoletimTransporteDigital.Controllers
                 model.Filtros.DataFinal = DateTime.Now.AddDays(1).AddSeconds(-1);
             }
             // Adiciona o tempo 23:59:59 à data final
-            DateTime dataFinal = DateTime.Now.AddDays(1).AddSeconds(-1);
+            DateTime dataFinal = DateTime.Now.AddDays(1).AddSeconds(-1).AddDays(-1);
 
             // Realizar a consulta no banco de dados usando as datas fornecidas
             //var corridas = await _bancoContext.Corridas
@@ -55,6 +55,11 @@ namespace SistemaBoletimTransporteDigital.Controllers
             var corridas = await _bancoContext.Corridas
                                .Where(c => c.DataInicioCorrida >= dataInicio &&
                                c.DataFinalCorrida <= dataFinal &&
+                               c.UsuarioID == usuarioLogado.Id).ToListAsync();
+
+            var manutencoes = await _bancoContext.Manutencoes
+                               .Where(c => c.DataManutencao >= dataInicio &&
+                               c.DataManutencao <= dataFinal &&
                                c.UsuarioID == usuarioLogado.Id).ToListAsync();
 
             //var viewModel = new BoletimViewModel
@@ -70,7 +75,7 @@ namespace SistemaBoletimTransporteDigital.Controllers
                     DataFinal = dataFinal,
                     DataInicial = dataInicio,
                 },
-                Dados = corridas// Usar os resultados da consulta como dados
+                DadosCorrida = corridas// Usar os resultados da consulta como dados
             };
 
             var corrida = new CorridaModel();
@@ -94,6 +99,11 @@ namespace SistemaBoletimTransporteDigital.Controllers
                                 c.DataFinalCorrida <= dataFinal &&
                                 c.UsuarioID == usuarioLogado.Id).ToListAsync();
 
+            var manutencoes = await _bancoContext.Manutencoes
+                               .Where(c => c.DataManutencao >= dataInicio &&
+                               c.DataManutencao <= dataFinal &&
+                               c.UsuarioID == usuarioLogado.Id).ToListAsync();
+
             var viewModel = new BoletimViewModel
             {
                 Filtros = new Filtro
@@ -101,7 +111,7 @@ namespace SistemaBoletimTransporteDigital.Controllers
                     DataFinal = dataFinal,
                     DataInicial = dataInicio,
                 },
-                Dados = corridas// Usar os resultados da consulta como dados
+                DadosCorrida = corridas// Usar os resultados da consulta como dados
             };
 
             var corrida = new CorridaModel();

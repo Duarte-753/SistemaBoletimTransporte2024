@@ -8,12 +8,17 @@ namespace SistemaBoletimTransporteDigital.ViewModels
         public BoletimViewModel()
         {
             Filtros = new Filtro();
-            Dados = new List<CorridaModel>();
+            DadosCorrida = new List<CorridaModel>();
+            DadosManutencao = new List<ManutencaoModel>();
+            DadosUsuario = new List<UsuarioModel>();
         }
         public Filtro Filtros { get; set; }
 
-        public List<CorridaModel> Dados { get; set; }
+        public List<CorridaModel> DadosCorrida { get; set; }
 
+        public List<ManutencaoModel> DadosManutencao { get; set; }
+
+        public List<UsuarioModel> DadosUsuario { get; set; }
 
     }
 
