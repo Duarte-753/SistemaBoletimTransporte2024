@@ -33,34 +33,32 @@ namespace SistemaBoletimTransporteDigital.Controllers
             if (!model.Filtros.DataInicial.HasValue)
             {
                 model.Filtros.DataInicial = DateTime.Now.AddMonths(-1);
+               
             }
+            DateTime dataInicio = DateTime.Now.AddMonths(-1);
 
             if (!model.Filtros.DataFinal.HasValue)
             {
-                model.Filtros.DataFinal = DateTime.Now;
+                model.Filtros.DataFinal = DateTime.Now;            
             }
+            DateTime dataFinal = DateTime.Now;
 
             // Realizar a consulta no banco de dados usando as datas fornecidas
+            //var corridas = await _bancoContext.Corridas
+            //     .Where(c => c.DataInicioCorrida >= model.Filtros.DataInicial && c.DataFinalCorrida <= model.Filtros.DataFinal &&
+            //          c.UsuarioID == usuarioLogado.Id
+            //    ).ToListAsync();
+
             var corridas = await _bancoContext.Corridas
-                 .Where(c => c.DataInicioCorrida >= model.Filtros.DataInicial && c.DataFinalCorrida <= model.Filtros.DataFinal &&
-                      c.UsuarioID == usuarioLogado.Id
-                ).ToListAsync();
+                               .Where(c => c.DataInicioCorrida >= dataInicio &&
+                               c.DataFinalCorrida <= dataFinal &&
+                               c.UsuarioID == usuarioLogado.Id).ToListAsync();
 
-            var viewModel = new BoletimViewModel
-            {
-                Filtros = model.Filtros,
-                Dados = corridas// Usar os resultados da consulta como dados
-            };
-
-            return View(viewModel);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Index(DateTime dataInicio, DateTime dataFinal)
-        {
-            var corridas = await _bancoContext.Corridas
-                                        .Where(c => c.DataInicioCorrida >= dataInicio && c.DataFinalCorrida <= dataFinal).ToListAsync();
-
+            //var viewModel = new BoletimViewModel
+            //{
+            //    Filtros = model.Filtros,
+            //    Dados = corridas// Usar os resultados da consulta como dados
+            //};
 
             var viewModel = new BoletimViewModel
             {
@@ -75,19 +73,29 @@ namespace SistemaBoletimTransporteDigital.Controllers
             return View(viewModel);
         }
 
-        //[HttpPost]
-        //public IActionResult Index()
-        //{
-        //    UsuarioModel usuarioLogado = _sessao.BuscarSessaoDoUsuario();
-        //    List<CorridaModel> corridas = _corridaRepositorio.BuscarCorrida(usuarioLogado.Id); // buscando somente a corrida do usuario
-        //    //var dropdown = _veiculoRepositorio.BuscarVeiculos();
-        //    //ViewBag.VeiculosDisponiveis = new SelectList(dropdown, "Id", "Veiculo");
-        //    var corrida = new CorridaModel();
-        //    corrida.VeiculosDisponiveis = _veiculoRepositorio.BuscarVeiculos();
+        [HttpPost]
+        public async Task<IActionResult> Index(DateTime dataInicio, DateTime dataFinal)
+        {
+            var usuarioLogado = _sessao.BuscarSessaoDoUsuario();
+
+            var corridas = await _bancoContext.Corridas
+                                .Where(c => c.DataInicioCorrida >= dataInicio &&
+                                c.DataFinalCorrida <= dataFinal &&
+                                c.UsuarioID == usuarioLogado.Id).ToListAsync();
 
 
-        //    return View(corridas);
-        //}
+            var viewModel = new BoletimViewModel
+            {
+                Filtros = new Filtro
+                {
+                    DataFinal = dataFinal,
+                    DataInicial = dataInicio,
+                },
+                Dados = corridas// Usar os resultados da consulta como dados
+            };
+
+            return View(viewModel);
+        }   
 
     }
 }
