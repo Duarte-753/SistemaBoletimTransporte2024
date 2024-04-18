@@ -64,7 +64,7 @@ namespace SistemaBoletimTransporteDigital.Migrations
 
                     b.HasIndex("VeiculoID");
 
-                    b.ToTable("Corridas");
+                    b.ToTable("Corridas", (string)null);
                 });
 
             modelBuilder.Entity("SistemaBoletimTransporteDigital.Models.ManutencaoModel", b =>
@@ -103,7 +103,7 @@ namespace SistemaBoletimTransporteDigital.Migrations
 
                     b.HasIndex("VeiculoID");
 
-                    b.ToTable("Manutencoes");
+                    b.ToTable("Manutencoes", (string)null);
                 });
 
             modelBuilder.Entity("SistemaBoletimTransporteDigital.Models.UsuarioModel", b =>
@@ -158,7 +158,7 @@ namespace SistemaBoletimTransporteDigital.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Usuario");
+                    b.ToTable("Usuario", (string)null);
 
                     b.HasData(
                         new
@@ -252,7 +252,7 @@ namespace SistemaBoletimTransporteDigital.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Veiculos");
+                    b.ToTable("Veiculos", (string)null);
 
                     b.HasData(
                         new

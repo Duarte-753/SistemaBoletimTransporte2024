@@ -11,17 +11,17 @@ namespace SistemaBoletimTransporteDigital.Controllers
     public class BoletimController : Controller
     {
         private readonly BancoContext _bancoContext;
-        private readonly ICorridaRepositorio _corridaRepositorio;       
+        private readonly ICorridaRepositorio _corridaRepositorio;
         private readonly ISessao _sessao;
         private readonly IVeiculoRepositorio _veiculoRepositorio;
-        
+
 
         public BoletimController(ICorridaRepositorio corridaRepositorio, ISessao sessao, IVeiculoRepositorio veiculoRepositorio, BancoContext bancoContext)
         {
             _bancoContext = bancoContext;
             _corridaRepositorio = corridaRepositorio;
             _sessao = sessao;
-            _veiculoRepositorio = veiculoRepositorio;                     
+            _veiculoRepositorio = veiculoRepositorio;
         }
 
         public async Task<IActionResult> Index(BoletimViewModel model)
@@ -44,7 +44,7 @@ namespace SistemaBoletimTransporteDigital.Controllers
             var corridas = await _bancoContext.Corridas
                  .Where(c => c.DataInicioCorrida >= model.Filtros.DataInicial && c.DataFinalCorrida <= model.Filtros.DataFinal &&
                       c.UsuarioID == usuarioLogado.Id
-                ).ToListAsync();       
+                ).ToListAsync();
 
             var viewModel = new BoletimViewModel
             {
@@ -56,18 +56,38 @@ namespace SistemaBoletimTransporteDigital.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index()
+        public async Task<IActionResult> Index(DateTime dataInicio, DateTime dataFinal)
         {
-            UsuarioModel usuarioLogado = _sessao.BuscarSessaoDoUsuario();
-            List<CorridaModel> corridas = _corridaRepositorio.BuscarCorrida(usuarioLogado.Id); // buscando somente a corrida do usuario
-            //var dropdown = _veiculoRepositorio.BuscarVeiculos();
-            //ViewBag.VeiculosDisponiveis = new SelectList(dropdown, "Id", "Veiculo");
-            var corrida = new CorridaModel();
-            corrida.VeiculosDisponiveis = _veiculoRepositorio.BuscarVeiculos();
+            var corridas = await _bancoContext.Corridas
+                                        .Where(c => c.DataInicioCorrida >= dataInicio && c.DataFinalCorrida <= dataFinal).ToListAsync();
 
 
-            return View(corridas);
+            var viewModel = new BoletimViewModel
+            {
+                Filtros = new Filtro
+                {
+                    DataFinal = dataFinal,
+                    DataInicial = dataInicio,
+                },
+                Dados = corridas// Usar os resultados da consulta como dados
+            };
+
+            return View(viewModel);
         }
+
+        //[HttpPost]
+        //public IActionResult Index()
+        //{
+        //    UsuarioModel usuarioLogado = _sessao.BuscarSessaoDoUsuario();
+        //    List<CorridaModel> corridas = _corridaRepositorio.BuscarCorrida(usuarioLogado.Id); // buscando somente a corrida do usuario
+        //    //var dropdown = _veiculoRepositorio.BuscarVeiculos();
+        //    //ViewBag.VeiculosDisponiveis = new SelectList(dropdown, "Id", "Veiculo");
+        //    var corrida = new CorridaModel();
+        //    corrida.VeiculosDisponiveis = _veiculoRepositorio.BuscarVeiculos();
+
+
+        //    return View(corridas);
+        //}
 
     }
 }
