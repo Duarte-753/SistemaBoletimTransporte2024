@@ -39,9 +39,10 @@ namespace SistemaBoletimTransporteDigital.Controllers
 
             if (!model.Filtros.DataFinal.HasValue)
             {
-                model.Filtros.DataFinal = DateTime.Now;            
+                model.Filtros.DataFinal = DateTime.Now.AddDays(1).AddSeconds(-1);
             }
-            DateTime dataFinal = DateTime.Now;
+            // Adiciona o tempo 23:59:59 à data final
+            DateTime dataFinal = DateTime.Now.AddDays(1).AddSeconds(-1);
 
             // Realizar a consulta no banco de dados usando as datas fornecidas
             //var corridas = await _bancoContext.Corridas
@@ -77,6 +78,8 @@ namespace SistemaBoletimTransporteDigital.Controllers
         public async Task<IActionResult> Index(DateTime dataInicio, DateTime dataFinal)
         {
             var usuarioLogado = _sessao.BuscarSessaoDoUsuario();
+
+            dataFinal = dataFinal.AddDays(1).AddSeconds(-1);
 
             var corridas = await _bancoContext.Corridas
                                 .Where(c => c.DataInicioCorrida >= dataInicio &&
