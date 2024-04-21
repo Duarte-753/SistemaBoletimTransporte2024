@@ -123,5 +123,10 @@ namespace SistemaBoletimTransporteDigital.Controllers
             return View(viewModel);
         }   
 
+        public IActionResult BoletimPdf()
+        {
+            return View();
+        }
+
     }
 }
