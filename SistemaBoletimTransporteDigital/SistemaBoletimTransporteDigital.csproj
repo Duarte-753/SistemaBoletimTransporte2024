@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\templates\**" />
+    <Content Remove="wwwroot\templates\**" />
+    <EmbeddedResource Remove="wwwroot\templates\**" />
+    <None Remove="wwwroot\templates\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Controllers\UsuarioReportController.cs~RF1e631ed5.TMP" />
     <None Remove="Repositorio\IRelatorioUsuarioRepositorio.cs~RF1e6c4adb.TMP" />
   </ItemGroup>
@@ -40,6 +47,16 @@
     <Folder Include="wwwroot\ImagensManutencoes\" />
     <Folder Include="wwwroot\images\NovaPasta\" />
     <Folder Include="wwwroot\Rotativa\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Template\assets\demo\chart-area-demo.js" />
+    <None Include="wwwroot\Template\assets\demo\chart-bar-demo.js" />
+    <None Include="wwwroot\Template\assets\demo\chart-pie-demo.js" />
+    <None Include="wwwroot\Template\assets\demo\datatables-demo.js" />
+    <None Include="wwwroot\Template\assets\img\error-404-monochrome.svg" />
+    <None Include="wwwroot\Template\js\datatables-simple-demo.js" />
+    <None Include="wwwroot\Template\js\scripts.js" />
   </ItemGroup>
 
 </Project>

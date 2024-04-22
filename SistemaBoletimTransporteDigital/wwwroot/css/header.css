@@ -91,3 +91,12 @@
     display: flex;
     align-items: center;
 }
+
+
+/* Media query para dispositivos móveis */
+@media screen and (max-width: 768px) {
+    .footer {
+        font-size: 14px; /* Reduz o tamanho da fonte para dispositivos móveis */
+        padding: 20px 0; /* Adiciona um espaço maior acima e abaixo do conteúdo do footer */
+    }
+}

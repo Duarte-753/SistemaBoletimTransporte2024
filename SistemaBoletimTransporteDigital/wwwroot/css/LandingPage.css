@@ -1,11 +1,7 @@
-﻿
-body {
+﻿body {
     background-color: #fbf3e4;
     max-width: auto;
 }
-
-
-
 
 .titulo {
     display: flex;
@@ -37,20 +33,17 @@ body {
     display: flex;
     align-items: center;
     padding: 20px;
-
-
 }
 
 .texto, .imagem-container {
     flex-grow: 1;
     flex-basis: 0;
     box-sizing: border-box;
-    padding: 0 10px;  
-
+    padding: 0 10px;
 }
 
 .imagem {
-    max-width: 100%; 
+    max-width: 100%;
     height: auto;
 }
 
@@ -58,16 +51,12 @@ body {
     font-size: 2.5rem;
     font-weight: bold;
     margin-bottom: 10px;
-
 }
 
 .subtitulo {
     font-size: 1.2rem;
     margin-bottom: 0;
-
 }
-    
-
 
 
 
@@ -90,7 +79,6 @@ body {
     margin-bottom: 20px;
 }
 
-
 .cartao-servico {
     width: 250px;
     height: 250px;
@@ -101,7 +89,7 @@ body {
     text-align: center;
     transition: all 0.3s ease;
     overflow: hidden;
-    max-height:auto;
+    max-height: auto;
 }
 
     .cartao-servico:hover {
@@ -128,8 +116,6 @@ body {
 
 
 
-
-
 .container-quem-somos {
     padding: 50px 0;
 }
@@ -142,7 +128,6 @@ body {
     border-radius: 20px;
     margin-bottom: 10px;
 }
-
 
     .cartao-depoimento img {
         width: 40px;
@@ -161,3 +146,47 @@ body {
     font-size: 14px;
     margin-bottom: 10px;
 }
+
+/* Media queries para dispositivos móveis */
+@media screen and (max-width: 768px) {
+    .titulo h1 {
+        font-size: 4rem;
+    }
+
+    .titulo p {
+        font-size: 1.5rem;
+    }
+
+    .conteudo {
+        flex-direction: row;
+        text-align: center;
+    }
+
+    .texto {
+        padding: 10px;
+        text-align: left;
+    }
+    
+    .imagem-container {
+        display: none; 
+    }
+
+    .linha {
+        display: flex;
+        flex-wrap: wrap; /* Permite que os cartões sejam envoltos em várias linhas */
+        justify-content: center; /* Centraliza os cartões horizontalmente */
+    }
+
+    .cartao-servico {
+        width: 140px; /* Define o tamanho para 50% menos o espaçamento */
+        height: 300px; /* Define uma altura fixa para os cartões */
+        margin: 10px; /* Espaçamento entre os cartões */
+        display: flex; /* Torna os cartões flexíveis para alinhar conteúdo verticalmente */
+        flex-direction: column; /* Alinha o conteúdo verticalmente dentro dos cartões */
+        justify-content: center; /* Centraliza o conteúdo verticalmente */
+        text-align: center; /* Centraliza o conteúdo horizontalmente */
+    }
+    
+
+}
+
