@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
+
 using SistemaBoletimTransporteDigital.Helper;
 using SistemaBoletimTransporteDigital.Models;
 using SistemaBoletimTransporteDigital.Repositorio;

@@ -30,9 +30,29 @@
         }
         @if (Model.Perfil == SistemaBoletimTransporteDigital.Enums.PerfilEnum.Admin)
         {
-            <li class="nav-item">
+            @* <li class="nav-item">
                 <a class="nav-link text-dark" asp-area="" asp-controller="Relatorio" asp-action="Index">Relatórios</a>
+            </li> *@
+            <li class="nav-item">
+                @* <a class="nav-link text-dark" onmouseover="showDropdownMenu()" onmouseout="hideDropdownMenu()">
+                    Relatório
+                </a> *@
+                <a class="nav-link text-dark" asp-area="" asp-controller="Relatorio" asp-action="Index" onmouseover="showDropdownMenu()" onmouseout="hideDropdownMenu()">Relatórios</a>
+                <div id="dropdownMenu" class="dropdown-menu" onmouseover="showDropdownMenu()" onmouseout="hideDropdownMenu()">                  
+                    <a class="dropdown-item" asp-area="" asp-controller="Veiculo" asp-action="Index">Veículos</a>
+                    <a class="dropdown-item" asp-area="" asp-controller="Motorista" asp-action="Index">Motoristas</a>
+                </div>
             </li>
+
+            <script>
+                function showDropdownMenu() {
+                    document.getElementById("dropdownMenu").style.display = "block";
+                }
+
+                function hideDropdownMenu() {
+                    document.getElementById("dropdownMenu").style.display = "none";
+                }
+            </script>
         }
 
         @if (Model.Perfil == SistemaBoletimTransporteDigital.Enums.PerfilEnum.motorista)

@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿
 using SistemaBoletimTransporteDigital.Data;
 using SistemaBoletimTransporteDigital.Models;
-using System.Diagnostics.CodeAnalysis;
+
 
 namespace SistemaBoletimTransporteDigital.Repositorio
 {

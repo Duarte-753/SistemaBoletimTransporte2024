@@ -1,5 +1,4 @@
 ﻿using SistemaBoletimTransporteDigital.Data;
-using SistemaBoletimTransporteDigital.Migrations;
 using SistemaBoletimTransporteDigital.Models;
 
 namespace SistemaBoletimTransporteDigital.Repositorio

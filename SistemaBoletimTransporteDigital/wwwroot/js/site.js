@@ -20,6 +20,9 @@ $(document).ready(function () {
 $(document).ready(function () {
     getDatatable('#table-manutencao')
 });
+$(document).ready(function () {
+    getDatatable('#table-boletim')
+});
 
 
 function getDatatable(id) {

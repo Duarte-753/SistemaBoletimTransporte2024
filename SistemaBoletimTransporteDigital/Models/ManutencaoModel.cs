@@ -15,6 +15,7 @@ namespace SistemaBoletimTransporteDigital.Models
             [Required(ErrorMessage = "Descreva a manutenção.")] //Faz o Campo de baixo ser obrigatório   
             public string DescricaoManutencao { get; set; }
 
+            [Required(ErrorMessage = "Selecione qual tipo da manutenção.")]
             public ManutencaoEnum? TipoManutencao { get; set; }
 
             public string? CaminhoDaImagem { get; set; }        
@@ -29,6 +30,10 @@ namespace SistemaBoletimTransporteDigital.Models
 
             public int CorridaID { get; set; }
 
-           
+            [NotMapped]
+            //[Required(ErrorMessage = "Selecione os Veículo")]
+            public virtual ICollection<VeiculoModel>? VeiculosDisponiveis { get; set; }
+
+
     }
 }

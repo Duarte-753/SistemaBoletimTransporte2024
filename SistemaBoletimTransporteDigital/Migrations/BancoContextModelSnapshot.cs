@@ -17,7 +17,7 @@ namespace SistemaBoletimTransporteDigital.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.10")
+                .HasAnnotation("ProductVersion", "8.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -64,7 +64,7 @@ namespace SistemaBoletimTransporteDigital.Migrations
 
                     b.HasIndex("VeiculoID");
 
-                    b.ToTable("Corridas");
+                    b.ToTable("Corridas", (string)null);
                 });
 
             modelBuilder.Entity("SistemaBoletimTransporteDigital.Models.ManutencaoModel", b =>
@@ -88,7 +88,7 @@ namespace SistemaBoletimTransporteDigital.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TipoManutencao")
+                    b.Property<int>("TipoManutencao")
                         .HasColumnType("int");
 
                     b.Property<int>("UsuarioID")
@@ -103,7 +103,7 @@ namespace SistemaBoletimTransporteDigital.Migrations
 
                     b.HasIndex("VeiculoID");
 
-                    b.ToTable("Manutencoes");
+                    b.ToTable("Manutencoes", (string)null);
                 });
 
             modelBuilder.Entity("SistemaBoletimTransporteDigital.Models.UsuarioModel", b =>
@@ -148,8 +148,8 @@ namespace SistemaBoletimTransporteDigital.Migrations
 
                     b.Property<string>("Senha")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
                     b.Property<string>("Usuario")
                         .IsRequired()
@@ -158,7 +158,51 @@ namespace SistemaBoletimTransporteDigital.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Usuario");
+                    b.ToTable("Usuario", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Celular = "11912345678",
+                            CodigoFuncional = "1234",
+                            CorridaStatus = 4,
+                            DataCriacao = new DateTime(2024, 4, 17, 9, 56, 0, 843, DateTimeKind.Local).AddTicks(788),
+                            DataUltimaAtualizacao = new DateTime(2024, 4, 17, 9, 56, 0, 843, DateTimeKind.Local).AddTicks(789),
+                            Email = "julioduartebatista753@gmail.com",
+                            Nome = "admin",
+                            Perfil = 1,
+                            Senha = "d033e22ae348aeb5660fc2140aec35850c4da997",
+                            Usuario = "admin"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Celular = "11912345678",
+                            CodigoFuncional = "567",
+                            CorridaStatus = 4,
+                            DataCriacao = new DateTime(2024, 4, 17, 9, 56, 0, 843, DateTimeKind.Local).AddTicks(822),
+                            DataUltimaAtualizacao = new DateTime(2024, 4, 17, 9, 56, 0, 843, DateTimeKind.Local).AddTicks(822),
+                            Email = "julioduartebatista753@gmail.com",
+                            Nome = "motorista",
+                            Perfil = 3,
+                            Senha = "a61e38f3910fba1d8e1fb97f4b3561df07ab0d81",
+                            Usuario = "motorista"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Celular = "11912345678",
+                            CodigoFuncional = "9876",
+                            CorridaStatus = 4,
+                            DataCriacao = new DateTime(2024, 4, 17, 9, 56, 0, 843, DateTimeKind.Local).AddTicks(837),
+                            DataUltimaAtualizacao = new DateTime(2024, 4, 17, 9, 56, 0, 843, DateTimeKind.Local).AddTicks(837),
+                            Email = "julioduartebatista753@gmail.com",
+                            Nome = "motorista2",
+                            Perfil = 3,
+                            Senha = "b739522c59a564437fc8c6ad639176f704766596",
+                            Usuario = "motorista2"
+                        });
                 });
 
             modelBuilder.Entity("SistemaBoletimTransporteDigital.Models.VeiculoModel", b =>
@@ -208,7 +252,51 @@ namespace SistemaBoletimTransporteDigital.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Veiculos");
+                    b.ToTable("Veiculos", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Ano = "2014",
+                            CadastroSistema = new DateTime(2024, 4, 17, 9, 56, 0, 843, DateTimeKind.Local).AddTicks(861),
+                            CarroEmUso = 1,
+                            Cor = "Branco",
+                            DataUltimaAtualizacao = new DateTime(2024, 4, 17, 9, 56, 0, 843, DateTimeKind.Local).AddTicks(862),
+                            Placa = "FWF-1232",
+                            Prefixo = "1234-5",
+                            Quilometragem = "12600",
+                            Valor = "259875",
+                            Veiculo = "Golf"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Ano = "2016",
+                            CadastroSistema = new DateTime(2024, 4, 17, 9, 56, 0, 843, DateTimeKind.Local).AddTicks(882),
+                            CarroEmUso = 1,
+                            Cor = "Branco",
+                            DataUltimaAtualizacao = new DateTime(2024, 4, 17, 9, 56, 0, 843, DateTimeKind.Local).AddTicks(883),
+                            Placa = "ASD-2345",
+                            Prefixo = "6789-10",
+                            Quilometragem = "450067",
+                            Valor = "15000",
+                            Veiculo = "Fiat Uno"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Ano = "2024",
+                            CadastroSistema = new DateTime(2024, 4, 17, 9, 56, 0, 843, DateTimeKind.Local).AddTicks(899),
+                            CarroEmUso = 1,
+                            Cor = "Azul",
+                            DataUltimaAtualizacao = new DateTime(2024, 4, 17, 9, 56, 0, 843, DateTimeKind.Local).AddTicks(899),
+                            Placa = "JHF-7653",
+                            Prefixo = "12123-5",
+                            Quilometragem = "100",
+                            Valor = "45000",
+                            Veiculo = "Palio Weekend"
+                        });
                 });
 
             modelBuilder.Entity("SistemaBoletimTransporteDigital.Models.CorridaModel", b =>
