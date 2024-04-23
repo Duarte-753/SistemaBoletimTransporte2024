@@ -24,6 +24,12 @@
             @Html.ValidationMessageFor(x => x.KmFinal)
         </div>
 
+        <div class="col-4">
+            <label for="localchegada">Local de Chegada:</label>
+            <input type="text" asp-for="LocalChegadaCorrida" class="form-control" placeholder="Exemplo: Cerejeiras Atibaia">
+            @Html.ValidationMessageFor(x => x.LocalChegadaCorrida)
+        </div>
+
     </div>
 
    

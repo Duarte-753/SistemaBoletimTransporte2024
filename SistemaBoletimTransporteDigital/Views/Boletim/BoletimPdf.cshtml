@@ -1,91 +1,132 @@
-﻿@{
-    ViewData["Title"] = "Boletim";
+﻿@model SistemaBoletimTransporteDigital.ViewModels.BoletimViewModel
+
+@{
+    ViewData["Title"] = "Boletim PDF";
 }
-<div class="container">
-    <div class="text-center">
-        <h1 class="display-4">Boletim de Transporte Digital</h1>
-    </div>
-    <br />
-    <div class="text-center">
-        <h2>Perído de __/__/__ até __/__/__</h2>
-    </div>
-    <br />
-    </div>
-    <hr>
-    <div class="row">
-        <div class="col-md-12">
-            <h2>Tabela de Corridas:</h2>
-            <table class="table table-dark table-hover">
-                <thead>
-                    <tr>
-                        <th>Motorista</th>
-                        <th>Data de Início</th>
-                        <th>Data Final</th>
-                        <th>Descrição/Serviço executado/local</th>
-                        <th>Veículo</th>
-                        <th>Km Inicial</th>
-                        <th>Km Final</th>
-                        <th>Km Percorrido</th>                                      
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Insira dados das corridas aqui -->
-                </tbody>
-            </table>
-            <p>Total de Corridas: 6</p>
-        </div>
-    </div>
-    <hr>
-    <div class="row">
-        <div class="col-md-12">
-            <h2>Manutenção/Abastecimento:</h2>
-            <table class="table table-dark table-hover">
-                <thead>
-                    <tr>
-                        <th>Data Manutenção</th>
-                        <th>Código Funcional</th>
-                        <th>Km</th>
-                        <th>Total de litros</th>
-                        <th>Observações</th>                     
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Insira dados de manutenção/abastecimento aqui -->
-                </tbody>
-            </table>
-            <p>Informações Adicionais: Total de Manutenções: 6</p>
-        </div>
-    </div>
-    <hr>
-    <div class="row">
-        <div class="col-md-12">
-            <h2>Tabela de Veículo:</h2>
-            <table class="table table-dark table-hover">
-                <thead>
-                    <tr>
-                        <th>Prefixo</th>
-                        <th>Veículo</th>
-                        <th>Placa</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Insira dados do veículo aqui -->
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <hr>
-    <div class="row">
-        <div class="col-md-12">
-            <h2>Assinatura de Recebimento:</h2>          
-                <div class="form-group">
-                    <label for="recebimento">Estão sendo entregues todos os discos ou relatórios do tacógrafo do período?</label>                
-                        Sim
-                        Não                   
-                </div>
-                <div class="form-group">
-                    <label for="dataRecebimento">Data de Recebimento:</label>
-                </div>            
-        </div>
-    </div>
+
+<div class="text-center">
+    <h1 class="display-4">Boletim Mensal Gerado</h1>
 </div>
+<br />
+
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+    }
+
+    th, td {
+        padding: 10px;
+        text-align: center;
+    }
+</style>
+
+
+    <div class="container mt-5">
+        
+        <table border="1">
+            <tr>
+                <td style="width: 50%">
+
+                    Prefeitura da Estância de Wakanda
+                    Estado de São Paulo
+                    Secretária da Educação
+                    Boletim de Transportes
+                </td>
+                <td>
+                    <table>
+                        <tr>
+                            <td>Período</td>
+                            <td>05/2023</td>
+                        </tr>
+                        <tr>
+                            <td> Prefixo</td>
+                            <td>56B</td>
+                        </tr>
+                        <tr>
+                            <td>Veículo</td>
+                            <td>BYD Song Plus</td>
+                        </tr>
+                        <tr>
+                            <td>Placa</td>
+                            <td>FBY-1234</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+
+        <table>
+            <tr>
+                <th>Data</th>
+                <th>Cód Funcional</th>
+                <th>KM Saída</th>
+                <th>KM Chegada</th>
+                <th>Horário Saída</th>
+                <th>Horário Chegada</th>
+                <th>Local Saída</th>
+                <th>Local Chegada</th>
+                <th>Serviço Executado</th>
+            </tr>
+            <!-- foreach aqui -->
+            <tr>
+                <td>xx/05/2024</td>
+                <td> 4001233</td>
+                <td>100.000</td>
+                <td>100.420</td>
+                <td>10:00:00</td>
+                <td>12:00:00</td>
+                <td>St. Casa</td>
+                <td>Residência</td>
+                <td>Transporte</td>
+                <td>OBS: Linha 1</td>
+            </tr>
+            <tr>
+                <td>xx/05/2024</td>
+                <td> 4001233</td>
+                <td>100.000</td>
+                <td>100.420</td>
+                <td>10:00:00</td>
+                <td>12:00:00</td>
+                <td>St. Casa</td>
+                <td>Residência</td>
+                <td>Transporte</td>
+                <td>OBS: Linha 1</td>
+            </tr>
+            <!-- fim foreach -->
+        </table>
+
+        <table>
+            <tr>
+                <th colspan="4">ABASTECIMENTO</th>
+                <th>obs</th>
+                <th rowspan="7">ESTÃO SENDO ENTREGUES TODOS OS DICOS OU RELATÓRIOS DO TACOMETRO</th>
+            </tr>
+            <tr>
+                <td>DATA</td>
+                <td>CÓD. FUNCIONAL</td>
+                <td>KM</td>
+                <td>Total de Litros</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>05/2024</td>
+                <td>Linha 1</td>
+                <td>Linha 1</td>
+                <td>Linha 1</td>
+                <td>Linha 1</td>
+            </tr>
+            <tr>
+                <td>05/2024</td>
+                <td>Linha 2</td>
+                <td>Linha 2</td>
+                <td>Linha 2</td>
+                <td>Linha 2</td>
+            </tr>
+        </table>
+    </div>
+

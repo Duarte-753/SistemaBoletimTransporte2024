@@ -43,6 +43,12 @@
             <input type="text" asp-for="KmInicial" class="form-control" placeholder="Exemplo: 4543235...">
             @Html.ValidationMessageFor(x => x.KmInicial)
         </div>
+
+        <div class="col-4">
+            <label for="localsaida">Local de Saída:</label>
+            <input type="text" asp-for="LocalSaidaCorrida" class="form-control" placeholder="Exemplo: Centro Atibaia">
+            @Html.ValidationMessageFor(x => x.LocalSaidaCorrida)
+        </div>
       
 
     </div>

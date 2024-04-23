@@ -13,8 +13,14 @@ namespace SistemaBoletimTransporteDigital.Models
         public DateTime? DataFinalCorrida { get; set; } = DateTime.Now;
 
 
-        [Required(ErrorMessage = "Descreva onde vai utilizar o Veículo escolhido.")] //Faz o Campo de baixo ser obrigatório   
+        [Required(ErrorMessage = "Descreva qual vai ser o Serviço a executar.")] //Faz o Campo de baixo ser obrigatório   
         public string DescricaoCorrida { get; set; }
+
+        [Required(ErrorMessage = "Descreva o Local de saída.")]
+        public string LocalSaidaCorrida { get; set; }
+
+        [Required(ErrorMessage = "Descreva o Local de Chegada.")]
+        public string? LocalChegadaCorrida { get; set; }
 
         public int? KmInicial { get; set; }
 
