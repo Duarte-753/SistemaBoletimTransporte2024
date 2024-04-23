@@ -25,38 +25,10 @@
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
    
 </head>
-<body>
-    <div style="display: flex;">
-    <nav class="sidebar" style="flex: 0 0 auto; width: 250px;">
-        @await Component.InvokeAsync("Menu")
-    </nav>
-    <div class="main-content" style="flex: 1;">
-            <div class="container-fluid">
 
-                @RenderBody()
+ <body class="sb-nav-fixed">
 
-
-
-                <footer class="border-top footer text-muted text-center">
-                    <div class="container">
-                        &copy; 2024 - Sistema Boletim de Transporte Digital - <a asp-area="" asp-controller="Login" asp-action="Privacy">Privacidade</a>
-                    </div>
-                </footer>
-                <script src="~/lib/jquery/dist/jquery.min.js"></script>
-                <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-                <script src="https://cdn.datatables.net/v/dt/dt-1.13.6/datatables.min.js"></script>
-                <script src="~/js/site.js" asp-append-version="true"></script>
-                @await RenderSectionAsync("Scripts", required: false)
-
-            </div>
-    </div>
-</div>
-    
-</body> 
-
-
-
-    @* <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
         <a class="navbar-brand ps-3" href="index.html">SBTD</a>
         <!-- Sidebar Toggle-->
@@ -142,6 +114,6 @@
     <script src="~/Template/assets/demo/chart-area-demo.js"></script>
     <script src="~/Template/assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
-    <script src="~/Template/js/datatables-simple-demo.js"></script> *@
-
+    <script src="~/Template/js/datatables-simple-demo.js"></script>
+    </body>
 </html>
