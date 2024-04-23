@@ -75,7 +75,8 @@ namespace SistemaBoletimTransporteDigital.Controllers
                     DataFinal = dataFinal,
                     DataInicial = dataInicio,
                 },
-                DadosCorrida = corridas// Usar os resultados da consulta como dados
+                DadosCorrida = corridas,// Usar os resultados da consulta como dados
+                DadosManutencao = manutencoes
             };
 
             var corrida = new CorridaModel();
@@ -111,7 +112,8 @@ namespace SistemaBoletimTransporteDigital.Controllers
                     DataFinal = dataFinal,
                     DataInicial = dataInicio,
                 },
-                DadosCorrida = corridas// Usar os resultados da consulta como dados
+                DadosCorrida = corridas,// Usar os resultados da consulta como dados
+                DadosManutencao = manutencoes
             };
 
             var corrida = new CorridaModel();

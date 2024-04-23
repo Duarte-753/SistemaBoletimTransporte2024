@@ -48,7 +48,10 @@
                 </tr>
             </thead>
             <tbody>
+                
+                @* @using System.Linq *@
                 @foreach (var corrida in Model.DadosCorrida)
+                @* @foreach (var (corrida, manutencao) in Model.DadosCorrida.Zip(Model.DadosManutencao, (c, m) => (c, m))) *@
                 {
                     <tr>                      
                         <td>                           
@@ -78,6 +81,22 @@
                         <td>@corrida.KmFinal</td>
                         <td>@corrida.KmPercorrido</td>                                            
                     </tr>
+                   @*  @if (Model != null && Model.DadosManutencao != null && Model.DadosManutencao.Count > 0)
+                    {
+                        foreach (var manutencao in Model.DadosManutencao.Where(m => m.CorridaID == corrida.Id))
+                        {
+                            <tr>
+                                <td>@manutencao.CorridaID</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td> <!-- Adicionei uma coluna vazia para manter o layout -->
+                                <td></td> <!-- Adicionei uma coluna vazia para manter o layout -->
+                                <td></td> <!-- Adicionei uma coluna vazia para manter o layout -->
+                            </tr>
+                        }
+                    }           *@        
                 }
             </tbody>
         </table>
