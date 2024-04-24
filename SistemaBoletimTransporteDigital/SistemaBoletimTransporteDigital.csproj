@@ -8,9 +8,19 @@
 
   <ItemGroup>
     <Compile Remove="wwwroot\templates\**" />
+    <Compile Remove="wwwroot\Template\assets\**" />
     <Content Remove="wwwroot\templates\**" />
+    <Content Remove="wwwroot\Template\assets\**" />
     <EmbeddedResource Remove="wwwroot\templates\**" />
+    <EmbeddedResource Remove="wwwroot\Template\assets\**" />
     <None Remove="wwwroot\templates\**" />
+    <None Remove="wwwroot\Template\assets\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\Template\css\styles.css" />
+    <Content Remove="wwwroot\Template\js\datatables-simple-demo.js" />
+    <Content Remove="wwwroot\Template\js\scripts.js" />
   </ItemGroup>
 
   <ItemGroup>
@@ -43,16 +53,6 @@
     <Folder Include="wwwroot\ImagensManutencoes\" />
     <Folder Include="wwwroot\images\NovaPasta\" />
     <Folder Include="wwwroot\Rotativa\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="wwwroot\Template\assets\demo\chart-area-demo.js" />
-    <None Include="wwwroot\Template\assets\demo\chart-bar-demo.js" />
-    <None Include="wwwroot\Template\assets\demo\chart-pie-demo.js" />
-    <None Include="wwwroot\Template\assets\demo\datatables-demo.js" />
-    <None Include="wwwroot\Template\assets\img\error-404-monochrome.svg" />
-    <None Include="wwwroot\Template\js\datatables-simple-demo.js" />
-    <None Include="wwwroot\Template\js\scripts.js" />
   </ItemGroup>
 
 </Project>
