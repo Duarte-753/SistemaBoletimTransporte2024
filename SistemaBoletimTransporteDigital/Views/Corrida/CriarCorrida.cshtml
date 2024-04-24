@@ -26,7 +26,7 @@
             <label for="veiculo">Selecione o Veiculo:</label>
             <select asp-for="VeiculoID" class="form-control">
                 <option disabled selected>Selecione</option>
-                @foreach (var veiculo in ViewBag.VeiculosDisponiveis)
+                @foreach (var veiculo in Model.VeiculosDisponiveis)
                 {
                     @if (CarroEmUsoEnum.Disponivel == veiculo.CarroEmUso)
                     {

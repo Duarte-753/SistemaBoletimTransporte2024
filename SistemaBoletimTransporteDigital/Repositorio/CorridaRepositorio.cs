@@ -26,8 +26,7 @@ namespace SistemaBoletimTransporteDigital.Repositorio
             corrida.StatusDaCorrida = Enums.StatusCorridaEnum.Iniciada;
             corrida.UsuarioID = id;
             
-            
-                    
+                                              
             _bancoContext.Corridas.Add(corrida);       
             _bancoContext.SaveChanges();
 
@@ -47,6 +46,7 @@ namespace SistemaBoletimTransporteDigital.Repositorio
             corridaDB.StatusDaCorrida = Enums.StatusCorridaEnum.Finalizada;
             corridaDB.KmFinal = corrida.KmFinal;
             corridaDB.DataFinalCorrida = corrida.DataFinalCorrida;
+            corridaDB.LocalChegadaCorrida = corrida.LocalChegadaCorrida;
             
            
             _bancoContext.Corridas.Update(corridaDB);

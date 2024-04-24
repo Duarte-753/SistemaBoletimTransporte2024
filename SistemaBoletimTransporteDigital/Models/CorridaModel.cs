@@ -17,15 +17,13 @@ namespace SistemaBoletimTransporteDigital.Models
         public string DescricaoCorrida { get; set; }
 
         [Required(ErrorMessage = "Descreva o Local de saída.")]
-        public string LocalSaidaCorrida { get; set; }
-
-        [Required(ErrorMessage = "Descreva o Local de Chegada.")]
+        public string LocalSaidaCorrida { get; set; } 
+        
         public string? LocalChegadaCorrida { get; set; }
 
         [Required(ErrorMessage = "Qual a Km do Veículo do momento.")]
-        public int? KmInicial { get; set; }
-
-        [Required(ErrorMessage = "Qual a Km do Veículo do momento.")]
+        public int KmInicial { get; set; }
+       
         public int? KmFinal { get; set; }
 
 
