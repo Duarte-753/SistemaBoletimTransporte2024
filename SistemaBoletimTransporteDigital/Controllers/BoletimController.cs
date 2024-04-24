@@ -34,8 +34,7 @@ namespace SistemaBoletimTransporteDigital.Controllers
             // Definir datas padrão caso não tenham sido fornecidas
             if (!model.Filtros.DataInicial.HasValue)
             {
-                model.Filtros.DataInicial = DateTime.Now.AddMonths(-1);
-               
+                model.Filtros.DataInicial = DateTime.Now.AddMonths(-1);            
             }
             DateTime dataInicio = DateTime.Now.AddMonths(-1);
 
@@ -125,9 +124,33 @@ namespace SistemaBoletimTransporteDigital.Controllers
             return View(viewModel);
         }   
 
-        public IActionResult BoletimPdf()
+        public async Task<IActionResult> BoletimPdf(DateTime dataInicio, DateTime dataFinal)
         {
-            return View();
+            var usuarioLogado = _sessao.BuscarSessaoDoUsuario();
+            var corridasUsuario = _corridaRepositorio.BuscarCorrida(usuarioLogado.Id);
+
+            var corridas = await _bancoContext.Corridas
+                               .Where(c => c.DataInicioCorrida >= dataInicio &&
+                               c.DataFinalCorrida <= dataFinal &&
+                               c.UsuarioID == usuarioLogado.Id).ToListAsync();
+
+            var manutencoes = await _bancoContext.Manutencoes
+                               .Where(c => c.DataManutencao >= dataInicio &&
+                               c.DataManutencao <= dataFinal &&
+                               c.UsuarioID == usuarioLogado.Id).ToListAsync();
+
+            var viewModel = new BoletimViewModel
+            {
+                Filtros = new Filtro
+                {
+                    DataFinal = dataFinal,
+                    DataInicial = dataInicio,
+                },
+                DadosCorrida = corridas,// Usar os resultados da consulta como dados
+                DadosManutencao = manutencoes
+            };
+
+            return View(viewModel);
         }
 
     }

@@ -4,6 +4,7 @@
     ViewData["Title"] = "Boletim PDF";
 }
 
+
 <div class="text-center">
     <h1 class="display-4">Boletim Mensal Gerado</h1>
 </div>
@@ -40,19 +41,19 @@
                 <table>
                     <tr>
                         <td>Período</td>
-                        <td>@Model.Filtros.DataInicial.ToString("MM/yyyy") - @Model.Filtros.DataFinal.ToString("MM/yyyy")</td>
+                        <td>@* @var data in Model.DataInicial.ToString("MM/yyyy") - @Filtros.DataFinal.ToString("MM/yyyy") *@teste</td>
                     </tr>
                     <tr>
                         <td>Prefixo</td>
-                        <td>@Model.DadosCorrida.PrefixoVeiculo</td>
+                        <td>@* @Model.DadosCorrida.PrefixoVeiculo *@ teste</td>
                     </tr>
                     <tr>
                         <td>Veículo</td>
-                        <td>@Model.Veiculo.Nome</td>
+                        <td>@* @Model.Veiculo.Nome *@teste</td>
                     </tr>
                     <tr>
                         <td>Placa</td>
-                        <td>@Model.Veiculo.Placa</td>
+                        <td>@* @Model.Veiculo.Placa *@teste</td>
                     </tr>
                 </table>
             </td>
