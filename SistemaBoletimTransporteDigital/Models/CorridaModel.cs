@@ -22,8 +22,10 @@ namespace SistemaBoletimTransporteDigital.Models
         [Required(ErrorMessage = "Descreva o Local de Chegada.")]
         public string? LocalChegadaCorrida { get; set; }
 
+        [Required(ErrorMessage = "Qual a Km do Veículo do momento.")]
         public int? KmInicial { get; set; }
 
+        [Required(ErrorMessage = "Qual a Km do Veículo do momento.")]
         public int? KmFinal { get; set; }
 
 
@@ -36,6 +38,7 @@ namespace SistemaBoletimTransporteDigital.Models
 
         public virtual UsuarioModel? Usuario { get; set; }
 
+        //[Required(ErrorMessage = "Por favor, selecione um veículo.")]
         public int VeiculoID { get; set; }
 
         public virtual VeiculoModel? Veiculo { get; set; }

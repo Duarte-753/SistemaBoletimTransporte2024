@@ -42,10 +42,9 @@ namespace SistemaBoletimTransporteDigital.Controllers
 
         public IActionResult CriarCorrida()
         {
-            var corrida = new CorridaModel();
-            corrida.VeiculosDisponiveis = _veiculoRepositorio.BuscarVeiculos();
+            ViewBag.VeiculosDisponiveis = _veiculoRepositorio.BuscarVeiculos();
 
-            return View(corrida);
+            return View();
         }
         
         [HttpPost]
@@ -67,6 +66,9 @@ namespace SistemaBoletimTransporteDigital.Controllers
                     TempData["MensagemSucesso"] = "Corrida Iniciada com sucesso!";
                     return RedirectToAction("Index");
                 }
+
+                // Recarrega os veículos disponíveis na ViewBag antes de retornar a view
+                ViewBag.VeiculosDisponiveis = _veiculoRepositorio.BuscarVeiculos();
                 return View(corridaRepositorio);
             }
             catch (Exception ex)
