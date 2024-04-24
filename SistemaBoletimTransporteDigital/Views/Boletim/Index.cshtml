@@ -25,6 +25,7 @@
                 </div>
                 <button type="submit" class="btn btn-success mt-3">Filtrar</button>
             </form>
+            <a asp-controller="Boletim" asp-action="BoletimPdf" asp-route-dataInicial="@Model.Filtros.DataInicial" asp-route-dataFinal="@Model.Filtros.DataFinal" class="btn btn-primary mt-3">Montar Boletim</a>
         </div>
     </div>
 </div>
@@ -49,9 +50,9 @@
             </thead>
             <tbody>
                 
-                @* @using System.Linq *@
+              
                 @foreach (var corrida in Model.DadosCorrida)
-                @* @foreach (var (corrida, manutencao) in Model.DadosCorrida.Zip(Model.DadosManutencao, (c, m) => (c, m))) *@
+                
                 {
                     <tr>                      
                         <td>                           
@@ -80,23 +81,7 @@
                         <td>@corrida.KmInicial</td>
                         <td>@corrida.KmFinal</td>
                         <td>@corrida.KmPercorrido</td>                                            
-                    </tr>
-                   @*  @if (Model != null && Model.DadosManutencao != null && Model.DadosManutencao.Count > 0)
-                    {
-                        foreach (var manutencao in Model.DadosManutencao.Where(m => m.CorridaID == corrida.Id))
-                        {
-                            <tr>
-                                <td>@manutencao.CorridaID</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td> <!-- Adicionei uma coluna vazia para manter o layout -->
-                                <td></td> <!-- Adicionei uma coluna vazia para manter o layout -->
-                                <td></td> <!-- Adicionei uma coluna vazia para manter o layout -->
-                            </tr>
-                        }
-                    }           *@        
+                    </tr>                   
                 }
             </tbody>
         </table>

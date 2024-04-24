@@ -26,107 +26,100 @@
 </style>
 
 
-    <div class="container mt-5">
-        
-        <table border="1">
-            <tr>
-                <td style="width: 50%">
+<div class="container mt-5">
+    <!-- Informações gerais -->
+    <table border="1">
+        <tr>
+            <td style="width: 50%">
+                Prefeitura da Estância de Wakanda
+                Estado de São Paulo
+                Secretária da Educação
+                Boletim de Transportes
+            </td>
+            <td>
+                <table>
+                    <tr>
+                        <td>Período</td>
+                        <td>@Model.Filtros.DataInicial.ToString("MM/yyyy") - @Model.Filtros.DataFinal.ToString("MM/yyyy")</td>
+                    </tr>
+                    <tr>
+                        <td>Prefixo</td>
+                        <td>@Model.DadosCorrida.PrefixoVeiculo</td>
+                    </tr>
+                    <tr>
+                        <td>Veículo</td>
+                        <td>@Model.Veiculo.Nome</td>
+                    </tr>
+                    <tr>
+                        <td>Placa</td>
+                        <td>@Model.Veiculo.Placa</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
 
-                    Prefeitura da Estância de Wakanda
-                    Estado de São Paulo
-                    Secretária da Educação
-                    Boletim de Transportes
-                </td>
-                <td>
-                    <table>
-                        <tr>
-                            <td>Período</td>
-                            <td>05/2023</td>
-                        </tr>
-                        <tr>
-                            <td> Prefixo</td>
-                            <td>56B</td>
-                        </tr>
-                        <tr>
-                            <td>Veículo</td>
-                            <td>BYD Song Plus</td>
-                        </tr>
-                        <tr>
-                            <td>Placa</td>
-                            <td>FBY-1234</td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-        </table>
-
-        <table>
+    <!-- Tabela de corridas -->
+    <table class="table">
+        <thead>
             <tr>
                 <th>Data</th>
                 <th>Cód Funcional</th>
                 <th>KM Saída</th>
                 <th>KM Chegada</th>
+                <th>KM Saída</th>
+                <th>KM Total</th>
                 <th>Horário Saída</th>
                 <th>Horário Chegada</th>
                 <th>Local Saída</th>
                 <th>Local Chegada</th>
                 <th>Serviço Executado</th>
             </tr>
-            <!-- foreach aqui -->
-            <tr>
-                <td>xx/05/2024</td>
-                <td> 4001233</td>
-                <td>100.000</td>
-                <td>100.420</td>
-                <td>10:00:00</td>
-                <td>12:00:00</td>
-                <td>St. Casa</td>
-                <td>Residência</td>
-                <td>Transporte</td>
-                <td>OBS: Linha 1</td>
-            </tr>
-            <tr>
-                <td>xx/05/2024</td>
-                <td> 4001233</td>
-                <td>100.000</td>
-                <td>100.420</td>
-                <td>10:00:00</td>
-                <td>12:00:00</td>
-                <td>St. Casa</td>
-                <td>Residência</td>
-                <td>Transporte</td>
-                <td>OBS: Linha 1</td>
-            </tr>
-            <!-- fim foreach -->
-        </table>
+        </thead>
+        <tbody>
+            @foreach (var corrida in Model.DadosCorrida)
+            {
+                <tr>
+                    <td>@corrida.DataInicioCorrida.ToShortDateString()</td>
+                    <td>@corrida.UsuarioID</td>
+                    <td>@corrida.KmInicial</td>
+                    <td>@corrida.KmFinal</td>
+                    <td>@corrida.KmPercorrido</td>
+                    <td>@corrida.DataInicioCorrida.ToShortTimeString()</td>
+                    <td>@corrida.DataFinalCorrida</td>
+                    <td>@corrida.LocalSaidaCorrida</td>
+                    <td>@corrida.LocalChegadaCorrida</td>
+                    <td>@corrida.DescricaoCorrida</td>
+                </tr>
+            }
+        </tbody>
+    </table>
 
-        <table>
+    <!-- Tabela de abastecimento -->
+    <table class="table">
+        <thead>
             <tr>
                 <th colspan="4">ABASTECIMENTO</th>
                 <th>obs</th>
-                <th rowspan="7">ESTÃO SENDO ENTREGUES TODOS OS DICOS OU RELATÓRIOS DO TACOMETRO</th>
+                <th rowspan="7">ESTÃO SENDO ENTREGUES TODOS OS DICOS OU RELATÓRIOS DO TACÓGRAFO</th>
             </tr>
             <tr>
-                <td>DATA</td>
-                <td>CÓD. FUNCIONAL</td>
-                <td>KM</td>
-                <td>Total de Litros</td>
-                <td>&nbsp;</td>
+                <th>Data</th>
+                <th>Prefixo</th>                             
+                <th>Descrição</th>
             </tr>
-            <tr>
-                <td>05/2024</td>
-                <td>Linha 1</td>
-                <td>Linha 1</td>
-                <td>Linha 1</td>
-                <td>Linha 1</td>
-            </tr>
-            <tr>
-                <td>05/2024</td>
-                <td>Linha 2</td>
-                <td>Linha 2</td>
-                <td>Linha 2</td>
-                <td>Linha 2</td>
-            </tr>
-        </table>
-    </div>
+        </thead>
+        <tbody>
+            @foreach (var abastecimento in Model.DadosManutencao)
+            {
+                <tr>
+                    <td>@abastecimento.DataManutencao.ToShortDateString()</td>
+                    <td>@abastecimento.Veiculo.Prefixo</td>                                   
+                    <td>@abastecimento.DescricaoManutencao</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
 
