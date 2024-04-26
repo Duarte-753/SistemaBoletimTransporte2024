@@ -34,7 +34,7 @@ namespace SistemaBoletimTransporteDigital.Controllers
             // Definir datas padrão caso não tenham sido fornecidas
             if (!model.Filtros.DataInicial.HasValue)
             {
-                model.Filtros.DataInicial = DateTime.Now.AddMonths(-1);            
+                model.Filtros.DataInicial = DateTime.Now.AddMonths(-1);
             }
             DateTime dataInicio = DateTime.Now.AddMonths(-1);
 
@@ -122,33 +122,50 @@ namespace SistemaBoletimTransporteDigital.Controllers
             usuario.UsuariosDisponiveis = _usuarioRepositorio.BuscarUsuario();
 
             return View(viewModel);
-        }   
+        }
 
-        public async Task<IActionResult> BoletimPdf(DateTime dataInicio, DateTime dataFinal)
+        public async Task<IActionResult> BoletimPdf(DateTime dataInicio, DateTime dataFinal, int veiculoId)
         {
             var usuarioLogado = _sessao.BuscarSessaoDoUsuario();
             var corridasUsuario = _corridaRepositorio.BuscarCorrida(usuarioLogado.Id);
 
-            var corridas = await _bancoContext.Corridas
-                               .Where(c => c.DataInicioCorrida >= dataInicio &&
-                               c.DataFinalCorrida <= dataFinal &&
-                               c.UsuarioID == usuarioLogado.Id).ToListAsync();
+            dataFinal = dataFinal.AddDays(1).AddSeconds(-1);
 
-            var manutencoes = await _bancoContext.Manutencoes
-                               .Where(c => c.DataManutencao >= dataInicio &&
-                               c.DataManutencao <= dataFinal &&
-                               c.UsuarioID == usuarioLogado.Id).ToListAsync();
 
+            var veiculo = await _bancoContext.Veiculos.Where(w => w.Id == veiculoId).FirstOrDefaultAsync();
             var viewModel = new BoletimViewModel
             {
                 Filtros = new Filtro
                 {
                     DataFinal = dataFinal,
                     DataInicial = dataInicio,
+
                 },
-                DadosCorrida = corridas,// Usar os resultados da consulta como dados
-                DadosManutencao = manutencoes
+                Placa = veiculo.Placa,
+                VeiculoNome  = veiculo.Veiculo,
+                DadosCorrida = await _bancoContext.Corridas
+                                .Include(i => i.Veiculo)
+                                .Include(i => i.Usuario)
+                               .Where(c => c.DataInicioCorrida >= dataInicio
+                                   && c.DataFinalCorrida <= dataFinal 
+                                   && c.VeiculoID == veiculoId
+                                   && c.UsuarioID == usuarioLogado.Id)
+                               .ToListAsync(),
+
+                DadosManutencao = await _bancoContext.Manutencoes
+                                .Include(i => i.Veiculo)
+                               .Where(c => c.DataManutencao >= dataInicio
+                                   && c.DataManutencao <= dataFinal
+                                   && c.VeiculoID == veiculoId
+                                   && c.UsuarioID == usuarioLogado.Id)
+                               .ToListAsync()
             };
+
+            var corrida = new CorridaModel();
+            corrida.VeiculosDisponiveis = _veiculoRepositorio.BuscarVeiculos();
+
+            var usuario = new UsuarioModel();
+            usuario.UsuariosDisponiveis = _usuarioRepositorio.BuscarUsuario();
 
             return View(viewModel);
         }

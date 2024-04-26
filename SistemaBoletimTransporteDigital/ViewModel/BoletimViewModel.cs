@@ -20,6 +20,9 @@ namespace SistemaBoletimTransporteDigital.ViewModels
 
         public List<UsuarioModel> DadosUsuario { get; set; }
 
+        public string VeiculoNome { get; set; }
+        public string Placa { get; set; }
+
     }
 
     public class Filtro

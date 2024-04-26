@@ -41,19 +41,19 @@
                 <table>
                     <tr>
                         <td>Período</td>
-                        <td>@* @var data in Model.DataInicial.ToString("MM/yyyy") - @Filtros.DataFinal.ToString("MM/yyyy") *@teste</td>
+                        <td>@Model.Filtros.DataInicial?.ToString("yyyy-MM-dd") - @Model.Filtros.DataFinal?.ToString("yyyy-MM-dd")</td>
                     </tr>
                     <tr>
                         <td>Prefixo</td>
-                        <td>@* @Model.DadosCorrida.PrefixoVeiculo *@ teste</td>
+                        <td>@Model.DadosCorrida.FirstOrDefault()?.Veiculo?.Prefixo</td>
                     </tr>
                     <tr>
                         <td>Veículo</td>
-                        <td>@* @Model.Veiculo.Nome *@teste</td>
+                        <td>@Model.VeiculoNome - @Model.DadosCorrida.FirstOrDefault()?.Veiculo?.Veiculo</td>
                     </tr>
                     <tr>
                         <td>Placa</td>
-                        <td>@* @Model.Veiculo.Placa *@teste</td>
+                        <td>@Model.Placa - @Model.DadosCorrida.FirstOrDefault()?.Veiculo?.Placa</td>
                     </tr>
                 </table>
             </td>
@@ -68,7 +68,6 @@
                 <th>Cód Funcional</th>
                 <th>KM Saída</th>
                 <th>KM Chegada</th>
-                <th>KM Saída</th>
                 <th>KM Total</th>
                 <th>Horário Saída</th>
                 <th>Horário Chegada</th>
@@ -82,10 +81,11 @@
             {
                 <tr>
                     <td>@corrida.DataInicioCorrida.ToShortDateString()</td>
-                    <td>@corrida.UsuarioID</td>
+                    <td>@corrida.Usuario.CodigoFuncional</td>
                     <td>@corrida.KmInicial</td>
                     <td>@corrida.KmFinal</td>
                     <td>@corrida.KmPercorrido</td>
+
                     <td>@corrida.DataInicioCorrida.ToShortTimeString()</td>
                     <td>@corrida.DataFinalCorrida</td>
                     <td>@corrida.LocalSaidaCorrida</td>
@@ -100,14 +100,13 @@
     <table class="table">
         <thead>
             <tr>
-                <th colspan="4">ABASTECIMENTO</th>
-                <th>obs</th>
-                <th rowspan="7">ESTÃO SENDO ENTREGUES TODOS OS DICOS OU RELATÓRIOS DO TACÓGRAFO</th>
+                <th colspan="3">ABASTECIMENTO</th>
+                <th rowspan="7">ESTÃO SENDO ENTREGUES TODOS OS DICOS OU RELATÓRIOS DO TACÓGRAFO<br /><br />________________</th>
             </tr>
             <tr>
-                <th>Data</th>
-                <th>Prefixo</th>                             
-                <th>Descrição</th>
+                <td>Data</td>
+                <td>Prefixo</td>
+                <td>Descrição</td>
             </tr>
         </thead>
         <tbody>
