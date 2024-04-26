@@ -1,7 +1,4 @@
-﻿
-
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="utf-8" />
@@ -31,127 +28,18 @@
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="~/Template/css/style.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-   
+
 </head>
 <body>
-    @* <div style="display: flex;">
-    <nav class="sidebar" style="flex: 0 0 auto; width: 250px;">
-        @await Component.InvokeAsync("Menu")
-    </nav> *@
+
     <div class="wrapper">
-        <aside id="sidebar">
-            <div class="d-flex">
-                <button class="toggle-btn" type="button">
-                    <i class="lni lni-menu"></i>
-                </button>
-                <div class="sidebar-logo">
-                    <a href="#">SBTD</a>
-                </div>
-            </div>
-     
-            <ul class="sidebar-nav">
 
 
-               <li class="sidebar-item">
-                    <a class="sidebar-link " asp-area="" asp-controller="Home" asp-action="Index">
-                        <i class="lni lni-book"></i>
-                        <span>Menu</span>
-                    </a>
-                </li>
-
-                <li id="Admin">
-                    <li class="sidebar-item">
-                        <a class="sidebar-link " asp-area="" asp-controller="Veiculo" asp-action="Index">
-                            <i class="lni lni-car-alt"></i>
-                            <span>Veiculo</span>
-                        </a>
-                    </li>
-                </li>
-                
-
-
-
-                <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
-                        <i class="lni lni-agenda"></i>
-                        <span>Task</span>
-                    </a>
-                </li>
-
-
-
-                <li class="sidebar-item">
-                    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
-                       data-bs-target="#auth" aria-expanded="false" aria-controls="auth">
-                        <i class="lni lni-protection"></i>
-                        <span>Auth</span>
-                    </a>
-                    <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                        <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Login</a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Register</a>
-                        </li>
-                    </ul>
-                </li>
+        @await Component.InvokeAsync("Menu")
 
 
 
 
-                <li class="sidebar-item">
-                    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
-                       data-bs-target="#multi" aria-expanded="false" aria-controls="multi">
-                        <i class="lni lni-layout"></i>
-                        <span>Multi Level</span>
-                    </a>
-                    <ul id="multi" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                        <li class="sidebar-item">
-                            <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse"
-                               data-bs-target="#multi-two" aria-expanded="false" aria-controls="multi-two">
-                                Two Links
-                            </a>
-                            <ul id="multi-two" class="sidebar-dropdown list-unstyled collapse">
-                                <li class="sidebar-item">
-                                    <a href="#" class="sidebar-link">Link 1</a>
-                                </li>
-                                <li class="sidebar-item">
-                                    <a href="#" class="sidebar-link">Link 2</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-
-
-
-                <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
-                        <i class="lni lni-popup"></i>
-                        <span>Notification</span>
-                    </a>
-                </li>
-
-
-
-                <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
-                        <i class="lni lni-cog"></i>
-                        <span>Setting</span>
-                    </a>
-                </li>
-            </ul>       
-            
-
-            <div class="sidebar-footer">
-                <li class="sidebar-item">
-                    <a class="sidebar-link " asp-area="" asp-controller="Login" asp-action="Sair">
-                        <i class="lni lni-exit"></i>
-                        <span>Sair</span>
-                    </a>
-                </li>
-            </div>
-        </aside>
         <div class="main p-3">
             @RenderBody()
         </div>
@@ -159,27 +47,27 @@
 
 
     <div class="main-asd" style="flex: 1;">
-            <div class="container-fluid">
+        <div class="container-fluid">
 
-               @*  <footer class="border-top footer text-muted text-center">
-                    <div class="container">
-                        &copy; 2024 - Sistema Boletim de Transporte Digital - <a asp-area="" asp-controller="Login" asp-action="Privacy">Privacidade</a>
-                    </div>
-                </footer> *@
-                <script src="~/lib/jquery/dist/jquery.min.js"></script>
-                <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-                <script src="https://cdn.datatables.net/v/dt/dt-1.13.6/datatables.min.js"></script>
-                <script src="~/js/site.js" asp-append-version="true"></script>
-                @await RenderSectionAsync("Scripts", required: false)
-
+            @*  <footer class="border-top footer text-muted text-center">
+            <div class="container">
+            &copy; 2024 - Sistema Boletim de Transporte Digital - <a asp-area="" asp-controller="Login" asp-action="Privacy">Privacidade</a>
             </div>
+            </footer> *@
+            <script src="~/lib/jquery/dist/jquery.min.js"></script>
+            <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+            <script src="https://cdn.datatables.net/v/dt/dt-1.13.6/datatables.min.js"></script>
+            <script src="~/js/site.js" asp-append-version="true"></script>
+            @await RenderSectionAsync("Scripts", required: false)
+
+        </div>
     </div>
-</div>
-    
-</body> 
+    </div>
+
+</body>
 
 
 
-    <script src="~/Template/js/script.js"></script>      
+<script src="~/Template/js/script.js"></script>
 
 </html>
