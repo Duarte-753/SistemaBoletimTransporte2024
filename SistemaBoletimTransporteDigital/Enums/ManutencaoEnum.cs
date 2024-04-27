@@ -2,7 +2,7 @@
 {
     public enum ManutencaoEnum
     {
-        Avaria = 1,
+        Manutencao = 1,
         Abastecimento = 2,
     }
 }

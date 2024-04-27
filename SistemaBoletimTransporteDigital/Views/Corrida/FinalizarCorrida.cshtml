@@ -12,33 +12,48 @@
 
 </div>
 
-<form asp-controller="Corrida" asp-action="FinalizarCorrida" method="post">
+<form id="finalizarCorridaForm" asp-controller="Corrida" asp-action="FinalizarCorrida" method="post">
 
     <input type="hidden" asp-for="Id" />
 
     <div class="row">
-
         <div class="col-4">
             <label for="kmFinal">KM do Veículo:</label>
-            <input type="text" asp-for="KmFinal" class="form-control" placeholder="Exemplo: 4543235...">
-            @Html.ValidationMessageFor(x => x.KmFinal)
+            <input type="text" asp-for="KmFinal" class="form-control" placeholder="Exemplo: 4543235..." required>
+            <div class="invalid-feedback">Por favor, preencha o campo KM do Veículo.</div>
         </div>
 
         <div class="col-4">
             <label for="localchegada">Local de Chegada:</label>
-            <input type="text" asp-for="LocalChegadaCorrida" class="form-control" placeholder="Exemplo: Cerejeiras Atibaia">
-            @Html.ValidationMessageFor(x => x.LocalChegadaCorrida)
+            <input type="text" asp-for="LocalChegadaCorrida" class="form-control" placeholder="Exemplo: Cerejeiras Atibaia" required>
+            <div class="invalid-feedback">Por favor, preencha o campo Local de Chegada.</div>
         </div>
-
     </div>
-
-   
 
     <br />
 
     <button type="submit" class="btn btn-warning">Finalizar</button>
     <a class="btn btn-secondary" asp-controller="Corrida" asp-action="Index" role="button">Voltar</a>
 </form>
+
+<script>
+    document.getElementById('finalizarCorridaForm').addEventListener('submit', function(event) {
+        var kmFinal = document.getElementById('KmFinal').value;
+        var localChegada = document.getElementById('LocalChegadaCorrida').value;
+
+        if (!kmFinal || !localChegada) {
+            event.preventDefault(); // Impede o envio do formulário se algum campo estiver vazio
+            event.stopPropagation(); // Evita a propagação do evento de envio
+            if (!kmFinal) {
+                document.getElementById('KmFinal').classList.add('is-invalid');
+            }
+            if (!localChegada) {
+                document.getElementById('LocalChegadaCorrida').classList.add('is-invalid');
+            }
+        }
+    });
+</script>
+
 
 
 
