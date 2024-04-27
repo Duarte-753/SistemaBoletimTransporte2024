@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Rotativa.AspNetCore;
 using SistemaBoletimTransporteDigital.Data;
 using SistemaBoletimTransporteDigital.Helper;
 using SistemaBoletimTransporteDigital.Models;
@@ -167,7 +168,7 @@ namespace SistemaBoletimTransporteDigital.Controllers
             var usuario = new UsuarioModel();
             usuario.UsuariosDisponiveis = _usuarioRepositorio.BuscarUsuario();
 
-            return View(viewModel);
+            return new ViewAsPdf("BoletimPdf",viewModel) { FileName = dataInicio.Date.ToString("dd-MM-yyyy") + "_" + dataFinal.Date.ToString("dd-MM-yyyy") + "_Boletim.pdf" };
         }
 
     }

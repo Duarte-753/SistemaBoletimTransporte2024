@@ -25,71 +25,53 @@
                 </div>
                 <button type="submit" class="btn btn-success mt-3">Filtrar</button>
             </form>
-            <a asp-controller="Boletim" asp-action="BoletimPdf" asp-route-dataInicio="@Model.Filtros.DataInicial" asp-route-dataFinal="@Model.Filtros.DataFinal" class="btn btn-primary mt-3">Montar Boletim</a>
+            @* <a asp-controller="Boletim" asp-action="BoletimPdf" asp-route-dataInicio="@Model.Filtros.DataInicial" asp-route-dataFinal="@Model.Filtros.DataFinal" class="btn btn-primary mt-3">Montar Boletim</a> *@
         </div>
     </div>
-</div>            <a asp-controller="Boletim" asp-action="BoletimPdf" asp-route-dataInicio="@Model.Filtros.DataInicial" asp-route-dataFinal="@Model.Filtros.DataFinal" class="btn btn-primary mt-3">Montar Boletim</a>
+</div>            @* <a asp-controller="Boletim" asp-action="BoletimPdf" asp-route-dataInicio="@Model.Filtros.DataInicial" asp-route-dataFinal="@Model.Filtros.DataFinal" class="btn btn-primary mt-3">Montar Boletim</a> *@
 
 
 @if (Model != null && Model.DadosCorrida != null && Model.DadosCorrida.Count > 0)
 {
-
-    <div class="container mt-5">
-        <h2>Corridas</h2>
-        <table class="table table-dark table-hover" id="table-boletim" style="width:100%">
+    <div class="table-responsive">
+        <h2>Carro usado no período selecionado</h2>
+        <table class="table table-dark table-hover" id="table-boletim" style="width:100%" class="table-responsive">
             <thead>
-                <tr>                  
-                    <th>Motorista:</th>
-                    <th>Data de Início:</th>
-                    <th>Data Final:</th>
-                    <th>Descrição:</th>
-                    <th>Veículo:</th>
-                    <th>Km Inicial:</th>
-                    <th>Km Final:</th>
-                    <th>Km Percorrido:</th>
+                <tr>
+                    <th>Veículo</th>
+                    <th>Boletim</th>
                 </tr>
             </thead>
             <tbody>
-                
-              
+                @{
+                    HashSet<int> veiculosExibidos = new HashSet<int>();
+                }
                 @foreach (var corrida in Model.DadosCorrida)
-                
                 {
-                    <tr>                      
-                        <td>                           
-                            @if (corrida.Usuario != null)
-                            {
-                                @corrida.Usuario.Nome
-                            }
-                            else
-                            {
-                                @Html.DisplayFor(modelItem => corrida.UsuarioID)
-                            }
-                        </td>
-                        <td>@corrida.DataInicioCorrida</td> @* .ToShortDateString() *@
-                        <td>@corrida.DataFinalCorrida</td> @* .ToShortDateString() *@
-                        <td>@corrida.DescricaoCorrida</td>
-                        <td>
-                            @if (corrida.Veiculo != null)
-                            {
-                                @corrida.Veiculo.Veiculo
-                            }
-                            else
-                            {
-                                @Html.DisplayFor(modelItem => corrida.VeiculoID)
-                            }
+                    if (!veiculosExibidos.Contains(corrida.VeiculoID))
+                    {
+                        veiculosExibidos.Add(corrida.VeiculoID);
+                        <tr>
+                            <td>
+                                @if (corrida.Veiculo != null)
+                                {
+                                    @corrida.Veiculo.Veiculo
+                                }
+                                else
+                                {
+                                    @Html.DisplayFor(modelItem => corrida.VeiculoID)
+                                }                          
 
-                            <a asp-controller="Boletim" 
-                            asp-action="BoletimPdf"
-                               asp-route-dataInicio="@Model.Filtros.DataInicial?.ToString("yyyy-MM-dd")" 
-                               asp-route-dataFinal="@Model.Filtros.DataFinal?.ToString("yyyy-MM-dd")" 
-                            asp-route-veiculoId="@corrida.VeiculoID">[PDF] </a>
-
-                        </td>
-                        <td>@corrida.KmInicial</td>
-                        <td>@corrida.KmFinal</td>
-                        <td>@corrida.KmPercorrido</td>                                            
-                    </tr>                   
+                            </td>
+                            <td>
+                                <a role="button" class="btn btn-warning" asp-controller="Boletim"
+                                   asp-action="BoletimPdf"
+                                   asp-route-dataInicio="@Model.Filtros.DataInicial?.ToString("yyyy-MM-dd")"
+                                   asp-route-dataFinal="@Model.Filtros.DataFinal?.ToString("yyyy-MM-dd")"
+                                   asp-route-veiculoId="@corrida.VeiculoID">Gerar Boletim</a>
+                            </td>
+                        </tr>
+                    }
                 }
             </tbody>
         </table>
@@ -101,3 +83,5 @@ else
         <h2>Nenhuma corrida encontrada para o período selecionado.</h2>
     </div>
 }
+
+

@@ -1,15 +1,15 @@
 ﻿@model SistemaBoletimTransporteDigital.ViewModels.BoletimViewModel
 @using SistemaBoletimTransporteDigital.Enums;
 
-@{
-    ViewData["Title"] = "Boletim PDF";
+@{   
+    Layout = null;
 }
 
 
-<div class="text-center">
+@* <div class="text-center">
     <h1 class="display-4">Boletim Mensal Gerado</h1>
 </div>
-<br />
+<br /> *@
 
 <style>
     table {
@@ -28,7 +28,7 @@
 </style>
 
 
-<div class="container mt-5">
+<div class="table-responsive">
     <!-- Informações gerais -->
     <table border="1">
         <tr>
@@ -100,9 +100,14 @@
     <table class="table">
         <thead>
             <tr>
-                <th colspan="4">ABASTECIMENTO/MANUTENÇÃO</th>
-                <th rowspan="7">ESTÃO SENDO ENTREGUES TODOS OS DISCOS OU RELATÓRIOS DO TACÓGRAFO<br /><br />________________</th>
+                <th rowspan="7">ABASTECIMENTO/MANUTENÇÃO</th>
             </tr>
+
+        </thead>
+    </table>
+    <table class="table">
+        <thead>
+        @* <th rowspan="7">ABASTECIMENTO/MANUTENÇÃO</th> *@
             <tr>
                 <td>Data</td>
                 <td>Prefixo</td>
@@ -124,6 +129,14 @@
                 }
             }
         </tbody>
+    </table>
+    <table class="table">
+        <thead>
+            <tr>              
+                <th rowspan="7">ESTÃO SENDO ENTREGUES TODOS OS DISCOS OU RELATÓRIOS DO TACÓGRAFO<br /><br />________________</th>
+            </tr>
+            
+        </thead>      
     </table>
 </div>
 
