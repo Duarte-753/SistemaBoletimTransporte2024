@@ -24,7 +24,14 @@
     th, td {
         padding: 10px;
         text-align: center;
+        page-break-inside: avoid;
     }
+
+    .no-page-break {
+        page-break-inside: avoid;
+    }
+
+
 </style>
 
 
@@ -64,7 +71,7 @@
     <!-- Tabela de corridas -->
     <table class="table">
         <thead>
-            <tr>
+            <tr class="no-page-break">
                 <th>Data</th>
                 <th>Cód Funcional</th>
                 <th>KM Saída</th>
@@ -80,7 +87,7 @@
         <tbody>
             @foreach (var corrida in Model.DadosCorrida)
             {
-                <tr>
+                <tr class ="no-page-break">
                     <td>@corrida.DataInicioCorrida.ToShortDateString()</td>
                     <td>@corrida.Usuario.CodigoFuncional</td>
                     <td>@corrida.KmInicial</td>
@@ -108,7 +115,7 @@
     <table class="table">
         <thead>
         @* <th rowspan="7">ABASTECIMENTO/MANUTENÇÃO</th> *@
-            <tr>
+            <tr class="no-page-break">
                 <td>Data</td>
                 <td>Prefixo</td>
                 <td>Tipo</td>
@@ -120,7 +127,7 @@
             {
                 foreach (var manutencao in abastecimento.Veiculo.Manutencoes)
                 {
-                    <tr>
+                    <tr class="no-page-break">
                         <td>@manutencao.DataManutencao.ToShortDateString()</td>
                         <td>@abastecimento.Veiculo.Prefixo</td>
                         <td>@(manutencao.TipoManutencao == SistemaBoletimTransporteDigital.Enums.ManutencaoEnum.Manutencao ? "Manutenção" : "Abastecimento")</td>
@@ -132,15 +139,19 @@
     </table>
     <table class="table">
         <thead>
-            <tr>              
+            <tr class="no-page-break">
                 <th rowspan="7">ESTÃO SENDO ENTREGUES TODOS OS DISCOS OU RELATÓRIOS DO TACÓGRAFO<br /><br />________________</th>
             </tr>
             
         </thead>      
     </table>
 </div>
-<div class="footer" style="position: fixed; bottom: 0; width: 100%; text-align: center; background-color: #f5f5f5; padding: 10px 0;">
-    <p>
+<br />
+<br />
+<br />
+<br />
+<div class="footer" style="position: fixed; bottom: 0; width: 100%; text-align: center; padding: 10px 0;">
+    <p class="no-page-break">
         &copy; @DateTime.Now.Year - Sistema Boletim de Transporte Digital<br>
         Contato: exemplo@boletimtransporte.com - Telefone: (11) 1234-5678
     </p>
