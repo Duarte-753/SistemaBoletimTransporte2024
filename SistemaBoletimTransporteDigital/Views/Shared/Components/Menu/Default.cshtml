@@ -34,39 +34,89 @@
             }
         </li>
 
-
-
-
-
         <li class="sidebar-item">
-            <a href="#" class="sidebar-link">
-                <i class="lni lni-agenda"></i>
-                <span>Task</span>
-            </a>
+            @if (Model.Perfil == SistemaBoletimTransporteDigital.Enums.PerfilEnum.Admin)
+            {
+
+                <a class="sidebar-link " asp-area="" asp-controller="Usuario" asp-action="Index">
+                    <i class="lni lni-users"></i>
+                    <span>Usuario</span>
+                </a>
+
+            }
         </li>
 
 
 
         <li class="sidebar-item">
-            <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
-               data-bs-target="#auth" aria-expanded="false" aria-controls="auth">
-                <i class="lni lni-protection"></i>
-                <span>Auth</span>
-            </a>
-            <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">Login</a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">Register</a>
-                </li>
-            </ul>
+            @if (Model.Perfil == SistemaBoletimTransporteDigital.Enums.PerfilEnum.Admin)
+            {
+                <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
+                data-bs-target="#auth" aria-expanded="false" aria-controls="auth">
+                    <i class="lni lni-pencil-alt"></i>
+                    <span>Relatorios</span>
+                </a>
+                <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                    <li class="sidebar-item">
+                    <a class="sidebar-link " asp-area="" asp-controller="Veiculo" asp-action="Index">
+                        <i class="lni lni-users"></i>
+                        <span>Por Veiculo</span>
+                    </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link " asp-area="" asp-controller="Boletim" asp-action="Index">
+                            <i class="lni lni-users"></i>
+                            <span>Por Veiculo</span>
+                        </a>
+                    </li>
+                    @* <li class="sidebar-item">
+                        <a href="#" class="sidebar-link">Register</a>
+                    </li> *@
+                </ul>
+            }
+        </li>
+
+
+        <li class="sidebar-item">
+            @if (Model.Perfil == SistemaBoletimTransporteDigital.Enums.PerfilEnum.motorista)
+            {
+
+                <a class="sidebar-link " asp-area="" asp-controller="Corrida" asp-action="Index">
+                    <i class="lni lni-users"></i>
+                    <span>Corrida</span>
+                </a>
+
+            }
+        </li>
+
+        <li class="sidebar-item">
+            @if (Model.Perfil == SistemaBoletimTransporteDigital.Enums.PerfilEnum.motorista)
+            {
+
+                <a class="sidebar-link " asp-area="" asp-controller="Manutencao" asp-action="Index">
+                    <i class="lni lni-users"></i>
+                    <span>Manutenção</span>
+                </a>
+
+            }
+        </li>
+
+        <li class="sidebar-item">
+            @if (Model.Perfil == SistemaBoletimTransporteDigital.Enums.PerfilEnum.motorista)
+            {
+
+                <a class="sidebar-link " asp-area="" asp-controller="Boletim" asp-action="Index">
+                    <i class="lni lni-users"></i>
+                    <span>Boletim</span>
+                </a>
+
+            }
         </li>
 
 
 
 
-        <li class="sidebar-item">
+        @* <li class="sidebar-item">
             <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
                data-bs-target="#multi" aria-expanded="false" aria-controls="multi">
                 <i class="lni lni-layout"></i>
@@ -88,7 +138,7 @@
                     </ul>
                 </li>
             </ul>
-        </li>
+        </li> *@
 
 
 
