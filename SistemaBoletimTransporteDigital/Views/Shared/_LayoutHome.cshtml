@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Sistema Boletim de Transporte Digital</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/SistemaBoletimTransporteDigital.styles.css" asp-append-version="true" />
+    <link href="https://cdn.datatables.net/v/dt/dt-1.13.6/datatables.min.css" rel="stylesheet">
+    <link href="~/lib/font-awesome/css/all.css" rel="stylesheet" />   
+    <link href="~/css/landingpage.css" rel="stylesheet" />
+    <link href="~/css/header.css" rel="stylesheet" />
+    <script src="~/js/home.js"></script>
+    
+   
+</head>
+<body>
+    
+
+    <header>
+        <div class="header">
+            <a class="logo"> SBTD</a>
+
+            <div class="header-right">
+                <div id="login-container" class="login-container">
+                    <a class="logo" href="@Url.Action("Sair", "Login")">Área Restrita</a>
+                </div>
+
+                <div id="menu-toggle" class="menu-toggle">
+                    <div class="hamburger"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    @* <header>
+        <div class="header">
+            <a class="logo"> SBTD</a>
+
+            <div class="header-right">
+                <div id="login-container" class="login-container">
+                    <ul>
+                        <li class="logo" href="@Url.Action("Sair", "Login")">Área Restrita</li>
+                        <li class="logo" href="@Url.Action("Sair", "Login")">Área Restrita</li>
+                        <li class="logo" href="@Url.Action("Sair", "Login")">Área Restrita</li>
+                    </ul>
+                </div>
+
+                <div id="menu-toggle" class="menu-toggle">
+                    <div class="hamburger"></div>
+                </div>
+            </div>
+        </div>
+    </header> *@
+
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted text-center">
+        <div class="container">
+            &copy; 2024 - Sistema Boletim de Transporte Digital - <a asp-area="" asp-controller="Login" asp-action="Privacy">Privacidade</a>
+        </div>
+    </footer>
+    
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/v/dt/dt-1.13.6/datatables.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

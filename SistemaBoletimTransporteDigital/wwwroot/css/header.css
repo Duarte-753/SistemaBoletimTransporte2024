@@ -1,0 +1,102 @@
+﻿.header {
+    width: 100%; /* Define a largura do header como 100% */
+    max-width: 2400px; /* Define a largura máxima do header */
+    margin: 0 auto; /* Centraliza o header na página */
+    height: 70px; /* Define a altura do header como 100 pixels */
+    overflow: hidden;
+    background-color: #5C4033;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between; /* Alinha os elementos no header */
+}
+
+    .header img {
+        width: 65px;
+    }
+
+    .header a.logo {
+        font-size: 25px;
+        font-weight: bold;
+        text-align: center;
+        padding: 12px;
+        border-radius: 4px;
+    }
+
+    .header a {
+        color: rgb(255, 255, 255);
+        text-align: center;
+        padding: 12px;
+        text-decoration: none;
+        font-size: 18px;
+        line-height: 25px;
+        border-radius: 4px;
+    }
+
+.menu-toggle {
+    display: inline-block;
+    cursor: pointer;
+    margin-left: auto; /* Empurra o hamburger para a direita */
+}
+
+.hamburger {
+    width: 30px;
+    height: 3px;
+    background-color: black;
+    margin: 6px 0;
+    transition: 0.4s;
+}
+
+    .hamburger:before,
+    .hamburger:after {
+        content: "";
+        display: block;
+        width: 30px;
+        height: 3px;
+        background-color: black;
+        transition: 0.4s;
+    }
+
+    .hamburger:before {
+        transform: translateY(-9px);
+    }
+
+    .hamburger:after {
+        transform: translateY(6px);
+    }
+
+.menu-toggle.clicked .hamburger:before {
+    transform: translateY(0px) rotate(47deg); /* Rotaciona e move para formar um X */
+}
+
+.menu-toggle.clicked .hamburger:after {
+    transform: translateY(-4px) rotate(-47deg); /* Rotaciona e move para formar um X */
+}
+
+.menu-toggle.clicked .hamburger {
+    transform: rotate(450deg); /* Rotaciona o traço central para formar um X */
+}
+
+.login-container {
+    display: block;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.show-login {
+    max-height: 100px; /* Altura máxima do login */
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+
+/* Media query para dispositivos móveis */
+@media screen and (max-width: 768px) {
+    .footer {
+        font-size: 14px; /* Reduz o tamanho da fonte para dispositivos móveis */
+        padding: 20px 0; /* Adiciona um espaço maior acima e abaixo do conteúdo do footer */
+    }
+}

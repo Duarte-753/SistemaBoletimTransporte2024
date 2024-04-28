@@ -1,84 +1,142 @@
 ﻿@using SistemaBoletimTransporteDigital.Enums;
-@model UsuarioModel
+@model SistemaBoletimTransporteDigital.Models.UsuarioModel
+
+<aside id="sidebar">
+    <div class="d-flex">
+        <button class="toggle-btn" type="button">
+            <i class="lni lni-menu"></i>
+        </button>
+        <div class="sidebar-logo">
+            <a href="#">SBTD</a>
+        </div>
+    </div>
+
+    <ul class="sidebar-nav">
 
 
-
-
-<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Olá, @Model.Nome</a>
-<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-        aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-</button>
-<div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-    <ul class="navbar-nav flex-grow-1">
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
+        <li class="sidebar-item">
+            <a class="sidebar-link " asp-area="" asp-controller="Home" asp-action="Index">
+                <i class="lni lni-book"></i>
+                <span>Menu</span>
+            </a>
         </li>
 
-        @if (Model.Perfil == SistemaBoletimTransporteDigital.Enums.PerfilEnum.Admin)
-        {
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Veiculo" asp-action="Index">Veiculos</a>
-            </li>
-        }
 
-        @if (Model.Perfil == SistemaBoletimTransporteDigital.Enums.PerfilEnum.Admin)
-        {
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="Index">Usuários</a>
-            </li>
-        }
-        @if (Model.Perfil == SistemaBoletimTransporteDigital.Enums.PerfilEnum.Admin)
-        {
-            @* <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Relatorio" asp-action="Index">Relatórios</a>
-            </li> *@
-            <li class="nav-item">
-                @* <a class="nav-link text-dark" onmouseover="showDropdownMenu()" onmouseout="hideDropdownMenu()">
-                    Relatório
-                </a> *@
-                <a class="nav-link text-dark" asp-area="" asp-controller="Relatorio" asp-action="Index" onmouseover="showDropdownMenu()" onmouseout="hideDropdownMenu()">Relatórios</a>
-                <div id="dropdownMenu" class="dropdown-menu" onmouseover="showDropdownMenu()" onmouseout="hideDropdownMenu()">                  
-                    <a class="dropdown-item" asp-area="" asp-controller="Veiculo" asp-action="Index">Veículos</a>
-                    <a class="dropdown-item" asp-area="" asp-controller="Motorista" asp-action="Index">Motoristas</a>
-                </div>
-            </li>
+        <li class="sidebar-item">
+            @if (Model.Perfil == SistemaBoletimTransporteDigital.Enums.PerfilEnum.Admin)
+            {
 
-            <script>
-                function showDropdownMenu() {
-                    document.getElementById("dropdownMenu").style.display = "block";
-                }
+                <a class="sidebar-link " asp-area="" asp-controller="Veiculo" asp-action="Index">
+                    <i class="lni lni-car-alt"></i>
+                    <span>Veiculo</span>
+                </a>
 
-                function hideDropdownMenu() {
-                    document.getElementById("dropdownMenu").style.display = "none";
-                }
-            </script>
-        }
-
-        @if (Model.Perfil == SistemaBoletimTransporteDigital.Enums.PerfilEnum.motorista)
-        {
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Corrida" asp-action="Index">Corrida</a>
-            </li>
-        }
-
-        @if (Model.Perfil == SistemaBoletimTransporteDigital.Enums.PerfilEnum.motorista)
-        {
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Manutencao" asp-action="Index">Manutenção</a>
-            </li>
-        }
-
-        @if (Model.Perfil == SistemaBoletimTransporteDigital.Enums.PerfilEnum.motorista)
-        {
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Boletim" asp-action="Index">Boletim</a>
-            </li>
-        }
-
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Sair">Sair</a>
+            }
         </li>
 
+
+
+
+
+        <li class="sidebar-item">
+            <a href="#" class="sidebar-link">
+                <i class="lni lni-agenda"></i>
+                <span>Task</span>
+            </a>
+        </li>
+
+
+
+        <li class="sidebar-item">
+            <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
+               data-bs-target="#auth" aria-expanded="false" aria-controls="auth">
+                <i class="lni lni-protection"></i>
+                <span>Auth</span>
+            </a>
+            <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link">Login</a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link">Register</a>
+                </li>
+            </ul>
+        </li>
+
+
+
+
+        <li class="sidebar-item">
+            <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
+               data-bs-target="#multi" aria-expanded="false" aria-controls="multi">
+                <i class="lni lni-layout"></i>
+                <span>Multi Level</span>
+            </a>
+            <ul id="multi" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse"
+                       data-bs-target="#multi-two" aria-expanded="false" aria-controls="multi-two">
+                        Two Links
+                    </a>
+                    <ul id="multi-two" class="sidebar-dropdown list-unstyled collapse">
+                        <li class="sidebar-item">
+                            <a href="#" class="sidebar-link">Link 1</a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="#" class="sidebar-link">Link 2</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+
+
+
+        <li class="sidebar-item">
+            <a href="#" class="sidebar-link">
+                <i class="lni lni-popup"></i>
+                <span>Notification</span>
+            </a>
+        </li>
+
+
+
+        <li class="sidebar-item">
+            <a href="#" class="sidebar-link">
+                <i class="lni lni-cog"></i>
+                <span>Setting</span>
+            </a>
+        </li>
     </ul>
-</div>
+
+
+    <div class="sidebar-footer">
+        <li class="sidebar-item">
+            <a class="sidebar-link " asp-area="" asp-controller="Login" asp-action="Sair">
+                <i class="lni lni-exit"></i>
+                <span>Sair</span>
+            </a>
+        </li>
+    </div>
+</aside>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

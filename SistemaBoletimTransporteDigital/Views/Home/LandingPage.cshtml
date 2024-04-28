@@ -1,30 +1,91 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    Layout = "_LayoutHome";
 }
 
 
 
-<div class="text-center">
-    <h1 class="display-4">Seja bem vindo!</h1>
-    <p>Sistema de boletim de transporte</p>
-</div>
-
-<div class="container">
-    <h1>Sistema de Boletim de Transporte Digital</h1>
-
-    <p>O nosso sistema inovador permite o gerenciamento eficiente e digital do boletim de transporte, proporcionando facilidade e agilidade tanto para os motoristas quanto para os administradores.</p>
-
-    <h2>Funcionalidades Principais</h2>
-
-    <div class="features">
-        <h3>Aplicativo para Motoristas</h3>
-        <p>Os motoristas têm acesso a um aplicativo móvel intuitivo, onde podem preencher digitalmente os boletins de transporte, registrando informações sobre viagens, passageiros, veículos e horários.</p>
-
-        <h3>Portal Web para Administradores</h3>
-        <p>Os administradores contam com um portal web robusto para gerenciar e monitorar as atividades. Através do portal, é possível visualizar relatórios detalhados sobre motoristas, carros, rotas e horários.</p>
-
-        <h3>Relatórios Detalhados</h3>
-        <p>O sistema gera relatórios detalhados que proporcionam insights valiosos sobre o desempenho dos motoristas, a eficiência dos veículos, e a pontualidade nas rotas. Esses relatórios ajudam na tomada de decisões estratégicas.</p>
+ <div class="titulo">
+    <div>
+        <h1>SBTD</h1>
+        <p>Sistema de Boletim de Transporte Digital</p>
     </div>
 </div>
+<br />
+<br />
+<br />
+<br />
 
+
+<div class="conteudo">
+    <div class="texto col-8">
+        <h5>Sistema de Boletim de Transportes Digital</h5>
+        <p class="destaque">O futuro da gestão de frota está aqui!</p>
+        <p class="subtitulo">Nosso sistema de boletim de transportes digital é a solução definitiva para empresas de transporte que buscam otimizar suas operações e garantir conformidade com as regulamentações trabalhistas.</p>
+    </div>
+    <div class="imagem-container col-4">
+        <img src="~/images/landing_page/beje.jpg" class="imagem" />
+    </div>
+</div>
+ 
+<section class="section-funcionalidades">
+    <div class="container-funcionalidades text-center">
+        <h6 class="titulo-secao">Funcionalidades</h6>
+        <div class="linha">
+            <div class="col-md-6 col-lg-3">
+                <div class="cartao-servico">
+                    <img src="~/images/landing_page/users-solid.svg" class="icone">
+                    <h6 class="não_usado">Registro de Usuários</h6>
+                    <p class="subtitulo">Cadastre usuários como Administrador ou Motorista</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="cartao-servico">
+                    <img src="~/images/landing_page/clipboard-regular.svg" class="icone">
+                    <h6 class="não_usado">Registro de Corrida Digital</h6>
+                    <p class="subtitulo">Registre corridas sem papel</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="cartao-servico">
+                    <img src="~/images/landing_page/gears-solid.svg" class="icone">
+                    <h6 class="não_usado">Módulo de Manutenção</h6>
+                    <p class="subtitulo">Motoristas registram manutenções e abastecimentos</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="cartao-servico">
+                    <img src="~/images/landing_page/file-regular.svg" class="icone" />
+                    <h6 class="não_usado">Relatórios</h6>
+                    <p class="subtitulo">Obtenha relatórios atualizados da frota e motoristas</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container-quem-somos text-center">
+    <h6 class="titulo-secao">Quem Somos</h6>
+
+    <div class="linha">
+        <div class="col-md-5" style="margin-right: 4px;">
+            <div class="cartao-depoimento">
+                <img src="~/images/landing_page/user-solid.svg" />
+                <div class="corpo-depoimento">
+                    <p>Curso: Analise e Desenvolvimento de Sistemas - Unifaat</p>
+                    <h6>Vinícius Hernanes Pinheiro</h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5" >
+            <div class="cartao-depoimento">
+                <img src="~/images/landing_page/user-solid.svg" />
+                <div class="corpo-depoimento">
+                    <p>Curso: Analise e Desenvolvimento de Sistemas - Unifaat</p>
+                    <h6>Julio Batista Duarte</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+ 

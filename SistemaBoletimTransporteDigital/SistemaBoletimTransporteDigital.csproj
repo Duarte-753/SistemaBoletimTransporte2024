@@ -7,6 +7,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\templates\**" />
+    <Compile Remove="wwwroot\Template\assets\**" />
+    <Content Remove="wwwroot\templates\**" />
+    <Content Remove="wwwroot\Template\assets\**" />
+    <EmbeddedResource Remove="wwwroot\templates\**" />
+    <EmbeddedResource Remove="wwwroot\Template\assets\**" />
+    <None Remove="wwwroot\templates\**" />
+    <None Remove="wwwroot\Template\assets\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\Template\css\styles.css" />
+    <Content Remove="wwwroot\Template\js\datatables-simple-demo.js" />
+    <Content Remove="wwwroot\Template\js\scripts.js" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Controllers\UsuarioReportController.cs~RF1e631ed5.TMP" />
     <None Remove="Repositorio\IRelatorioUsuarioRepositorio.cs~RF1e6c4adb.TMP" />
   </ItemGroup>
@@ -32,9 +49,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\images\" />
     <Folder Include="wwwroot\BK_BANCO_DADOS_SQL\" />
     <Folder Include="wwwroot\ImagensManutencoes\" />
+    <Folder Include="wwwroot\images\NovaPasta\" />
     <Folder Include="wwwroot\Rotativa\" />
   </ItemGroup>
 
