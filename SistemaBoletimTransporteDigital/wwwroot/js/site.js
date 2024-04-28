@@ -60,9 +60,9 @@ $('.close-alert').click(function () {
     $('.alert').hide('hide');
 });
 
-// Fecha o alerta automaticamente após 2 segundos
+// Fecha o alerta automaticamente após 3 segundos
 setTimeout(function () {
     $('.alert').hide('hide');
-}, 2000);
+}, 3000);
 
 
