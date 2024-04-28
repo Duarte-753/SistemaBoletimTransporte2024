@@ -168,7 +168,19 @@ namespace SistemaBoletimTransporteDigital.Controllers
             var usuario = new UsuarioModel();
             usuario.UsuariosDisponiveis = _usuarioRepositorio.BuscarUsuario();
 
-            return new ViewAsPdf("BoletimPdf",viewModel) { FileName = dataInicio.Date.ToString("dd-MM-yyyy") + "_" + dataFinal.Date.ToString("dd-MM-yyyy") + "_Boletim.pdf" };
+            //return new ViewAsPdf("BoletimPdf", viewModel) { FileName = dataInicio.Date.ToString("dd-MM-yyyy") + "_" + dataFinal.Date.ToString("dd-MM-yyyy") + "_Boletim.pdf",
+            //    PageSize = Rotativa.AspNetCore.Options.Size.A4,
+            //    PageMargins = new Rotativa.AspNetCore.Options.Margins(10, 10, 10, 10)
+            //};
+            var pdfOptions = new ViewAsPdf("BoletimPdf", viewModel)
+            {
+                FileName = dataInicio.Date.ToString("dd-MM-yyyy") + "_" + dataFinal.Date.ToString("dd-MM-yyyy") + "_Boletim.pdf",
+                PageSize = Rotativa.AspNetCore.Options.Size.A4,
+                PageMargins = new Rotativa.AspNetCore.Options.Margins(10, 10, 10, 10),        
+            };
+
+            return pdfOptions;
+
         }
 
     }
