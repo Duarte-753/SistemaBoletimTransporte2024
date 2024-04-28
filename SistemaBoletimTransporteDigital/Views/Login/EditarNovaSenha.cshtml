@@ -4,34 +4,103 @@
     Layout = "_LayoutDeslogado";
     ViewData["Title"] = "Nova senha";
 }
+@if (TempData["MensagemErro"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @* <button type="button" class="btn btn-danger btn-sm close-alert" aria-label="Close">X</button> *@
+        @TempData["MensagemErro"]
+    </div>
+}
+@if (TempData["MensagemSucesso"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        @*  <button type="button" class="btn btn-danger btn-sm close-alert" aria-label="Close">X</button> *@
+        @TempData["MensagemSucesso"]
+    </div>
+}
 
 
+<body class="vh-100" style="background-color:#fbf3e4;">
+    <div class="container-fluid">
+        <div class="row align-items-center">
 
-<div class="text-center">
+            
+            <div class="col-sm-6 ">
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
 
-    <h1 class="display-4">Nova senha</h1>
-    <br />
+                <div class="px-5 ms-xl-4">
+                    <p class="h1 fw-bold mb-0"> Nova Senha</p>
 
-</div>
+                </div>
 
-<form asp-controller="Login" asp-action="EditarNovaSenha" method="post">
+                <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
 
-    <input type="hidden" asp-for="Id" />
+                    <form asp-controller="Login" asp-action="EditarNovaSenha" method="post">
 
-    <div class="row">
-             
-        <div class="col-3">
-            <label for="senha">Nova Senha:</label>
-            <input type="password" asp-for="Senha" class="form-control" placeholder="Crie uma nova senha para esse usuário.">
-            @Html.ValidationMessageFor(x => x.Senha)
+                        <input type="hidden" asp-for="Id" />
+
+                        <div class="form-outline mb-4">
+                            <label for="senha">Nova Senha:</label>
+                            <input type="password" id="senha1" class="form-control" placeholder="Crie uma nova senha">
+                        </div>
+
+                        <div class="form-outline mb-4">
+                            <label for="senha">Confirme a Nova Senha:</label>
+                            <input type="password" asp-for="Senha" id="senha2" class="form-control" placeholder="Crie uma nova senha para esse usuário.">
+                        </div>
+
+                        <span id="senha-error" class="text-danger"></span>
+
+                        <script>
+                            // Função para validar se as senhas são iguais
+                            function validarSenhas() {
+                                var senha1 = document.getElementById('senha1').value;
+                                var senha2 = document.getElementById('senha2').value;
+
+                                // Verifica se as senhas são iguais
+                                if (senha1 !== senha2) {
+                                    document.getElementById('senha-error').innerText = 'As senhas não coincidem';
+                                    return false; // Retorna falso para indicar que há um erro
+                                } else {
+                                    document.getElementById('senha-error').innerText = '';
+                                    return true; // Retorna verdadeiro se as senhas forem iguais
+                                }
+                            }
+
+                            // Adiciona um ouvinte de eventos para verificar a validade das senhas quando uma tecla é pressionada
+                            document.getElementById('senha2').addEventListener('keyup', validarSenhas);
+                        </script>
+
+
+                        <br />
+                        <button type="submit" class="btn btn-warning">Atualizar Senha</button>
+
+                    </form>
+
+                </div>
+
+            </div>
+            <div class="col-sm-6 px-0 d-none d-sm-block">
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <img src="~/images/transformers.png" style="width: 100%; height: auto;" />
+            </div>
         </div>
+    </div>
+</body>
 
-    </div> 
 
-    <br />
-    <button type="submit" class="btn btn-warning">Atualizar Senha</button>
-    
-</form>
+
+
 
 
 

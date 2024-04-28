@@ -14,19 +14,60 @@
 @if (TempData["MensagemSucesso"] != null)
 {
     <div class="alert alert-success" role="alert">
-       @*  <button type="button" class="btn btn-danger btn-sm close-alert" aria-label="Close">X</button> *@
+        @*  <button type="button" class="btn btn-danger btn-sm close-alert" aria-label="Close">X</button> *@
         @TempData["MensagemSucesso"]
     </div>
 }
 
-<form asp-controller="Login" asp-action="ConfirmarToken" method="post">
+<body class="vh-100" style="background-color:#fbf3e4;">
+    <div class="container-fluid">
+        <div class="row align-items-center">
 
-    <div class="mb-3">
-        <label for="token" class="form-label">Digite o Token que recebeu no seu email:</label>
-        <input type="text" asp-for="Token" class="form-control" id="token">
-        @Html.ValidationMessageFor(x => x.Token)
+            
+
+            <div class="col-sm-6 ">
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <div class="px-5 ms-xl-4">
+                    <p class="h1 fw-bold mb-0"> Redefinir Senha</p>
+
+                </div>
+
+                <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
+
+                    <form asp-controller="Login" asp-action="ConfirmarToken" method="post">
+
+                        <div class="mb-3">
+                            <label for="token" class="form-label">Digite o Token que recebeu no seu email:</label>
+                            <input type="text" asp-for="Token" class="form-control" id="token">
+                            @Html.ValidationMessageFor(x => x.Token)
+                        </div>
+
+
+                        <button type="submit" class="btn btn-primary">Confirmar Token</button>
+                    </form>
+
+                </div>
+
+            </div>
+            <div class="col-sm-6 px-0 d-none d-sm-block">
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <img src="~/images/transformers.png" style="width: 100%; height: auto;" />
+            </div>
+        </div>
     </div>
+</body>
 
 
-    <button type="submit" class="btn btn-primary">Confirmar Token</button>
-</form>
+
+
+
