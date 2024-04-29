@@ -177,8 +177,8 @@ namespace SistemaBoletimTransporteDigital.Migrations
                             Celular = "11912345678",
                             CodigoFuncional = "1234",
                             CorridaStatus = 4,
-                            DataCriacao = new DateTime(2024, 4, 29, 12, 53, 28, 560, DateTimeKind.Local).AddTicks(7142),
-                            DataUltimaAtualizacao = new DateTime(2024, 4, 29, 12, 53, 28, 560, DateTimeKind.Local).AddTicks(7143),
+                            DataCriacao = new DateTime(2024, 4, 29, 19, 33, 15, 681, DateTimeKind.Local).AddTicks(6259),
+                            DataUltimaAtualizacao = new DateTime(2024, 4, 29, 19, 33, 15, 681, DateTimeKind.Local).AddTicks(6262),
                             Email = "julioduartebatista753@gmail.com",
                             EstaVinculadoAumaCorrida = 6,
                             Nome = "admin",
@@ -192,8 +192,8 @@ namespace SistemaBoletimTransporteDigital.Migrations
                             Celular = "11912345678",
                             CodigoFuncional = "567",
                             CorridaStatus = 4,
-                            DataCriacao = new DateTime(2024, 4, 29, 12, 53, 28, 560, DateTimeKind.Local).AddTicks(7174),
-                            DataUltimaAtualizacao = new DateTime(2024, 4, 29, 12, 53, 28, 560, DateTimeKind.Local).AddTicks(7174),
+                            DataCriacao = new DateTime(2024, 4, 29, 19, 33, 15, 681, DateTimeKind.Local).AddTicks(6327),
+                            DataUltimaAtualizacao = new DateTime(2024, 4, 29, 19, 33, 15, 681, DateTimeKind.Local).AddTicks(6329),
                             Email = "julioduartebatista753@gmail.com",
                             EstaVinculadoAumaCorrida = 6,
                             Nome = "motorista",
@@ -207,8 +207,8 @@ namespace SistemaBoletimTransporteDigital.Migrations
                             Celular = "11912345678",
                             CodigoFuncional = "9876",
                             CorridaStatus = 4,
-                            DataCriacao = new DateTime(2024, 4, 29, 12, 53, 28, 560, DateTimeKind.Local).AddTicks(7189),
-                            DataUltimaAtualizacao = new DateTime(2024, 4, 29, 12, 53, 28, 560, DateTimeKind.Local).AddTicks(7190),
+                            DataCriacao = new DateTime(2024, 4, 29, 19, 33, 15, 681, DateTimeKind.Local).AddTicks(6365),
+                            DataUltimaAtualizacao = new DateTime(2024, 4, 29, 19, 33, 15, 681, DateTimeKind.Local).AddTicks(6366),
                             Email = "julioduartebatista753@gmail.com",
                             EstaVinculadoAumaCorrida = 6,
                             Nome = "motorista2",
@@ -263,6 +263,9 @@ namespace SistemaBoletimTransporteDigital.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("VinculadoCarroAcorrida")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.ToTable("Veiculos");
@@ -272,10 +275,10 @@ namespace SistemaBoletimTransporteDigital.Migrations
                         {
                             Id = 1,
                             Ano = "2014",
-                            CadastroSistema = new DateTime(2024, 4, 29, 12, 53, 28, 560, DateTimeKind.Local).AddTicks(7214),
+                            CadastroSistema = new DateTime(2024, 4, 29, 19, 33, 15, 681, DateTimeKind.Local).AddTicks(6412),
                             CarroEmUso = 1,
                             Cor = "Branco",
-                            DataUltimaAtualizacao = new DateTime(2024, 4, 29, 12, 53, 28, 560, DateTimeKind.Local).AddTicks(7216),
+                            DataUltimaAtualizacao = new DateTime(2024, 4, 29, 19, 33, 15, 681, DateTimeKind.Local).AddTicks(6414),
                             Placa = "FWF-1232",
                             Prefixo = "1234-5",
                             Quilometragem = "12600",
@@ -286,10 +289,10 @@ namespace SistemaBoletimTransporteDigital.Migrations
                         {
                             Id = 2,
                             Ano = "2016",
-                            CadastroSistema = new DateTime(2024, 4, 29, 12, 53, 28, 560, DateTimeKind.Local).AddTicks(7236),
+                            CadastroSistema = new DateTime(2024, 4, 29, 19, 33, 15, 681, DateTimeKind.Local).AddTicks(6457),
                             CarroEmUso = 1,
                             Cor = "Branco",
-                            DataUltimaAtualizacao = new DateTime(2024, 4, 29, 12, 53, 28, 560, DateTimeKind.Local).AddTicks(7236),
+                            DataUltimaAtualizacao = new DateTime(2024, 4, 29, 19, 33, 15, 681, DateTimeKind.Local).AddTicks(6459),
                             Placa = "ASD-2345",
                             Prefixo = "6789-10",
                             Quilometragem = "450067",
@@ -300,10 +303,10 @@ namespace SistemaBoletimTransporteDigital.Migrations
                         {
                             Id = 3,
                             Ano = "2024",
-                            CadastroSistema = new DateTime(2024, 4, 29, 12, 53, 28, 560, DateTimeKind.Local).AddTicks(7252),
+                            CadastroSistema = new DateTime(2024, 4, 29, 19, 33, 15, 681, DateTimeKind.Local).AddTicks(6493),
                             CarroEmUso = 1,
                             Cor = "Azul",
-                            DataUltimaAtualizacao = new DateTime(2024, 4, 29, 12, 53, 28, 560, DateTimeKind.Local).AddTicks(7253),
+                            DataUltimaAtualizacao = new DateTime(2024, 4, 29, 19, 33, 15, 681, DateTimeKind.Local).AddTicks(6494),
                             Placa = "JHF-7653",
                             Prefixo = "12123-5",
                             Quilometragem = "100",
