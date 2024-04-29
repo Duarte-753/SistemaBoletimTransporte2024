@@ -68,7 +68,13 @@
                                    asp-action="BoletimPdf"
                                    asp-route-dataInicio="@Model.Filtros.DataInicial?.ToString("yyyy-MM-dd")"
                                    asp-route-dataFinal="@Model.Filtros.DataFinal?.ToString("yyyy-MM-dd")"
-                                   asp-route-veiculoId="@corrida.VeiculoID">Gerar Boletim</a>
+                                   asp-route-veiculoId="@corrida.VeiculoID">
+                                    <i class="fas fa-file-alt"></i>
+                               
+                               
+                               </a>
+                                
+
                             </td>
                         </tr>
                     }
