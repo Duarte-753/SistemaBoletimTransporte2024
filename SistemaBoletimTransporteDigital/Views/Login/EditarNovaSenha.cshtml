@@ -42,13 +42,10 @@
 
                     <form asp-controller="Login" asp-action="EditarNovaSenha" method="post" onsubmit="return validarSenhas();">
 
-                    <form style="width: 23rem;" ,asp-controller="Login" asp-action="EditarNovaSenha" method="post">
-                   
-
                         <input type="hidden" asp-for="Id" />
 
                         <div class="form-outline mb-4">
-                            <label for="senha">Nova Senha:</label>
+                            @* <label for="senha">Nova Senha:</label> *@
                             <div class="input-group">
                                 <input type="password" id="senha1" class="form-control" placeholder="Crie uma nova senha">
                                 <span class="input-group-text" onclick="togglePasswordVisibility('senha1')">
@@ -57,11 +54,11 @@
                                         <path d="M12 7.5a7.5 7.5 0 0 1 7.5 7.5c-.612 1.858-2.217 3.463-4.075 4.075A7.5 7.5 0 0 1 12 20.5a7.5 7.5 0 0 1-7.5-7.5c.612-1.858 2.217-3.463 4.075-4.075A7.5 7.5 0 0 1 12 7.5zM12 4a1 1 0 0 1 1 1c0 1.364-1.363 2.908-2.287 3.854l1.433 1.433C11.343 10.52 11 9.82 11 9a3 3 0 0 1 6 0c0 1.146-.99 2.635-2 3.59l1.43 1.43C17.678 13.11 19 11.807 19 10.5a5.5 5.5 0 0 0-11 0c0 .512.134 1.008.36 1.44l1.426-1.427C8.383 9.864 8 9.207 8 8a4 4 0 0 1 8 0 4 4 0 0 1-8 0c0-.2.037-.397.106-.586l1.428-1.427C7.9 6.626 7 5.159 7 5a1 1 0 0 1 1-1z" />
                                     </svg>
                                 </span>
-                            </div>                       
+                            </div>
                         </div>
 
                         <div class="form-outline mb-4">
-                            <label for="senha">Confirme a Nova Senha:</label>
+                            @* <label for="senha">Confirme a Nova Senha:</label> *@
                             <div class="input-group">
                                 <input type="password" asp-for="Senha" id="senha2" class="form-control" placeholder="Crie uma nova senha para esse usuário.">
                                 <span class="input-group-text" onclick="togglePasswordVisibility('senha2')">
@@ -71,10 +68,9 @@
                                     </svg>
                                 </span>
                             </div>
-                            <span id="senha-error" class="text-danger"></span>
                         </div>
 
-                        
+                        <span id="senha-error" class="text-danger"></span>
 
                         <script>
                             // Função para validar se as senhas são iguais
@@ -105,9 +101,10 @@
 
 
                         <br />
-                        <button type="submit" class="btn btn-success">Atualizar Senha</button>
+                        <button type="submit" class="btn btn-warning">Atualizar Senha</button>
 
                     </form>
+
 
 
 
