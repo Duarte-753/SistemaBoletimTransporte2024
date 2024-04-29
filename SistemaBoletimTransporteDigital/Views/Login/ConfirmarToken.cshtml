@@ -39,16 +39,16 @@
 
                 <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
 
-                    <form asp-controller="Login" asp-action="ConfirmarToken" method="post">
+                    <form style="width: 23rem;" ,asp-controller="Login" asp-action="ConfirmarToken" method="post">
 
                         <div class="mb-3">
-                            <label for="token" class="form-label">Digite o Token que recebeu no seu email:</label>
-                            <input type="text" asp-for="Token" class="form-control" id="token">
+                           @*  <label for="token" class="form-label">Digite o Token que recebeu no seu email:</label> *@
+                            <input type="text" asp-for="Token" class="form-control" id="token" placeholder="Digite o Token que recebeu no seu E-mail" >
                             @Html.ValidationMessageFor(x => x.Token)
                         </div>
 
-
-                        <button type="submit" class="btn btn-primary">Confirmar Token</button>
+                        <br />
+                        <button type="submit" class="btn btn-success">Confirmar Token</button>
                     </form>
 
                 </div>

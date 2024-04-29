@@ -40,17 +40,19 @@
 
                 <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
 
-                    <form asp-controller="Login" asp-action="EditarNovaSenha" method="post">
+
+                    <form style="width: 23rem;" ,asp-controller="Login" asp-action="EditarNovaSenha" method="post">
+                   
 
                         <input type="hidden" asp-for="Id" />
 
                         <div class="form-outline mb-4">
-                            <label for="senha">Nova Senha:</label>
+                            @* <label for="senha">Nova Senha:</label> *@
                             <input type="password" id="senha1" class="form-control" placeholder="Crie uma nova senha">
                         </div>
 
                         <div class="form-outline mb-4">
-                            <label for="senha">Confirme a Nova Senha:</label>
+                            @* <label for="senha">Confirme a Nova Senha:</label> *@
                             <input type="password" asp-for="Senha" id="senha2" class="form-control" placeholder="Crie uma nova senha para esse usuário.">
                         </div>
 
@@ -78,7 +80,7 @@
 
 
                         <br />
-                        <button type="submit" class="btn btn-warning">Atualizar Senha</button>
+                        <button type="submit" class="btn btn-success">Atualizar Senha</button>
 
                     </form>
 

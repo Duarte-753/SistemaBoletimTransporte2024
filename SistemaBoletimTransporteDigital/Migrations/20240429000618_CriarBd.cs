@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace SistemaBoletimTransporteDigital.Migrations
 {
     /// <inheritdoc />
-    public partial class CreatDb : Migration
+    public partial class CriarBd : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -128,9 +128,9 @@ namespace SistemaBoletimTransporteDigital.Migrations
                 columns: new[] { "Id", "Celular", "CodigoFuncional", "CorridaStatus", "DataCriacao", "DataUltimaAtualizacao", "Email", "Nome", "Perfil", "Senha", "Usuario" },
                 values: new object[,]
                 {
-                    { 1, "11912345678", "1234", 4, new DateTime(2024, 4, 28, 16, 34, 36, 98, DateTimeKind.Local).AddTicks(8279), new DateTime(2024, 4, 28, 16, 34, 36, 98, DateTimeKind.Local).AddTicks(8280), "julioduartebatista753@gmail.com", "admin", 1, "d033e22ae348aeb5660fc2140aec35850c4da997", "admin" },
-                    { 2, "11912345678", "567", 4, new DateTime(2024, 4, 28, 16, 34, 36, 98, DateTimeKind.Local).AddTicks(8314), new DateTime(2024, 4, 28, 16, 34, 36, 98, DateTimeKind.Local).AddTicks(8315), "julioduartebatista753@gmail.com", "motorista", 3, "a61e38f3910fba1d8e1fb97f4b3561df07ab0d81", "motorista" },
-                    { 3, "11912345678", "9876", 4, new DateTime(2024, 4, 28, 16, 34, 36, 98, DateTimeKind.Local).AddTicks(8362), new DateTime(2024, 4, 28, 16, 34, 36, 98, DateTimeKind.Local).AddTicks(8363), "julioduartebatista753@gmail.com", "motorista2", 3, "b739522c59a564437fc8c6ad639176f704766596", "motorista2" }
+                    { 1, "11912345678", "1234", 4, new DateTime(2024, 4, 28, 21, 6, 18, 294, DateTimeKind.Local).AddTicks(1121), new DateTime(2024, 4, 28, 21, 6, 18, 294, DateTimeKind.Local).AddTicks(1122), "julioduartebatista753@gmail.com", "admin", 1, "d033e22ae348aeb5660fc2140aec35850c4da997", "admin" },
+                    { 2, "11912345678", "567", 4, new DateTime(2024, 4, 28, 21, 6, 18, 294, DateTimeKind.Local).AddTicks(1161), new DateTime(2024, 4, 28, 21, 6, 18, 294, DateTimeKind.Local).AddTicks(1161), "julioduartebatista753@gmail.com", "motorista", 3, "a61e38f3910fba1d8e1fb97f4b3561df07ab0d81", "motorista" },
+                    { 3, "11912345678", "9876", 4, new DateTime(2024, 4, 28, 21, 6, 18, 294, DateTimeKind.Local).AddTicks(1180), new DateTime(2024, 4, 28, 21, 6, 18, 294, DateTimeKind.Local).AddTicks(1181), "julioduartebatista753@gmail.com", "motorista2", 3, "b739522c59a564437fc8c6ad639176f704766596", "motorista2" }
                 });
 
             migrationBuilder.InsertData(
@@ -138,9 +138,9 @@ namespace SistemaBoletimTransporteDigital.Migrations
                 columns: new[] { "Id", "Ano", "CadastroSistema", "CarroEmUso", "Cor", "DataUltimaAtualizacao", "Placa", "Prefixo", "Quilometragem", "Valor", "Veiculo" },
                 values: new object[,]
                 {
-                    { 1, "2014", new DateTime(2024, 4, 28, 16, 34, 36, 98, DateTimeKind.Local).AddTicks(8389), 1, "Branco", new DateTime(2024, 4, 28, 16, 34, 36, 98, DateTimeKind.Local).AddTicks(8390), "FWF-1232", "1234-5", "12600", "259875", "Golf" },
-                    { 2, "2016", new DateTime(2024, 4, 28, 16, 34, 36, 98, DateTimeKind.Local).AddTicks(8410), 1, "Branco", new DateTime(2024, 4, 28, 16, 34, 36, 98, DateTimeKind.Local).AddTicks(8410), "ASD-2345", "6789-10", "450067", "15000", "Fiat Uno" },
-                    { 3, "2024", new DateTime(2024, 4, 28, 16, 34, 36, 98, DateTimeKind.Local).AddTicks(8425), 1, "Azul", new DateTime(2024, 4, 28, 16, 34, 36, 98, DateTimeKind.Local).AddTicks(8426), "JHF-7653", "12123-5", "100", "45000", "Palio Weekend" }
+                    { 1, "2014", new DateTime(2024, 4, 28, 21, 6, 18, 294, DateTimeKind.Local).AddTicks(1207), 1, "Branco", new DateTime(2024, 4, 28, 21, 6, 18, 294, DateTimeKind.Local).AddTicks(1207), "FWF-1232", "1234-5", "12600", "259875", "Golf" },
+                    { 2, "2016", new DateTime(2024, 4, 28, 21, 6, 18, 294, DateTimeKind.Local).AddTicks(1231), 1, "Branco", new DateTime(2024, 4, 28, 21, 6, 18, 294, DateTimeKind.Local).AddTicks(1232), "ASD-2345", "6789-10", "450067", "15000", "Fiat Uno" },
+                    { 3, "2024", new DateTime(2024, 4, 28, 21, 6, 18, 294, DateTimeKind.Local).AddTicks(1250), 1, "Azul", new DateTime(2024, 4, 28, 21, 6, 18, 294, DateTimeKind.Local).AddTicks(1251), "JHF-7653", "12123-5", "100", "45000", "Palio Weekend" }
                 });
 
             migrationBuilder.CreateIndex(
