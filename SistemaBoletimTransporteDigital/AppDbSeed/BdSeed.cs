@@ -25,6 +25,7 @@ namespace SistemaBoletimTransporteDigital.AppDbSeed
                     Celular = "11912345678",
                     Perfil = Enums.PerfilEnum.Admin,
                     CorridaStatus = Enums.PerfilEnum.Finalizada,
+                    EstaVinculadoAumaCorrida = Enums.PerfilEnum.VinculadoAcorridaNao,
                     DataCriacao = DateTime.Now,
                     DataUltimaAtualizacao = DateTime.Now,
                     // Outras propriedades
@@ -42,6 +43,7 @@ namespace SistemaBoletimTransporteDigital.AppDbSeed
                     Celular = "11912345678",
                     Perfil = Enums.PerfilEnum.motorista,
                     CorridaStatus = Enums.PerfilEnum.Finalizada,
+                    EstaVinculadoAumaCorrida = Enums.PerfilEnum.VinculadoAcorridaNao,
                     DataCriacao = DateTime.Now,
                     DataUltimaAtualizacao = DateTime.Now,
                     // Outras propriedades
@@ -59,6 +61,7 @@ namespace SistemaBoletimTransporteDigital.AppDbSeed
                    Celular = "11912345678",
                    Perfil = Enums.PerfilEnum.motorista,
                    CorridaStatus = Enums.PerfilEnum.Finalizada,
+                   EstaVinculadoAumaCorrida = Enums.PerfilEnum.VinculadoAcorridaNao,
                    DataCriacao = DateTime.Now,
                    DataUltimaAtualizacao = DateTime.Now,
                    // Outras propriedades

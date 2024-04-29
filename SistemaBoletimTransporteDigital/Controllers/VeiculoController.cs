@@ -48,6 +48,14 @@ namespace SistemaBoletimTransporteDigital.Controllers
         {
             try
             {
+                // Verificar se o usuário está vinculado a uma corrida
+               VeiculoModel veiculo = _veiculoRepositorio.ListarPorIdVeiculos(id);
+                if (veiculo.VinculadoCarroAcorrida == Enums.CarroEmUsoEnum.VinculadoCarroAcorridaSim)
+                {
+                    TempData["MensagemErro"] = "Não é possível excluir este Veículo porque ele está vinculado a uma corrida.";
+                    return RedirectToAction("Index");
+                }
+
                 bool apagado = _veiculoRepositorio.ApagarVeiculo(id);
                 if (apagado)
                 {
@@ -69,8 +77,42 @@ namespace SistemaBoletimTransporteDigital.Controllers
         [HttpPost]
         public IActionResult Criar(VeiculoModel veiculoRepositorio)
         {
+            //try
+            //{
+            //    if (ModelState.IsValid) // validação dos campos 
+            //    {
+            //        _veiculoRepositorio.AdicionarVeiculo(veiculoRepositorio);
+            //        TempData["MensagemSucesso"] = "Veículo cadastrado com sucesso!";
+            //        return RedirectToAction("Index");
+            //    }
+
+            //    return View(veiculoRepositorio);
+            //}
+            //catch (Exception ex)
+            //{
+            //    TempData["MensagemErro"] = $"Erro ao cadastrar o Veículo, tente novamente! detalhe do erro: {ex.Message}";
+            //    return RedirectToAction("Index");
+            //}
             try
             {
+                // Verificar a unicidade do prefixo
+                var existingVeiculoByPrefixo = _veiculoRepositorio.BuscarPorPrefixo(veiculoRepositorio.Prefixo);
+                var existingVeiculoByPlaca = _veiculoRepositorio.BuscarPorPlaca(veiculoRepositorio.Placa);
+
+                if (existingVeiculoByPrefixo != null)
+                {
+                    ModelState.AddModelError("Prefixo", "Este prefixo já está em uso.");
+                    return View(veiculoRepositorio);
+                }
+
+                // Verificar a unicidade da placa
+                
+                if (existingVeiculoByPlaca != null)
+                {
+                    ModelState.AddModelError("Placa", "Esta placa já está em uso.");
+                    return View(veiculoRepositorio);
+                }
+
                 if (ModelState.IsValid) // validação dos campos 
                 {
                     _veiculoRepositorio.AdicionarVeiculo(veiculoRepositorio);
@@ -82,9 +124,10 @@ namespace SistemaBoletimTransporteDigital.Controllers
             }
             catch (Exception ex)
             {
-                TempData["MensagemErro"] = $"Erro ao cadastrar o Veículo, tente novamente! detalhe do erro: {ex.Message}";
+                TempData["MensagemErro"] = $"Erro ao cadastrar o Veículo, tente novamente! Detalhe do erro: {ex.Message}";
                 return RedirectToAction("Index");
             }
+
         }
 
         [HttpPost]

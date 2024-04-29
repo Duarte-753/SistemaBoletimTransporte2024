@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.EntityFrameworkCore;
 using SistemaBoletimTransporteDigital.Data;
 using SistemaBoletimTransporteDigital.Models;
 
@@ -45,6 +46,7 @@ namespace SistemaBoletimTransporteDigital.Repositorio
             // gravar no banco de dados
             usuario.SetSenhaHash();
             usuario.CorridaStatus = Enums.PerfilEnum.Finalizada;
+            usuario.EstaVinculadoAumaCorrida = Enums.PerfilEnum.VinculadoAcorridaNao;
             _bancoContext.Usuario.Add(usuario);
             _bancoContext.SaveChanges();
 
@@ -154,6 +156,56 @@ namespace SistemaBoletimTransporteDigital.Repositorio
             if (usuarioDB == null) throw new System.Exception("Houve um erro na atualização do Usuario!");
 
             usuarioDB.CorridaStatus = Enums.PerfilEnum.Finalizada;
+
+
+            _bancoContext.Usuario.Update(usuarioDB);
+            _bancoContext.SaveChanges();
+
+            return;
+        }
+
+        //public UsuarioModel BuscarPorCodigoFuncional(string codigoFuncional)
+        //{
+        //    return _bancoContext.Usuario.FirstOrDefault(u => u.CodigoFuncional == codigoFuncional);
+        //}
+
+        object IUsuarioRepositorio.BuscarPorCodigoFuncional(string codigoFuncional)
+        {
+            return _bancoContext.Usuario.FirstOrDefault(u => u.CodigoFuncional == codigoFuncional);
+        }
+
+        public UsuarioModel BuscarPorNomeUsuario(string nomeUsuario)
+        {
+            return _bancoContext.Usuario.FirstOrDefault(u => u.Usuario == nomeUsuario);
+        }
+
+        public object BuscarPorEmail(string email)
+        {
+            return _bancoContext.Usuario.FirstOrDefault(u => u.Email == email);
+        }
+
+        public void CorridaVinculadoSim(CorridaModel buscaUsuario)
+        {
+            UsuarioModel usuarioDB = ListarPorId(buscaUsuario.UsuarioID);
+
+            if (usuarioDB == null) throw new System.Exception("Houve um erro na atualização do Usuario!");
+
+            usuarioDB.EstaVinculadoAumaCorrida = Enums.PerfilEnum.VinculadoAcorridaSim;
+
+
+            _bancoContext.Usuario.Update(usuarioDB);
+            _bancoContext.SaveChanges();
+
+            return;
+        }
+
+        public void CorridaVinculadoNao(CorridaModel buscaUsuario)
+        {
+            UsuarioModel usuarioDB = ListarPorId(buscaUsuario.UsuarioID);
+
+            if (usuarioDB == null) throw new System.Exception("Houve um erro na atualização do Usuario!");
+
+            usuarioDB.EstaVinculadoAumaCorrida = Enums.PerfilEnum.VinculadoAcorridaNao;
 
 
             _bancoContext.Usuario.Update(usuarioDB);

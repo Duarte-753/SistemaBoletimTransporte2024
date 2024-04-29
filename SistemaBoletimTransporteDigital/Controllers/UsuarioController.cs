@@ -48,9 +48,19 @@ namespace SistemaBoletimTransporteDigital.Controllers
 
         public IActionResult Apagar(int id)
         {
+            
             try
             {
+                // Verificar se o usuário está vinculado a uma corrida
+                UsuarioModel usuario = _usuarioRepositorio.ListarPorId(id);
+                if (usuario.EstaVinculadoAumaCorrida == Enums.PerfilEnum.VinculadoAcorridaSim)
+                {
+                    TempData["MensagemErro"] = "Não é possível excluir este usuário porque ele está vinculado a uma corrida.";
+                    return RedirectToAction("Index");
+                }
+
                 bool apagado =_usuarioRepositorio.Apagar(id);
+                // Verificar se o usuário está vinculado a uma corrida             
                 if (apagado)
                 {
                     TempData["MensagemSucesso"] = "Usuário apagado com sucesso!";
@@ -63,7 +73,7 @@ namespace SistemaBoletimTransporteDigital.Controllers
             }
             catch (Exception ex)
             {
-                TempData["MensagemErro"] = $"Erro ao cadastrar o Usuário, tente novamente! detalhe do erro: {ex.Message}";
+                TempData["MensagemErro"] = $"Erro ao apagar Usuário, tente novamente! detalhe do erro: {ex.Message}";
                 return RedirectToAction("Index");
             }
         }
@@ -71,8 +81,48 @@ namespace SistemaBoletimTransporteDigital.Controllers
         [HttpPost]
         public IActionResult Criar(UsuarioModel usuarioRepositorio)
         {
+            //try
+            //{
+            //    if (ModelState.IsValid) // validação dos campos 
+            //    {
+            //        _usuarioRepositorio.Adicionar(usuarioRepositorio);
+            //        TempData["MensagemSucesso"] = "Usuário cadastrado com sucesso!";
+            //        return RedirectToAction("Index");
+            //    }
+
+            //    return View(usuarioRepositorio);
+            //}
+            //catch (Exception ex)
+            //{
+            //    TempData["MensagemErro"] = $"Erro ao cadastrar o Usuário, tente novamente! detalhe do erro: {ex.Message}";
+            //    return RedirectToAction("Index");
+            //}
+
             try
             {
+                // Verificar a unicidade do código funcional
+                var existingUsuario = _usuarioRepositorio.BuscarPorCodigoFuncional(usuarioRepositorio.CodigoFuncional);
+                var existingUsuarioByUsername = _usuarioRepositorio.BuscarPorNomeUsuario(usuarioRepositorio.Usuario);
+                var existingUsuarioByEmail = _usuarioRepositorio.BuscarPorEmail(usuarioRepositorio.Email);
+
+                if (existingUsuario != null)
+                {
+                    ModelState.AddModelError("CodigoFuncional", "Este código funcional já está em uso.");
+                    return View(usuarioRepositorio);
+                }
+
+                if (existingUsuarioByUsername != null)
+                {
+                    ModelState.AddModelError("Usuario", "Este nome de usuário já está em uso.");
+                    return View(usuarioRepositorio);
+                }
+               
+                if (existingUsuarioByEmail != null)
+                {
+                    ModelState.AddModelError("Email", "Este e-mail já está em uso.");
+                    return View(usuarioRepositorio);
+                }
+
                 if (ModelState.IsValid) // validação dos campos 
                 {
                     _usuarioRepositorio.Adicionar(usuarioRepositorio);
@@ -84,9 +134,10 @@ namespace SistemaBoletimTransporteDigital.Controllers
             }
             catch (Exception ex)
             {
-                TempData["MensagemErro"] = $"Erro ao cadastrar o Usuário, tente novamente! detalhe do erro: {ex.Message}";
+                TempData["MensagemErro"] = $"Erro ao cadastrar o Usuário, tente novamente! Detalhe do erro: {ex.Message}";
                 return RedirectToAction("Index");
             }
+
         }
 
         [HttpPost]

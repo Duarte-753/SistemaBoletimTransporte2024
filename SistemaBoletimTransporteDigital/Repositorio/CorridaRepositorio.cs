@@ -6,12 +6,12 @@ namespace SistemaBoletimTransporteDigital.Repositorio
     public class CorridaRepositorio : ICorridaRepositorio
     {
         private readonly BancoContext _bancoContext;
-        
+
 
         public CorridaRepositorio(BancoContext bancoContext) // construtor
         {
             this._bancoContext = bancoContext;
-            
+
         }
 
         public List<CorridaModel> BuscarCorrida(int usuarioId) //estou passando o usuario por que somente ira aparecer as corridas do usuario refrente a ele no seu login sem acesso a corrida dos outros motorista
@@ -25,12 +25,12 @@ namespace SistemaBoletimTransporteDigital.Repositorio
             corrida.DataFinalCorrida = null;
             corrida.StatusDaCorrida = Enums.StatusCorridaEnum.Iniciada;
             corrida.UsuarioID = id;
-            
-                                              
-            _bancoContext.Corridas.Add(corrida);       
+
+
+            _bancoContext.Corridas.Add(corrida);
             _bancoContext.SaveChanges();
 
-            
+
             return corrida;
 
         }
@@ -41,14 +41,14 @@ namespace SistemaBoletimTransporteDigital.Repositorio
             CorridaModel corridaDB = ListarPorId(corrida.Id);
 
             if (corridaDB == null) throw new System.Exception("Houve um erro na atualização da corrida!");
-            
-            
+
+
             corridaDB.StatusDaCorrida = Enums.StatusCorridaEnum.Finalizada;
             corridaDB.KmFinal = corrida.KmFinal;
             corridaDB.DataFinalCorrida = corrida.DataFinalCorrida;
             corridaDB.LocalChegadaCorrida = corrida.LocalChegadaCorrida;
-            
-           
+
+
             _bancoContext.Corridas.Update(corridaDB);
             _bancoContext.SaveChanges();
 
@@ -61,7 +61,7 @@ namespace SistemaBoletimTransporteDigital.Repositorio
             return _bancoContext.Corridas.First(x => x.Id == id);
         }
 
-       //     //    //////////////////////////////////////////////////////////////////////////////////////////////////////
+        //     //    //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
         //public VeiculoModel UsoVeiculo(VeiculoModel veiculo, int id)
@@ -84,11 +84,11 @@ namespace SistemaBoletimTransporteDigital.Repositorio
             return _bancoContext.Veiculos.First(x => x.Id == id);
         }
 
-       
+
 
         public void UsoVeiculo(CorridaModel corridaRepositorio)
         {
-            
+
             VeiculoModel veiculoDB = ListarPorIdVeiculos(corridaRepositorio.VeiculoID);
 
             if (veiculoDB == null) throw new System.Exception("Houve um erro na atualização carro em uso do veículo!");
@@ -104,7 +104,7 @@ namespace SistemaBoletimTransporteDigital.Repositorio
 
         public void NaoUsoVeiculo(CorridaModel corridaRepositorio)
         {
-            
+
 
             VeiculoModel veiculoDB = ListarPorIdVeiculos(corridaRepositorio.VeiculoID);
 
@@ -121,7 +121,7 @@ namespace SistemaBoletimTransporteDigital.Repositorio
 
         public void CalcKmPercorrido(CorridaModel corridaRepositorio)
         {
-           CorridaModel corrida = ListarPorId(corridaRepositorio.Id);
+            CorridaModel corrida = ListarPorId(corridaRepositorio.Id);
             var CalcI = corrida.KmInicial;
             var CalcF = corrida.KmFinal;
 
@@ -137,7 +137,7 @@ namespace SistemaBoletimTransporteDigital.Repositorio
 
             return;
         }
+    }
 
        
-    }
 }

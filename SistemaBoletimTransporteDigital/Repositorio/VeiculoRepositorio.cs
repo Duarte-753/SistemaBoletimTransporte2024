@@ -1,4 +1,5 @@
-﻿using SistemaBoletimTransporteDigital.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using SistemaBoletimTransporteDigital.Data;
 using SistemaBoletimTransporteDigital.Models;
 
 namespace SistemaBoletimTransporteDigital.Repositorio
@@ -54,12 +55,21 @@ namespace SistemaBoletimTransporteDigital.Repositorio
             return veiculoDB;
         }//opcional
 
+        public object BuscarPorPlaca(string placa)
+        {
+            return _bancoContext.Veiculos.FirstOrDefault(v => v.Placa == placa);
+        }
+
+        public object BuscarPorPrefixo(string prefixo)
+        {
+            return _bancoContext.Veiculos.FirstOrDefault(v => v.Prefixo == prefixo);
+        }
+
         public List<VeiculoModel> BuscarVeiculos()
         {
             return _bancoContext.Veiculos.ToList();
         }
-
-
+   
         public VeiculoModel EditarVeiculo(VeiculoModel veiculo)
         {
             VeiculoModel veiculoDB = ListarPorIdVeiculos(veiculo.Id);
@@ -103,6 +113,39 @@ namespace SistemaBoletimTransporteDigital.Repositorio
         {
             return _bancoContext.Veiculos.First(x => x.Id == id);
         }
+
+        
+
+        public void CorridaVinculadoCarroSim(CorridaModel buscaUsuario)
+        {
+            VeiculoModel veiculoDB = ListarPorIdVeiculos(buscaUsuario.VeiculoID);
+
+            if (veiculoDB == null) throw new System.Exception("Houve um erro na atualização do Veiculo!");
+
+            veiculoDB.VinculadoCarroAcorrida = Enums.CarroEmUsoEnum.VinculadoCarroAcorridaSim;
+
+
+            _bancoContext.Veiculos.Update(veiculoDB);
+            _bancoContext.SaveChanges();
+
+            return;
+        }
+
+        public void CorridaVinculadoCarroNao(CorridaModel buscaUsuario)
+        {
+            VeiculoModel veiculoDB = ListarPorIdVeiculos(buscaUsuario.VeiculoID);
+
+            if (veiculoDB == null) throw new System.Exception("Houve um erro na atualização do Veiculo!");
+
+            veiculoDB.VinculadoCarroAcorrida = Enums.CarroEmUsoEnum.VinculadoCarroAcorridaNao;
+
+
+            _bancoContext.Veiculos.Update(veiculoDB);
+            _bancoContext.SaveChanges();
+
+            return;
+        }
+
 
         /*public VeiculoModel UsoVeiculo(VeiculoModel veiculo)
         {
