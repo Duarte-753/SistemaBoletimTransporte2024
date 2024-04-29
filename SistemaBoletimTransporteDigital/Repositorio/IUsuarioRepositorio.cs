@@ -28,5 +28,9 @@ namespace SistemaBoletimTransporteDigital.Repositorio
         void CorridaStatusUserI(CorridaModel buscaUsuario);
 
         void CorridaStatusUserF(CorridaModel buscaUsuario);
+
+        object BuscarPorCodigoFuncional(string codigoFuncional);
+
+        public UsuarioModel BuscarPorNomeUsuario(string nomeUsuario);
     }
 }

@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.EntityFrameworkCore;
 using SistemaBoletimTransporteDigital.Data;
 using SistemaBoletimTransporteDigital.Models;
 
@@ -160,6 +161,21 @@ namespace SistemaBoletimTransporteDigital.Repositorio
             _bancoContext.SaveChanges();
 
             return;
+        }
+
+        //public UsuarioModel BuscarPorCodigoFuncional(string codigoFuncional)
+        //{
+        //    return _bancoContext.Usuario.FirstOrDefault(u => u.CodigoFuncional == codigoFuncional);
+        //}
+
+        object IUsuarioRepositorio.BuscarPorCodigoFuncional(string codigoFuncional)
+        {
+            return _bancoContext.Usuario.FirstOrDefault(u => u.CodigoFuncional == codigoFuncional);
+        }
+
+        public UsuarioModel BuscarPorNomeUsuario(string nomeUsuario)
+        {
+            return _bancoContext.Usuario.FirstOrDefault(u => u.Usuario == nomeUsuario);
         }
     }
 }

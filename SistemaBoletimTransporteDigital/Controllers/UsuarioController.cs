@@ -71,8 +71,40 @@ namespace SistemaBoletimTransporteDigital.Controllers
         [HttpPost]
         public IActionResult Criar(UsuarioModel usuarioRepositorio)
         {
+            //try
+            //{
+            //    if (ModelState.IsValid) // validação dos campos 
+            //    {
+            //        _usuarioRepositorio.Adicionar(usuarioRepositorio);
+            //        TempData["MensagemSucesso"] = "Usuário cadastrado com sucesso!";
+            //        return RedirectToAction("Index");
+            //    }
+
+            //    return View(usuarioRepositorio);
+            //}
+            //catch (Exception ex)
+            //{
+            //    TempData["MensagemErro"] = $"Erro ao cadastrar o Usuário, tente novamente! detalhe do erro: {ex.Message}";
+            //    return RedirectToAction("Index");
+            //}
+
             try
             {
+                // Verificar a unicidade do código funcional
+                var existingUsuario = _usuarioRepositorio.BuscarPorCodigoFuncional(usuarioRepositorio.CodigoFuncional);
+                var existingUsuarioByUsername = _usuarioRepositorio.BuscarPorNomeUsuario(usuarioRepositorio.Usuario);
+                if (existingUsuario != null)
+                {
+                    ModelState.AddModelError("CodigoFuncional", "Este código funcional já está em uso.");
+                    return View(usuarioRepositorio);
+                }
+
+                if (existingUsuarioByUsername != null)
+                {
+                    ModelState.AddModelError("Usuario", "Este nome de usuário já está em uso.");
+                    return View(usuarioRepositorio);
+                }
+
                 if (ModelState.IsValid) // validação dos campos 
                 {
                     _usuarioRepositorio.Adicionar(usuarioRepositorio);
@@ -84,9 +116,10 @@ namespace SistemaBoletimTransporteDigital.Controllers
             }
             catch (Exception ex)
             {
-                TempData["MensagemErro"] = $"Erro ao cadastrar o Usuário, tente novamente! detalhe do erro: {ex.Message}";
+                TempData["MensagemErro"] = $"Erro ao cadastrar o Usuário, tente novamente! Detalhe do erro: {ex.Message}";
                 return RedirectToAction("Index");
             }
+
         }
 
         [HttpPost]
