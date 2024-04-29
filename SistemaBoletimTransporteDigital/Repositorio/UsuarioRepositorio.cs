@@ -177,5 +177,10 @@ namespace SistemaBoletimTransporteDigital.Repositorio
         {
             return _bancoContext.Usuario.FirstOrDefault(u => u.Usuario == nomeUsuario);
         }
+
+        public object BuscarPorEmail(string email)
+        {
+            return _bancoContext.Usuario.FirstOrDefault(u => u.Email == email);
+        }
     }
 }

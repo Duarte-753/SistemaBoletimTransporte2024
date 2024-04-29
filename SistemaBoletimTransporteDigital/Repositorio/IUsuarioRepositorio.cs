@@ -32,5 +32,6 @@ namespace SistemaBoletimTransporteDigital.Repositorio
         object BuscarPorCodigoFuncional(string codigoFuncional);
 
         public UsuarioModel BuscarPorNomeUsuario(string nomeUsuario);
+        object BuscarPorEmail(string email);
     }
 }

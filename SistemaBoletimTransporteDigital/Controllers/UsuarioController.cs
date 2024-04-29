@@ -93,6 +93,7 @@ namespace SistemaBoletimTransporteDigital.Controllers
                 // Verificar a unicidade do código funcional
                 var existingUsuario = _usuarioRepositorio.BuscarPorCodigoFuncional(usuarioRepositorio.CodigoFuncional);
                 var existingUsuarioByUsername = _usuarioRepositorio.BuscarPorNomeUsuario(usuarioRepositorio.Usuario);
+                var existingUsuarioByEmail = _usuarioRepositorio.BuscarPorEmail(usuarioRepositorio.Email);
                 if (existingUsuario != null)
                 {
                     ModelState.AddModelError("CodigoFuncional", "Este código funcional já está em uso.");
@@ -102,6 +103,12 @@ namespace SistemaBoletimTransporteDigital.Controllers
                 if (existingUsuarioByUsername != null)
                 {
                     ModelState.AddModelError("Usuario", "Este nome de usuário já está em uso.");
+                    return View(usuarioRepositorio);
+                }
+               
+                if (existingUsuarioByEmail != null)
+                {
+                    ModelState.AddModelError("Email", "Este e-mail já está em uso.");
                     return View(usuarioRepositorio);
                 }
 
