@@ -139,5 +139,4 @@ namespace SistemaBoletimTransporteDigital.Repositorio
         }
 
        
-    }
 }

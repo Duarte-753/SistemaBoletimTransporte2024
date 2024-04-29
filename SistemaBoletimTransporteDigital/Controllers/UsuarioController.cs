@@ -104,6 +104,7 @@ namespace SistemaBoletimTransporteDigital.Controllers
                 var existingUsuario = _usuarioRepositorio.BuscarPorCodigoFuncional(usuarioRepositorio.CodigoFuncional);
                 var existingUsuarioByUsername = _usuarioRepositorio.BuscarPorNomeUsuario(usuarioRepositorio.Usuario);
                 var existingUsuarioByEmail = _usuarioRepositorio.BuscarPorEmail(usuarioRepositorio.Email);
+
                 if (existingUsuario != null)
                 {
                     ModelState.AddModelError("CodigoFuncional", "Este código funcional já está em uso.");

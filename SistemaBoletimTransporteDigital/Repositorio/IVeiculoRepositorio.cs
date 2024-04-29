@@ -26,5 +26,10 @@ namespace SistemaBoletimTransporteDigital.Repositorio
         bool ApagarVeiculo(int id);
         object BuscarPorPrefixo(string prefixo);
         object BuscarPorPlaca(string placa);
+
+
+        void CorridaVinculadoCarroSim(CorridaModel buscaUsuario);
+
+        void CorridaVinculadoCarroNao(CorridaModel buscaUsuario);
     }
 }

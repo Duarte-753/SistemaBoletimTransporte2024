@@ -48,6 +48,14 @@ namespace SistemaBoletimTransporteDigital.Controllers
         {
             try
             {
+                // Verificar se o usuário está vinculado a uma corrida
+               VeiculoModel veiculo = _veiculoRepositorio.ListarPorIdVeiculos(id);
+                if (veiculo.VinculadoCarroAcorrida == Enums.CarroEmUsoEnum.VinculadoCarroAcorridaSim)
+                {
+                    TempData["MensagemErro"] = "Não é possível excluir este Veículo porque ele está vinculado a uma corrida.";
+                    return RedirectToAction("Index");
+                }
+
                 bool apagado = _veiculoRepositorio.ApagarVeiculo(id);
                 if (apagado)
                 {

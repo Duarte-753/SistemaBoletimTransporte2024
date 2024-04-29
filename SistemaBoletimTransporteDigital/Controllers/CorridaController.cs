@@ -64,6 +64,7 @@ namespace SistemaBoletimTransporteDigital.Controllers
 
                     _usuarioRepositorio.CorridaStatusUserI(buscaUsuario);
                     _usuarioRepositorio.CorridaVinculadoSim(buscaUsuario);
+                    _veiculoRepositorio.CorridaVinculadoCarroSim(buscaUsuario);//busca veículo para colocar ele que foi vinculado
 
                     TempData["MensagemSucesso"] = "Corrida Iniciada com sucesso!";
                     return RedirectToAction("Index");

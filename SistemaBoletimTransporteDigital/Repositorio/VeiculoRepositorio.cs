@@ -69,8 +69,7 @@ namespace SistemaBoletimTransporteDigital.Repositorio
         {
             return _bancoContext.Veiculos.ToList();
         }
-
-
+   
         public VeiculoModel EditarVeiculo(VeiculoModel veiculo)
         {
             VeiculoModel veiculoDB = ListarPorIdVeiculos(veiculo.Id);
@@ -114,6 +113,39 @@ namespace SistemaBoletimTransporteDigital.Repositorio
         {
             return _bancoContext.Veiculos.First(x => x.Id == id);
         }
+
+        
+
+        public void CorridaVinculadoCarroSim(CorridaModel buscaUsuario)
+        {
+            VeiculoModel veiculoDB = ListarPorIdVeiculos(buscaUsuario.VeiculoID);
+
+            if (veiculoDB == null) throw new System.Exception("Houve um erro na atualização do Veiculo!");
+
+            veiculoDB.VinculadoCarroAcorrida = Enums.CarroEmUsoEnum.VinculadoCarroAcorridaSim;
+
+
+            _bancoContext.Veiculos.Update(veiculoDB);
+            _bancoContext.SaveChanges();
+
+            return;
+        }
+
+        public void CorridaVinculadoCarroNao(CorridaModel buscaUsuario)
+        {
+            VeiculoModel veiculoDB = ListarPorIdVeiculos(buscaUsuario.VeiculoID);
+
+            if (veiculoDB == null) throw new System.Exception("Houve um erro na atualização do Veiculo!");
+
+            veiculoDB.VinculadoCarroAcorrida = Enums.CarroEmUsoEnum.VinculadoCarroAcorridaNao;
+
+
+            _bancoContext.Veiculos.Update(veiculoDB);
+            _bancoContext.SaveChanges();
+
+            return;
+        }
+
 
         /*public VeiculoModel UsoVeiculo(VeiculoModel veiculo)
         {
