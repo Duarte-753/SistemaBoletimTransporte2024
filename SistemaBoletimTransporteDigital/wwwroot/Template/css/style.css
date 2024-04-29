@@ -140,3 +140,13 @@ a.sidebar-link:hover {
     transform: rotate(45deg);
     transition: all .2s ease-out;
 }
+
+.table {
+    background-color: #5C4033;
+    font-weight: 600;
+    color: #FFF;
+}
+
+table tbody tr:hover {
+    background-color: #F9DEBD; /* Cor de fundo ao passar o mouse */
+}
