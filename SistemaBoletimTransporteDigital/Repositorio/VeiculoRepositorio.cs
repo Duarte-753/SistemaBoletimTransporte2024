@@ -1,4 +1,5 @@
-﻿using SistemaBoletimTransporteDigital.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using SistemaBoletimTransporteDigital.Data;
 using SistemaBoletimTransporteDigital.Models;
 
 namespace SistemaBoletimTransporteDigital.Repositorio
@@ -53,6 +54,16 @@ namespace SistemaBoletimTransporteDigital.Repositorio
 
             return veiculoDB;
         }//opcional
+
+        public object BuscarPorPlaca(string placa)
+        {
+            return _bancoContext.Veiculos.FirstOrDefault(v => v.Placa == placa);
+        }
+
+        public object BuscarPorPrefixo(string prefixo)
+        {
+            return _bancoContext.Veiculos.FirstOrDefault(v => v.Prefixo == prefixo);
+        }
 
         public List<VeiculoModel> BuscarVeiculos()
         {
