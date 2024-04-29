@@ -40,7 +40,7 @@
 
                 <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
 
-                    <form asp-controller="Login" asp-action="EditarNovaSenha" method="post">
+                    <form asp-controller="Login" asp-action="EditarNovaSenha" method="post" onsubmit="return validarSenhas();">
 
                         <input type="hidden" asp-for="Id" />
 
@@ -65,15 +65,12 @@
                                 // Verifica se as senhas são iguais
                                 if (senha1 !== senha2) {
                                     document.getElementById('senha-error').innerText = 'As senhas não coincidem';
-                                    return false; // Retorna falso para indicar que há um erro
+                                    return false; // Retorna falso para indicar que há um erro e impedir o envio do formulário
                                 } else {
                                     document.getElementById('senha-error').innerText = '';
-                                    return true; // Retorna verdadeiro se as senhas forem iguais
+                                    return true; // Retorna verdadeiro se as senhas forem iguais, permitindo o envio do formulário
                                 }
                             }
-
-                            // Adiciona um ouvinte de eventos para verificar a validade das senhas quando uma tecla é pressionada
-                            document.getElementById('senha2').addEventListener('keyup', validarSenhas);
                         </script>
 
 
@@ -81,6 +78,7 @@
                         <button type="submit" class="btn btn-warning">Atualizar Senha</button>
 
                     </form>
+
 
                 </div>
 

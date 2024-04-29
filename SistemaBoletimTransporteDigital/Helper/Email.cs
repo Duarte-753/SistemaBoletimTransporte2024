@@ -20,7 +20,7 @@ namespace SistemaBoletimTransporteDigital.Helper
                 string host = "smtp-mail.outlook.com";
                 string nome = "Sistema Boletim de Transportes";
                 string username = "sistemasbtd1234@hotmail.com";
-                string senha = "1234sistemasbtd";
+                string senha = "Click123";
                 int porta = 587;
 
                 MailMessage mail = new MailMessage()

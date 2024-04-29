@@ -106,7 +106,7 @@
     <!-- Tabela de abastecimento -->
     <table class="table">
         <thead>
-            <tr>
+            <tr class="no-page-break">
                 <th rowspan="7">ABASTECIMENTO/MANUTENÇÃO</th>
             </tr>
 
@@ -123,17 +123,17 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var abastecimento in Model.DadosManutencao)
+            @foreach (var manutencao in Model.DadosManutencao)
             {
-                foreach (var manutencao in abastecimento.Veiculo.Manutencoes)
-                {
+               
+                
                     <tr class="no-page-break">
                         <td>@manutencao.DataManutencao.ToShortDateString()</td>
-                        <td>@abastecimento.Veiculo.Prefixo</td>
+                        <td>@manutencao.Veiculo.Prefixo</td>
                         <td>@(manutencao.TipoManutencao == SistemaBoletimTransporteDigital.Enums.ManutencaoEnum.Manutencao ? "Manutenção" : "Abastecimento")</td>
                         <td>@manutencao.DescricaoManutencao</td>
                     </tr>
-                }
+                
             }
         </tbody>
     </table>
