@@ -40,6 +40,8 @@ namespace SistemaBoletimTransporteDigital.Models
 
         public PerfilEnum? CorridaStatus { get; set; }
 
+        public PerfilEnum? EstaVinculadoAumaCorrida { get; set; }
+
         public DateTime DataCriacao { get; set; } = DateTime.Now;
 
         public DateTime DataUltimaAtualizacao { get; set; } = DateTime.Now;

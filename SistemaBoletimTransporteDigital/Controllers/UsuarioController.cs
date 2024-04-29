@@ -48,9 +48,19 @@ namespace SistemaBoletimTransporteDigital.Controllers
 
         public IActionResult Apagar(int id)
         {
+            
             try
             {
+                // Verificar se o usuário está vinculado a uma corrida
+                UsuarioModel usuario = _usuarioRepositorio.ListarPorId(id);
+                if (usuario.EstaVinculadoAumaCorrida == Enums.PerfilEnum.VinculadoAcorridaSim)
+                {
+                    TempData["MensagemErro"] = "Não é possível excluir este usuário porque ele está vinculado a uma corrida.";
+                    return RedirectToAction("Index");
+                }
+
                 bool apagado =_usuarioRepositorio.Apagar(id);
+                // Verificar se o usuário está vinculado a uma corrida             
                 if (apagado)
                 {
                     TempData["MensagemSucesso"] = "Usuário apagado com sucesso!";
@@ -63,7 +73,7 @@ namespace SistemaBoletimTransporteDigital.Controllers
             }
             catch (Exception ex)
             {
-                TempData["MensagemErro"] = $"Erro ao cadastrar o Usuário, tente novamente! detalhe do erro: {ex.Message}";
+                TempData["MensagemErro"] = $"Erro ao apagar Usuário, tente novamente! detalhe do erro: {ex.Message}";
                 return RedirectToAction("Index");
             }
         }

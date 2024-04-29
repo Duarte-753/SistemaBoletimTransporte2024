@@ -63,6 +63,7 @@ namespace SistemaBoletimTransporteDigital.Controllers
                     var buscaUsuario = _corridaRepositorio.ListarPorId(corridaRepositorio.Id);
 
                     _usuarioRepositorio.CorridaStatusUserI(buscaUsuario);
+                    _usuarioRepositorio.CorridaVinculadoSim(buscaUsuario);
 
                     TempData["MensagemSucesso"] = "Corrida Iniciada com sucesso!";
                     return RedirectToAction("Index");
