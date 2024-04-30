@@ -33,7 +33,7 @@ namespace SistemaBoletimTransporteDigital.Repositorio
 
         void CorridaVinculadoNao(CorridaModel buscaUsuario);
 
-        object BuscarPorCodigoFuncional(string codigoFuncional);
+        object BuscarPorCodigoFuncional(int codigoFuncional);
 
         public UsuarioModel BuscarPorNomeUsuario(string nomeUsuario);
         object BuscarPorEmail(string email);

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace SistemaBoletimTransporteDigital.Migrations
 {
     /// <inheritdoc />
-    public partial class CriacaoDb : Migration
+    public partial class CreatDb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -19,7 +19,7 @@ namespace SistemaBoletimTransporteDigital.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CodigoFuncional = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    CodigoFuncional = table.Column<int>(type: "int", maxLength: 20, nullable: false),
                     Nome = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
                     Usuario = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     Senha = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
@@ -42,13 +42,13 @@ namespace SistemaBoletimTransporteDigital.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Prefixo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Prefixo = table.Column<int>(type: "int", nullable: false),
                     Veiculo = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Cor = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Placa = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Quilometragem = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Ano = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Valor = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Quilometragem = table.Column<int>(type: "int", nullable: false),
+                    Ano = table.Column<int>(type: "int", nullable: false),
+                    Valor = table.Column<int>(type: "int", nullable: false),
                     CadastroSistema = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DataUltimaAtualizacao = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CarroEmUso = table.Column<int>(type: "int", nullable: true),
@@ -130,9 +130,9 @@ namespace SistemaBoletimTransporteDigital.Migrations
                 columns: new[] { "Id", "Celular", "CodigoFuncional", "CorridaStatus", "DataCriacao", "DataUltimaAtualizacao", "Email", "EstaVinculadoAumaCorrida", "Nome", "Perfil", "Senha", "Usuario" },
                 values: new object[,]
                 {
-                    { 1, "11912345678", "1234", 4, new DateTime(2024, 4, 29, 19, 33, 15, 681, DateTimeKind.Local).AddTicks(6259), new DateTime(2024, 4, 29, 19, 33, 15, 681, DateTimeKind.Local).AddTicks(6262), "julioduartebatista753@gmail.com", 6, "admin", 1, "d033e22ae348aeb5660fc2140aec35850c4da997", "admin" },
-                    { 2, "11912345678", "567", 4, new DateTime(2024, 4, 29, 19, 33, 15, 681, DateTimeKind.Local).AddTicks(6327), new DateTime(2024, 4, 29, 19, 33, 15, 681, DateTimeKind.Local).AddTicks(6329), "julioduartebatista753@gmail.com", 6, "motorista", 3, "a61e38f3910fba1d8e1fb97f4b3561df07ab0d81", "motorista" },
-                    { 3, "11912345678", "9876", 4, new DateTime(2024, 4, 29, 19, 33, 15, 681, DateTimeKind.Local).AddTicks(6365), new DateTime(2024, 4, 29, 19, 33, 15, 681, DateTimeKind.Local).AddTicks(6366), "julioduartebatista753@gmail.com", 6, "motorista2", 3, "b739522c59a564437fc8c6ad639176f704766596", "motorista2" }
+                    { 1, "11912345678", 1234, 4, new DateTime(2024, 4, 30, 13, 12, 6, 923, DateTimeKind.Local).AddTicks(6843), new DateTime(2024, 4, 30, 13, 12, 6, 923, DateTimeKind.Local).AddTicks(6843), "julioduartebatista753@gmail.com", 6, "admin", 1, "d033e22ae348aeb5660fc2140aec35850c4da997", "ADMIN" },
+                    { 2, "11912345678", 567, 4, new DateTime(2024, 4, 30, 13, 12, 6, 923, DateTimeKind.Local).AddTicks(6877), new DateTime(2024, 4, 30, 13, 12, 6, 923, DateTimeKind.Local).AddTicks(6877), "julioduartebatista753@gmail.com", 6, "motorista", 3, "a61e38f3910fba1d8e1fb97f4b3561df07ab0d81", "MOTORISTA" },
+                    { 3, "11912345678", 9876, 4, new DateTime(2024, 4, 30, 13, 12, 6, 923, DateTimeKind.Local).AddTicks(6893), new DateTime(2024, 4, 30, 13, 12, 6, 923, DateTimeKind.Local).AddTicks(6893), "julioduartebatista753@gmail.com", 6, "motorista2", 3, "b739522c59a564437fc8c6ad639176f704766596", "MOTORISTA2" }
                 });
 
             migrationBuilder.InsertData(
@@ -140,9 +140,9 @@ namespace SistemaBoletimTransporteDigital.Migrations
                 columns: new[] { "Id", "Ano", "CadastroSistema", "CarroEmUso", "Cor", "DataUltimaAtualizacao", "Placa", "Prefixo", "Quilometragem", "Valor", "Veiculo", "VinculadoCarroAcorrida" },
                 values: new object[,]
                 {
-                    { 1, "2014", new DateTime(2024, 4, 29, 19, 33, 15, 681, DateTimeKind.Local).AddTicks(6412), 1, "Branco", new DateTime(2024, 4, 29, 19, 33, 15, 681, DateTimeKind.Local).AddTicks(6414), "FWF-1232", "1234-5", "12600", "259875", "Golf", null },
-                    { 2, "2016", new DateTime(2024, 4, 29, 19, 33, 15, 681, DateTimeKind.Local).AddTicks(6457), 1, "Branco", new DateTime(2024, 4, 29, 19, 33, 15, 681, DateTimeKind.Local).AddTicks(6459), "ASD-2345", "6789-10", "450067", "15000", "Fiat Uno", null },
-                    { 3, "2024", new DateTime(2024, 4, 29, 19, 33, 15, 681, DateTimeKind.Local).AddTicks(6493), 1, "Azul", new DateTime(2024, 4, 29, 19, 33, 15, 681, DateTimeKind.Local).AddTicks(6494), "JHF-7653", "12123-5", "100", "45000", "Palio Weekend", null }
+                    { 1, 2014, new DateTime(2024, 4, 30, 13, 12, 6, 923, DateTimeKind.Local).AddTicks(6916), 1, "Branco", new DateTime(2024, 4, 30, 13, 12, 6, 923, DateTimeKind.Local).AddTicks(6917), "FWF-1232", 12345, 12600, 259875, "Golf", null },
+                    { 2, 2016, new DateTime(2024, 4, 30, 13, 12, 6, 923, DateTimeKind.Local).AddTicks(6938), 1, "Branco", new DateTime(2024, 4, 30, 13, 12, 6, 923, DateTimeKind.Local).AddTicks(6938), "ASD-2345", 678910, 450067, 15000, "Fiat Uno", null },
+                    { 3, 2024, new DateTime(2024, 4, 30, 13, 12, 6, 923, DateTimeKind.Local).AddTicks(6953), 1, "Azul", new DateTime(2024, 4, 30, 13, 12, 6, 923, DateTimeKind.Local).AddTicks(6954), "JHF-7653", 121235, 100, 45000, "Palio Weekend", null }
                 });
 
             migrationBuilder.CreateIndex(

@@ -60,7 +60,7 @@ namespace SistemaBoletimTransporteDigital.Repositorio
             return _bancoContext.Veiculos.FirstOrDefault(v => v.Placa == placa);
         }
 
-        public object BuscarPorPrefixo(string prefixo)
+        public object BuscarPorPrefixo(int prefixo)
         {
             return _bancoContext.Veiculos.FirstOrDefault(v => v.Prefixo == prefixo);
         }

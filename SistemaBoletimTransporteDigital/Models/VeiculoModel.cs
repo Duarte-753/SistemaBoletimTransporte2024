@@ -9,7 +9,7 @@ namespace SistemaBoletimTransporteDigital.Models
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Digite o Prefixo do Veículo")]
-        public string Prefixo { get; set; }
+        public int Prefixo { get; set; }
 
         [Required(ErrorMessage = "Digite o nome do Veículo")]
         public string Veiculo { get; set; }
@@ -21,13 +21,13 @@ namespace SistemaBoletimTransporteDigital.Models
         public string Placa { get; set; }
 
         [Required(ErrorMessage = "Digite a quilometragem em que Veículo está no momento")]
-        public string Quilometragem { get; set; }
+        public int Quilometragem { get; set; }
 
         [Required(ErrorMessage = "Digite o Ano do Veículo")]
-        public string Ano { get; set; }
+        public int Ano { get; set; }
 
         [Required(ErrorMessage = "Digite o valor do Veículo")]
-        public string Valor { get; set; }
+        public int Valor { get; set; }
 
         public DateTime CadastroSistema { get; set; } = DateTime.Now;
 
