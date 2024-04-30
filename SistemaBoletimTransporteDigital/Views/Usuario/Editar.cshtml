@@ -20,22 +20,22 @@
 
         <div class="col-3">
             <label for="codigofuncional">Código Funcional:</label>
-            <input type="text" asp-for="CodigoFuncional" class="form-control" placeholder="Exemplo: 0015999">
+            <input type="text" asp-for="CodigoFuncional" class="form-control">
             @Html.ValidationMessageFor(x => x.CodigoFuncional)
         </div>
         <div class="col-3">
             <label for="nome">Nome:</label>
-            <input type="text" asp-for="Nome" class="form-control" placeholder="Exemplo: Mathues Nunes da Silva ">
+            <input type="text" asp-for="Nome" class="form-control" >
             @Html.ValidationMessageFor(x => x.Nome)
         </div>
         <div class="col-3">
             <label for="usuario">Usuário:</label>
-            <input type="text" asp-for="Usuario" class="form-control" placeholder="Exemplo: silvanunes">
+            <input type="text" asp-for="Usuario" class="form-control" >
             @Html.ValidationMessageFor(x => x.Usuario)
         </div>
         <div class="col-3">
             <label for="senha">Senha:</label>
-            <input type="password" asp-for="Senha" class="form-control" placeholder="Crie uma senha para esse usuário.">
+            <input type="password" asp-for="Senha" class="form-control">
             @Html.ValidationMessageFor(x => x.Senha)
         </div>
 
@@ -45,12 +45,12 @@
 
         <div class="col-3">
             <label for="email">E-mail:</label>
-            <input type="text" asp-for="Email" class="form-control" placeholder="Exemplo: silvanunes">
+            <input type="text" asp-for="Email" class="form-control" >
             @Html.ValidationMessageFor(x => x.Email)
         </div>
         <div class="col-3">
             <label for="celular">Celular:</label>
-            <input type="text" asp-for="Celular" class="form-control" placeholder="Exemplo: silvanunes">
+            <input type="text" asp-for="Celular" class="form-control">
             @Html.ValidationMessageFor(x => x.Celular)
         </div>
 

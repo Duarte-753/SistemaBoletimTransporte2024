@@ -31,18 +31,18 @@
 
     <div class="col-3">
         <label for="codigofuncional">Código Funcional:</label>
-            <input type="text" asp-for="CodigoFuncional" class="form-control" placeholder="Exemplo: 0015999">
+            <input type="text" asp-for="CodigoFuncional" id="codigoFuncional" class="form-control">
             <span class="text-danger" id="codigoFuncionalError" style="display: none;">Por favor, insira apenas números.</span>
             @Html.ValidationMessageFor(x => x.CodigoFuncional)
     </div>
     <div class="col-3">
         <label for="nome">Nome:</label>
-        <input type="text" asp-for="Nome" class="form-control uppercase" placeholder="Exemplo: Mathues Nunes da Silva ">
+        <input type="text" asp-for="Nome" class="form-control uppercase">
             @Html.ValidationMessageFor(x => x.Nome)
     </div>
     <div class="col-3">
         <label for="usuario">Usuário:</label>
-        <input type="text" asp-for="Usuario" class="form-control uppercase" placeholder="Exemplo: silvanunes">
+        <input type="text" asp-for="Usuario" class="form-control uppercase" >
             @Html.ValidationMessageFor(x => x.Usuario)
     </div>
     <div class="col-3">
@@ -57,12 +57,12 @@
 
         <div class="col-3">
             <label for="email">E-mail:</label>
-            <input type="text" asp-for="Email" class="form-control lowercase" placeholder="Exemplo: silvanunes@gmail.com">
+            <input type="text" asp-for="Email" class="form-control lowercase">
             @Html.ValidationMessageFor(x => x.Email)
         </div>
         <div class="col-3">
             <label for="celular">Celular:</label>
-            <input type="text" id="celular" asp-for="Celular" class="form-control" placeholder="Exemplo: 11988557799">
+            <input type="text" id="celular" asp-for="Celular" class="form-control">
             @Html.ValidationMessageFor(x => x.Celular)
         </div>
         
@@ -93,6 +93,10 @@
     inputCelular.addEventListener('input', function (event) {
         // Remove todos os caracteres não numéricos
         let phone = event.target.value.replace(/\D/g, '');
+
+        // Limita a entrada do usuário a no máximo 11 caracteres
+        phone = phone.slice(0, 11);
+
 
         // Formata o número de telefone
         if (phone.length > 10) {
