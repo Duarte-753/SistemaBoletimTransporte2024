@@ -123,6 +123,5 @@ namespace SistemaBoletimTransporteDigital.Controllers
                 return RedirectToAction("Index");
             }
         }  
-
     }
 }

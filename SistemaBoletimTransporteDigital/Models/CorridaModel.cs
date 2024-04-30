@@ -26,9 +26,7 @@ namespace SistemaBoletimTransporteDigital.Models
        
         public int? KmFinal { get; set; }
 
-
         public int? KmPercorrido { get; set; }
-
 
         public StatusCorridaEnum? StatusDaCorrida { get; set; }
 
