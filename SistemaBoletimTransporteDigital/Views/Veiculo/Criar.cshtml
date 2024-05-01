@@ -12,32 +12,59 @@
 
 </div>
 
+<style>
+    /* Estilo para inputs em caixa alta */
+    input.uppercase {
+        text-transform: uppercase;
+    }
+
+    /* Estilo para inputs em caixa baixa */
+    input.lowercase {
+        text-transform: lowercase;
+    }
+
+    /*cor erro*/
+    .error-text {
+        color: red;
+    }
+
+    .success-text {
+        color: green;
+    }
+</style>
+
 <form asp-controller="Veiculo" asp-action="Criar" method="post">
 
     <div class="row">
 
         <div class="col-3">
             <label for="prefixo">Prefixo:</label>
-            <input type="text" asp-for="Prefixo" class="form-control">
+            <input type="text" asp-for="Prefixo" id="prefixo" maxlength="6" class="form-control">
             <span class="text-danger" id="prefixoError" style="display: none;">Por favor, insira apenas números.</span>
             @Html.ValidationMessageFor(x => x.Prefixo)
         </div>
         <div class="col-3">
-            <label for="nome">Veiculo:</label>
-            <input type="text" asp-for="Veiculo" class="form-control" placeholder="Exemplo: VW Nova Saveiro RB MBVD">
+            <label for="nome">Nome Veiculo:</label>
+            <input type="text" asp-for="Veiculo" id="nome" class="form-control uppercase" maxlength="20" oninput="this.value = this.value.toUpperCase()">
             @Html.ValidationMessageFor(x => x.Veiculo)
         </div>
         <div class="col-3">
             <label for="cor">Cor:</label>
-            <input type="text" asp-for="Cor" class="form-control" placeholder="Exemplo: Branco">
+            <input type="text" asp-for="Cor" id="cor" class="form-control uppercase" maxlength="20" oninput="this.value = this.value.toUpperCase()">
             @Html.ValidationMessageFor(x => x.Cor)
         </div>
+       @*  <div class="col-3">
+            <label for="placa">Placa:</label>
+            <input type="text" asp-for="Placa" id="placa" class="form-control uppercase" oninput="this.value = this.value.toUpperCase()">
+            @Html.ValidationMessageFor(x => x.Placa)
+        </div> *@
+
         <div class="col-3">
             <label for="placa">Placa:</label>
-            <input type="text" asp-for="Placa" class="form-control" placeholder="Exemplo: FBA-1221">
+            <input type="text" asp-for="Placa" id="placa" class="form-control uppercase" maxlength="7" oninput="this.value = this.value.toUpperCase()">
+            <span class="text-danger" id="placaError" style="display: none;">Por favor, insira uma placa válida.</span>
             @Html.ValidationMessageFor(x => x.Placa)
         </div>
-
 
     </div>
 
@@ -45,17 +72,30 @@
 
         <div class="col-3">
             <label for="quilometragem">Quilometragem:</label>
-            <input type="text" asp-for="Quilometragem" class="form-control" placeholder="Exemplo: 514326">
+            <input type="text" asp-for="Quilometragem" id="quilometragem" class="form-control">
+            <span class="text-danger" id="quilometragemError" style="display: none;">Por favor, insira apenas números.</span>
             @Html.ValidationMessageFor(x => x.Quilometragem)
         </div>
         <div class="col-3">
             <label for="ano">Ano:</label>
-            <input type="text" asp-for="Ano" class="form-control" placeholder="Exemplo: 1997">
+            <select asp-for="Ano" id="ano" class="form-control">
+                @for (int year = DateTime.Now.Year; year >= 1990; year--)
+                {
+                    <option value="@year">@year</option>
+                }
+            </select>
             @Html.ValidationMessageFor(x => x.Ano)
         </div>
-        <div class="col-3">
+       @*  <div class="col-3">
             <label for="valor">Valor:</label>
             <input type="text" asp-for="Valor" class="form-control" placeholder="Exemplo: 25000">
+            @Html.ValidationMessageFor(x => x.Valor)
+        </div> *@
+
+        <div class="col-3">
+            <label for="valor">Valor:</label>
+            <input type="text" asp-for="Valor" id="valor" class="form-control">
+            <span class="text-danger" id="valorError" style="display: none;">Por favor, insira um valor válido com no máximo 6 dígitos.</span>
             @Html.ValidationMessageFor(x => x.Valor)
         </div>
     </div>
@@ -68,14 +108,18 @@
 
 
 <script>
-       
     document.addEventListener('DOMContentLoaded', function () {
-        // Seleciona o campo de entrada
         const prefixoInput = document.getElementById('prefixo');
-        // Seleciona a mensagem de erro
         const prefixoError = document.getElementById('prefixoError');
+        const quilometragemInput = document.getElementById('quilometragem');
+        const quilometragemError = document.getElementById('quilometragemError');
+        const valorInput = document.getElementById('valor');
+        const valorError = document.getElementById('valorError');
+        const placaInput = document.getElementById('placa');
+        const placaError = document.getElementById('placaError');
+        const form = document.querySelector('form');
 
-        // Adiciona um listener para o evento 'input'
+        // Adiciona um listener para o evento 'input' no campo de prefixo
         prefixoInput.addEventListener('input', function (event) {
             // Verifica se o valor contém apenas números
             if (!/^[0-9]*$/.test(event.target.value)) {
@@ -87,5 +131,92 @@
                 prefixoError.style.display = 'none';
             }
         });
+
+        // Adiciona um listener para o evento 'input' no campo de quilometragem
+        quilometragemInput.addEventListener('input', function (event) {
+            let quilometragem = event.target.value.replace(/[^\d]/g, '');
+            quilometragem = quilometragem.slice(0, 6);
+            event.target.value = formatValor(quilometragem);
+            if (!/^\d{0,6}$/.test(quilometragem)) {
+                quilometragemError.style.display = 'block';
+            } else {
+                quilometragemError.style.display = 'none';
+            }
+        });
+
+        // Adiciona um listener para o evento 'input' no campo de valor
+        valorInput.addEventListener('input', function (event) {
+            let valor = event.target.value.replace(/[^\d]/g, '');
+            valor = valor.slice(0, 6);
+            event.target.value = formatValor(valor);
+            if (valor.length > 6 || valor.length === 0) {
+                valorError.style.display = 'block';
+            } else {
+                valorError.style.display = 'none';
+            }
+        });
+
+        // Adiciona um listener para o evento 'input' no campo de placa
+        placaInput.addEventListener('input', function (event) {
+            const placa = event.target.value.toUpperCase();
+            const placaPattern = /^[A-Z]{3}\d{4}$|^[A-Z]{3}\d{1}[A-Z0-9]{1}\d{2}$/;
+
+            if (!placaPattern.test(placa)) {
+                placaError.textContent = "Placa incorreta";
+                placaError.classList.remove('success-text');
+                placaError.classList.add('error-text');
+                placaError.style.display = 'block';
+            } else {
+                placaError.textContent = "Correto";
+                placaError.classList.remove('error-text');
+                placaError.classList.add('success-text');
+                setTimeout(() => { placaError.style.display = 'none'; }, 2000);
+            }
+        });
+
+        // Adiciona um listener para o evento 'submit' no formulário
+        form.addEventListener('submit', function (event) {
+            if (!prefixoInput.value.trim()) {
+                prefixoError.textContent = 'Por favor, insira um valor no campo Prefixo.';
+                prefixoError.style.display = 'block';
+                event.preventDefault();
+            }
+
+            if (!quilometragemInput.value.trim()) {
+                quilometragemError.textContent = 'Por favor, insira um valor no campo Quilometragem.';
+                quilometragemError.style.display = 'block';
+                event.preventDefault();
+            }
+
+            if (!valorInput.value.trim()) {
+                valorError.textContent = 'Por favor, insira um valor no campo Valor.';
+                valorError.style.display = 'block';
+                event.preventDefault();
+            }
+
+            const placa = placaInput.value.toUpperCase();
+            const placaPattern = /^[A-Z]{3}\d{4}$|^[A-Z]{3}\d{1}[A-Z0-9]{1}\d{2}$/;
+            if (!placaPattern.test(placa)) {
+                placaError.textContent = 'Placa incorreta';
+                placaError.classList.remove('success-text');
+                placaError.classList.add('error-text');
+                placaError.style.display = 'block';
+                event.preventDefault();
+            }
+
+            // Remove os pontos do valor antes de enviar o formulário
+            valorInput.value = valorInput.value.replace(/\./g, '');
+
+            // Remove os pontos do valor da quilometragem antes de enviar o formulário
+            quilometragemInput.value = quilometragemInput.value.replace(/\./g, '');
+        });
+
+        // Função para formatar o valor
+        function formatValor(value) {
+            return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        }
     });
+
 </script>
+
+

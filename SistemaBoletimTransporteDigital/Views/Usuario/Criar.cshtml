@@ -31,23 +31,23 @@
 
     <div class="col-3">
         <label for="codigofuncional">Código Funcional:</label>
-            <input type="text" asp-for="CodigoFuncional" id="codigoFuncional" class="form-control">
+            <input type="text" asp-for="CodigoFuncional" id="codigoFuncional" class="form-control" maxlength="6">
             <span class="text-danger" id="codigoFuncionalError" style="display: none;">Por favor, insira apenas números.</span>
             @Html.ValidationMessageFor(x => x.CodigoFuncional)
     </div>
     <div class="col-3">
         <label for="nome">Nome:</label>
-        <input type="text" asp-for="Nome" class="form-control uppercase">
+            <input type="text" asp-for="Nome" class="form-control uppercase" maxlength="40">
             @Html.ValidationMessageFor(x => x.Nome)
     </div>
     <div class="col-3">
         <label for="usuario">Usuário:</label>
-        <input type="text" asp-for="Usuario" class="form-control uppercase" >
+            <input type="text" asp-for="Usuario" class="form-control uppercase" maxlength="20">
             @Html.ValidationMessageFor(x => x.Usuario)
     </div>
     <div class="col-3">
         <label for="senha">Senha:</label>
-        <input type="password" asp-for="Senha" class="form-control" placeholder="Crie uma senha para esse usuário.">
+            <input type="password" asp-for="Senha" class="form-control" placeholder="Crie uma senha para esse usuário." maxlength="20">
             @Html.ValidationMessageFor(x => x.Senha)
     </div>
 
@@ -57,7 +57,7 @@
 
         <div class="col-3">
             <label for="email">E-mail:</label>
-            <input type="text" asp-for="Email" class="form-control lowercase">
+            <input type="text" asp-for="Email" class="form-control lowercase" maxlength="40">
             @Html.ValidationMessageFor(x => x.Email)
         </div>
         <div class="col-3">
