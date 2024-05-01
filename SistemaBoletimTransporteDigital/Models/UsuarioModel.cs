@@ -10,8 +10,7 @@ namespace SistemaBoletimTransporteDigital.Models
         public int Id { get; set; }
 
         [Required(ErrorMessage ="Digite o Código Funcional do funcionario")] //Faz o Campo de baixo ser obrigatório
-        [MaxLength(20)]
-        public string CodigoFuncional { get; set; }
+        public int CodigoFuncional { get; set; }
 
         [Required(ErrorMessage = "Digite o Nome do funcionario")]
         [MaxLength(40)]
@@ -32,7 +31,7 @@ namespace SistemaBoletimTransporteDigital.Models
 
         [Required(ErrorMessage = "Digite o celular para contato.")]
         [Phone(ErrorMessage = "O celular informado não é valido.")]
-        [MaxLength(11)]
+        [MaxLength(20)]
         public string Celular { get; set; }
 
         [Required(ErrorMessage = "Selecione o Perfil do Usuário.")]

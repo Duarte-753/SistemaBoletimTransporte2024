@@ -169,7 +169,7 @@ namespace SistemaBoletimTransporteDigital.Repositorio
         //    return _bancoContext.Usuario.FirstOrDefault(u => u.CodigoFuncional == codigoFuncional);
         //}
 
-        object IUsuarioRepositorio.BuscarPorCodigoFuncional(string codigoFuncional)
+        object IUsuarioRepositorio.BuscarPorCodigoFuncional(int codigoFuncional)
         {
             return _bancoContext.Usuario.FirstOrDefault(u => u.CodigoFuncional == codigoFuncional);
         }

@@ -13,19 +13,18 @@
 </div>
 
 <form id="finalizarCorridaForm" asp-controller="Corrida" asp-action="FinalizarCorrida" method="post">
-
     <input type="hidden" asp-for="Id" />
 
     <div class="row">
         <div class="col-4">
-            <label for="kmFinal">KM do Veículo:</label>
-            <input type="text" asp-for="KmFinal" class="form-control" placeholder="Exemplo: 4543235..." required>
-            <div class="invalid-feedback">Por favor, preencha o campo KM do Veículo.</div>
+            <label for="KmFinal">KM do Veículo:</label>
+            <input type="text" id="KmFinal" name="KmFinal" class="form-control" placeholder="Exemplo: 4543235..." required>
+            <div class="invalid-feedback">A quilometragem final deve ser maior que a quilometragem inicial.</div>
         </div>
 
         <div class="col-4">
-            <label for="localchegada">Local de Chegada:</label>
-            <input type="text" asp-for="LocalChegadaCorrida" class="form-control" placeholder="Exemplo: Cerejeiras Atibaia" required>
+            <label for="LocalChegadaCorrida">Local de Chegada:</label>
+            <input type="text" id="LocalChegadaCorrida" name="LocalChegadaCorrida" class="form-control" placeholder="Exemplo: Cerejeiras Atibaia" required>
             <div class="invalid-feedback">Por favor, preencha o campo Local de Chegada.</div>
         </div>
     </div>
@@ -50,6 +49,18 @@
             if (!localChegada) {
                 document.getElementById('LocalChegadaCorrida').classList.add('is-invalid');
             }
+        }
+    });
+
+    document.getElementById('finalizarCorridaForm').addEventListener('submit', function (event) {
+        var kmInicial = @Model.KmInicial;
+        var kmFinal = parseInt(document.getElementById('KmFinal').value);
+
+        if (kmFinal <= kmInicial) {
+            event.preventDefault(); // Impede o envio do formulário se a quilometragem final for menor ou igual à inicial
+            event.stopPropagation(); // Evita a propagação do evento de envio
+            document.getElementById('KmFinal').classList.add('is-invalid');
+            // alert('A quilometragem final deve ser maior que a quilometragem inicial.');
         }
     });
 </script>
