@@ -18,7 +18,8 @@
 
         <div class="col-3">
             <label for="prefixo">Prefixo:</label>
-            <input type="text" asp-for="Prefixo" class="form-control" placeholder="Exemplo: 0015999">
+            <input type="text" asp-for="Prefixo" class="form-control">
+            <span class="text-danger" id="prefixoError" style="display: none;">Por favor, insira apenas números.</span>
             @Html.ValidationMessageFor(x => x.Prefixo)
         </div>
         <div class="col-3">
@@ -66,4 +67,25 @@
 </form>
 
 
+<script>
+       
+    document.addEventListener('DOMContentLoaded', function () {
+        // Seleciona o campo de entrada
+        const prefixoInput = document.getElementById('prefixo');
+        // Seleciona a mensagem de erro
+        const prefixoError = document.getElementById('prefixoError');
 
+        // Adiciona um listener para o evento 'input'
+        prefixoInput.addEventListener('input', function (event) {
+            // Verifica se o valor contém apenas números
+            if (!/^[0-9]*$/.test(event.target.value)) {
+                // Se não for um número, exibe a mensagem de erro e limpa o campo
+                prefixoError.style.display = 'block';
+                event.target.value = '';
+            } else {
+                // Se for um número, esconde a mensagem de erro
+                prefixoError.style.display = 'none';
+            }
+        });
+    });
+</script>
