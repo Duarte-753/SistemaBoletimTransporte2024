@@ -130,16 +130,13 @@
         </thead>
         <tbody>
             @foreach (var manutencao in Model.DadosManutencao)
-            {
-               
-                
+            {                         
                     <tr class="no-page-break">
                         <td>@manutencao.DataManutencao.ToShortDateString()</td>
                         <td>@manutencao.Veiculo.Prefixo</td>
                         <td>@(manutencao.TipoManutencao == SistemaBoletimTransporteDigital.Enums.ManutencaoEnum.Manutencao ? "Manutenção" : "Abastecimento")</td>
                         <td class="descricao">@manutencao.DescricaoManutencao</td>
-                    </tr>
-                
+                    </tr>             
             }
         </tbody>
     </table>
@@ -147,8 +144,7 @@
         <thead>
             <tr class="no-page-break">
                 <th rowspan="7">ESTÃO SENDO ENTREGUES TODOS OS DISCOS OU RELATÓRIOS DO TACÓGRAFO<br /><br />________________</th>
-            </tr>
-            
+            </tr>         
         </thead>      
     </table>
 </div>
