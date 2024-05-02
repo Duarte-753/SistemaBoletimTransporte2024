@@ -4,59 +4,45 @@
 @model UsuarioModel
 
 <div class="text-center">
-    <h1 class="display-4">Detalhes usuário</h1>
+    <h1 class="display-4">Detalhes do Usuário</h1>
     <br />
 </div>
 
-<form>
-
+<div class="container">
     <div class="row">
+        <div class="col-md-6">
+            <dl class="row">
+                
+                <dt class="col-sm-4">Código Funcional:</dt>
+                <dd class="col-sm-8">@Model.CodigoFuncional</dd>
 
-        <div class="col-3">
-            <label for="dataUltimaAlteracao">Ultima alteração:</label>
-            <p>@Model.DataUltimaAtualizacao</p>
+                <dt class="col-sm-4">Nome:</dt>
+                <dd class="col-sm-8">@Model.Nome</dd>
+
+                <dt class="col-sm-4">Usuário:</dt>
+                <dd class="col-sm-8">@Model.Usuario</dd>
+
+                <dt class="col-sm-4">E-mail:</dt>
+                <dd class="col-sm-8">@Model.Email</dd>
+
+                <dt class="col-sm-4">Celular:</dt>
+                <dd class="col-sm-8">@Model.Celular</dd>
+
+                <dt class="col-sm-4">Perfil:</dt>
+                <dd class="col-sm-8">@Model.Perfil</dd>
+
+                <dt class="col-sm-4">Data de Criação:</dt>
+                <dd class="col-sm-8">@Model.DataCriacao.ToString("dd/MM/yyyy HH:mm:ss")</dd>
+
+                <dt class="col-sm-4">Última Atualização:</dt>
+                <dd class="col-sm-8">@Model.DataUltimaAtualizacao.ToString("dd/MM/yyyy HH:mm:ss")</dd>
+                       
+            </dl>
         </div>
-
-        <div class="col-3">
-            <label for="codigofuncional">Código Funcional:</label>
-            <p>@Model.CodigoFuncional</p>
-        </div>
-
-        <div class="col-3">
-            <label for="nome">Nome:</label>
-            <p>@Model.Nome</p>
-        </div>
-
-        <div class="col-3">
-            <label for="usuario">Usuário:</label>
-            <p>@Model.Usuario</p>
-        </div>
-
     </div>
+</div>
 
-    <div class="row">
-
-        <div class="col-4">
-            <label for="email">Email:</label>
-            <p>@Model.Email</p>
-        </div>
-
-        <div class="col-4">
-            <label for="celular">Celular:</label>
-            <p>@Model.Celular</p>
-        </div>
-
-        <div class="col-4">
-            <label for="perfil">Perfil:</label>
-            <p>@Model.Perfil</p>
-        </div>
-
-    </div>
-
-    <br />
-
+<div class="text-center">
     <a class="btn btn-secondary" asp-controller="Usuario" asp-action="Index" role="button">Voltar</a>
-    <a class="btn btn-success" asp-controller="Usuario" asp-action="UsuarioReport" role="button">Salvar em PDF</a>
-
-
-</form>
+    @* <a class="btn btn-success" asp-controller="Usuario" asp-action="UsuarioReport" role="button">Salvar em PDF</a> *@
+</div>

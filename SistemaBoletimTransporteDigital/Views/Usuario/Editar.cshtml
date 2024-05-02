@@ -12,11 +12,83 @@
 
 </div>
 
-<form asp-controller="Usuario" asp-action="Editar" method="post">
+<style>
+    /* Estilo para inputs em caixa alta */
+    input.uppercase {
+        text-transform: uppercase;
+    }
+
+    /* Estilo para inputs em caixa baixa */
+    input.lowercase {
+        text-transform: lowercase;
+    }
+</style>
+
+<form asp-controller="Usuario" asp-action="Editar" method="post" id="formulario" onsubmit="return validarSenhas()">
 
     <input type="hidden" asp-for="Id" />
+    
+        <div class="row">       
+        @* div class="col-3">
+            <label for="codigofuncional">Código Funcional:</label>
+            <input type="text" asp-for="CodigoFuncional" id="codigoFuncional" class="form-control" maxlength="6">
+            <span class="text-danger" id="codigoFuncionalError" style="display: none;">Por favor, insira apenas números.</span>
+            @Html.ValidationMessageFor(x => x.CodigoFuncional)
+        </div> *@
+        <div class="col-3">
+            <label for="nome">Nome:</label>
+            <input type="text" asp-for="Nome" class="form-control uppercase" maxlength="40">
+            @Html.ValidationMessageFor(x => x.Nome)
+        </div>
+        <div class="col-3">
+            <label for="usuario">Usuário:</label>
+            <input type="text" asp-for="Usuario" class="form-control uppercase" maxlength="20">
+            @Html.ValidationMessageFor(x => x.Usuario)
+        </div>
+
+        <div class="col-3">
+            <label for="senha">Senha:</label>
+            <input type="password" asp-for="Senha" id="senha1" class="form-control" maxlength="20">
+            @Html.ValidationMessageFor(x => x.Senha)
+        </div>
+        <div class="col-3">
+            <label for="senha">Confirma a Senha:</label>
+            <input type="password" id="senha2" class="form-control" maxlength="20">
+            <span class="text-danger" id="senhaError" style="display: none;">As senhas não coincidem.</span>
+            @Html.ValidationMessageFor(x => x.Senha)
+        </div>
+   
+    </div>
 
     <div class="row">
+    
+        <div class="col-3">
+            <label for="perfil">Perfil:</label>
+            <select asp-for="Perfil" class="form-control">
+                <option value="">Selecione</option>
+                <option value="@PerfilEnum.Admin">Administrador</option>
+                <option value="@PerfilEnum.motorista">Motorista</option>
+            </select>
+            @Html.ValidationMessageFor(x => x.Perfil)
+        </div>
+
+        <div class="col-3">
+            <label for="email">E-mail:</label>
+            <input type="text" asp-for="Email" class="form-control lowercase" maxlength="40">
+            @Html.ValidationMessageFor(x => x.Email)
+        </div>
+
+        <div class="col-3">
+            <label for="celular">Celular:</label>
+            <input type="text" id="celular" asp-for="Celular" class="form-control">
+            @Html.ValidationMessageFor(x => x.Celular)
+        </div>
+
+       
+    </div>
+
+    <br />
+   @*  <div class="row">
 
         <div class="col-3">
             <label for="codigofuncional">Código Funcional:</label>
@@ -62,10 +134,8 @@
                 <option value="@PerfilEnum.motorista">Motorista</option>
             </select>
             @Html.ValidationMessageFor(x => x.Perfil)
-        </div>
-
-
-    </div>
+        </div> *@
+    @* </div> *@
 
     <br />
 
@@ -73,5 +143,120 @@
     <a class="btn btn-secondary" asp-controller="Usuario" asp-action="Index" role="button">Voltar</a>
 </form>
 
+<script>
+    // Seleciona o campo de telefone
+    const inputCelular = document.getElementById('celular');
 
+    // Adiciona um listener para o evento 'input'
+    inputCelular.addEventListener('input', function (event) {
+        // Remove todos os caracteres não numéricos
+        let phone = event.target.value.replace(/\D/g, '');
+
+        // Limita a entrada do usuário a no máximo 11 caracteres
+        phone = phone.slice(0, 11);
+
+
+        // Formata o número de telefone
+        if (phone.length > 10) {
+            phone = phone.replace(/^(\d{2})(\d{5})(\d{4}).*/, '($1) $2-$3');
+        } else {
+            phone = phone.replace(/^(\d{2})(\d{5})(\d{4}).*/, '($1) $2-$3');
+        }
+
+        // Atualiza o valor do campo de telefone com o número formatado
+        event.target.value = phone;
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        // Seleciona o campo de entrada
+        const codigoFuncionalInput = document.getElementById('codigoFuncional');
+        // Seleciona a mensagem de erro
+        const codigoFuncionalError = document.getElementById('codigoFuncionalError');
+
+        // Adiciona um listener para o evento 'input'
+        codigoFuncionalInput.addEventListener('input', function (event) {
+            // Verifica se o valor contém apenas números
+            if (!/^[0-9]*$/.test(event.target.value)) {
+                // Se não for um número, exibe a mensagem de erro e limpa o campo
+                codigoFuncionalError.style.display = 'block';
+                event.target.value = '';
+            } else {
+                // Se for um número, esconde a mensagem de erro
+                codigoFuncionalError.style.display = 'none';
+            }
+        });
+    });
+</script>
+
+<script>
+    // Função para validar se as senhas coincidem
+    function validarSenhas() {
+        var senha1 = document.getElementById("senha1").value;
+        var senha2 = document.getElementById("senha2").value;
+
+        // Verifica se as senhas são iguais
+        if (senha1 !== senha2) {
+            // Se não forem iguais, exibe uma mensagem de erro
+            document.getElementById("senhaError").style.display = "block";
+            return false; // Impede o envio do formulário
+        }
+        else {
+            // Se forem iguais, esconde a mensagem de erro (se estiver sendo exibida)
+            document.getElementById("senhaError").style.display = "none";
+            return true; // Permite o envio do formulário
+        }
+    }
+
+    // Event listener para o formulário
+    document.getElementById("formulario").addEventListener("submit", function (event) {
+        // Chama a função validarSenhas ao enviar o formulário
+        if (!validarSenhas()) {
+            // Se a função validarSenhas retornar false, cancela o envio do formulário
+            event.preventDefault();
+        }
+    });
+</script>
+
+<script>
+    // Seleciona o formulário
+    const form = document.querySelector('form');
+
+    // Adiciona um listener para o evento 'submit' no formulário
+    form.addEventListener('submit', function (event) {
+        // Seleciona o campo de código funcional
+        const codigoFuncionalInput = document.getElementById('codigoFuncional');
+        // Seleciona o span de erro
+        const codigoFuncionalError = document.getElementById('codigoFuncionalError');
+
+        // Verifica se o campo de código funcional está vazio
+        if (codigoFuncionalInput.value.trim() === '') {
+            // Se estiver vazio, exibe uma mensagem de erro
+            codigoFuncionalError.style.display = 'block';
+            // Impede o envio do formulário
+            event.preventDefault();
+        } else {
+            // Se o campo não estiver vazio, esconde a mensagem de erro
+            codigoFuncionalError.style.display = 'none';
+        }
+    });
+</script>
+
+<script>
+    // Função para converter campos em caixa alta antes de enviar o formulário
+    function uppercaseFields() {
+        // Seleciona todos os campos de texto com a classe 'uppercase'
+        var uppercaseFields = document.querySelectorAll('input.uppercase');
+
+        // Itera sobre os campos e converte seus valores em caixa alta
+        uppercaseFields.forEach(function (field) {
+            field.value = field.value.toUpperCase();
+        });
+    }
+
+    // Event listener para o formulário
+    document.getElementById("formulario").addEventListener("submit", function (event) {
+        // Chama a função para converter os campos em caixa alta antes de enviar o formulário
+        uppercaseFields();
+    });
+</script>
 
