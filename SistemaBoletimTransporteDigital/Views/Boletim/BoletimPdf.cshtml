@@ -31,6 +31,12 @@
         page-break-inside: avoid;
     }
 
+    td.descricao {
+    max-width: 300px; /* Defina a largura máxima da célula de descrição */
+    white-space: nowrap; /* Evita que o texto seja quebrado */
+    overflow: hidden; /* Oculta o texto que ultrapassa a largura */
+    text-overflow: ellipsis; /* Adiciona reticências (...) ao final do texto truncado */
+}
 
 </style>
 
@@ -90,9 +96,9 @@
                 <tr class ="no-page-break">
                     <td>@corrida.DataInicioCorrida.ToShortDateString()</td>
                     <td>@corrida.Usuario.CodigoFuncional</td>
-                    <td>@corrida.KmInicial</td>
-                    <td>@corrida.KmFinal</td>
-                    <td>@corrida.KmPercorrido</td>
+                    <td class="formatted-quilometragem">@corrida.KmInicial</td>
+                    <td class="formatted-quilometragem">@corrida.KmFinal</td>
+                    <td class="formatted-quilometragem">@corrida.KmPercorrido</td>
                     <td>@corrida.DataInicioCorrida.ToShortTimeString()</td>
                     <td>@corrida.DataFinalCorrida.Value.ToString("HH:mm")</td>
                     <td>@corrida.LocalSaidaCorrida</td>
@@ -131,7 +137,7 @@
                         <td>@manutencao.DataManutencao.ToShortDateString()</td>
                         <td>@manutencao.Veiculo.Prefixo</td>
                         <td>@(manutencao.TipoManutencao == SistemaBoletimTransporteDigital.Enums.ManutencaoEnum.Manutencao ? "Manutenção" : "Abastecimento")</td>
-                        <td>@manutencao.DescricaoManutencao</td>
+                        <td class="descricao">@manutencao.DescricaoManutencao</td>
                     </tr>
                 
             }
@@ -157,7 +163,19 @@
     </p>
 </div>
 
+<script>
+    // Função para formatar a quilometragem com separador de milhares
+    function formatarQuilometragem() {
+        var quilometragemCells = document.querySelectorAll('.formatted-quilometragem');
+        quilometragemCells.forEach(function (cell) {
+            var valor = parseInt(cell.textContent.replace(/\D/g, ''));
+            var valorFormatado = valor.toLocaleString('pt-BR');
+            cell.textContent = valorFormatado;
+        });
+    }
 
-
-
-
+    // Chama a função de formatação ao carregar a página
+    document.addEventListener('DOMContentLoaded', function () {
+        formatarQuilometragem();
+    });
+</script>
