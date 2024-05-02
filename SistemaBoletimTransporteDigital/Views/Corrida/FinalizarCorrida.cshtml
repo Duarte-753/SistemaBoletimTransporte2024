@@ -30,7 +30,7 @@
     <div class="row">
         <div class="col-4">
             <label for="KmFinal">KM do Veículo:</label>
-            <input type="text" id="KmFinal" name="KmFinal" class="form-control" required>
+            <input type="text" id="KmFinal" name="KmFinal" class="form-control"  required>
             <div class="invalid-feedback">A quilometragem final deve ser maior que a quilometragem inicial.</div>
         </div>
 
@@ -48,6 +48,108 @@
 </form>
 
 <script>
+    document.getElementById('finalizarCorridaForm').addEventListener('submit', function (event) {
+        var kmFinal = document.getElementById('KmFinal').value;
+        var localChegada = document.getElementById('LocalChegadaCorrida').value;
+
+        if (!kmFinal || !localChegada) {
+            event.preventDefault(); // Impede o envio do formulário se algum campo estiver vazio
+            event.stopPropagation(); // Evita a propagação do evento de envio
+            if (!kmFinal) {
+                document.getElementById('KmFinal').classList.add('is-invalid');
+            }
+            if (!localChegada) {
+                document.getElementById('LocalChegadaCorrida').classList.add('is-invalid');
+            }
+        } else {
+            var kmInicial = parseInt('@Model.KmInicial'.replace(/\./g, ''));
+            var kmFinal = parseInt(document.getElementById('KmFinal').value.replace(/\./g, ''));
+
+            if (kmFinal <= kmInicial) {
+                event.preventDefault(); // Impede o envio do formulário se a quilometragem final for menor ou igual à inicial
+                event.stopPropagation(); // Evita a propagação do evento de envio
+                document.getElementById('KmFinal').classList.add('is-invalid');
+                // alert('A quilometragem final deve ser maior que a quilometragem inicial.');
+            }
+        }
+    });
+
+    // Função para formatar o valor do campo KM do Veículo durante a entrada de dados
+    function formatarKmInput(input) {
+        var value = input.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+        value = value.replace(/\B(?=(\d{3})+(?!\d))/g, "."); // Adiciona separador de milhar
+        input.value = value;
+    }
+
+    // Função para remover o ponto antes de enviar o formulário
+    function removerPontoAntesSubmit() {
+        var kmInput = document.getElementById('KmFinal');
+        kmInput.value = kmInput.value.replace(/\./g, ''); // Remove todos os pontos
+    }
+
+    // Adiciona um ouvinte de evento para chamar a função de formatação enquanto o usuário digita
+    document.addEventListener('DOMContentLoaded', function () {
+        var kmInput = document.getElementById('KmFinal');
+        kmInput.addEventListener('input', function () {
+            formatarKmInput(this);
+        });
+
+        // Adiciona um ouvinte de evento para chamar a função de remoção do ponto antes do submit
+        var form = document.getElementById('finalizarCorridaForm');
+        form.addEventListener('submit', function () {
+            removerPontoAntesSubmit();
+        });
+    });
+</script>
+
+<script>
+    // Função para formatar o valor do campo KM do Veículo durante a entrada de dados
+    function formatarKmInput(input) {
+        // Remove todos os caracteres não numéricos
+        var value = input.value.replace(/\D/g, '');
+
+        // Limita o número máximo de caracteres a 6
+        if (value.length > 6) {
+            value = value.slice(0, 6);
+        }
+
+        // Adiciona separador de milhar
+        var formattedValue = '';
+        for (var i = 0; i < value.length; i++) {
+            if (i > 0 && (value.length - i) % 3 === 0) {
+                formattedValue += '.';
+            }
+            formattedValue += value.charAt(i);
+        }
+
+        // Atualiza o valor do campo
+        input.value = formattedValue;
+    }
+
+    // Função para remover o ponto antes de enviar o formulário
+    function removerPontoAntesSubmit() {
+        var kmInput = document.getElementById('KmFinal');
+        kmInput.value = kmInput.value.replace(/\./g, ''); // Remove todos os pontos
+    }
+
+    // Adiciona um ouvinte de evento para chamar a função de formatação enquanto o usuário digita
+    document.addEventListener('DOMContentLoaded', function () {
+        var kmInput = document.getElementById('KmFinal');
+        kmInput.addEventListener('input', function () {
+            formatarKmInput(this);
+        });
+
+        // Adiciona um ouvinte de evento para chamar a função de remoção do ponto antes do submit
+        var form = document.getElementById('finalizarCorridaForm');
+        form.addEventListener('submit', function () {
+            removerPontoAntesSubmit();
+        });
+    });
+</script>
+
+
+
+@* <script>
     document.getElementById('finalizarCorridaForm').addEventListener('submit', function (event) {
         var kmFinal = document.getElementById('KmFinal').value;
         var localChegada = document.getElementById('LocalChegadaCorrida').value;
@@ -90,7 +192,7 @@
         });
     });
 </script>
-
+ *@
 
 
 
