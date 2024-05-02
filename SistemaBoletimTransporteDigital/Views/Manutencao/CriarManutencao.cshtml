@@ -9,11 +9,23 @@
 </div>
 <br />
 
-<form asp-controller="Manutencao" asp-action="CriarManutencao" method="post" enctype="multipart/form-data">
+<style>
+    /* Estilo para inputs em caixa alta */
+    input.uppercase {
+        text-transform: uppercase;
+    }
+
+    /* Estilo para inputs em caixa baixa */
+    input.lowercase {
+        text-transform: lowercase;
+    }
+</style>
+
+<form asp-controller="Manutencao" asp-action="CriarManutencao" method="post" enctype="multipart/form-data" id="formulario">
     
     <div class="form-group">
         <label for="DescricaoManutencao">Descrição da Manutenção:</label>
-        <textarea asp-for="DescricaoManutencao" class="form-control"></textarea>
+        <textarea asp-for="DescricaoManutencao" class="form-control uppercase" maxlength="400" oninput="this.value = this.value.toUpperCase()"></textarea>
         @Html.ValidationMessageFor(x => x.DescricaoManutencao)
     </div>
     <br />
@@ -32,6 +44,7 @@
     <div class="form-group">
         <label for="Imagem">Foto comprovante ou arquivo em PDF:</label>
         <input type="file" name="Imagem" class="form-control-file" />
+        <span class="text-danger" id="arquivoError" style="display: none;">Por favor, selecione um arquivo.</span>
     </div>
     <br />
 
@@ -39,5 +52,33 @@
     <button type="submit" class="btn btn-success">Adicionar Manutenção</button>
     <a class="btn btn-secondary" asp-controller="Corrida" asp-action="Index">Voltar</a>
 </form>
+
+<script>
+    // Função para validar se um arquivo foi selecionado
+    function validarArquivo() {
+        // Obtém o elemento de entrada de arquivo
+        var inputFile = document.querySelector('input[type="file"]');
+
+        // Verifica se o campo de arquivo está vazio
+        if (inputFile.files.length === 0) {
+            // Se nenhum arquivo for selecionado, exibe a mensagem de erro
+            document.getElementById("arquivoError").style.display = "block";
+            return false; // Impede o envio do formulário
+        } else {
+            // Se um arquivo for selecionado, esconde a mensagem de erro (se estiver sendo exibida)
+            document.getElementById("arquivoError").style.display = "none";
+            return true; // Permite o envio do formulário
+        }
+    }
+
+    // Event listener para o formulário
+    document.getElementById("formulario").addEventListener("submit", function (event) {
+        // Chama a função validarArquivo ao enviar o formulário
+        if (!validarArquivo()) {
+            // Se a função validarArquivo retornar false, cancela o envio do formulário
+            event.preventDefault();
+        }
+    });
+</script>
 
 

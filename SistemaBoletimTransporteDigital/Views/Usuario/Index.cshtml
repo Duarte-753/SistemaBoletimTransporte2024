@@ -41,12 +41,12 @@
     <table class="table table-hover" id="table-usuario">
         <thead>
             <tr>
-                <th scope="col">Código Funcional:</th>
-                <th scope="col">Nome:</th>
-                <th scope="col">Usuário:</th>
-                <th scope="col">Perfil:</th>
-                <th scope="col">Criação:</th>
-                <th scope="col">Última Atualização:</th>
+                <th scope="col">Código Funcional</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Usuário</th>
+                <th scope="col">Perfil</th>
+                <th scope="col">Criação</th>
+                <th scope="col">Última Atualização</th>
                 <th scope="col"></th>
             </tr>
         </thead>
@@ -63,6 +63,7 @@
                             <th scope="row">@usuario.CodigoFuncional</th>
                             <td>@usuario.Nome</td>
                             <td>@usuario.Usuario</td>
+                           @*  <td class="perfil-uppercase">@usuario.Perfil</td> *@
                             <td>@usuario.Perfil</td>
                             <td>@usuario.DataCriacao</td>
                             <td>@usuario.DataUltimaAtualizacao</td>
@@ -83,4 +84,10 @@
 </div>
 
 
-
+@* <script>
+    // Converte o texto do elemento para caixa alta
+    document.addEventListener('DOMContentLoaded', function () {
+        var perfilElement = document.querySelector('.perfil-uppercase');
+        perfilElement.textContent = perfilElement.textContent.toUpperCase();
+    });
+</script> *@

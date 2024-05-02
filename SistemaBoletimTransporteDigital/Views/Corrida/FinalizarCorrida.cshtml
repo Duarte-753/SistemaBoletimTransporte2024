@@ -12,19 +12,31 @@
 
 </div>
 
-<form id="finalizarCorridaForm" asp-controller="Corrida" asp-action="FinalizarCorrida" method="post">
+<style>
+    /* Estilo para inputs em caixa alta */
+    input.uppercase {
+        text-transform: uppercase;
+    }
+
+    /* Estilo para inputs em caixa baixa */
+    input.lowercase {
+        text-transform: lowercase;
+    }
+</style>
+
+<form id="finalizarCorridaForm" asp-controller="Corrida" asp-action="FinalizarCorrida" method="post" >
     <input type="hidden" asp-for="Id" />
 
     <div class="row">
         <div class="col-4">
             <label for="KmFinal">KM do Veículo:</label>
-            <input type="text" id="KmFinal" name="KmFinal" class="form-control" placeholder="Exemplo: 4543235..." required>
+            <input type="text" id="KmFinal" name="KmFinal" class="form-control" required>
             <div class="invalid-feedback">A quilometragem final deve ser maior que a quilometragem inicial.</div>
         </div>
 
         <div class="col-4">
             <label for="LocalChegadaCorrida">Local de Chegada:</label>
-            <input type="text" id="LocalChegadaCorrida" name="LocalChegadaCorrida" class="form-control" placeholder="Exemplo: Cerejeiras Atibaia" required>
+            <input type="text" id="LocalChegadaCorrida" name="LocalChegadaCorrida" class="form-control uppercase" maxlength="30" oninput="this.value = this.value.toUpperCase()" required>
             <div class="invalid-feedback">Por favor, preencha o campo Local de Chegada.</div>
         </div>
     </div>
@@ -36,7 +48,7 @@
 </form>
 
 <script>
-    document.getElementById('finalizarCorridaForm').addEventListener('submit', function(event) {
+    document.getElementById('finalizarCorridaForm').addEventListener('submit', function (event) {
         var kmFinal = document.getElementById('KmFinal').value;
         var localChegada = document.getElementById('LocalChegadaCorrida').value;
 
@@ -49,21 +61,36 @@
             if (!localChegada) {
                 document.getElementById('LocalChegadaCorrida').classList.add('is-invalid');
             }
+        } else {
+            var kmInicial = parseInt('@Model.KmInicial'.replace(/\./g, ''));
+            var kmFinal = parseInt(kmFinal.replace(/\./g, ''));
+
+            if (kmFinal <= kmInicial) {
+                event.preventDefault(); // Impede o envio do formulário se a quilometragem final for menor ou igual à inicial
+                event.stopPropagation(); // Evita a propagação do evento de envio
+                document.getElementById('KmFinal').classList.add('is-invalid');
+                // alert('A quilometragem final deve ser maior que a quilometragem inicial.');
+            }
         }
     });
 
-    document.getElementById('finalizarCorridaForm').addEventListener('submit', function (event) {
-        var kmInicial = @Model.KmInicial;
-        var kmFinal = parseInt(document.getElementById('KmFinal').value);
+    // Função para formatar o valor do campo KM do Veículo
+    function formatarKmInput(input) {
+        var value = input.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+        value = value.slice(0, 6); // Limita o número máximo de caracteres a 6
+        // Atualiza o valor do campo sem o ponto de milhar
+        input.value = value;
+    }
 
-        if (kmFinal <= kmInicial) {
-            event.preventDefault(); // Impede o envio do formulário se a quilometragem final for menor ou igual à inicial
-            event.stopPropagation(); // Evita a propagação do evento de envio
-            document.getElementById('KmFinal').classList.add('is-invalid');
-            // alert('A quilometragem final deve ser maior que a quilometragem inicial.');
-        }
+    // Adiciona um ouvinte de evento para chamar a função de formatação enquanto o usuário digita
+    document.addEventListener('DOMContentLoaded', function () {
+        var kmInput = document.getElementById('KmFinal');
+        kmInput.addEventListener('input', function () {
+            formatarKmInput(this);
+        });
     });
 </script>
+
 
 
 

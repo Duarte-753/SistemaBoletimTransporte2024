@@ -12,13 +12,25 @@
 
 </div>
 
-<form asp-controller="Corrida" asp-action="CriarCorrida" method="post">
+<style>
+    /* Estilo para inputs em caixa alta */
+    input.uppercase {
+        text-transform: uppercase;
+    }
+
+    /* Estilo para inputs em caixa baixa */
+    input.lowercase {
+        text-transform: lowercase;
+    }
+</style>
+
+<form asp-controller="Corrida" asp-action="CriarCorrida" method="post" id="myForm">
 
     <div class="row">
 
         <div class="col-4">
             <label for="descricaocorrida">Descrição da corrida:</label>
-            <input type="text" asp-for="DescricaoCorrida" class="form-control" placeholder="Exemplo: Indo para escola Etec...">
+            <input type="text" asp-for="DescricaoCorrida" class="form-control uppercase" oninput="this.value = this.value.toUpperCase()">
             @Html.ValidationMessageFor(x => x.DescricaoCorrida)
         </div>
 
@@ -46,13 +58,14 @@
 
         <div class="col-4">
             <label for="kminicial">KM do Veículo:</label>
-            <input type="text" asp-for="KmInicial" class="form-control" placeholder="Exemplo: 4543235...">
+            <input type="text" asp-for="KmInicial" id="kminicial" class="form-control">
+            <span id="kmValidationMessage" style="color: red; display: none;">O valor não pode ser 0.</span>
             @Html.ValidationMessageFor(x => x.KmInicial)
         </div>
 
         <div class="col-4">
             <label for="localsaida">Local de Saída:</label>
-            <input type="text" asp-for="LocalSaidaCorrida" class="form-control" placeholder="Exemplo: Centro Atibaia">
+            <input type="text" asp-for="LocalSaidaCorrida" class="form-control uppercase" oninput="this.value = this.value.toUpperCase()">
             @Html.ValidationMessageFor(x => x.LocalSaidaCorrida)
         </div>
       
@@ -64,6 +77,47 @@
     <button type="submit" class="btn btn-success">Iniciar Corrida</button>
     <a class="btn btn-secondary" asp-controller="Corrida" asp-action="Index" role="button">Voltar</a>
 </form>
+
+<script>
+    // Função para formatar o valor do campo KM do Veículo
+    function formatarKmInput(input) {
+        var value = input.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+        value = value.slice(0, 6); // Limita o número máximo de caracteres a 6
+        // Adiciona separador de milhares manualmente
+        var formattedValue = '';
+        for (var i = 0; i < value.length; i++) {
+            if (i > 0 && i % 3 === 0) {
+                formattedValue = '.' + formattedValue;
+            }
+            formattedValue = value.charAt(value.length - 1 - i) + formattedValue;
+        }
+        input.value = formattedValue; // Atualiza o valor do campo
+    }
+
+    // Função para remover o ponto antes de enviar o formulário
+    function removerPontoAntesSubmit() {
+        var kmInput = document.getElementById('kminicial');
+        kmInput.value = kmInput.value.replace(/\./g, ''); // Remove todos os pontos
+    }
+
+    // Adiciona um ouvinte de evento para chamar a função de formatação enquanto o usuário digita
+    document.addEventListener('DOMContentLoaded', function () {
+        var kmInput = document.getElementById('kminicial');
+        kmInput.addEventListener('input', function () {
+            formatarKmInput(this);
+        });
+
+        // Adiciona um ouvinte de evento para chamar a função de remoção do ponto antes do submit
+        var form = document.getElementById('myForm');
+        form.addEventListener('submit', function () {
+            removerPontoAntesSubmit();
+        });
+    });
+</script>
+
+
+
+
 
 
 
