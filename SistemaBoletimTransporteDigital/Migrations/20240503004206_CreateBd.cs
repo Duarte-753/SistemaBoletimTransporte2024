@@ -3,12 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
-
 namespace SistemaBoletimTransporteDigital.Migrations
 {
     /// <inheritdoc />
-    public partial class CreateDb : Migration
+    public partial class CreateBd : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -128,22 +126,7 @@ namespace SistemaBoletimTransporteDigital.Migrations
             migrationBuilder.InsertData(
                 table: "Usuario",
                 columns: new[] { "Id", "Celular", "CodigoFuncional", "CorridaStatus", "DataCriacao", "DataUltimaAtualizacao", "Email", "EstaVinculadoAumaCorrida", "Nome", "Perfil", "Senha", "Usuario" },
-                values: new object[,]
-                {
-                    { 1, "11912345678", 1234, 4, new DateTime(2024, 4, 30, 15, 25, 1, 240, DateTimeKind.Local).AddTicks(7460), new DateTime(2024, 4, 30, 15, 25, 1, 240, DateTimeKind.Local).AddTicks(7460), "julioduartebatista753@gmail.com", 6, "admin", 1, "d033e22ae348aeb5660fc2140aec35850c4da997", "ADMIN" },
-                    { 2, "11912345678", 567, 4, new DateTime(2024, 4, 30, 15, 25, 1, 240, DateTimeKind.Local).AddTicks(7499), new DateTime(2024, 4, 30, 15, 25, 1, 240, DateTimeKind.Local).AddTicks(7499), "julioduartebatista753@gmail.com", 6, "motorista", 3, "a61e38f3910fba1d8e1fb97f4b3561df07ab0d81", "MOTORISTA" },
-                    { 3, "11912345678", 9876, 4, new DateTime(2024, 4, 30, 15, 25, 1, 240, DateTimeKind.Local).AddTicks(7515), new DateTime(2024, 4, 30, 15, 25, 1, 240, DateTimeKind.Local).AddTicks(7516), "julioduartebatista753@gmail.com", 6, "motorista2", 3, "b739522c59a564437fc8c6ad639176f704766596", "MOTORISTA2" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Veiculos",
-                columns: new[] { "Id", "Ano", "CadastroSistema", "CarroEmUso", "Cor", "DataUltimaAtualizacao", "Placa", "Prefixo", "Quilometragem", "Valor", "Veiculo", "VinculadoCarroAcorrida" },
-                values: new object[,]
-                {
-                    { 1, 2014, new DateTime(2024, 4, 30, 15, 25, 1, 240, DateTimeKind.Local).AddTicks(7538), 1, "Branco", new DateTime(2024, 4, 30, 15, 25, 1, 240, DateTimeKind.Local).AddTicks(7539), "FWF-1232", 12345, 12600, 259875, "Golf", null },
-                    { 2, 2016, new DateTime(2024, 4, 30, 15, 25, 1, 240, DateTimeKind.Local).AddTicks(7558), 1, "Branco", new DateTime(2024, 4, 30, 15, 25, 1, 240, DateTimeKind.Local).AddTicks(7559), "ASD-2345", 678910, 450067, 15000, "Fiat Uno", null },
-                    { 3, 2024, new DateTime(2024, 4, 30, 15, 25, 1, 240, DateTimeKind.Local).AddTicks(7575), 1, "Azul", new DateTime(2024, 4, 30, 15, 25, 1, 240, DateTimeKind.Local).AddTicks(7575), "JHF-7653", 121235, 100, 45000, "Palio Weekend", null }
-                });
+                values: new object[] { 1, "11912345678", 0, 4, new DateTime(2024, 5, 2, 21, 42, 5, 940, DateTimeKind.Local).AddTicks(9578), new DateTime(2024, 5, 2, 21, 42, 5, 940, DateTimeKind.Local).AddTicks(9580), "julioduartebatista753@gmail.com", 6, "admin", 1, "d033e22ae348aeb5660fc2140aec35850c4da997", "ADMIN" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Corridas_UsuarioID",
