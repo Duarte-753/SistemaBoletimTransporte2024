@@ -17,7 +17,7 @@ namespace SistemaBoletimTransporteDigital.AppDbSeed
                 new UsuarioModel
                 {
                     Id = 1,
-                    CodigoFuncional = 1234,
+                    CodigoFuncional = 0,
                     Nome = "admin",
                     Usuario = "ADMIN",
                     Senha = "d033e22ae348aeb5660fc2140aec35850c4da997",
@@ -72,59 +72,42 @@ namespace SistemaBoletimTransporteDigital.AppDbSeed
 
         private static void SeedVeiculos(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<VeiculoModel>().HasData(
-                new VeiculoModel
-                {
-                    Id = 1,
-                    Prefixo = 12345,
-                    Veiculo = "GOLF GTI",
-                    Cor = "BRANCO",
-                    Placa = "FWF1232",
-                    Quilometragem = 12600,
-                    Ano = 2014,
-                    Valor = 259875,
-                    CadastroSistema = DateTime.Now,
-                    DataUltimaAtualizacao = DateTime.Now,
-                    CarroEmUso = Enums.CarroEmUsoEnum.Disponivel,
-                    // Popule outras propriedades
-                }
-            );
+           // modelBuilder.Entity<VeiculoModel>().HasData(
+           //     new VeiculoModel
+           //     {
+           //         Id = 1,
+           //         Prefixo = 12345,
+           //         Veiculo = "GOLF GTI",
+           //         Cor = "BRANCO",
+           //         Placa = "FWF1232",
+           //         Quilometragem = 12600,
+           //         Ano = 2014,
+           //         Valor = 259875,
+           //         CadastroSistema = DateTime.Now,
+           //         DataUltimaAtualizacao = DateTime.Now,
+           //         CarroEmUso = Enums.CarroEmUsoEnum.Disponivel,
+           //         // Popule outras propriedades
+           //     }
+           // );
 
-            modelBuilder.Entity<VeiculoModel>().HasData(
-               new VeiculoModel
-               {
-                   Id = 2,
-                   Prefixo = 678910,
-                   Veiculo = "FIAT UNO SPORT",
-                   Cor = "PRETO",
-                   Placa = "ASD2Y45",
-                   Quilometragem = 450067,
-                   Ano = 2016,
-                   Valor = 15000,
-                   CadastroSistema = DateTime.Now,
-                   DataUltimaAtualizacao = DateTime.Now,
-                   CarroEmUso = Enums.CarroEmUsoEnum.Disponivel,
-                   // Popule outras propriedades
-               }
-           );
-
-            // modelBuilder.Entity<VeiculoModel>().HasData(
-            //    new VeiculoModel
-            //    {
-            //        Id = 3,
-            //        Prefixo = 121235,
-            //        Veiculo = "Palio Weekend",
-            //        Cor = "Azul",
-            //        Placa = "JHF-7653",
-            //        Quilometragem = 100,
-            //        Ano = 2024,
-            //        Valor = 45000,
-            //        CadastroSistema = DateTime.Now,
-            //        DataUltimaAtualizacao = DateTime.Now,
-            //        CarroEmUso = Enums.CarroEmUsoEnum.Disponivel,
-            //        // Popule outras propriedades
-            //    }
-            //);
+           // modelBuilder.Entity<VeiculoModel>().HasData(
+           //    new VeiculoModel
+           //    {
+           //        Id = 2,
+           //        Prefixo = 678910,
+           //        Veiculo = "FIAT UNO SPORT",
+           //        Cor = "PRETO",
+           //        Placa = "ASD2Y45",
+           //        Quilometragem = 450067,
+           //        Ano = 2016,
+           //        Valor = 15000,
+           //        CadastroSistema = DateTime.Now,
+           //        DataUltimaAtualizacao = DateTime.Now,
+           //        CarroEmUso = Enums.CarroEmUsoEnum.Disponivel,
+           //        // Popule outras propriedades
+           //    }
+           //);
+         
             // Adicione mais veículos conforme necessário
         }
         
