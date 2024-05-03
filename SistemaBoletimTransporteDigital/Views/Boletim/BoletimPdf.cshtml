@@ -96,9 +96,9 @@
                 <tr class ="no-page-break">
                     <td>@corrida.DataInicioCorrida.ToShortDateString()</td>
                     <td>@corrida.Usuario.CodigoFuncional</td>
-                    <td class="formatted-quilometragem">@corrida.KmInicial</td>
-                    <td class="formatted-quilometragem">@corrida.KmFinal</td>
-                    <td class="formatted-quilometragem">@corrida.KmPercorrido</td>
+                    <td class="formatted-quilometragem">@String.Format("{0:N0}",corrida.KmInicial)</td>
+                    <td class="formatted-quilometragem">@String.Format("{0:N0}",corrida.KmFinal)</td>
+                    <td class="formatted-quilometragem">@String.Format("{0:N0}",corrida.KmPercorrido)</td>
                     <td>@corrida.DataInicioCorrida.ToShortTimeString()</td>
                     <td>@corrida.DataFinalCorrida.Value.ToString("HH:mm")</td>
                     <td>@corrida.LocalSaidaCorrida</td>
