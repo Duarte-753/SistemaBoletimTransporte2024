@@ -1,5 +1,177 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model SistemaBoletimTransporteDigital.ViewModels.BoletimViewModel
+@using SistemaBoletimTransporteDigital.Enums;
+
 @{
+    Layout = null;
 }
+
+
+@* <div class="text-center">
+    <h1 class="display-4">Boletim Mensal Gerado</h1>
+</div>
+<br /> *@
+
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+    }
+
+    th, td {
+        padding: 10px;
+        text-align: center;
+        page-break-inside: avoid;
+    }
+
+    .no-page-break {
+        page-break-inside: avoid;
+    }
+
+    td.descricao {
+        max-width: 300px; /* Defina a largura máxima da célula de descrição */
+        white-space: nowrap; /* Evita que o texto seja quebrado */
+        overflow: hidden; /* Oculta o texto que ultrapassa a largura */
+        text-overflow: ellipsis; /* Adiciona reticências (...) ao final do texto truncado */
+    }
+
+</style>
+
+
+<div class="table-responsive">
+    <!-- Informações gerais -->
+    <table border="1">
+        <tr>
+            <td style="width: 50%">
+                Prefeitura da Estância de Wakanda
+                Estado de São Paulo
+                Secretária da Educação
+                Boletim de Transportes
+            </td>
+            <td>
+                <table>
+                    <tr>
+                        <td>Período</td>
+                        <td>@Model.Filtros.DataInicial?.ToString("dd/MM/yyyy") até @Model.Filtros.DataFinal?.ToString("dd/MM/yyyy")</td>
+                    </tr>
+                    <tr>
+                        <td>Prefixo</td>
+                        <td>@Model.DadosCorrida.FirstOrDefault()?.Veiculo?.Prefixo</td>
+                    </tr>
+                    <tr>
+                        <td>Veículo</td>
+                        <td>@Model.VeiculoNome @* - @Model.DadosCorrida.FirstOrDefault()?.Veiculo?.Veiculo *@</td>
+                    </tr>
+                    <tr>
+                        <td>Placa</td>
+                        <td>@Model.Placa @* - @Model.DadosCorrida.FirstOrDefault()?.Veiculo?.Placa *@</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+    <!-- Tabela de corridas -->
+    <table class="table">
+        <thead>
+            <tr class="no-page-break">
+                <th>Data</th>
+                <th>Cód Funcional</th>
+                <th>KM Saída</th>
+                <th>KM Chegada</th>
+                <th>KM Total</th>
+                <th>Horário Saída</th>
+                <th>Horário Chegada</th>
+                <th>Local Saída</th>
+                <th>Local Chegada</th>
+                <th>Serviço Executado</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var corrida in Model.DadosCorrida)
+            {
+                <tr class="no-page-break">
+                    <td>@corrida.DataInicioCorrida.ToShortDateString()</td>
+                    <td>@corrida.Usuario.CodigoFuncional</td>
+                    <td class="formatted-quilometragem">@String.Format("{0:N0}", corrida.KmInicial)</td>
+                    <td class="formatted-quilometragem">@String.Format("{0:N0}", corrida.KmFinal)</td>
+                    <td class="formatted-quilometragem">@String.Format("{0:N0}", corrida.KmPercorrido)</td>
+                    <td>@corrida.DataInicioCorrida.ToShortTimeString()</td>
+                    <td>@corrida.DataFinalCorrida.Value.ToString("HH:mm")</td>
+                    <td>@corrida.LocalSaidaCorrida</td>
+                    <td>@corrida.LocalChegadaCorrida</td>
+                    <td>@corrida.DescricaoCorrida</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <!-- Tabela de abastecimento -->
+    <table class="table">
+        <thead>
+            <tr class="no-page-break">
+                <th rowspan="7">ABASTECIMENTO/MANUTENÇÃO</th>
+            </tr>
+
+        </thead>
+    </table>
+    <table class="table">
+        <thead>
+            @* <th rowspan="7">ABASTECIMENTO/MANUTENÇÃO</th> *@
+            <tr class="no-page-break">
+                <td>Data</td>
+                <td>Prefixo</td>
+                <td>Tipo</td>
+                <td>Descrição</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var manutencao in Model.DadosManutencao)
+            {
+                <tr class="no-page-break">
+                    <td>@manutencao.DataManutencao.ToShortDateString()</td>
+                    <td>@manutencao.Veiculo.Prefixo</td>
+                    <td>@(manutencao.TipoManutencao == SistemaBoletimTransporteDigital.Enums.ManutencaoEnum.Manutencao ? "Manutenção" : "Abastecimento")</td>
+                    <td class="descricao">@manutencao.DescricaoManutencao</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <table class="table">
+        <thead>
+            <tr class="no-page-break">
+                <th rowspan="7">ESTÃO SENDO ENTREGUES TODOS OS DISCOS OU RELATÓRIOS DO TACÓGRAFO<br /><br />________________</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+<br />
+<br />
+<br />
+<br />
+<div class="footer" style="position: fixed; bottom: 0; width: 100%; text-align: center; padding: 10px 0;">
+    <p class="no-page-break">
+        &copy; @DateTime.Now.Year - Sistema Boletim de Transporte Digital<br>
+        Contato: exemplo@boletimtransporte.com - Telefone: (11) 1234-5678
+    </p>
+</div>
+
+<script>
+    // Função para formatar a quilometragem com separador de milhares
+    function formatarQuilometragem() {
+        var quilometragemCells = document.querySelectorAll('.formatted-quilometragem');
+        quilometragemCells.forEach(function (cell) {
+            var valor = parseInt(cell.textContent.replace(/\D/g, ''));
+            var valorFormatado = valor.toLocaleString('pt-BR');
+            cell.textContent = valorFormatado;
+        });
+    }
+
+    // Chama a função de formatação ao carregar a página
+    document.addEventListener('DOMContentLoaded', function () {
+        formatarQuilometragem();
+    });
+</script>

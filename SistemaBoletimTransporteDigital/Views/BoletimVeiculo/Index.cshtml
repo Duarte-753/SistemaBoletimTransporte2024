@@ -1,5 +1,86 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model SistemaBoletimTransporteDigital.ViewModels.BoletimViewModel
+
 @{
+    ViewData["Title"] = "Boletim por Veículo";
 }
+
+<div class="text-center">
+    <h1 class="display-4">Boletim por Veículo</h1>
+</div>
+<br />
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <form method="post" asp-controller="BoletimVeiculo" asp-action="Index">
+                <div class="row">
+                    <div class="col-3">
+                        <label for="dataInicio" class="mr-2">Data de Início:</label>
+                        <input type="date" class="form-control" id="dataInicio" name="dataInicio" value="@Model.Filtros.DataInicial?.ToString("yyyy-MM-dd")" />
+                    </div>
+                    <div class="col-3">
+                        <label for="dataFinal" class="mr-2">Data Final:</label>
+                        <input type="date" class="form-control" id="dataFinal" name="dataFinal" value="@Model.Filtros.DataFinal?.ToString("yyyy-MM-dd")" />
+                    </div>                  
+                </div>
+                <button type="submit" class="btn btn-success mt-3">Filtrar</button>
+            </form>
+            @* <a asp-controller="Boletim" asp-action="BoletimPdf" asp-route-dataInicio="@Model.Filtros.DataInicial" asp-route-dataFinal="@Model.Filtros.DataFinal" class="btn btn-primary mt-3">Montar Boletim</a> *@
+        </div>
+    </div>
+</div>            @* <a asp-controller="Boletim" asp-action="BoletimPdf" asp-route-dataInicio="@Model.Filtros.DataInicial" asp-route-dataFinal="@Model.Filtros.DataFinal" class="btn btn-primary mt-3">Montar Boletim</a> *@
+
+
+@if (Model != null && Model.DadosCorrida != null && Model.DadosCorrida.Count > 0)
+{
+    <div class="table-responsive">
+        <h2>Carro usado no período selecionado</h2>
+        <table class="table table-hover" id="table-boletim" style="width:100%" class="table-responsive">
+            <thead>
+                <tr>
+                    <th>Veículo</th>
+                    <th>Boletim</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    HashSet<int> veiculosExibidos = new HashSet<int>();
+                }
+                @foreach (var corrida in Model.DadosCorrida)
+                {
+                    if (!veiculosExibidos.Contains(corrida.VeiculoID))
+                    {
+                        veiculosExibidos.Add(corrida.VeiculoID);
+                        <tr>
+                            <td>
+                                @if (corrida.Veiculo != null)
+                                {
+                                    @corrida.Veiculo.Veiculo
+                                }
+                                else
+                                {
+                                    @Html.DisplayFor(modelItem => corrida.VeiculoID)
+                                }
+                            </td>
+                            <td>
+                                <a role="button" class="btn btn-warning" asp-controller="Boletim"
+                                   asp-action="BoletimPdf"
+                                   asp-route-dataInicio="@Model.Filtros.DataInicial?.ToString("yyyy-MM-dd")"
+                                   asp-route-dataFinal="@Model.Filtros.DataFinal?.ToString("yyyy-MM-dd")"
+                                   asp-route-veiculoId="@corrida.VeiculoID">Gerar Boletim</a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <div class="container mt-5">
+        <h2>Nenhuma corrida encontrada para o período selecionado.</h2>
+    </div>
+}
+
+
