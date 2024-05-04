@@ -16,15 +16,18 @@ namespace SistemaBoletimTransporteDigital.Controllers
         private readonly ISessao _sessao;
         private readonly IVeiculoRepositorio _veiculoRepositorio;
         private readonly IUsuarioRepositorio _usuarioRepositorio;
+        private readonly IManutencaoRepositorio _manutencaoRepositorio;
 
 
-        public BoletimController(ICorridaRepositorio corridaRepositorio, ISessao sessao, IVeiculoRepositorio veiculoRepositorio, BancoContext bancoContext, IUsuarioRepositorio usuarioRepositorio)
+        public BoletimController(ICorridaRepositorio corridaRepositorio, ISessao sessao, IVeiculoRepositorio veiculoRepositorio,
+            BancoContext bancoContext, IUsuarioRepositorio usuarioRepositorio, IManutencaoRepositorio manutencaoRepositorio)
         {
             _bancoContext = bancoContext;
             _corridaRepositorio = corridaRepositorio;
             _sessao = sessao;
             _veiculoRepositorio = veiculoRepositorio;
             _usuarioRepositorio = usuarioRepositorio;
+            _manutencaoRepositorio = manutencaoRepositorio;
         }
 
         public async Task<IActionResult> Index(BoletimViewModel model)

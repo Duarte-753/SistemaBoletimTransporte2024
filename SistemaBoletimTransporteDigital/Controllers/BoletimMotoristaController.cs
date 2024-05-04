@@ -16,15 +16,18 @@ namespace SistemaBoletimTransporteDigital.Controllers
         private readonly ISessao _sessao;
         private readonly IVeiculoRepositorio _veiculoRepositorio;
         private readonly IUsuarioRepositorio _usuarioRepositorio;
+        private readonly IManutencaoRepositorio _manutencaoRepositorio;
 
 
-        public BoletimMotoristaController(ICorridaRepositorio corridaRepositorio, ISessao sessao, IVeiculoRepositorio veiculoRepositorio, BancoContext bancoContext, IUsuarioRepositorio usuarioRepositorio)
+        public BoletimMotoristaController(ICorridaRepositorio corridaRepositorio, ISessao sessao, IVeiculoRepositorio veiculoRepositorio,
+            BancoContext bancoContext, IUsuarioRepositorio usuarioRepositorio, IManutencaoRepositorio manutencaoRepositorio)
         {
             _bancoContext = bancoContext;
             _corridaRepositorio = corridaRepositorio;
             _sessao = sessao;
             _veiculoRepositorio = veiculoRepositorio;
             _usuarioRepositorio = usuarioRepositorio;
+            _manutencaoRepositorio = manutencaoRepositorio;
         }
 
         public async Task<IActionResult> Index(DateTime dataInicio, DateTime dataFinal, BoletimViewModel model)
@@ -142,6 +145,43 @@ namespace SistemaBoletimTransporteDigital.Controllers
             };
 
             return View(viewModel);
+        }
+        
+        public async Task<IActionResult> ManutencaoVeiculo(DateTime dataInicio, DateTime dataFinal, int veiculoId, int usuarioId)
+        {
+
+            dataFinal = dataFinal.AddDays(1).AddSeconds(-1);
+
+            var veiculo = await _bancoContext.Veiculos.Where(w => w.Id == veiculoId).FirstOrDefaultAsync();
+            var viewModel = new BoletimViewModel
+            {
+                Filtros = new Filtro
+                {
+                    DataFinal = dataFinal,
+                    DataInicial = dataInicio,
+
+                },
+                              
+                DadosManutencao = await _bancoContext.Manutencoes
+                                .Include(i => i.Veiculo)
+                               .Where(c => c.DataManutencao >= dataInicio
+                                   && c.DataManutencao <= dataFinal
+                                   && c.VeiculoID == veiculoId
+                                    && c.UsuarioID == usuarioId)
+                               .ToListAsync()
+            };
+           
+            return View(viewModel);
+        }
+
+        public IActionResult DetalhesDaManutencao(int Id)
+        {
+            ManutencaoModel manutencaoModel = _manutencaoRepositorio.ListarPorIdManutencao(Id);
+
+            var manutencaoModeldetalhes = new ManutencaoModel();
+            manutencaoModeldetalhes.VeiculosDisponiveis = _veiculoRepositorio.BuscarVeiculos();
+
+            return View(manutencaoModel);
         }
 
     }

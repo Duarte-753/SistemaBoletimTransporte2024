@@ -5,7 +5,7 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Boletim por Veículo</h1>
+    <h1 class="display-4">Boletim Mensal por Veículo</h1>
 </div>
 <br />
 
@@ -16,8 +16,11 @@
         <table class="table table-hover" id="table-boletim" style="width:100%" class="table-responsive">
             <thead>
                 <tr>
+                    <th>Prefixo</th>
                     <th>Veículo</th>
+                    <th>Placa</th>
                     <th>Boletim</th>
+                    <th>Manutenção</th>
                 </tr>
             </thead>
             <tbody>
@@ -33,7 +36,27 @@
                             <td>
                                 @if (corrida.Veiculo != null)
                                 {
+                                    @corrida.Veiculo.Prefixo
+                                }
+                                else
+                                {
+                                    @Html.DisplayFor(modelItem => corrida.VeiculoID)
+                                }
+                            </td>
+                            <td>
+                                @if (corrida.Veiculo != null)
+                                {
                                     @corrida.Veiculo.Veiculo
+                                }
+                                else
+                                {
+                                    @Html.DisplayFor(modelItem => corrida.VeiculoID)
+                                }
+                            </td>
+                            <td>
+                                @if (corrida.Veiculo != null)
+                                {
+                                    @corrida.Veiculo.Placa
                                 }
                                 else
                                 {
@@ -46,6 +69,13 @@
                                    asp-route-dataInicio="@Model.Filtros.DataInicial?.ToString("yyyy-MM-dd")"
                                    asp-route-dataFinal="@Model.Filtros.DataFinal?.ToString("yyyy-MM-dd")"
                                    asp-route-veiculoId="@corrida.VeiculoID">Gerar Boletim</a>
+                            </td>
+                            <td>
+                                <a role="button" class="btn btn-info" asp-controller="BoletimVeiculo"
+                                   asp-action="ManutencaoVeiculo"
+                                   asp-route-dataInicio="@Model.Filtros.DataInicial?.ToString("yyyy-MM-dd")"
+                                   asp-route-dataFinal="@Model.Filtros.DataFinal?.ToString("yyyy-MM-dd")"
+                                   asp-route-veiculoId="@corrida.VeiculoID">Manutenção</a>
                             </td>
                         </tr>
                     }
