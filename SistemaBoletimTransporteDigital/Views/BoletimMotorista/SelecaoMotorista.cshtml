@@ -1,17 +1,21 @@
-﻿@model SistemaBoletimTransporteDigital.ViewModels.BoletimViewModel
+﻿@using SistemaBoletimTransporteDigital.Enums;
+@model SistemaBoletimTransporteDigital.ViewModels.BoletimViewModel
 
 <form method="post" asp-controller="BoletimMotorista" asp-action="Index" onsubmit="return validateForm()">
     <div class="row">
         <div class="col-3">
-            <label for="usuario" class="mr-2">Veículo:</label>
+            <label for="usuario" class="mr-2">Motorista:</label>
             <select class="form-control" id="usuario" name="usuario">
                 <option value="">Selecione o usuário</option>
                 @if (Model.DadosUsuario != null && Model.DadosUsuario.Count > 0)
-                {
+                {                    
                     foreach (var usuario in Model.DadosUsuario)
                     {
-                        <option value="@usuario.Id">@usuario.Nome</option>
-                    }
+                        if (usuario.Perfil == PerfilEnum.motorista)
+                        {
+                            <option value="@usuario.Id">@usuario.Nome</option>
+                        }                     
+                    }                                   
                 }
             </select>
             <!-- Adicione um campo oculto para armazenar o ID do Usuário selecionado -->
