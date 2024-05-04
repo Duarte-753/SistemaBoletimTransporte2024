@@ -25,7 +25,6 @@ namespace SistemaBoletimTransporteDigital.Repositorio
         void NaoUsoVeiculo(CorridaModel corridaRepositorio);
 
         void CalcKmPercorrido(CorridaModel corridaRepositorio);
-     
-
+        List<CorridaModel> BuscarCorrida();
     }
 }

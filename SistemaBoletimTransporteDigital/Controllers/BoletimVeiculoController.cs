@@ -27,11 +27,10 @@ namespace SistemaBoletimTransporteDigital.Controllers
             _usuarioRepositorio = usuarioRepositorio;
         }
 
-        public async Task<IActionResult> Index(DateTime dataInicio, DateTime dataFinal, int veiculoId)
+        public async Task<IActionResult> Index(DateTime dataInicio, DateTime dataFinal, BoletimViewModel model)
         {         
             dataFinal = dataFinal.AddDays(1).AddSeconds(-1);
-
-            List<VeiculoModel> veiculos = _veiculoRepositorio.BuscarVeiculos();
+            int veiculoId = model.VeiculoId;
 
             var veiculosid = _veiculoRepositorio.ListarPorIdVeiculos(veiculoId);
 
@@ -63,50 +62,11 @@ namespace SistemaBoletimTransporteDigital.Controllers
 
             return View(viewModel);
         }
-
-        //[HttpPost]
-        //public async Task<IActionResult> Index(DateTime dataInicio, DateTime dataFinal, int veiculo)
-        //{
-        //  var veiculoId = _veiculoRepositorio.ListarPorIdVeiculos(veiculo);
-
-        //    dataFinal = dataFinal.AddDays(1).AddSeconds(-1);
-
-        //    var corridas = await _bancoContext.Corridas
-        //                        .Where(c => c.DataInicioCorrida >= dataInicio &&
-        //                        c.DataFinalCorrida <= dataFinal &&
-        //                        c.VeiculoID == veiculoId.Id).ToListAsync();
-
-        //    var manutencoes = await _bancoContext.Manutencoes
-        //                       .Where(c => c.DataManutencao >= dataInicio &&
-        //                       c.DataManutencao <= dataFinal &&
-        //                       c.VeiculoID == veiculoId.Id).ToListAsync();
-
-        //    var viewModel = new BoletimViewModel
-        //    {
-        //        Filtros = new Filtro
-        //        {
-        //            DataFinal = dataFinal,
-        //            DataInicial = dataInicio,
-        //        },
-        //        DadosCorrida = corridas,// Usar os resultados da consulta como dados
-        //        DadosManutencao = manutencoes
-        //    };
-
-        //    var corrida = new CorridaModel();
-        //    corrida.VeiculosDisponiveis = _veiculoRepositorio.BuscarVeiculos();
-
-        //    var usuario = new UsuarioModel();
-        //    usuario.UsuariosDisponiveis = _usuarioRepositorio.BuscarUsuario();
-
-        //    return View(viewModel);
-        //}
-
+     
         public async Task<IActionResult> BoletimVeiculoPdf(DateTime dataInicio, DateTime dataFinal, int veiculoId)
         {          
-            var corridasUsuario = _corridaRepositorio.BuscarCorrida(veiculoId);
-
+            
             dataFinal = dataFinal.AddDays(1).AddSeconds(-1);
-
 
             var veiculo = await _bancoContext.Veiculos.Where(w => w.Id == veiculoId).FirstOrDefaultAsync();
             var viewModel = new BoletimViewModel
@@ -141,7 +101,7 @@ namespace SistemaBoletimTransporteDigital.Controllers
             var usuario = new UsuarioModel();
             usuario.UsuariosDisponiveis = _usuarioRepositorio.BuscarUsuario();
            
-            var pdfOptions = new ViewAsPdf("BoletimPdf", viewModel)
+            var pdfOptions = new ViewAsPdf("BoletimVeiculoPdf", viewModel)
             {
                 FileName = dataInicio.Date.ToString("dd-MM-yyyy") + "_" + dataFinal.Date.ToString("dd-MM-yyyy") + "_Boletim.pdf",
                 PageSize = Rotativa.AspNetCore.Options.Size.A4,
@@ -153,7 +113,9 @@ namespace SistemaBoletimTransporteDigital.Controllers
         }
 
         public IActionResult SelecaoVeiculo(BoletimViewModel model)
-        { // Definir datas padrão caso não tenham sido fornecidas
+        {
+            
+            // Definir datas padrão caso não tenham sido fornecidas
             if (!model.Filtros.DataInicial.HasValue)
             {
                 model.Filtros.DataInicial = DateTime.Now.AddMonths(-1);
@@ -173,7 +135,7 @@ namespace SistemaBoletimTransporteDigital.Controllers
                 {
                     DataFinal = dataFinal,
                     DataInicial = dataInicio,
-                },
+                }, 
                 DadosVeiculos = _veiculoRepositorio.BuscarVeiculos()
             };
         

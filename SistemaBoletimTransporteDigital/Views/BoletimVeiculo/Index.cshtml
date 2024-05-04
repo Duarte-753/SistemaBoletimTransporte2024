@@ -41,8 +41,8 @@
                                 }
                             </td>
                             <td>
-                                <a role="button" class="btn btn-warning" asp-controller="Boletim"
-                                   asp-action="BoletimPdf"
+                                <a role="button" class="btn btn-warning" asp-controller="BoletimVeiculo"
+                                   asp-action="BoletimVeiculoPdf"
                                    asp-route-dataInicio="@Model.Filtros.DataInicial?.ToString("yyyy-MM-dd")"
                                    asp-route-dataFinal="@Model.Filtros.DataFinal?.ToString("yyyy-MM-dd")"
                                    asp-route-veiculoId="@corrida.VeiculoID">Gerar Boletim</a>
