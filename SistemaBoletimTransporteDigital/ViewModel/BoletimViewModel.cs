@@ -29,6 +29,8 @@ namespace SistemaBoletimTransporteDigital.ViewModels
 
         public int VeiculoId { get; set; }
 
+        public int UsuarioId { get; set; }
+
     }
 
     public class Filtro

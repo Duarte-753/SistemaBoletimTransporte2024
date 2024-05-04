@@ -9,37 +9,6 @@
 </div>
 <br />
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <form method="post" asp-controller="BoletimMotorista" asp-action="Index">
-                <div class="row">
-                    <div class="col-3">
-                        <label for="dataInicio" class="mr-2">Data de Início:</label>
-                        <input type="date" class="form-control" id="dataInicio" name="dataInicio" value="@Model.Filtros.DataInicial?.ToString("yyyy-MM-dd")" />
-                    </div>
-                    <div class="col-3">
-                        <label for="dataFinal" class="mr-2">Data Final:</label>
-                        <input type="date" class="form-control" id="dataFinal" name="dataFinal" value="@Model.Filtros.DataFinal?.ToString("yyyy-MM-dd")" />
-                    </div>
-                    <div class="col-3">
-                        <label for="motorista" class="mr-2">Motorista:</label>
-                        <select class="form-control" id="motorista" name="motorista">
-                            <option value="">Selecione o motorista</option>
-                            @foreach (var motorista in Model.DadosUsuario)
-                            {
-                                <option value="@motorista.Id">@motorista.Nome</option>
-                            }
-                        </select>
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-success mt-3">Filtrar</button>
-            </form>
-            @* <a asp-controller="Boletim" asp-action="BoletimPdf" asp-route-dataInicio="@Model.Filtros.DataInicial" asp-route-dataFinal="@Model.Filtros.DataFinal" class="btn btn-primary mt-3">Montar Boletim</a> *@
-        </div>
-    </div>
-</div>            @* <a asp-controller="Boletim" asp-action="BoletimPdf" asp-route-dataInicio="@Model.Filtros.DataInicial" asp-route-dataFinal="@Model.Filtros.DataFinal" class="btn btn-primary mt-3">Montar Boletim</a> *@
-
 
 @if (Model != null && Model.DadosCorrida != null && Model.DadosCorrida.Count > 0)
 {
@@ -73,11 +42,12 @@
                                 }
                             </td>
                             <td>
-                                <a role="button" class="btn btn-warning" asp-controller="Boletim"
-                                   asp-action="BoletimPdf"
+                                <a role="button" class="btn btn-warning" asp-controller="BoletimMotorista"
+                                   asp-action="BoletimMotoristaPdf"
                                    asp-route-dataInicio="@Model.Filtros.DataInicial?.ToString("yyyy-MM-dd")"
                                    asp-route-dataFinal="@Model.Filtros.DataFinal?.ToString("yyyy-MM-dd")"
-                                   asp-route-veiculoId="@corrida.VeiculoID">Gerar Boletim</a>
+                                   asp-route-veiculoId="@corrida.VeiculoID"
+                                   asp-route-usuarioId="@corrida.UsuarioID">Gerar Boletim</a>
                             </td>
                         </tr>
                     }
