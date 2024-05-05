@@ -4,6 +4,12 @@
 }
 @model List<ManutencaoModel>
 
+<div class="text-center">
+    <br />
+    <h1 class="display-4">Suas Manutenções</h1>
+    <br />
+</div>
+
 <div class="table-responsive">
 
     @* <div class="d-grid gap-2 d-md-flex justify-content-md-start">      
@@ -26,13 +32,8 @@
             @TempData["MensagemErro"]
         </div>
     }
-
-    <br />
-
-    <h1 class="display-4">Suas Manutenções</h1>
-
-    <br />
-
+    
+    
     <table class="table table-hover" id="table-manutencao" style="width:100%">
         <thead>
             <tr>

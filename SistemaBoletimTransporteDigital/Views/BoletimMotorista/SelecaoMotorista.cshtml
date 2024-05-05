@@ -1,6 +1,18 @@
 ﻿@using SistemaBoletimTransporteDigital.Enums;
 @model SistemaBoletimTransporteDigital.ViewModels.BoletimViewModel
 
+<style>
+    .form-control {
+        border: 1px solid #5C4033;
+    }
+</style>
+
+<div class="text-center">
+    <br />
+    <h1 class="display-4">Relatório por Motorista</h1>
+    <br />
+</div>
+
 <form method="post" asp-controller="BoletimMotorista" asp-action="Index" onsubmit="return validateForm()">
     <div class="row">
         <div class="col-3">

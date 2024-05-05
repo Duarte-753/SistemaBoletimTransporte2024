@@ -12,13 +12,8 @@ using SistemaBoletimTransporteDigital.Data;
 namespace SistemaBoletimTransporteDigital.Migrations
 {
     [DbContext(typeof(BancoContext))]
-<<<<<<<< HEAD:SistemaBoletimTransporteDigital/Migrations/20240501222219_CriarBD.Designer.cs
-    [Migration("20240501222219_CriarBD")]
-    partial class CriarBD
-========
-    [Migration("20240503004206_CreateBd")]
-    partial class CreateBd
->>>>>>>> master:SistemaBoletimTransporteDigital/Migrations/20240503004206_CreateBd.Designer.cs
+    [Migration("20240505205009_CriarBd")]
+    partial class CriarBd
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -183,52 +178,14 @@ namespace SistemaBoletimTransporteDigital.Migrations
                             Celular = "11912345678",
                             CodigoFuncional = 0,
                             CorridaStatus = 4,
-<<<<<<<< HEAD:SistemaBoletimTransporteDigital/Migrations/20240501222219_CriarBD.Designer.cs
-                            DataCriacao = new DateTime(2024, 5, 1, 19, 22, 18, 402, DateTimeKind.Local).AddTicks(615),
-                            DataUltimaAtualizacao = new DateTime(2024, 5, 1, 19, 22, 18, 402, DateTimeKind.Local).AddTicks(615),
-========
-                            DataCriacao = new DateTime(2024, 5, 2, 21, 42, 5, 940, DateTimeKind.Local).AddTicks(9578),
-                            DataUltimaAtualizacao = new DateTime(2024, 5, 2, 21, 42, 5, 940, DateTimeKind.Local).AddTicks(9580),
->>>>>>>> master:SistemaBoletimTransporteDigital/Migrations/20240503004206_CreateBd.Designer.cs
+                            DataCriacao = new DateTime(2024, 5, 5, 17, 50, 8, 423, DateTimeKind.Local).AddTicks(5628),
+                            DataUltimaAtualizacao = new DateTime(2024, 5, 5, 17, 50, 8, 423, DateTimeKind.Local).AddTicks(5629),
                             Email = "julioduartebatista753@gmail.com",
                             EstaVinculadoAumaCorrida = 6,
                             Nome = "admin",
                             Perfil = 1,
                             Senha = "d033e22ae348aeb5660fc2140aec35850c4da997",
                             Usuario = "ADMIN"
-<<<<<<<< HEAD:SistemaBoletimTransporteDigital/Migrations/20240501222219_CriarBD.Designer.cs
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Celular = "11912345678",
-                            CodigoFuncional = 567,
-                            CorridaStatus = 4,
-                            DataCriacao = new DateTime(2024, 5, 1, 19, 22, 18, 402, DateTimeKind.Local).AddTicks(654),
-                            DataUltimaAtualizacao = new DateTime(2024, 5, 1, 19, 22, 18, 402, DateTimeKind.Local).AddTicks(654),
-                            Email = "julioduartebatista753@gmail.com",
-                            EstaVinculadoAumaCorrida = 6,
-                            Nome = "motorista",
-                            Perfil = 3,
-                            Senha = "a61e38f3910fba1d8e1fb97f4b3561df07ab0d81",
-                            Usuario = "MOTORISTA"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Celular = "11912345678",
-                            CodigoFuncional = 9876,
-                            CorridaStatus = 4,
-                            DataCriacao = new DateTime(2024, 5, 1, 19, 22, 18, 402, DateTimeKind.Local).AddTicks(672),
-                            DataUltimaAtualizacao = new DateTime(2024, 5, 1, 19, 22, 18, 402, DateTimeKind.Local).AddTicks(672),
-                            Email = "julioduartebatista753@gmail.com",
-                            EstaVinculadoAumaCorrida = 6,
-                            Nome = "motorista2",
-                            Perfil = 3,
-                            Senha = "b739522c59a564437fc8c6ad639176f704766596",
-                            Usuario = "MOTORISTA2"
-========
->>>>>>>> master:SistemaBoletimTransporteDigital/Migrations/20240503004206_CreateBd.Designer.cs
                         });
                 });
 
@@ -279,53 +236,6 @@ namespace SistemaBoletimTransporteDigital.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Veiculos");
-<<<<<<<< HEAD:SistemaBoletimTransporteDigital/Migrations/20240501222219_CriarBD.Designer.cs
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Ano = 2014,
-                            CadastroSistema = new DateTime(2024, 5, 1, 19, 22, 18, 402, DateTimeKind.Local).AddTicks(701),
-                            CarroEmUso = 1,
-                            Cor = "Branco",
-                            DataUltimaAtualizacao = new DateTime(2024, 5, 1, 19, 22, 18, 402, DateTimeKind.Local).AddTicks(702),
-                            Placa = "FWF-1232",
-                            Prefixo = 12345,
-                            Quilometragem = 12600,
-                            Valor = 259875,
-                            Veiculo = "Golf"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Ano = 2016,
-                            CadastroSistema = new DateTime(2024, 5, 1, 19, 22, 18, 402, DateTimeKind.Local).AddTicks(724),
-                            CarroEmUso = 1,
-                            Cor = "Branco",
-                            DataUltimaAtualizacao = new DateTime(2024, 5, 1, 19, 22, 18, 402, DateTimeKind.Local).AddTicks(724),
-                            Placa = "ASD-2345",
-                            Prefixo = 678910,
-                            Quilometragem = 450067,
-                            Valor = 15000,
-                            Veiculo = "Fiat Uno"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Ano = 2024,
-                            CadastroSistema = new DateTime(2024, 5, 1, 19, 22, 18, 402, DateTimeKind.Local).AddTicks(742),
-                            CarroEmUso = 1,
-                            Cor = "Azul",
-                            DataUltimaAtualizacao = new DateTime(2024, 5, 1, 19, 22, 18, 402, DateTimeKind.Local).AddTicks(743),
-                            Placa = "JHF-7653",
-                            Prefixo = 121235,
-                            Quilometragem = 100,
-                            Valor = 45000,
-                            Veiculo = "Palio Weekend"
-                        });
-========
->>>>>>>> master:SistemaBoletimTransporteDigital/Migrations/20240503004206_CreateBd.Designer.cs
                 });
 
             modelBuilder.Entity("SistemaBoletimTransporteDigital.Models.CorridaModel", b =>
