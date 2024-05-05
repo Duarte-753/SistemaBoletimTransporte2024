@@ -137,6 +137,11 @@ namespace SistemaBoletimTransporteDigital.Repositorio
 
             return;
         }
+
+        public List<CorridaModel> BuscarCorrida()
+        {
+            return _bancoContext.Corridas.ToList();
+        }
     }
 
        

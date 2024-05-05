@@ -70,15 +70,15 @@
     <table class="table table-hover" id="table-corrida" style="width:100%">
         <thead>
             <tr>            
-                <th scope="col">Descrição da Corrida:</th>
-                <th scope="col">Inicio:</th>
-                <th scope="col">Final:</th>
-                <th scope="col">Veículo:</th>
-                <th scope="col">Placa:</th>
-                <th scope="col">Cor:</th>
-                <th scope="col">KM Inicial:</th>
-                <th scope="col">KM Final:</th>
-                <th scope="col">KM Percorrido:</th>
+                <th scope="col">Descrição da Corrida</th>
+                <th scope="col">Inicio</th>
+                <th scope="col">Final</th>
+                <th scope="col">Veículo</th>
+                <th scope="col">Placa</th>
+                <th scope="col">Cor</th>
+                <th scope="col">KM Inicial</th>
+                <th scope="col">KM Final</th>
+                <th scope="col">KM Percorrido</th>
                 <th scope="col">Status da Corrida</th>
             </tr>
         </thead>
@@ -122,13 +122,13 @@
                                 @Html.DisplayFor(modelItem => corrida.VeiculoID)
                             }
                         </td>
-                        <td>
+                        <td class="formatted-quilometragem">
                             @corrida.KmInicial
                         </td>
-                        <td>
+                        <td class="formatted-quilometragem">
                             @corrida.KmFinal
                         </td>
-                        <td>
+                        <td class="formatted-quilometragem">
                             @corrida.KmPercorrido
                         </td>
                         <td>
@@ -158,5 +158,23 @@
     </table>
 </div>
 
+<script>
+    // Função para formatar a quilometragem com separadores de milhares
+    function formatQuilometragem(quilometragem) {
+        return quilometragem.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
 
+    // Seleciona todos os elementos com a classe 'formatted-quilometragem' e formata seus valores
+    document.addEventListener('DOMContentLoaded', function () {
+        const elementosQuilometragemFormatada = document.querySelectorAll('.formatted-quilometragem');
+
+        elementosQuilometragemFormatada.forEach(function (elemento) {
+            const quilometragem = parseFloat(elemento.textContent);
+            if (!isNaN(quilometragem)) {
+                const quilometragemFormatada = formatQuilometragem(quilometragem);
+                elemento.textContent = quilometragemFormatada;
+            }
+        });
+    });
+</script>
 

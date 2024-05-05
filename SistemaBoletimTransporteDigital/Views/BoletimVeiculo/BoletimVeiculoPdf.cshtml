@@ -1,7 +1,7 @@
 ﻿@model SistemaBoletimTransporteDigital.ViewModels.BoletimViewModel
 @using SistemaBoletimTransporteDigital.Enums;
 
-@{   
+@{
     Layout = null;
 }
 
@@ -32,14 +32,13 @@
     }
 
     td.descricao {
-    max-width: 300px; /* Defina a largura máxima da célula de descrição */
-    white-space: nowrap; /* Evita que o texto seja quebrado */
-    overflow: hidden; /* Oculta o texto que ultrapassa a largura */
-    text-overflow: ellipsis; /* Adiciona reticências (...) ao final do texto truncado */
-}
+        max-width: 300px; /* Defina a largura máxima da célula de descrição */
+        white-space: nowrap; /* Evita que o texto seja quebrado */
+        overflow: hidden; /* Oculta o texto que ultrapassa a largura */
+        text-overflow: ellipsis; /* Adiciona reticências (...) ao final do texto truncado */
+    }
 
 </style>
-
 
 <div class="table-responsive">
     <!-- Informações gerais -->
@@ -93,12 +92,12 @@
         <tbody>
             @foreach (var corrida in Model.DadosCorrida)
             {
-                <tr class ="no-page-break">
+                <tr class="no-page-break">
                     <td>@corrida.DataInicioCorrida.ToShortDateString()</td>
                     <td>@corrida.Usuario.CodigoFuncional</td>
-                    <td class="formatted-quilometragem">@String.Format("{0:N0}",corrida.KmInicial)</td>
-                    <td class="formatted-quilometragem">@String.Format("{0:N0}",corrida.KmFinal)</td>
-                    <td class="formatted-quilometragem">@String.Format("{0:N0}",corrida.KmPercorrido)</td>
+                    <td class="formatted-quilometragem">@String.Format("{0:N0}", corrida.KmInicial)</td>
+                    <td class="formatted-quilometragem">@String.Format("{0:N0}", corrida.KmFinal)</td>
+                    <td class="formatted-quilometragem">@String.Format("{0:N0}", corrida.KmPercorrido)</td>
                     <td>@corrida.DataInicioCorrida.ToShortTimeString()</td>
                     <td>@corrida.DataFinalCorrida.Value.ToString("HH:mm")</td>
                     <td>@corrida.LocalSaidaCorrida</td>
@@ -120,7 +119,7 @@
     </table>
     <table class="table">
         <thead>
-        @* <th rowspan="7">ABASTECIMENTO/MANUTENÇÃO</th> *@
+            @* <th rowspan="7">ABASTECIMENTO/MANUTENÇÃO</th> *@
             <tr class="no-page-break">
                 <td>Data</td>
                 <td>Prefixo</td>
@@ -130,13 +129,13 @@
         </thead>
         <tbody>
             @foreach (var manutencao in Model.DadosManutencao)
-            {                         
-                    <tr class="no-page-break">
-                        <td>@manutencao.DataManutencao.ToShortDateString()</td>
-                        <td>@manutencao.Veiculo.Prefixo</td>
-                        <td>@(manutencao.TipoManutencao == SistemaBoletimTransporteDigital.Enums.ManutencaoEnum.Manutencao ? "Manutenção" : "Abastecimento")</td>
-                        <td class="descricao">@manutencao.DescricaoManutencao</td>
-                    </tr>             
+            {
+                <tr class="no-page-break">
+                    <td>@manutencao.DataManutencao.ToShortDateString()</td>
+                    <td>@manutencao.Veiculo.Prefixo</td>
+                    <td>@(manutencao.TipoManutencao == SistemaBoletimTransporteDigital.Enums.ManutencaoEnum.Manutencao ? "Manutenção" : "Abastecimento")</td>
+                    <td class="descricao">@manutencao.DescricaoManutencao</td>
+                </tr>
             }
         </tbody>
     </table>
@@ -144,8 +143,8 @@
         <thead>
             <tr class="no-page-break">
                 <th rowspan="7">ESTÃO SENDO ENTREGUES TODOS OS DISCOS OU RELATÓRIOS DO TACÓGRAFO<br /><br />________________</th>
-            </tr>         
-        </thead>      
+            </tr>
+        </thead>
     </table>
 </div>
 <br />

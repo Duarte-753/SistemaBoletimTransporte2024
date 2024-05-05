@@ -1,0 +1,49 @@
+﻿@model SistemaBoletimTransporteDigital.ViewModels.BoletimViewModel
+
+<form method="post" asp-controller="BoletimVeiculo" asp-action="Index" onsubmit="return validateForm()">
+    <div class="row">
+        <div class="col-3">
+            <label for="veiculo" class="mr-2">Veículo:</label>
+            <select class="form-control" id="veiculo" name="veiculo">
+                <option value="">Selecione o veículo</option>
+                @if (Model.DadosVeiculos != null && Model.DadosVeiculos.Count > 0)
+                {
+                    foreach (var veiculo in Model.DadosVeiculos)
+                    {
+                        <option value="@veiculo.Id">@veiculo.Veiculo</option>
+                    }
+                }
+            </select>
+            <!-- Adicione um campo oculto para armazenar o ID do veículo selecionado -->
+            <input type="hidden" id="veiculoId" name="veiculoId" />
+            <div id="veiculoError" class="text-danger" style="display: none;">Por favor, selecione um veículo.</div>
+        </div>
+
+        <div class="col-3">
+            <label for="dataInicio" class="mr-2">Data de Início:</label>
+            <input type="date" class="form-control" id="dataInicio" name="dataInicio" value="@Model.Filtros.DataInicial?.ToString("yyyy-MM-dd")" />
+        </div>
+        <div class="col-3">
+            <label for="dataFinal" class="mr-2">Data Final:</label>
+            <input type="date" class="form-control" id="dataFinal" name="dataFinal" value="@Model.Filtros.DataFinal?.ToString("yyyy-MM-dd")" />
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success mt-3">Selecione</button>
+</form>
+
+<script>
+    function validateForm() {
+        var veiculoId = document.getElementById('veiculoId').value;
+        if (!veiculoId) {
+            document.getElementById('veiculoError').style.display = 'block';
+            return false;
+        }
+        return true;
+    }
+
+    document.getElementById('veiculo').addEventListener('change', function () {
+        var selectedId = this.value;
+        document.getElementById('veiculoId').value = selectedId;
+        document.getElementById('veiculoError').style.display = 'none';
+    });
+</script>

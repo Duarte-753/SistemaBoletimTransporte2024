@@ -1,0 +1,87 @@
+﻿@model SistemaBoletimTransporteDigital.Models.ManutencaoModel
+@using System.IO
+
+@{
+    ViewData["Title"] = "Detalhes da Manutenção";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Detalhes da Manutenção</h1>
+</div>
+<br />
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <dl class="row">
+                <dt class="col-sm-4">Data da Manutenção:</dt>
+                <dd class="col-sm-8">@Model.DataManutencao</dd>
+
+                <dt class="col-sm-4">Descrição:</dt>
+                <dd class="col-sm-8">@Model.DescricaoManutencao</dd>
+
+                <dt class="col-sm-4">Tipo de Manutenção:</dt>
+                <dd class="col-sm-8">@Model.TipoManutencao</dd>
+
+                <dt class="col-sm-4">Veículo:</dt>
+
+                @if (Model != null)
+                {
+                    @if (Model != null)
+                    {
+                        <dd class="col-sm-8">@Model.Veiculo.Veiculo</dd>
+                    }
+                    else
+                    {
+                        <dd class="col-sm-8">@Html.DisplayFor(modelItem => Model.VeiculoID)</dd>
+                    }
+                }
+
+                <dt class="col-sm-4">Placa:</dt>
+
+                @if (Model != null)
+                {
+                    @if (Model != null)
+                    {
+                        <dd class="col-sm-8">@Model.Veiculo.Placa</dd>
+                    }
+                    else
+                    {
+                        <dd class="col-sm-8">@Html.DisplayFor(modelItem => Model.VeiculoID)</dd>
+                    }
+                }
+
+
+            </dl>
+        </div>
+
+        <div class="col-md-6">
+            @if (!string.IsNullOrEmpty(Model.CaminhoDaImagem)) // Verifica se o caminho da imagem não é nulo ou vazio
+            {
+                string extension = Model.CaminhoDaImagem.Substring(Model.CaminhoDaImagem.Length - 4); // Obtém os últimos 4 caracteres do caminho
+                if (extension != null && extension.Equals(".pdf", StringComparison.OrdinalIgnoreCase)) // Verifica se a extensão é .pdf (ignorando a diferenciação de maiúsculas e minúsculas)
+                {
+                    <a class="btn btn-warning" href="~/ImagensManutencoes/@Model.CaminhoDaImagem" download>
+                        Baixar PDF
+                    </a>
+
+                }
+                else
+                {
+                    <img src="~/ImagensManutencoes/@Model.CaminhoDaImagem" alt="Imagem da Manutenção" style="max-width: 100%; height: auto;" />
+                    <a class="btn btn-warning" href="~/ImagensManutencoes/@Model.CaminhoDaImagem" download>
+                        Baixar Imagem
+                    </a>
+                }
+            }
+            else
+            {
+                <p>Nenhuma imagem ou arquivo anexado nessa manutenção.</p>
+            }
+        </div>
+
+    </div>
+</div>
+<br />
+
+<a class="btn btn-secondary" asp-controller="BoletimVeiculo" asp-action="SelecaoVeiculo" role="button">Voltar</a>

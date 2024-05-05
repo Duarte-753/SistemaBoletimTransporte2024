@@ -1,40 +1,13 @@
 ﻿@model SistemaBoletimTransporteDigital.ViewModels.BoletimViewModel
 
 @{
-    ViewData["Title"] = "Boletim";
+    ViewData["Title"] = "Boletim por Veículo";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Boletim Mensal</h1>
+    <h1 class="display-4">Boletim Mensal por Veículo</h1>
 </div>
 <br />
-
-@* .form-control {
-        border: 1px solid #5C4033;
-    } *@
-
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <form method="post" asp-controller="Boletim" asp-action="Index">
-                <div class="row">
-                    <div class="col-3">
-                        <label for="dataInicio" class="mr-2">Data de Início:</label>
-                        <input type="date" class="form-control" id="dataInicio" name="dataInicio" value="@Model.Filtros.DataInicial?.ToString("yyyy-MM-dd")" />
-                    </div>
-                    <div class="col-3">
-                        <label for="dataFinal" class="mr-2">Data Final:</label>
-                        <input type="date" class="form-control" id="dataFinal" name="dataFinal" value="@Model.Filtros.DataFinal?.ToString("yyyy-MM-dd")" />
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-success mt-3">Filtrar</button>
-            </form>
-            @* <a asp-controller="Boletim" asp-action="BoletimPdf" asp-route-dataInicio="@Model.Filtros.DataInicial" asp-route-dataFinal="@Model.Filtros.DataFinal" class="btn btn-primary mt-3">Montar Boletim</a> *@
-        </div>
-    </div>
-</div>            @* <a asp-controller="Boletim" asp-action="BoletimPdf" asp-route-dataInicio="@Model.Filtros.DataInicial" asp-route-dataFinal="@Model.Filtros.DataFinal" class="btn btn-primary mt-3">Montar Boletim</a> *@
-
 
 @if (Model != null && Model.DadosCorrida != null && Model.DadosCorrida.Count > 0)
 {
@@ -45,8 +18,9 @@
                 <tr>
                     <th>Prefixo</th>
                     <th>Veículo</th>
-                    <th>Placa</th>                   
-                    <th>Boletim</th>                   
+                    <th>Placa</th>
+                    <th>Boletim</th>
+                    <th>Manutenção</th>
                 </tr>
             </thead>
             <tbody>
@@ -77,7 +51,7 @@
                                 else
                                 {
                                     @Html.DisplayFor(modelItem => corrida.VeiculoID)
-                                }                          
+                                }
                             </td>
                             <td>
                                 @if (corrida.Veiculo != null)
@@ -90,17 +64,18 @@
                                 }
                             </td>
                             <td>
-                                <a role="button" class="btn btn-warning" asp-controller="Boletim"
-                                   asp-action="BoletimPdf"
+                                <a role="button" class="btn btn-warning" asp-controller="BoletimVeiculo"
+                                   asp-action="BoletimVeiculoPdf"
                                    asp-route-dataInicio="@Model.Filtros.DataInicial?.ToString("yyyy-MM-dd")"
                                    asp-route-dataFinal="@Model.Filtros.DataFinal?.ToString("yyyy-MM-dd")"
-                                   asp-route-veiculoId="@corrida.VeiculoID">
-                                    <i class="fas fa-file-alt"></i>
-                               
-                               
-                               </a>
-                                
-
+                                   asp-route-veiculoId="@corrida.VeiculoID">Gerar Boletim</a>
+                            </td>
+                            <td>
+                                <a role="button" class="btn btn-info" asp-controller="BoletimVeiculo"
+                                   asp-action="ManutencaoVeiculo"
+                                   asp-route-dataInicio="@Model.Filtros.DataInicial?.ToString("yyyy-MM-dd")"
+                                   asp-route-dataFinal="@Model.Filtros.DataFinal?.ToString("yyyy-MM-dd")"
+                                   asp-route-veiculoId="@corrida.VeiculoID">Manutenção</a>
                             </td>
                         </tr>
                     }

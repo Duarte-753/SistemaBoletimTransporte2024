@@ -60,9 +60,9 @@
                         <td>@veiculo.Veiculo</td>
                         <td>@veiculo.Cor</td>
                         <td>@veiculo.Placa</td>
-                        <td>@veiculo.Quilometragem</td>
-                        <td>@veiculo.Ano</td>
-                        <td>@veiculo.Valor</td>
+                        <td class ="formatted-quilometragem">@veiculo.Quilometragem</td>
+                        <td>@veiculo.Ano</td>                    
+                        <td class="formatted-valor">@veiculo.Valor</td>
                         <td>@veiculo.CadastroSistema</td>
                         <td>@veiculo.DataUltimaAtualizacao</td>
                         <td>
@@ -86,6 +86,44 @@
         </tbody>
     </table>
 </div>
+
+<script>
+    // Função para formatar o valor com separadores de milhares
+    function formatValor(valor) {
+        return valor.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+
+    // Seleciona todos os elementos com a classe 'formatted-valor' e formata seus valores
+    document.addEventListener('DOMContentLoaded', function () {
+        const elementosValorFormatado = document.querySelectorAll('.formatted-valor');
+
+        elementosValorFormatado.forEach(function (elemento) {
+            const valor = parseFloat(elemento.textContent);
+            if (!isNaN(valor)) {
+                const valorFormatado = formatValor(valor);
+                elemento.textContent = valorFormatado;
+            }
+        });
+    });
+
+    // Função para formatar a quilometragem com separadores de milhares
+    function formatQuilometragem(quilometragem) {
+        return quilometragem.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+
+    // Seleciona todos os elementos com a classe 'formatted-quilometragem' e formata seus valores
+    document.addEventListener('DOMContentLoaded', function () {
+        const elementosQuilometragemFormatada = document.querySelectorAll('.formatted-quilometragem');
+
+        elementosQuilometragemFormatada.forEach(function (elemento) {
+            const quilometragem = parseFloat(elemento.textContent);
+            if (!isNaN(quilometragem)) {
+                const quilometragemFormatada = formatQuilometragem(quilometragem);
+                elemento.textContent = quilometragemFormatada;
+            }
+        });
+    });
+</script>
 
 
 

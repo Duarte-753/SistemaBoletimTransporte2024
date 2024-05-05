@@ -4,64 +4,64 @@
 @model VeiculoModel
 
 <div class="text-center">
-
     <h1 class="display-4">Detalhes do Veículo</h1>
-    <br />
-
 </div>
 
-<form asp-controller="Veiculo" asp-action="Editar" class="post">
-
-    <input type="hidden" asp-for="Id" />
+<div class="container">
     <div class="row">
+        <div class="col-md-6">
+            <dl class="row">
+                
+                <dt class="col-sm-4">Prefixo:</dt>
+                <dd class="col-sm-8">@Model.Prefixo</dd>
 
-        <div class="col-3">
-            <label for="prefixo">Prefixo:</label>
-            <input type="text" asp-for="Prefixo" class="form-control" placeholder="Exemplo: 0015999">
-            @Html.ValidationMessageFor(x => x.Prefixo)
-        </div>
-        <div class="col-3">
-            <label for="nome">Veiculo:</label>
-            <input type="text" asp-for="Veiculo" class="form-control" placeholder="Exemplo: VW Nova Saveiro RB MBVD">
-            @Html.ValidationMessageFor(x => x.Veiculo)
-        </div>
-        <div class="col-3">
-            <label for="cor">Cor:</label>
-            <input type="text" asp-for="Cor" class="form-control" placeholder="Exemplo: Branco">
-            @Html.ValidationMessageFor(x => x.Cor)
-        </div>
-        <div class="col-3">
-            <label for="placa">Placa:</label>
-            <input type="text" asp-for="Placa" class="form-control" placeholder="Exemplo: FBA-1221">
-            @Html.ValidationMessageFor(x => x.Placa)
-        </div>
+                <dt class="col-sm-4">Veículo:</dt>
+                <dd class="col-sm-8">@Model.Veiculo</dd>
 
+                <dt class="col-sm-4">Cor:</dt>
+                <dd class="col-sm-8">@Model.Cor</dd>
 
-    </div>
+                <dt class="col-sm-4">Placa:</dt>
+                <dd class="col-sm-8">@Model.Placa</dd>
 
-    <div class="row">
+                <dt class="col-sm-4">Quilometragem de Cadastro:</dt>
+                <dd class="col-sm-8 formatted-quilometragem">@Model.Quilometragem</dd>
 
-        <div class="col-3">
-            <label for="quilometragem">Quilometragem:</label>
-            <input type="text" asp-for="Quilometragem" class="form-control" placeholder="Exemplo: 514326">
-            @Html.ValidationMessageFor(x => x.Quilometragem)
-        </div>
-        <div class="col-3">
-            <label for="ano">Ano:</label>
-            <input type="text" asp-for="Ano" class="form-control" placeholder="Exemplo: 1997">
-            @Html.ValidationMessageFor(x => x.Ano)
-        </div>
-        <div class="col-3">
-            <label for="valor">Valor:</label>
-            <input type="text" asp-for="Valor" class="form-control" placeholder="Exemplo: 25000">
-            @Html.ValidationMessageFor(x => x.Valor)
+                <dt class="col-sm-4">Ano:</dt>
+                <dd class="col-sm-8">@Model.Ano</dd>
+
+                <dt class="col-sm-4">Valor:</dt>
+                <dd class="col-sm-8">@Model.Valor</dd>
+
+                <dt class="col-sm-4">Cadastro no Sistema:</dt>
+                <dd class="col-sm-8">@Model.CadastroSistema.ToString("dd/MM/yyyy HH:mm:ss")</dd>
+
+                <dt class="col-sm-4">Última Atualização:</dt>
+                <dd class="col-sm-8">@Model.DataUltimaAtualizacao.ToString("dd/MM/yyyy HH:mm:ss")</dd>
+                         
+            </dl>
         </div>
     </div>
+</div>
 
-    <br />
-
+<div class="text-center">
     <a class="btn btn-secondary" asp-controller="Veiculo" asp-action="Index" role="button">Voltar</a>
-</form>
+</div>
 
 
+<script>
+    // Função para formatar a quilometragem com separador de milhar
+    function formatarQuilometragem() {
+        var elements = document.querySelectorAll('.formatted-quilometragem');
+        elements.forEach(function (element) {
+            var value = element.textContent;
+            var formattedValue = parseFloat(value).toLocaleString('pt-BR');
+            element.textContent = formattedValue;
+        });
+    }
 
+    // Chama a função quando o DOM estiver carregado
+    document.addEventListener('DOMContentLoaded', function () {
+        formatarQuilometragem();
+    });
+</script>

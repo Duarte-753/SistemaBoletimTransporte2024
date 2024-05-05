@@ -9,11 +9,23 @@
 </div>
 <br />
 
-<form asp-controller="Manutencao" asp-action="CriarManutencao" method="post" enctype="multipart/form-data">
+<style>
+    /* Estilo para inputs em caixa alta */
+    input.uppercase {
+        text-transform: uppercase;
+    }
+
+    /* Estilo para inputs em caixa baixa */
+    input.lowercase {
+        text-transform: lowercase;
+    }
+</style>
+
+<form asp-controller="Manutencao" asp-action="CriarManutencao" method="post" enctype="multipart/form-data" id="formulario">
     
     <div class="form-group">
         <label for="DescricaoManutencao">Descrição da Manutenção:</label>
-        <textarea asp-for="DescricaoManutencao" class="form-control"></textarea>
+        <input type="text" asp-for="DescricaoManutencao" class="form-control uppercase" maxlength="50" oninput="this.value = this.value.toUpperCase()">
         @Html.ValidationMessageFor(x => x.DescricaoManutencao)
     </div>
     <br />
@@ -31,7 +43,9 @@
     <br />
     <div class="form-group">
         <label for="Imagem">Foto comprovante ou arquivo em PDF:</label>
-        <input type="file" name="Imagem" class="form-control-file" />
+        <input type="file" name="Imagem" id="Imagem" class="form-control-file" />
+        <span class="text-danger" id="arquivoVazioError" style="display: none;">Por favor, selecione um arquivo.</span>
+        <span class="text-danger" id="arquivoInvalidoError" style="display: none;">Por favor, selecione um arquivo válido (imagem ou PDF).</span>
     </div>
     <br />
 
@@ -39,5 +53,40 @@
     <button type="submit" class="btn btn-success">Adicionar Manutenção</button>
     <a class="btn btn-secondary" asp-controller="Corrida" asp-action="Index">Voltar</a>
 </form>
+
+<script>
+    // Função para validar se um arquivo foi selecionado e se é uma imagem ou PDF
+    function validarArquivo() {
+        var inputFile = document.getElementById("Imagem");
+        var file = inputFile.files[0];
+        var allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'application/pdf'];
+
+        // Verifica se o campo de arquivo está vazio
+        if (!file) {
+            document.getElementById("arquivoVazioError").style.display = "block";
+            document.getElementById("arquivoInvalidoError").style.display = "none";
+            return false;
+        } else if (allowedTypes.indexOf(file.type) === -1) {
+            // Se o tipo do arquivo não estiver na lista permitida, exibe a mensagem de arquivo inválido
+            document.getElementById("arquivoVazioError").style.display = "none";
+            document.getElementById("arquivoInvalidoError").style.display = "block";
+            inputFile.value = ''; // Limpa o valor do input para evitar o envio do arquivo inválido
+            return false;
+        } else {
+            // Se o arquivo for válido, esconde ambas as mensagens de erro
+            document.getElementById("arquivoVazioError").style.display = "none";
+            document.getElementById("arquivoInvalidoError").style.display = "none";
+            return true;
+        }
+    }
+
+    // Event listener para o formulário
+    document.getElementById("formulario").addEventListener("submit", function (event) {
+        if (!validarArquivo()) {
+            // Se a função validarArquivo retornar false, cancela o envio do formulário
+            event.preventDefault();
+        }
+    });
+</script>
 
 

@@ -1,0 +1,71 @@
+﻿@model SistemaBoletimTransporteDigital.ViewModels.BoletimViewModel
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Manutenção do Veículo";
+}
+
+
+<div class="table-responsive">
+
+
+    <h1 class="display-4">Manutenções feita pelo motorista</h1>
+
+    <br />
+
+    <table class="table table-hover" id="table-manutencao" style="width:100%">
+        <thead>
+            <tr>
+                <th scope="col">Veículo:</th>
+                <th scope="col">Placa:</th>
+                <th scope="col">Data Manutenção:</th>
+                <th scope="col">Descrição da manutenção:</th>
+                <th scope="col">Tipo:</th>
+                <th scope="col">Opções:</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @if (Model != null && Model.DadosManutencao != null && Model.DadosManutencao.Count > 0)
+            {
+                @foreach (var manutencao in Model.DadosManutencao)
+                {
+                    <tr>
+                        <td>
+                            @if (manutencao.Veiculo != null)
+                            {
+                                @manutencao.Veiculo.Veiculo
+                            }
+                            else
+                            {
+                                @Html.DisplayFor(modelItem => manutencao.VeiculoID)
+                            }
+                        </td>
+                        <td>
+                            @if (manutencao.Veiculo != null)
+                            {
+                                @manutencao.Veiculo.Placa
+                            }
+                            else
+                            {
+                                @Html.DisplayFor(modelItem => manutencao.VeiculoID)
+                            }
+                        </td>
+                        <td>@manutencao.DataManutencao</td>
+                        <td>@manutencao.DescricaoManutencao</td>
+                        <td>@manutencao.TipoManutencao</td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <a role="button" class="btn btn-info" asp-route-id="@manutencao.Id" asp-controller="BoletimMotorista" asp-action="DetalhesDaManutencao">Detalhes</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+
+        </tbody>
+    </table>
+</div>
+
+
+

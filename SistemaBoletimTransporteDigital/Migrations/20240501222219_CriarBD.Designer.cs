@@ -12,8 +12,13 @@ using SistemaBoletimTransporteDigital.Data;
 namespace SistemaBoletimTransporteDigital.Migrations
 {
     [DbContext(typeof(BancoContext))]
+<<<<<<<< HEAD:SistemaBoletimTransporteDigital/Migrations/20240501222219_CriarBD.Designer.cs
     [Migration("20240501222219_CriarBD")]
     partial class CriarBD
+========
+    [Migration("20240503004206_CreateBd")]
+    partial class CreateBd
+>>>>>>>> master:SistemaBoletimTransporteDigital/Migrations/20240503004206_CreateBd.Designer.cs
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -176,16 +181,22 @@ namespace SistemaBoletimTransporteDigital.Migrations
                         {
                             Id = 1,
                             Celular = "11912345678",
-                            CodigoFuncional = 1234,
+                            CodigoFuncional = 0,
                             CorridaStatus = 4,
+<<<<<<<< HEAD:SistemaBoletimTransporteDigital/Migrations/20240501222219_CriarBD.Designer.cs
                             DataCriacao = new DateTime(2024, 5, 1, 19, 22, 18, 402, DateTimeKind.Local).AddTicks(615),
                             DataUltimaAtualizacao = new DateTime(2024, 5, 1, 19, 22, 18, 402, DateTimeKind.Local).AddTicks(615),
+========
+                            DataCriacao = new DateTime(2024, 5, 2, 21, 42, 5, 940, DateTimeKind.Local).AddTicks(9578),
+                            DataUltimaAtualizacao = new DateTime(2024, 5, 2, 21, 42, 5, 940, DateTimeKind.Local).AddTicks(9580),
+>>>>>>>> master:SistemaBoletimTransporteDigital/Migrations/20240503004206_CreateBd.Designer.cs
                             Email = "julioduartebatista753@gmail.com",
                             EstaVinculadoAumaCorrida = 6,
                             Nome = "admin",
                             Perfil = 1,
                             Senha = "d033e22ae348aeb5660fc2140aec35850c4da997",
                             Usuario = "ADMIN"
+<<<<<<<< HEAD:SistemaBoletimTransporteDigital/Migrations/20240501222219_CriarBD.Designer.cs
                         },
                         new
                         {
@@ -216,6 +227,8 @@ namespace SistemaBoletimTransporteDigital.Migrations
                             Perfil = 3,
                             Senha = "b739522c59a564437fc8c6ad639176f704766596",
                             Usuario = "MOTORISTA2"
+========
+>>>>>>>> master:SistemaBoletimTransporteDigital/Migrations/20240503004206_CreateBd.Designer.cs
                         });
                 });
 
@@ -266,6 +279,7 @@ namespace SistemaBoletimTransporteDigital.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Veiculos");
+<<<<<<<< HEAD:SistemaBoletimTransporteDigital/Migrations/20240501222219_CriarBD.Designer.cs
 
                     b.HasData(
                         new
@@ -310,6 +324,8 @@ namespace SistemaBoletimTransporteDigital.Migrations
                             Valor = 45000,
                             Veiculo = "Palio Weekend"
                         });
+========
+>>>>>>>> master:SistemaBoletimTransporteDigital/Migrations/20240503004206_CreateBd.Designer.cs
                 });
 
             modelBuilder.Entity("SistemaBoletimTransporteDigital.Models.CorridaModel", b =>
