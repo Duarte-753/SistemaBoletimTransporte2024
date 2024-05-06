@@ -62,15 +62,19 @@
             <span id="kmValidationMessage" style="color: red; display: none;">O valor não pode ser 0.</span>
             @Html.ValidationMessageFor(x => x.KmInicial)
         </div>
+     
+    </div>
+
+    <div class="row">
 
         <div class="col-4">
             <label for="localsaida">Local de Saída:</label>
             <input type="text" asp-for="LocalSaidaCorrida" class="form-control uppercase" oninput="this.value = this.value.toUpperCase()">
             @Html.ValidationMessageFor(x => x.LocalSaidaCorrida)
         </div>
-      
 
     </div>
+        
 
     <br />
 
