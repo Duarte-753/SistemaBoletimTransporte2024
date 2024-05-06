@@ -21,12 +21,13 @@ $(document).ready(function () {
     getDatatable('#table-manutencao')
 });
 $(document).ready(function () {
-    getDatatable('#table-boletim')
+    getDatatable('#table-boletim')   
 });
 
 
 function getDatatable(id) {
     $(id).DataTable({
+        "responsive": true,
         "ordering": true,
         "paging": true,
         "searching": true,

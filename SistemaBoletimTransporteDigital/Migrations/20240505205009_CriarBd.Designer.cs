@@ -12,8 +12,8 @@ using SistemaBoletimTransporteDigital.Data;
 namespace SistemaBoletimTransporteDigital.Migrations
 {
     [DbContext(typeof(BancoContext))]
-    [Migration("20240503004206_CreateBd")]
-    partial class CreateBd
+    [Migration("20240505205009_CriarBd")]
+    partial class CriarBd
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -178,8 +178,8 @@ namespace SistemaBoletimTransporteDigital.Migrations
                             Celular = "11912345678",
                             CodigoFuncional = 0,
                             CorridaStatus = 4,
-                            DataCriacao = new DateTime(2024, 5, 2, 21, 42, 5, 940, DateTimeKind.Local).AddTicks(9578),
-                            DataUltimaAtualizacao = new DateTime(2024, 5, 2, 21, 42, 5, 940, DateTimeKind.Local).AddTicks(9580),
+                            DataCriacao = new DateTime(2024, 5, 5, 17, 50, 8, 423, DateTimeKind.Local).AddTicks(5628),
+                            DataUltimaAtualizacao = new DateTime(2024, 5, 5, 17, 50, 8, 423, DateTimeKind.Local).AddTicks(5629),
                             Email = "julioduartebatista753@gmail.com",
                             EstaVinculadoAumaCorrida = 6,
                             Nome = "admin",

@@ -4,6 +4,12 @@
 }
 @model List<ManutencaoModel>
 
+<div class="text-center">
+    <br />
+    <h1 class="display-4">Suas Manutenções</h1>
+    <br />
+</div>
+
 <div class="table-responsive">
 
     @* <div class="d-grid gap-2 d-md-flex justify-content-md-start">      
@@ -26,13 +32,8 @@
             @TempData["MensagemErro"]
         </div>
     }
-
-    <br />
-
-    <h1 class="display-4">Suas Manutenções</h1>
-
-    <br />
-
+    
+    
     <table class="table table-hover" id="table-manutencao" style="width:100%">
         <thead>
             <tr>
@@ -76,7 +77,10 @@
                         <td>@manutencao.TipoManutencao</td>
                         <td>
                             <div class="btn-group" role="group" aria-label="Basic example">                            
-                                <a role="button" class="btn btn-info" asp-route-id="@manutencao.Id" asp-controller="Manutencao" asp-action="DetalhesDaManutencao">Detalhes</a>                              
+
+                                <a role="button" class="btn btn-info" asp-route-id="@manutencao.Id" asp-controller="Manutencao" asp-action="DetalhesDaManutencao">
+                                    <i class="fas fa-search"></i>
+                                </a>
                             </div>
                         </td>                    
                     </tr>
@@ -89,3 +93,11 @@
 
 
 
+<script>
+
+    function getDatatable(id) {
+        $(id).DataTable({
+            responsive: true,
+        })
+    }
+</script>

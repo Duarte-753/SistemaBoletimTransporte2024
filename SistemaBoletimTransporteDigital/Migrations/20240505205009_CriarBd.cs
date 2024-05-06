@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace SistemaBoletimTransporteDigital.Migrations
 {
     /// <inheritdoc />
-    public partial class CreateBd : Migration
+    public partial class CriarBd : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -126,7 +126,7 @@ namespace SistemaBoletimTransporteDigital.Migrations
             migrationBuilder.InsertData(
                 table: "Usuario",
                 columns: new[] { "Id", "Celular", "CodigoFuncional", "CorridaStatus", "DataCriacao", "DataUltimaAtualizacao", "Email", "EstaVinculadoAumaCorrida", "Nome", "Perfil", "Senha", "Usuario" },
-                values: new object[] { 1, "11912345678", 0, 4, new DateTime(2024, 5, 2, 21, 42, 5, 940, DateTimeKind.Local).AddTicks(9578), new DateTime(2024, 5, 2, 21, 42, 5, 940, DateTimeKind.Local).AddTicks(9580), "julioduartebatista753@gmail.com", 6, "admin", 1, "d033e22ae348aeb5660fc2140aec35850c4da997", "ADMIN" });
+                values: new object[] { 1, "11912345678", 0, 4, new DateTime(2024, 5, 5, 17, 50, 8, 423, DateTimeKind.Local).AddTicks(5628), new DateTime(2024, 5, 5, 17, 50, 8, 423, DateTimeKind.Local).AddTicks(5629), "julioduartebatista753@gmail.com", 6, "admin", 1, "d033e22ae348aeb5660fc2140aec35850c4da997", "ADMIN" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Corridas_UsuarioID",
