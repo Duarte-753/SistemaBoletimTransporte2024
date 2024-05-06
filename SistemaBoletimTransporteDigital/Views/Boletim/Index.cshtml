@@ -9,6 +9,13 @@
 </div>
 <br />
 
+<style>
+    .form-control {
+        border: 1px solid #5C4033;
+    }
+</style>
+
+
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -89,8 +96,14 @@
                                    asp-action="BoletimPdf"
                                    asp-route-dataInicio="@Model.Filtros.DataInicial?.ToString("yyyy-MM-dd")"
                                    asp-route-dataFinal="@Model.Filtros.DataFinal?.ToString("yyyy-MM-dd")"
-                                   asp-route-veiculoId="@corrida.VeiculoID">Gerar Boletim</a>
-                            </td>                          
+                                   asp-route-veiculoId="@corrida.VeiculoID">
+                                    <i class="fas fa-file-alt"></i>
+                               
+                               
+                               </a>
+                                
+
+                            </td>
                         </tr>
                     }
                 }

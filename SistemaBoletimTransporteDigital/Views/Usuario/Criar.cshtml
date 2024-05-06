@@ -24,6 +24,10 @@
         text-transform: lowercase;
     }
 
+    .form-control {
+        border: 1px solid #5C4033;
+    }
+
     .fa-eye-slash:after {
         content: '';
         position: absolute;
@@ -35,6 +39,8 @@
         transform: translate(-50%, -50%) rotate(-45deg);
     }
 </style>
+
+
 
 
 <form asp-controller="Usuario" asp-action="Criar" method="post" id="formulario" onsubmit="return validarSenhas()">

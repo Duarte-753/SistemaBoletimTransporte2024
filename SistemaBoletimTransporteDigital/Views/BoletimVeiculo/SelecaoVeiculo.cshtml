@@ -1,5 +1,17 @@
 ﻿@model SistemaBoletimTransporteDigital.ViewModels.BoletimViewModel
 
+<style>
+    .form-control {
+        border: 1px solid #5C4033;
+    }
+</style>
+
+<div class="text-center">
+    <br />
+    <h1 class="display-4">Listagem de Veículo</h1>
+    <br />
+</div>
+
 <form method="post" asp-controller="BoletimVeiculo" asp-action="Index" onsubmit="return validateForm()">
     <div class="row">
         <div class="col-3">
