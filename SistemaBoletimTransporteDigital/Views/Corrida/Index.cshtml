@@ -11,7 +11,7 @@
     <br />
 </div>
 
-<div class="table-responsive">
+@* <div class="table-responsive"> *@
 
     @if (Model != null && Model.Any(corrida => corrida.StatusDaCorrida == StatusCorridaEnum.Iniciada))
     {
@@ -157,7 +157,7 @@
 
         </tbody>
     </table>
-</div>
+@* </div> *@
 
 <script>
     // Função para formatar a quilometragem com separadores de milhares
