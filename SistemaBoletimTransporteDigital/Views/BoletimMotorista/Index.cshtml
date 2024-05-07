@@ -17,86 +17,95 @@
 
 @if (Model != null && Model.DadosCorrida != null && Model.DadosCorrida.Count > 0)
 {
-    <div class="table-responsive">
-        <h2>Carro usado no período selecionado</h2>
-        <table class="table table-hover" id="table-boletim" style="width:100%" class="table-responsive">
-            <thead>
-                <tr>
-                    <th>Prefixo</th>
-                    <th>Veículo</th>
-                    <th>Placa</th>
-                    <th>Boletim</th>
-                    <th>Manutenção</th>
-                </tr>
-            </thead>
-            <tbody>
-                @{
-                    HashSet<int> veiculosExibidos = new HashSet<int>();
-                }
-                @foreach (var corrida in Model.DadosCorrida)
-                {
-                    if (!veiculosExibidos.Contains(corrida.VeiculoID))
-                    {
-                        veiculosExibidos.Add(corrida.VeiculoID);
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2>Carro usado no período selecionado</h2>
+                <table class="table table-hover" id="table-boletim" style="width:100%">
+                    <thead>
                         <tr>
-                            <td>
-                                @if (corrida.Veiculo != null)
-                                {
-                                    @corrida.Veiculo.Prefixo
-                                }
-                                else
-                                {
-                                    @Html.DisplayFor(modelItem => corrida.VeiculoID)
-                                }
-                            </td>
-                            <td>
-                                @if (corrida.Veiculo != null)
-                                {
-                                    @corrida.Veiculo.Veiculo
-                                }
-                                else
-                                {
-                                    @Html.DisplayFor(modelItem => corrida.VeiculoID)
-                                }
-                            </td>
-                            <td>
-                                @if (corrida.Veiculo != null)
-                                {
-                                    @corrida.Veiculo.Placa
-                                }
-                                else
-                                {
-                                    @Html.DisplayFor(modelItem => corrida.VeiculoID)
-                                }
-                            </td>
-                            <td>
-                                <a role="button" class="btn btn-warning" asp-controller="BoletimMotorista"
-                                   asp-action="BoletimMotoristaPdf"
-                                   asp-route-dataInicio="@Model.Filtros.DataInicial?.ToString("yyyy-MM-dd")"
-                                   asp-route-dataFinal="@Model.Filtros.DataFinal?.ToString("yyyy-MM-dd")"
-                                   asp-route-veiculoId="@corrida.VeiculoID"
-                                   asp-route-usuarioId="@corrida.UsuarioID">Gerar Boletim</a>
-                            </td>
-                            <td>
-                                <a role="button" class="btn btn-info" asp-controller="BoletimMotorista"
-                                   asp-action="ManutencaoVeiculo"
-                                   asp-route-dataInicio="@Model.Filtros.DataInicial?.ToString("yyyy-MM-dd")"
-                                   asp-route-dataFinal="@Model.Filtros.DataFinal?.ToString("yyyy-MM-dd")"
-                                   asp-route-veiculoId="@corrida.VeiculoID"
-                                   asp-route-usuarioId="@corrida.UsuarioID">Manutenção</a>
-                            </td>
+                            <th>Prefixo</th>
+                            <th>Veículo</th>
+                            <th>Placa</th>
+                            <th>Boletim</th>
+                            <th>Manutenção</th>
                         </tr>
-                    }
-                }
-            </tbody>
-        </table>
+                    </thead>
+                    <tbody>
+                        @{
+                            HashSet<int> veiculosExibidos = new HashSet<int>();
+                        }
+                        @foreach (var corrida in Model.DadosCorrida)
+                        {
+                            if (!veiculosExibidos.Contains(corrida.VeiculoID))
+                            {
+                                veiculosExibidos.Add(corrida.VeiculoID);
+                                <tr>
+                                    <td>
+                                        @if (corrida.Veiculo != null)
+                                        {
+                                            @corrida.Veiculo.Prefixo
+                                        }
+                                        else
+                                        {
+                                            @Html.DisplayFor(modelItem => corrida.VeiculoID)
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (corrida.Veiculo != null)
+                                        {
+                                            @corrida.Veiculo.Veiculo
+                                        }
+                                        else
+                                        {
+                                            @Html.DisplayFor(modelItem => corrida.VeiculoID)
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (corrida.Veiculo != null)
+                                        {
+                                            @corrida.Veiculo.Placa
+                                        }
+                                        else
+                                        {
+                                            @Html.DisplayFor(modelItem => corrida.VeiculoID)
+                                        }
+                                    </td>
+                                    <td>
+                                        <a role="button" class="btn btn-warning" asp-controller="BoletimMotorista"
+                                           asp-action="BoletimMotoristaPdf"
+                                           asp-route-dataInicio="@Model.Filtros.DataInicial?.ToString("yyyy-MM-dd")"
+                                           asp-route-dataFinal="@Model.Filtros.DataFinal?.ToString("yyyy-MM-dd")"
+                                           asp-route-veiculoId="@corrida.VeiculoID"
+                                           asp-route-usuarioId="@corrida.UsuarioID">Gerar Boletim</a>
+                                    </td>
+                                    <td>
+                                        <a role="button" class="btn btn-info" asp-controller="BoletimMotorista"
+                                           asp-action="ManutencaoVeiculo"
+                                           asp-route-dataInicio="@Model.Filtros.DataInicial?.ToString("yyyy-MM-dd")"
+                                           asp-route-dataFinal="@Model.Filtros.DataFinal?.ToString("yyyy-MM-dd")"
+                                           asp-route-veiculoId="@corrida.VeiculoID"
+                                           asp-route-usuarioId="@corrida.UsuarioID">Manutenção</a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>     
     </div>
 }
 else
 {
-    <div class="container mt-5">
-        <h2>Nenhuma corrida encontrada para o período selecionado.</h2>
+    <div class="container">
+        <div class="row">
+            <div class="container mt-5">
+                <h2>Nenhuma corrida encontrada para o período selecionado.</h2>
+            </div>
+        </div>
     </div>
+    
 }
 
 
