@@ -27,24 +27,33 @@
 <form id="finalizarCorridaForm" asp-controller="Corrida" asp-action="FinalizarCorrida" method="post" >
     <input type="hidden" asp-for="Id" />
 
-    <div class="row">
-        <div class="col-4">
-            <label for="KmFinal">KM do Veículo:</label>
-            <input type="text" id="KmFinal" name="KmFinal" class="form-control"  required>
-            <div class="invalid-feedback">A quilometragem final deve ser maior que a quilometragem inicial.</div>
-        </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <label for="KmFinal">KM do Veículo:</label>
+                <input type="text" id="KmFinal" name="KmFinal" class="form-control" required>
+                <div class="invalid-feedback">A quilometragem final deve ser maior que a quilometragem inicial.</div>
+            </div>
 
-        <div class="col-4">
-            <label for="LocalChegadaCorrida">Local de Chegada:</label>
-            <input type="text" id="LocalChegadaCorrida" name="LocalChegadaCorrida" class="form-control uppercase" maxlength="30" oninput="this.value = this.value.toUpperCase()" required>
-            <div class="invalid-feedback">Por favor, preencha o campo Local de Chegada.</div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <label for="LocalChegadaCorrida">Local de Chegada:</label>
+                <input type="text" id="LocalChegadaCorrida" name="LocalChegadaCorrida" class="form-control uppercase" maxlength="30" oninput="this.value = this.value.toUpperCase()" required>
+                <div class="invalid-feedback">Por favor, preencha o campo Local de Chegada.</div>
+            </div>
         </div>
     </div>
-
+    
     <br />
 
-    <button type="submit" class="btn btn-warning">Finalizar</button>
-    <a class="btn btn-secondary" asp-controller="Corrida" asp-action="Index" role="button">Voltar</a>
+    <div class="container">
+        <div class="row">
+            <div class="col-12" style="display: flex; justify-content: space-between;">
+                <button type="submit" class="btn btn-warning">Finalizar</button>
+                <a class="btn btn-secondary" asp-controller="Corrida" asp-action="Index" role="button">Voltar</a>
+            </div>
+        </div>
+    </div>
+   
 </form>
 
 <script>

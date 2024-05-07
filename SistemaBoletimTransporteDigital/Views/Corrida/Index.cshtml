@@ -17,38 +17,55 @@
     {
         var corrida = Model.FirstOrDefault(c => c.StatusDaCorrida == StatusCorridaEnum.Iniciada);
 
-        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-            <a class="btn btn-danger" role="button">Para Criar uma Corrida Finalize a Iniciada</a>
+        <div class="container">
+           <div class="row">
+                 <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                    <a class="btn btn-danger" role="button">Para Criar uma Corrida Finalize a Iniciada</a>
+                 </div>
+           </div>
         </div>
-
+        
         <br />
 
         @if (corrida != null)
         {
-            <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                <a class="btn btn-warning" role="button" asp-route-id="@corrida.Id" asp-controller="Manutencao" asp-action="CriarManutencao">Criar Manutenção/Avaria do Veículo</a>
+        <div class="container">
+            <div class="row">
+                <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                    <a class="btn btn-warning" role="button" asp-route-id="@corrida.Id" asp-controller="Manutencao" asp-action="CriarManutencao">Criar Manutenção/Avaria do Veículo</a>
+                </div>
             </div>
+        </div>
+            
         }
         
         <br />
        
         @if (corrida != null)
         {
-            <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                <a class="btn btn-primary" role="button" asp-route-id="@corrida.Id" asp-controller="Corrida" asp-action="FinalizarCorrida">Finalizar a corrida @corrida.StatusDaCorrida</a>
+        <div class="container">
+            <div class="row">
+                <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                    <a class="btn btn-primary" role="button" asp-route-id="@corrida.Id" asp-controller="Corrida" asp-action="FinalizarCorrida">Finalizar a corrida @corrida.StatusDaCorrida</a>
+                </div>
             </div>
+        </div>
+            
         }
 
     }
     else
     {
-        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-            <a class="btn btn-success" role="button" asp-controller="Corrida" asp-action="CriarCorrida">Criar corrida</a>
+    <div class="container">
+        <div class="row">
+            <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                <a class="btn btn-success" role="button" asp-controller="Corrida" asp-action="CriarCorrida">Criar corrida</a>
+            </div>
         </div>
+    </div>
+        
     }
- 
               
-
     <br />
 
     @if (TempData["MensagemSucesso"] != null)
@@ -65,98 +82,103 @@
             @TempData["MensagemErro"]
         </div>
     }
-
-    
-
-    <table class="table table-hover" id="table-corrida" style="width:100%">
-        <thead>
-            <tr>            
-                <th scope="col">Descrição da Corrida</th>
-                <th scope="col">Inicio</th>
-                <th scope="col">Final</th>
-                <th scope="col">Veículo</th>
-                <th scope="col">Placa</th>
-                <th scope="col">Cor</th>
-                <th scope="col">KM Inicial</th>
-                <th scope="col">KM Final</th>
-                <th scope="col">KM Percorrido</th>
-                <th scope="col">Status da Corrida</th>
-            </tr>
-        </thead>
-        <tbody>
-
-            @if (Model != null && Model.Any())
-            {
-                @foreach (CorridaModel corrida in Model)
-                {
-                    <tr>                      
-                        <td>@corrida.DescricaoCorrida</td>
-                        <td>@corrida.DataInicioCorrida</td>
-                        <td>@corrida.DataFinalCorrida</td>
-                        <td>
-                            @if (corrida.Veiculo != null)
-                            {
-                                @corrida.Veiculo.Veiculo
-                            }
-                            else
-                            {
-                                @Html.DisplayFor(modelItem => corrida.VeiculoID)
-                            }
-                        </td>
-                        <td>
-                            @if (corrida.Veiculo != null)
-                            {
-                                @corrida.Veiculo.Placa
-                            }
-                            else
-                            {
-                                @Html.DisplayFor(modelItem => corrida.VeiculoID)
-                            }
-                        </td>
-                        <td>
-                            @if (corrida.Veiculo != null)
-                            {
-                                @corrida.Veiculo.Cor
-                            }
-                            else
-                            {
-                                @Html.DisplayFor(modelItem => corrida.VeiculoID)
-                            }
-                        </td>
-                        <td class="formatted-quilometragem">
-                            @corrida.KmInicial
-                        </td>
-                        <td class="formatted-quilometragem">
-                            @corrida.KmFinal
-                        </td>
-                        <td class="formatted-quilometragem">
-                            @corrida.KmPercorrido
-                        </td>
-                        <td>
-                            @if (corrida.StatusDaCorrida != null)
-                            {
-
-                                @if (corrida.StatusDaCorrida == StatusCorridaEnum.Finalizada)
-                                {
-                                    <a class="btn btn-success" role="button">@corrida.StatusDaCorrida</a>
-                                }
-                                else
-                                {
-                                    <a class="btn btn-warning" role="button" asp-route-id="@corrida.Id"  asp-controller="Corrida" asp-action="FinalizarCorrida">@corrida.StatusDaCorrida</a>
-                                }
-                               
-                            }
-                            else
-                            {
-                                @Html.DisplayFor(modelItem => corrida.Id)
-                            }
-                        </td>
+  
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+            <table class="table table-hover" id="table-corrida" style="width:100%">
+                <thead>
+                    <tr>
+                        <th scope="col">Descrição da Corrida</th>
+                        <th scope="col">Inicio</th>
+                        <th scope="col">Final</th>
+                        <th scope="col">Veículo</th>
+                        <th scope="col">Placa</th>
+                        <th scope="col">Cor</th>
+                        <th scope="col">KM Inicial</th>
+                        <th scope="col">KM Final</th>
+                        <th scope="col">KM Percorrido</th>
+                        <th scope="col">Status da Corrida</th>
                     </tr>
-                }
-            }
+                </thead>
+                <tbody>
 
-        </tbody>
-    </table>
+                    @if (Model != null && Model.Any())
+                    {
+                        @foreach (CorridaModel corrida in Model)
+                        {
+                            <tr>
+                                <td>@corrida.DescricaoCorrida</td>
+                                <td>@corrida.DataInicioCorrida</td>
+                                <td>@corrida.DataFinalCorrida</td>
+                                <td>
+                                    @if (corrida.Veiculo != null)
+                                    {
+                                        @corrida.Veiculo.Veiculo
+                                    }
+                                    else
+                                    {
+                                        @Html.DisplayFor(modelItem => corrida.VeiculoID)
+                                    }
+                                </td>
+                                <td>
+                                    @if (corrida.Veiculo != null)
+                                    {
+                                        @corrida.Veiculo.Placa
+                                    }
+                                    else
+                                    {
+                                        @Html.DisplayFor(modelItem => corrida.VeiculoID)
+                                    }
+                                </td>
+                                <td>
+                                    @if (corrida.Veiculo != null)
+                                    {
+                                        @corrida.Veiculo.Cor
+                                    }
+                                    else
+                                    {
+                                        @Html.DisplayFor(modelItem => corrida.VeiculoID)
+                                    }
+                                </td>
+                                <td class="formatted-quilometragem">
+                                    @corrida.KmInicial
+                                </td>
+                                <td class="formatted-quilometragem">
+                                    @corrida.KmFinal
+                                </td>
+                                <td class="formatted-quilometragem">
+                                    @corrida.KmPercorrido
+                                </td>
+                                <td>
+                                    @if (corrida.StatusDaCorrida != null)
+                                    {
+
+                                        @if (corrida.StatusDaCorrida == StatusCorridaEnum.Finalizada)
+                                        {
+                                            <a class="btn btn-success" role="button">@corrida.StatusDaCorrida</a>
+                                        }
+                                        else
+                                        {
+                                            <a class="btn btn-warning" role="button" asp-route-id="@corrida.Id" asp-controller="Corrida" asp-action="FinalizarCorrida">@corrida.StatusDaCorrida</a>
+                                        }
+
+                                    }
+                                    else
+                                    {
+                                        @Html.DisplayFor(modelItem => corrida.Id)
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    }
+
+                </tbody>
+            </table>
+            </div>
+        </div>
+    </div>
+    
 @* </div> *@
 
 <script>

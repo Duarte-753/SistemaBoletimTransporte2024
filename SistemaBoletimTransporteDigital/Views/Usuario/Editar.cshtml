@@ -22,12 +22,20 @@
     input.lowercase {
         text-transform: lowercase;
     }
-</style>
 
-
-<style>
     .form-control {
         border: 1px solid #5C4033;
+    }
+
+    .fa-eye-slash:after {
+        content: '';
+        position: absolute;
+        width: 15px;
+        height: 2px;
+        background-color: #333;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(-45deg);
     }
 </style>
 
@@ -35,123 +43,92 @@
 
     <input type="hidden" asp-for="Id" />
     
-        <div class="row"> 
-            
-        <div class="col-3">
-            <label for="codigofuncional">Código Funcional:</label>
-            <input type="text" asp-for="CodigoFuncional" id="codigoFuncional" class="form-control" maxlength="6">
-            <span class="text-danger" id="codigoFuncionalError" style="display: none;">Por favor, insira apenas números.</span>
-            @Html.ValidationMessageFor(x => x.CodigoFuncional)
-        </div>
-        <div class="col-3">
-            <label for="nome">Nome:</label>
-            <input type="text" asp-for="Nome" class="form-control uppercase" maxlength="40">
-            @Html.ValidationMessageFor(x => x.Nome)
-        </div>   
-        
-        <div class="col-3">
-            <label for="perfil">Perfil:</label>
-            <select asp-for="Perfil" class="form-control">
-                <option value="">Selecione</option>
-                <option value="@PerfilEnum.Admin">Administrador</option>
-                <option value="@PerfilEnum.motorista">Motorista</option>
-            </select>
-            @Html.ValidationMessageFor(x => x.Perfil)
-        </div>
-   
-    </div>
+    <div class="container">
+        <div class="row">
 
-    <div class="row">
-        <div class="col-3">
-            <label for="usuario">Usuário:</label>
-            <input type="text" asp-for="Usuario" class="form-control uppercase" maxlength="20">
-            @Html.ValidationMessageFor(x => x.Usuario)
-        </div>
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <label for="codigofuncional">Código Funcional:</label>
+                <input type="text" asp-for="CodigoFuncional" id="codigoFuncional" class="form-control" maxlength="6">
+                <span class="text-danger" id="codigoFuncionalError" style="display: none;">Por favor, insira apenas números.</span>
+                @Html.ValidationMessageFor(x => x.CodigoFuncional)
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <label for="nome">Nome:</label>
+                <input type="text" asp-for="Nome" class="form-control uppercase" maxlength="40">
+                @Html.ValidationMessageFor(x => x.Nome)
+            </div>
 
-        <div class="col-3">
-            <label for="senha">Senha:</label>
-            <input type="password" asp-for="Senha" id="senha1" class="form-control" maxlength="20">
-            @Html.ValidationMessageFor(x => x.Senha)
-        </div>
-        <div class="col-3">
-            <label for="senha">Confirma a Senha:</label>
-            <input type="password" id="senha2" class="form-control" maxlength="20">
-            <span class="text-danger" id="senhaError" style="display: none;">As senhas não coincidem.</span>
-            @* @Html.ValidationMessageFor(x => x.Senha) *@
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <label for="perfil">Perfil:</label>
+                <select asp-for="Perfil" class="form-control">
+                    <option value="">Selecione</option>
+                    <option value="@PerfilEnum.Admin">Administrador</option>
+                    <option value="@PerfilEnum.motorista">Motorista</option>
+                </select>
+                @Html.ValidationMessageFor(x => x.Perfil)
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <label for="email">E-mail:</label>
+                <input type="text" asp-for="Email" class="form-control lowercase" maxlength="40">
+                @Html.ValidationMessageFor(x => x.Email)
+            </div>
         </div>
     </div>
+     
+    <div class="container">
+        <div class="row">
+     
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <label for="celular">Celular:</label>
+                <input type="text" id="celular" asp-for="Celular" class="form-control">
+                @Html.ValidationMessageFor(x => x.Celular)
+            </div>
+                
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <label for="usuario">Usuário:</label>
+                <input type="text" asp-for="Usuario" class="form-control uppercase" maxlength="20">
+                @Html.ValidationMessageFor(x => x.Usuario)
+            </div>
 
-    <div class="row">
-           
-        <div class="col-3">
-            <label for="email">E-mail:</label>
-            <input type="text" asp-for="Email" class="form-control lowercase" maxlength="40">
-            @Html.ValidationMessageFor(x => x.Email)
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <label for="senha">Senha:</label>
+                <div class="input-group">
+                    <input type="password" asp-for="Senha" id="senha1" class="form-control" maxlength="20">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" id="toggleSenha1">
+                            <i class="fa fa-eye" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+                @Html.ValidationMessageFor(x => x.Senha)
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <label for="senha">Confirma a Senha:</label>
+                <div class="input-group">
+                    <input type="password" id="senha2" class="form-control" maxlength="20">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" id="toggleSenha2">
+                            <i class="fa fa-eye" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+                <span class="text-danger" id="senhaError" style="display: none;">As senhas não coincidem.</span>
+                @Html.ValidationMessageFor(x => x.Senha)
+            </div>      
         </div>
-
-        <div class="col-3">
-            <label for="celular">Celular:</label>
-            <input type="text" id="celular" asp-for="Celular" class="form-control">
-            @Html.ValidationMessageFor(x => x.Celular)
-        </div>
-
+    </div>
        
-    </div>
-
     <br />
-   @*  <div class="row">
-
-        <div class="col-3">
-            <label for="codigofuncional">Código Funcional:</label>
-            <input type="text" asp-for="CodigoFuncional" class="form-control">
-            @Html.ValidationMessageFor(x => x.CodigoFuncional)
+    <div class="container">
+        <div class="row">
+            <div class="col-12" style="display: flex; justify-content: space-between;">
+                <button type="submit" class="btn btn-warning">Editar</button>
+                <a class="btn btn-secondary" asp-controller="Usuario" asp-action="Index" role="button">Voltar</a>
+            </div>
         </div>
-        <div class="col-3">
-            <label for="nome">Nome:</label>
-            <input type="text" asp-for="Nome" class="form-control" >
-            @Html.ValidationMessageFor(x => x.Nome)
-        </div>
-        <div class="col-3">
-            <label for="usuario">Usuário:</label>
-            <input type="text" asp-for="Usuario" class="form-control" >
-            @Html.ValidationMessageFor(x => x.Usuario)
-        </div>
-        <div class="col-3">
-            <label for="senha">Senha:</label>
-            <input type="password" asp-for="Senha" class="form-control">
-            @Html.ValidationMessageFor(x => x.Senha)
-        </div>
-
-    </div>
-
-    <div class="row">
-
-        <div class="col-3">
-            <label for="email">E-mail:</label>
-            <input type="text" asp-for="Email" class="form-control" >
-            @Html.ValidationMessageFor(x => x.Email)
-        </div>
-        <div class="col-3">
-            <label for="celular">Celular:</label>
-            <input type="text" asp-for="Celular" class="form-control">
-            @Html.ValidationMessageFor(x => x.Celular)
-        </div>
-
-        <div class="col-3">
-            <label for="perfil">Perfil:</label>
-            <select asp-for="Perfil" class="form-control">
-                <option value="">Selecione</option>
-                <option value="@PerfilEnum.Admin">Administrador</option>
-                <option value="@PerfilEnum.motorista">Motorista</option>
-            </select>
-            @Html.ValidationMessageFor(x => x.Perfil)
-        </div> *@
-    @* </div> *@
-
-    <br />
-
-    <button type="submit" class="btn btn-warning">Editar</button>
-    <a class="btn btn-secondary" asp-controller="Usuario" asp-action="Index" role="button">Voltar</a>
+    </div> 
 </form>
 
 <script>
@@ -268,6 +245,22 @@
     document.getElementById("formulario").addEventListener("submit", function (event) {
         // Chama a função para converter os campos em caixa alta antes de enviar o formulário
         uppercaseFields();
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        $('#toggleSenha1').click(function () {
+            var tipo = $('#senha1').attr('type') === 'password' ? 'text' : 'password';
+            $('#senha1').attr('type', tipo);
+            $(this).find('i').toggleClass('fa-eye fa-eye-slash');
+        });
+
+        $('#toggleSenha2').click(function () {
+            var tipo = $('#senha2').attr('type') === 'password' ? 'text' : 'password';
+            $('#senha2').attr('type', tipo);
+            $(this).find('i').toggleClass('fa-eye fa-eye-slash');
+        });
     });
 </script>
 

@@ -28,36 +28,59 @@
 </style>
 
 <form asp-controller="Manutencao" asp-action="CriarManutencao" method="post" enctype="multipart/form-data" id="formulario">
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <label for="DescricaoManutencao">Descrição da Manutenção:</label>
+                <input type="text" asp-for="DescricaoManutencao" class="form-control uppercase" maxlength="50" oninput="this.value = this.value.toUpperCase()">
+                @Html.ValidationMessageFor(x => x.DescricaoManutencao)
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <label for="TipoManutencao">Tipo de Manutenção:</label>
+                <select asp-for="TipoManutencao" class="form-control">
+                    <option value="">Selecione</option>
+                    @foreach (var tipo in Enum.GetValues(typeof(SistemaBoletimTransporteDigital.Enums.ManutencaoEnum)))
+                    {
+                        <option value="@tipo">@tipo</option>
+                    }
+                </select>
+                @Html.ValidationMessageFor(x => x.TipoManutencao)
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-3">
+                <label for="Imagem">Foto comprovante ou arquivo em PDF:</label>                         
+                    <div class="row">
+                        <div class="col-3">
+                            <br />
+                            <input type="file" name="Imagem" id="Imagem" class="form-control-file" />
+                        </div>
+                    </div>                     
+                <span class="text-danger" id="arquivoVazioError" style="display: none;">Por favor, selecione um arquivo.</span>
+                <span class="text-danger" id="arquivoInvalidoError" style="display: none;">Por favor, selecione um arquivo válido (imagem ou PDF).</span>
+            </div>
+        </div>
+    </div>
     
-    <div class="form-group">
-        <label for="DescricaoManutencao">Descrição da Manutenção:</label>
-        <input type="text" asp-for="DescricaoManutencao" class="form-control uppercase" maxlength="50" oninput="this.value = this.value.toUpperCase()">
-        @Html.ValidationMessageFor(x => x.DescricaoManutencao)
-    </div>
-    <br />
-    <div class="form-group">
-        <label for="TipoManutencao">Tipo de Manutenção:</label>
-        <select asp-for="TipoManutencao" class="form-control">
-            <option value="">Selecione</option>
-            @foreach (var tipo in Enum.GetValues(typeof(SistemaBoletimTransporteDigital.Enums.ManutencaoEnum)))
-            {
-                <option value="@tipo">@tipo</option>
-            }
-        </select>        
-        @Html.ValidationMessageFor(x => x.TipoManutencao)
-    </div>
-    <br />
-    <div class="form-group">
-        <label for="Imagem">Foto comprovante ou arquivo em PDF:</label>
-        <input type="file" name="Imagem" id="Imagem" class="form-control-file" />
-        <span class="text-danger" id="arquivoVazioError" style="display: none;">Por favor, selecione um arquivo.</span>
-        <span class="text-danger" id="arquivoInvalidoError" style="display: none;">Por favor, selecione um arquivo válido (imagem ou PDF).</span>
-    </div>
     <br />
 
-
-    <button type="submit" class="btn btn-success">Adicionar Manutenção</button>
-    <a class="btn btn-secondary" asp-controller="Corrida" asp-action="Index">Voltar</a>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-md-9 col-sm-12" style="display:flex; justify-content: space-between;">
+                <button type="submit" class="btn btn-success">Adicionar Manutenção</button>
+                <a class="btn btn-secondary" asp-controller="Corrida" asp-action="Index">Voltar</a>
+            </div>
+        </div>
+    </div>
+    
 </form>
 
 <script>

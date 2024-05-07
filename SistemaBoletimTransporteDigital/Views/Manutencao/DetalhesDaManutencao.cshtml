@@ -49,9 +49,7 @@
                     {
                         <dd class="col-sm-8">@Html.DisplayFor(modelItem => Model.VeiculoID)</dd>
                     }
-                }
-                
-               
+                }                        
             </dl>
         </div>
 
@@ -78,10 +76,16 @@
             {
                 <p>Nenhuma imagem ou arquivo anexado nessa manutenção.</p>
             }
-        </div>
-        
+        </div>     
     </div>
 </div>
 <br />
 
-<a class="btn btn-secondary" asp-controller="Manutencao" asp-action="Index" role="button">Voltar</a>
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+            <a class="btn btn-secondary" asp-controller="Manutencao" asp-action="Index" role="button">Voltar</a>
+        </div>
+    </div>
+</div>
+

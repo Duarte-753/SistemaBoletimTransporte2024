@@ -10,7 +10,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-lg-3 col-md-6 col-sm-12">
             <dl class="row">
                 
                 <dt class="col-sm-4">Código Funcional:</dt>
@@ -35,14 +35,21 @@
                 <dd class="col-sm-8">@Model.DataCriacao.ToString("dd/MM/yyyy HH:mm:ss")</dd>
 
                 <dt class="col-sm-4">Última Atualização:</dt>
-                <dd class="col-sm-8">@Model.DataUltimaAtualizacao.ToString("dd/MM/yyyy HH:mm:ss")</dd>
-                       
+                <dd class="col-sm-8">@Model.DataUltimaAtualizacao.ToString("dd/MM/yyyy HH:mm:ss")</dd>                      
             </dl>
         </div>
     </div>
 </div>
 
-<div class="text-center">
-    <a class="btn btn-secondary" asp-controller="Usuario" asp-action="Index" role="button">Voltar</a>
-    @* <a class="btn btn-success" asp-controller="Usuario" asp-action="UsuarioReport" role="button">Salvar em PDF</a> *@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3 col-md-6 col-sm-12">
+            <a class="btn btn-secondary" asp-controller="Usuario" asp-action="Index" role="button">Voltar</a>
+        </div>
+    </div>
 </div>
+
+@* @* <div class="text-center">
+    <a class="btn btn-secondary" asp-controller="Usuario" asp-action="Index" role="button">Voltar</a>
+    <a class="btn btn-success" asp-controller="Usuario" asp-action="UsuarioReport" role="button">Salvar em PDF</a> 
+</div> *@ 
