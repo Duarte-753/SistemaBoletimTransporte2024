@@ -70,17 +70,28 @@
 
     @if (TempData["MensagemSucesso"] != null)
     {
-        <div class="alert alert-success" role="alert">
-           @*  <button type="button" class="btn btn-danger btn-sm close-alert" aria-label="Close">X</button> *@
-            @TempData["MensagemSucesso"]
+        <div class="container">
+            <div class="row">
+            <div class="alert alert-success" role="alert" d-grid gap-2 d-md-flex justify-content-md-start>
+                @*  <button type="button" class="btn btn-danger btn-sm close-alert" aria-label="Close">X</button> *@
+                @TempData["MensagemSucesso"]
+            </div>
+            </div>
         </div>
+       
     }
     @if (TempData["MensagemErro"] != null)
     {
-        <div class="alert alert-danger" role="alert">
-            @* <button type="button" class="btn btn-danger btn-sm close-alert" aria-label="Close">X</button> *@
-            @TempData["MensagemErro"]
+
+    <div class="container">
+        <div class="row">
+            <div class="alert alert-danger" role="alert" d-grid gap-2 d-md-flex justify-content-md-start>
+                @* <button type="button" class="btn btn-danger btn-sm close-alert" aria-label="Close">X</button> *@
+                @TempData["MensagemErro"]
+            </div>
         </div>
+    </div>
+       
     }
   
     <div class="container">

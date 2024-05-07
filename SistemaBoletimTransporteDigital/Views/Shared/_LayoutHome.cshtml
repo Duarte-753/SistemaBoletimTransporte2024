@@ -11,53 +11,33 @@
     <link href="~/lib/font-awesome/css/all.css" rel="stylesheet" />   
     <link href="~/css/landingpage.css" rel="stylesheet" />
     <link href="~/css/header.css" rel="stylesheet" />
+    <!-- DataTable CSS  -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.4.1/css/responsive.bootstrap5.min.css">
     <script src="~/js/home.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-    
-   
+       
 </head>
 <body>
     
-
     <header>
         <div class="header">
             <a class="logo"> SBTD</a>
-
             <div class="header-right">
                 <div id="login-container" class="login-container">
                     <a class="logo" href="@Url.Action("Sair", "Login")">Área Restrita</a>
                 </div>
-
                 <div id="menu-toggle" class="menu-toggle">
                     <div class="hamburger"></div>
                 </div>
             </div>
         </div>
     </header>
-
-    @* <header>
-        <div class="header">
-            <a class="logo"> SBTD</a>
-
-            <div class="header-right">
-                <div id="login-container" class="login-container">
-                    <ul>
-                        <li class="logo" href="@Url.Action("Sair", "Login")">Área Restrita</li>
-                        <li class="logo" href="@Url.Action("Sair", "Login")">Área Restrita</li>
-                        <li class="logo" href="@Url.Action("Sair", "Login")">Área Restrita</li>
-                    </ul>
-                </div>
-
-                <div id="menu-toggle" class="menu-toggle">
-                    <div class="hamburger"></div>
-                </div>
-            </div>
-        </div>
-    </header> *@
-
-
+    
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -71,8 +51,15 @@
     </footer>
     
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.datatables.net/v/dt/dt-1.13.6/datatables.min.js"></script>
+    <!-- DataTable JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.4.1/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.4.1/js/responsive.bootstrap5.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
