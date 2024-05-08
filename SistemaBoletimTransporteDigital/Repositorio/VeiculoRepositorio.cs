@@ -81,7 +81,7 @@ namespace SistemaBoletimTransporteDigital.Repositorio
             veiculoDB.Cor = veiculo.Cor;
             veiculoDB.Placa = veiculo.Placa;
             veiculoDB.Quilometragem = veiculo.Quilometragem;
-            veiculoDB.Ano = veiculo.Ano;
+            //veiculoDB.Ano = veiculo.Ano;
             veiculoDB.Valor = veiculo.Valor;
             veiculoDB.DataUltimaAtualizacao = veiculo.DataUltimaAtualizacao;
 

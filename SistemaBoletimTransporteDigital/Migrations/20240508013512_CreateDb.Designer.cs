@@ -12,8 +12,8 @@ using SistemaBoletimTransporteDigital.Data;
 namespace SistemaBoletimTransporteDigital.Migrations
 {
     [DbContext(typeof(BancoContext))]
-    [Migration("20240507222633_CriarBd")]
-    partial class CriarBd
+    [Migration("20240508013512_CreateDb")]
+    partial class CreateDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -159,8 +159,7 @@ namespace SistemaBoletimTransporteDigital.Migrations
 
                     b.Property<string>("Senha")
                         .IsRequired()
-                        .HasMaxLength(40)
-                        .HasColumnType("nvarchar(40)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Usuario")
                         .IsRequired()
@@ -178,8 +177,8 @@ namespace SistemaBoletimTransporteDigital.Migrations
                             Celular = "11912345678",
                             CodigoFuncional = 0,
                             CorridaStatus = 4,
-                            DataCriacao = new DateTime(2024, 5, 7, 19, 26, 32, 855, DateTimeKind.Local).AddTicks(3361),
-                            DataUltimaAtualizacao = new DateTime(2024, 5, 7, 19, 26, 32, 855, DateTimeKind.Local).AddTicks(3362),
+                            DataCriacao = new DateTime(2024, 5, 7, 22, 35, 12, 363, DateTimeKind.Local).AddTicks(1383),
+                            DataUltimaAtualizacao = new DateTime(2024, 5, 7, 22, 35, 12, 363, DateTimeKind.Local).AddTicks(1384),
                             Email = "julioduartebatista753@gmail.com",
                             EstaVinculadoAumaCorrida = 6,
                             Nome = "admin",

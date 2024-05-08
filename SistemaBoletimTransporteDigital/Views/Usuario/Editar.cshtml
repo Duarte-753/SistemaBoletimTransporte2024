@@ -27,7 +27,7 @@
         border: 1px solid #5C4033;
     }
 
-    .fa-eye-slash:after {
+    /* .fa-eye-slash:after {
         content: '';
         position: absolute;
         width: 15px;
@@ -36,10 +36,11 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%) rotate(-45deg);
-    }
+    } */
 </style>
 
-<form asp-controller="Usuario" asp-action="Editar" method="post" id="formulario" onsubmit="return validarSenhas()">
+<form asp-controller="Usuario" asp-action="Editar" method="post" id="formulario">
+    @* onsubmit="return validarSenhas()" *@
 
     <input type="hidden" asp-for="Id" />
     
@@ -48,7 +49,7 @@
 
             <div class="col-lg-3 col-md-6 col-sm-12">
                 <label for="codigofuncional">Código Funcional:</label>
-                <input type="text" asp-for="CodigoFuncional" id="codigoFuncional" class="form-control" maxlength="6">
+                <input type="text" asp-for="CodigoFuncional" id="codigoFuncional" class="form-control" maxlength="6" readonly>
                 <span class="text-danger" id="codigoFuncionalError" style="display: none;">Por favor, insira apenas números.</span>
                 @Html.ValidationMessageFor(x => x.CodigoFuncional)
             </div>
@@ -87,11 +88,11 @@
                 
             <div class="col-lg-3 col-md-6 col-sm-12">
                 <label for="usuario">Usuário:</label>
-                <input type="text" asp-for="Usuario" class="form-control uppercase" maxlength="20">
+                <input type="text" id="usuario" asp-for="Usuario" class="form-control uppercase" maxlength="20">
                 @Html.ValidationMessageFor(x => x.Usuario)
             </div>
 
-            <div class="col-lg-3 col-md-6 col-sm-12">
+            @* <div class="col-lg-3 col-md-6 col-sm-12">
                 <label for="senha">Senha:</label>
                 <div class="input-group">
                     <input type="password" asp-for="Senha" id="senha1" class="form-control" maxlength="20">
@@ -116,7 +117,7 @@
                 </div>
                 <span class="text-danger" id="senhaError" style="display: none;">As senhas não coincidem.</span>
                 @Html.ValidationMessageFor(x => x.Senha)
-            </div>      
+            </div>       *@
         </div>
     </div>
        
@@ -176,7 +177,7 @@
     });
 </script>
 
-<script>
+@* <script>
     // Função para validar se as senhas coincidem
     function validarSenhas() {
         var senha1 = document.getElementById("senha1").value;
@@ -203,7 +204,7 @@
             event.preventDefault();
         }
     });
-</script>
+</script> *@
 
 <script>
     // Seleciona o formulário
@@ -248,7 +249,7 @@
     });
 </script>
 
-<script>
+@* <script>
     $(document).ready(function () {
         $('#toggleSenha1').click(function () {
             var tipo = $('#senha1').attr('type') === 'password' ? 'text' : 'password';
@@ -262,5 +263,5 @@
             $(this).find('i').toggleClass('fa-eye fa-eye-slash');
         });
     });
-</script>
+</script> *@
 

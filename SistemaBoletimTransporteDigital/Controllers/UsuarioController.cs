@@ -145,7 +145,7 @@ namespace SistemaBoletimTransporteDigital.Controllers
         {
             try
             {
-                if (ModelState.IsValid)
+                if (usuarioRepositorio != null)
                 {
                     _usuarioRepositorio.EditarUsuario(usuarioRepositorio);
                     TempData["MensagemSucesso"] = "Usuário editado com sucesso!";

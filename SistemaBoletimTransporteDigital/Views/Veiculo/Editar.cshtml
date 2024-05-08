@@ -47,7 +47,7 @@
         <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-12">
                 <label for="prefixo">Prefixo:</label>
-                <input type="text" asp-for="Prefixo" id="prefixo" maxlength="6" class="form-control">
+                <input type="text" asp-for="Prefixo" id="prefixo" maxlength="6" class="form-control" readonly>
                 <span class="text-danger" id="prefixoError" style="display: none;">Por favor, insira apenas números.</span>
                 @Html.ValidationMessageFor(x => x.Prefixo)
             </div>
@@ -64,7 +64,7 @@
 
             <div class="col-lg-3 col-md-6 col-sm-12">
                 <label for="placa">Placa:</label>
-                <input type="text" asp-for="Placa" id="placa" class="form-control uppercase" maxlength="7" oninput="this.value = this.value.toUpperCase()">
+                <input type="text" asp-for="Placa" id="placa" class="form-control uppercase" maxlength="7" oninput="this.value = this.value.toUpperCase()" readonly>
                 <span class="text-danger" id="placaError" style="display: none;">Por favor, insira uma placa válida.</span>
                 @Html.ValidationMessageFor(x => x.Placa)
             </div>
@@ -75,24 +75,24 @@
         <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-12">
                 <label for="quilometragem">Quilometragem:</label>
-                <input type="text" asp-for="Quilometragem" id="quilometragem" class="form-control">
+                <input type="text" asp-for="Quilometragem" id="quilometragem" class="form-control" readonly>
                 <span class="text-danger" id="quilometragemError" style="display: none;">Por favor, insira apenas números.</span>
                 @Html.ValidationMessageFor(x => x.Quilometragem)
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-12">
+            @* <div class="col-lg-3 col-md-6 col-sm-12">
                 <label for="ano">Ano:</label>
-                <select asp-for="Ano" id="ano" class="form-control">
+                <select asp-for="Ano" id="ano" class="form-control" readonly>
                     @for (int year = DateTime.Now.Year; year >= 1990; year--)
                     {
                         <option value="@year">@year</option>
                     }
                 </select>
                 @Html.ValidationMessageFor(x => x.Ano)
-            </div>
+            </div> *@
 
             <div class="col-lg-3 col-md-6 col-sm-12">
                 <label for="valor">Valor:</label>
-                <input type="text" asp-for="Valor" id="valor" class="form-control">
+                <input type="text" asp-for="Valor" id="valor" class="form-control" readonly>
                 <span class="text-danger" id="valorError" style="display: none;">Por favor, insira um valor válido com no máximo 6 dígitos.</span>
                 @Html.ValidationMessageFor(x => x.Valor)
             </div>

@@ -98,8 +98,8 @@ namespace SistemaBoletimTransporteDigital.Repositorio
             usuarioDB.CodigoFuncional = usuario.CodigoFuncional;
             usuarioDB.Nome = usuario.Nome;
             usuarioDB.Usuario = usuario.Usuario;
-            usuarioDB.Senha = usuario.Senha;
-            usuarioDB.SetSenhaHash();
+            //usuarioDB.Senha = usuario.Senha;
+            //usuarioDB.SetSenhaHash();
             usuarioDB.Email = usuario.Email;
             usuarioDB.Celular = usuario.Celular;
             usuarioDB.Perfil = usuario.Perfil;

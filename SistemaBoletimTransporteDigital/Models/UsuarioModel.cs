@@ -20,8 +20,8 @@ namespace SistemaBoletimTransporteDigital.Models
         [MaxLength(20)]
         public string Usuario { get; set; }
 
-        [Required(ErrorMessage ="Digite a senha desse Usuário")]
-        [MaxLength(40)]
+        //[Required(ErrorMessage ="Digite a senha desse Usuário")]
+        //[MaxLength(40)]
         public string Senha { get; set; }
 
         [Required(ErrorMessage = "Digite um email para recuperação de senha.")]
@@ -44,7 +44,6 @@ namespace SistemaBoletimTransporteDigital.Models
         public DateTime DataCriacao { get; set; } = DateTime.Now;
 
         public DateTime DataUltimaAtualizacao { get; set; } = DateTime.Now;
-
 
 
         public virtual List<CorridaModel>? Corridas { get; set; }

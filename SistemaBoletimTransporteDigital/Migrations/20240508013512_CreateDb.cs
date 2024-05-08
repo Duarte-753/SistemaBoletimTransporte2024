@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace SistemaBoletimTransporteDigital.Migrations
 {
     /// <inheritdoc />
-    public partial class CriarBd : Migration
+    public partial class CreateDb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -20,7 +20,7 @@ namespace SistemaBoletimTransporteDigital.Migrations
                     CodigoFuncional = table.Column<int>(type: "int", nullable: false),
                     Nome = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
                     Usuario = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    Senha = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
+                    Senha = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
                     Celular = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     Perfil = table.Column<int>(type: "int", nullable: false),
@@ -126,7 +126,7 @@ namespace SistemaBoletimTransporteDigital.Migrations
             migrationBuilder.InsertData(
                 table: "Usuario",
                 columns: new[] { "Id", "Celular", "CodigoFuncional", "CorridaStatus", "DataCriacao", "DataUltimaAtualizacao", "Email", "EstaVinculadoAumaCorrida", "Nome", "Perfil", "Senha", "Usuario" },
-                values: new object[] { 1, "11912345678", 0, 4, new DateTime(2024, 5, 7, 19, 26, 32, 855, DateTimeKind.Local).AddTicks(3361), new DateTime(2024, 5, 7, 19, 26, 32, 855, DateTimeKind.Local).AddTicks(3362), "julioduartebatista753@gmail.com", 6, "admin", 1, "d033e22ae348aeb5660fc2140aec35850c4da997", "ADMIN" });
+                values: new object[] { 1, "11912345678", 0, 4, new DateTime(2024, 5, 7, 22, 35, 12, 363, DateTimeKind.Local).AddTicks(1383), new DateTime(2024, 5, 7, 22, 35, 12, 363, DateTimeKind.Local).AddTicks(1384), "julioduartebatista753@gmail.com", 6, "admin", 1, "d033e22ae348aeb5660fc2140aec35850c4da997", "ADMIN" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Corridas_UsuarioID",
