@@ -26,6 +26,12 @@ namespace SistemaBoletimTransporteDigital.Controllers
             return Json(corridasVeiculos);
         }
 
+        public JsonResult CadastrosV_M()
+        {
+            var cadastros = _dashboardCorridas.GetCadastros();
+            return Json(cadastros);
+        }
+
         [HttpGet]
         public IActionResult Index()
         {

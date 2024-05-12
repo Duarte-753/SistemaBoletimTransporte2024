@@ -46,5 +46,26 @@ namespace SistemaBoletimTransporteDigital.Dashboard
             return lista;
         }
 
+        public List<DashboardCadastros> GetCadastros()
+        {
+            var totalVeiculos = _bancoContext.Veiculos.Count();
+
+            var totalMotoristas = _bancoContext.Usuario.Count(u => u.Perfil == Enums.PerfilEnum.motorista);
+
+            // Inicializar lista para armazenar os dados dos veículos e motoristas
+            var lista = new List<DashboardCadastros>();
+
+            var dashboardCadastros = new DashboardCadastros
+            {
+                TotalVeiculos = totalVeiculos,
+                TotalMotorista = totalMotoristas
+            };
+
+            lista.Add(dashboardCadastros);
+
+            return lista;
+        }
+
+
     }
 }

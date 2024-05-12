@@ -11,17 +11,42 @@
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adiciona sombra */
     }
 
+    .piechart-container{
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adiciona sombra */
+    }
+
 </style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+            <div class="piechart-container">
+                <div id="piechart_cadastros"></div>
+            </div>
+        </div>
+
+        <div class="col-3">
+            <div class="piechart-container">
+                <div id="piechart_em_corridas"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
 
 <div class="container">
     <div class="row">
         <div class="col-12">
             <div class="chart-container">
-              <div id="chart_div"></div>
+                <div id="chart_div"></div>
             </div>
         </div>
     </div>
 </div>
+
+
 
 <script type="text/javascript">
     google.charts.load('current', { packages: ['corechart', 'bar'] });
@@ -118,6 +143,80 @@
         });
     }
 </script>
+
+<script type="text/javascript">
+    google.charts.load("current", { packages: ["corechart"] });
+    google.charts.setOnLoadCallback(CarregaDadosCadastro);
+
+    function CarregaDadosCadastro() {
+        $.ajax({
+            url: '@Url.Action("CadastrosV_M", "Home")',
+            dataType: "json",
+            type: "GET",
+            error: function (xhr, status, error) {
+                var err = eval("(" + xhr.responseText + ")");
+                toastr.error(err.message);
+            },
+            success: function (data) {
+                DadosCadastro(data);
+                return false;
+            }
+        });
+        return false;
+    }
+
+    function DadosCadastro(data) {
+
+        var dataArray = [
+            ['Tipo', 'Total']
+        ];
+        var TotalMotorista = data[0].totalMotorista;
+        var TotalVeiculos = data[0].totalVeiculos;
+
+        
+        dataArray.push(['Veículos', TotalVeiculos]);
+        dataArray.push(['Motoristas', TotalMotorista]);
+
+        var chartData = google.visualization.arrayToDataTable(dataArray);
+
+        var options = {
+            legend: 'none',
+            pieSliceText: 'label',
+            title: 'Cadastros Total em %',
+            pieStartAngle: 100,
+        };
+   
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_cadastros'));
+        chart.draw(chartData, options);
+    }
+</script>
+
+<script type="text/javascript">
+    google.charts.load("current", { packages: ["corechart"] });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['Language', 'Speakers (in millions)'],
+            ['German', 5.85],
+            ['French', 1.66],
+        ]);
+
+        var options = {
+            legend: 'none',
+            pieSliceText: 'label',
+            title: 'Cadastros Total em % ',
+            pieStartAngle: 100,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_em_corridas'));
+        chart.draw(data, options);
+    }
+</script>
+  
+
+    
+
 
 
                 @* colors: ['#0000FF', '#FF0000'], cores vermelho e azul *@
