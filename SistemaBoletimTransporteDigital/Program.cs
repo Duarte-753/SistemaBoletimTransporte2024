@@ -1,15 +1,17 @@
 
 using Microsoft.EntityFrameworkCore;
 using Rotativa.AspNetCore;
+using SistemaBoletimTransporteDigital.Dashboard;
 using SistemaBoletimTransporteDigital.Data;
 using SistemaBoletimTransporteDigital.Helper;
 using SistemaBoletimTransporteDigital.Repositorio;
+using System.Text.Json;
 
 namespace SistemaBoletimTransporteDigital
 {
     public class Program
     {
-       
+    
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
@@ -27,6 +29,13 @@ namespace SistemaBoletimTransporteDigital
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             });
 
+            //builder.Services.AddControllersWithViews()
+            //.AddJsonOptions(options =>
+            //{
+            //   // Configurações de serialização JSON
+            //  options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+            //});
+
             //FastReport.Utils.RegisteredObjects.AddConnection(typeof(MsSqlDataConnection));
 
             // Para usar as interface temos que listar ela aqui em baixo em services (instanciamos as interface)
@@ -40,6 +49,7 @@ namespace SistemaBoletimTransporteDigital
             builder.Services.AddScoped<IEmail, Email>();
             builder.Services.AddScoped<ICorridaRepositorio, CorridaRepositorio>();
             builder.Services.AddScoped<IManutencaoRepositorio, ManutencaoRepositorio>();
+            builder.Services.AddScoped<DashboardCorridasService>();//serviço do deshboard
             builder.Services.AddSession(o =>
             {
                 o.Cookie.HttpOnly = true;

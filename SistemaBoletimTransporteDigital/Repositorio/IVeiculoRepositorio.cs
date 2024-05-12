@@ -31,5 +31,6 @@ namespace SistemaBoletimTransporteDigital.Repositorio
         void CorridaVinculadoCarroSim(CorridaModel buscaUsuario);
 
         void CorridaVinculadoCarroNao(CorridaModel buscaUsuario);
+      
     }
 }

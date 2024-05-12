@@ -146,6 +146,9 @@ namespace SistemaBoletimTransporteDigital.Repositorio
             return;
         }
 
+        
+
+
 
         /*public VeiculoModel UsoVeiculo(VeiculoModel veiculo)
         {
