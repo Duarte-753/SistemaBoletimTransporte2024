@@ -1,22 +1,36 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Dashboard";
 }
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-<div id="chart_div" style="width: 900px; height: 500px;"></div>
+<style>
+    .chart-container {
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adiciona sombra */
+    }
+
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="chart-container">
+              <div id="chart_div"></div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script type="text/javascript">
-
     google.charts.load('current', { packages: ['corechart', 'bar'] });
     google.charts.setOnLoadCallback(CarregaDados);
 
     function CarregaDados() {
-
         $.ajax({
             url: '@Url.Action("CorridasVeiculos", "Home")',
-            data: {dias: 360},
+            data: { dias: 360 },
             dataType: "json",
             type: "GET",
             error: function (xhr, status, error) {
@@ -30,24 +44,18 @@
         });
         return false;
     }
-    function DadosVeiculos(data) {
-        console.log('Dados recebidos:', data);
 
+    function DadosVeiculos(data) {
         var dataArray = [
             ['Veículo', 'Corridas', 'Manutenções']
         ];
-        // Array para armazenar os nomes dos veículos
+
         var nomesVeiculos = [];
 
         $.each(data, function (i, item) {
-            console.log('Item', i, ':', item);
-            console.log('TotalCorridas:', item.totalCorridas);
-            console.log('TotalManutencao:', item.totalManutencao);
             dataArray.push([item.veiculoNome, item.totalCorridas, item.totalManutencao]);
-            nomesVeiculos.push(item.veiculoNome); // Adiciona o nome do veículo ao array
-            console.log('Dados recebidos:', data);
+            nomesVeiculos.push(item.veiculoNome);
         });
-        console.log('dataArray após processamento:', dataArray);
 
         var data = google.visualization.arrayToDataTable(dataArray);
 
@@ -56,19 +64,60 @@
             chartArea: {
                 width: '70%'
             },
-            colors: ['#5202b5', '#d2a828'],
+            colors: ['#0000FF', '#FF0000'],
             hAxis: {
                 title: 'Veículo',
-                ticks: nomesVeiculos // Define os nomes dos veículos como rótulos no eixo x
+                titleTextStyle: {
+                    fontSize: 16, // Tamanho da fonte do título do eixo x
+                    bold: true, // Negrito
+                    italic: false // Itálico
+                },
+                textStyle: {
+                    fontSize: 14 // Tamanho da fonte dos rótulos do eixo x
+                },
+                ticks: nomesVeiculos
             },
             vAxis: {
-                title: 'Veículos'
+                title: 'Veículos',
+                titleTextStyle: {
+                    fontSize: 16, // Tamanho da fonte do título do eixo y
+                    bold: true, // Negrito
+                    italic: false // Itálico
+                },
+                textStyle: {
+                    fontSize: 14 // Tamanho da fonte dos rótulos do eixo y
+                }
+            },
+            titleTextStyle: {
+                fontSize: 20, // Tamanho da fonte do título do gráfico
+                bold: true, // Negrito
+                italic: false // Itálico
             }
         };
 
         var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
         chart.draw(data, options);
+
+        google.visualization.events.addListener(chart, 'ready', function () {
+            // Obtém os elementos SVG do gráfico
+            var svg = document.querySelector('#chart_div svg');
+            if (svg) {
+                // Obtém todos os retângulos dentro do SVG
+                var rects = svg.querySelectorAll('rect');
+                // Aplica o raio de borda aos retângulos
+                rects.forEach(function (rect) {
+                    rect.setAttribute('rx', '5');
+                    rect.setAttribute('ry', '5');
+                });
+            }
+        });
+
+        // Redesenhe o gráfico sempre que a janela for redimensionada
+        $(window).on('resize', function () {
+            chart.draw(data, options);
+        });
     }
-
-
 </script>
+
+
+                @* colors: ['#0000FF', '#FF0000'], cores vermelho e azul *@
