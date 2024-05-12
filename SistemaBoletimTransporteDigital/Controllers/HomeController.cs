@@ -38,7 +38,7 @@ namespace SistemaBoletimTransporteDigital.Controllers
             }
             else
             {
-                // Caso contrário, redireciona para a página padrão
+                // Caso contrário, redireciona para a página padrão do admin
                 return View();
             }
         }
