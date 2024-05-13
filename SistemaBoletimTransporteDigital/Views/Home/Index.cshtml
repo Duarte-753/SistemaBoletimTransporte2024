@@ -101,6 +101,7 @@
             pieSliceText: 'label',
             title: 'Cadastros Total em %',
             pieStartAngle: 100,
+            colors: ['#0000FF', '#FF0000'], // Adicionei as cores aqui
         };
    
         var chart = new google.visualization.PieChart(document.getElementById('piechart_cadastros'));
@@ -183,30 +184,43 @@
     }
 
     function DadosVeiculoDis(data) {
-        console.log(data); // Adicione esta linha
+        console.log(data); // Certifique-se de que os dados estão corretos
 
-        var dataArray = [
-            ['Tipo', 'Total']
-        ];
-        var VeiculosEmUso = data[0].veiculosEmUso;
-        var VeiculosLivre = data[0].veiculosLivre;
+        // Verifique se há dados na matriz recebida
+        if (data && data.length > 0) {
+            // Acessando os dados do primeiro elemento (índice 0) do array
+            var primeiroElemento = data[0];
 
+            // Acessando os valores específicos dentro do primeiro elemento
+            var veiculosEmUso = primeiroElemento.veiculoEmUso; // ou primeiroElemento.emCorrida, dependendo da estrutura real dos dados
+            var veiculosLivre = primeiroElemento.veiculoLivre; // ou primeiroElemento.livre, dependendo da estrutura real dos dados
 
-        dataArray.push(['Em Viagem', VeiculosEmUso]);
-        dataArray.push(['Estacionado', VeiculosLivre]);
+            // Criando os dados para o gráfico
+            var dataArray = [
+                ['Tipo', 'Total']
+            ];
+            dataArray.push(['Em Viagem', veiculosEmUso]);
+            dataArray.push(['Estacionado', veiculosLivre]);
 
-        var data = google.visualization.arrayToDataTable(dataArray);
+            // Criando o DataTable para o gráfico
+            var data = google.visualization.arrayToDataTable(dataArray);
 
-        var options = {
-            legend: 'none',
-            pieSliceText: 'label',
-            title: 'Veiculos em Corridas %',
-            pieStartAngle: 100,
-            colors: ['#0000FF', '#FF0000'], // Adicionei as cores aqui
-        };
+            // Definindo as opções do gráfico
+            var options = {
+                legend: 'none',
+                pieSliceText: 'label',
+                title: 'Veículos em Corridas %',
+                pieStartAngle: 100,
+                colors: ['#0000FF', '#FF0000'], // Adicionei as cores aqui
+            };
 
-        var chart = new google.visualization.PieChart(document.getElementById('piechart_carros'));
-        chart.draw(data, options);
+            // Desenhando o gráfico
+            var chart = new google.visualization.PieChart(document.getElementById('piechart_carros'));
+            chart.draw(data, options);
+        } else {
+            // Caso não haja dados recebidos
+            console.log("Nenhum dado recebido do servidor");
+        }
     }
 </script>
 
