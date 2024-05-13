@@ -184,7 +184,7 @@
     }
 
     function DadosVeiculoDis(data) {
-        console.log(data); // Certifique-se de que os dados estão corretos
+        console.log(data); // ver dados estão corretos
 
         // Verifique se há dados na matriz recebida
         if (data && data.length > 0) {
@@ -304,6 +304,39 @@
     }
 </script>
 
+<script type="text/javascript">
+    // Função para carregar os dados de cadastros a cada 5 segundos
+    function atualizarDadosCadastros() {
+        CarregaDadosCadastro();
+        setTimeout(atualizarDadosCadastros, 5000); // Chama esta função novamente após 5 segundos
+    }
+
+    // Função para carregar os dados dos motoristas a cada 5 segundos
+    function atualizarDadosMotoristas() {
+        CarregaDadosMotoristasEmCorrida();
+        setTimeout(atualizarDadosMotoristas, 5000); // Chama esta função novamente após 5 segundos
+    }
+
+    // Função para carregar os dados dos veículos a cada 5 segundos
+    function atualizarDadosVeiculos() {
+        CarregaDadosVeículosEmCorrida();
+        setTimeout(atualizarDadosVeiculos, 5000); // Chama esta função novamente após 5 segundos
+    }
+
+    // Função para carregar os dados dos gráficos de barras a cada 5 segundos
+    function atualizarDadosBarras() {
+        CarregaDados();
+        setTimeout(atualizarDadosBarras, 5000); // Chama esta função novamente após 5 segundos
+    }
+
+    // Inicia o carregamento automático dos dados
+    $(document).ready(function () {
+        atualizarDadosCadastros();
+        atualizarDadosMotoristas();
+        atualizarDadosVeiculos();
+        atualizarDadosBarras();
+    });
+</script>
 
 
 
