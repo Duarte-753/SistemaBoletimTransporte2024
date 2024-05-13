@@ -83,7 +83,7 @@
     }
 
     function DadosCadastro(data) {
-
+        console.log(data); // Adicione esta linha
         var dataArray = [
             ['Tipo', 'Total']
         ];
@@ -108,58 +108,12 @@
     }
 </script>
 
-<script type="text/javascript"> @*Pizza Uso do carro*@
-        google.charts.load("current", { packages: ["corechart"] });
-        google.charts.setOnLoadCallback(CarregaDadosVeiculosEmUso);
 
-    function CarregaDadosVeiculosEmUso() {
-        $.ajax({
-            url: '@Url.Action("CarroDisponivelstatus", "Home")',
-            dataType: "json",
-            type: "GET",
-            error: function (xhr, status, error) {
-                var err = eval("(" + xhr.responseText + ")");
-                toastr.error(err.message);
-            },
-            success: function (data) {
-                DadosVeiculosUso(data);
-                return false;
-            }
-        });
-        return false;
-    }
 
-    function DadosVeiculosUso(data) {
-        console.log(data); // Adicione esta linha
-
-        
-        var dataArray = [
-            ['Tipo', 'Total']
-        ];
-
-        var VeiculoEmCorrida = data[0].veiculoEmCorrida;
-        var VeiculoLivre = data[0].veiculoLivre;
-
-        dataArray.push(['Em Corrida',VeiculoEmCorrida]);
-        dataArray.push(['Livres',VeiculoLivre]);
-
-        var data = google.visualization.arrayToDataTable(dataArray);
-
-        var options = {
-            legend: 'none',
-            pieSliceText: 'label',
-            title: 'Veículos em uso %',
-            pieStartAngle: 100,
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('piechart_carros'));
-        chart.draw(data, options);
-    }
-</script>
-
-<script type="text/javascript"> @*Pizza motorista ocupados*@
-        google.charts.load("current", { packages: ["corechart"] });
-        google.charts.setOnLoadCallback(CarregaDadosMotoristasEmCorrida);
+<script type="text/javascript">
+    // Pizza motorista ocupados
+    google.charts.load("current", { packages: ["corechart"] });
+    google.charts.setOnLoadCallback(CarregaDadosMotoristasEmCorrida);
 
     function CarregaDadosMotoristasEmCorrida() {
         $.ajax({
@@ -198,6 +152,7 @@
             pieSliceText: 'label',
             title: 'Motorista em Corridas %',
             pieStartAngle: 100,
+            colors: ['#0000FF', '#FF0000'], // Adicionei as cores aqui
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart_uso_motorista'));
@@ -206,9 +161,59 @@
 </script>
 
 <script type="text/javascript">
-    @*grafico de barras veiculos, corridas e manutenções*@
-        google.charts.load('current', { packages: ['corechart', 'bar'] });
-        google.charts.setOnLoadCallback(CarregaDados);
+    // Pizza carros ocupados
+    google.charts.load("current", { packages: ["corechart"] });
+    google.charts.setOnLoadCallback(CarregaDadosVeículosEmCorrida);
+
+    function CarregaDadosVeículosEmCorrida() {
+        $.ajax({
+            url: '@Url.Action("CarroDisponivelstatus", "Home")',
+            dataType: "json",
+            type: "GET",
+            error: function (xhr, status, error) {
+                var err = eval("(" + xhr.responseText + ")");
+                toastr.error(err.message);
+            },
+            success: function (data) {
+                DadosVeiculoDis(data);
+                return false;
+            }
+        });
+        return false;
+    }
+
+    function DadosVeiculoDis(data) {
+        console.log(data); // Adicione esta linha
+
+        var dataArray = [
+            ['Tipo', 'Total']
+        ];
+        var VeiculosEmUso = data[0].veiculosEmUso;
+        var VeiculosLivre = data[0].veiculosLivre;
+
+
+        dataArray.push(['Em Viagem', VeiculosEmUso]);
+        dataArray.push(['Estacionado', VeiculosLivre]);
+
+        var data = google.visualization.arrayToDataTable(dataArray);
+
+        var options = {
+            legend: 'none',
+            pieSliceText: 'label',
+            title: 'Veiculos em Corridas %',
+            pieStartAngle: 100,
+            colors: ['#0000FF', '#FF0000'], // Adicionei as cores aqui
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_carros'));
+        chart.draw(data, options);
+    }
+</script>
+
+<script type="text/javascript">
+    // Grafico de barras veiculos, corridas e manutenções
+    google.charts.load('current', { packages: ['corechart', 'bar'] });
+    google.charts.setOnLoadCallback(CarregaDados);
 
     function CarregaDados() {
         $.ajax({
@@ -248,7 +253,7 @@
             chartArea: {
                 width: '70%'
             },
-            colors: ['#0000FF', '#FF0000'],
+            colors: ['#0000FF', '#FF0000'], // Adicionei as cores aqui
             hAxis: {
                 title: 'Veículo',
                 titleTextStyle: {
@@ -281,58 +286,10 @@
 
         var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
         chart.draw(data, options);
-
-        // google.visualization.events.addListener(chart, 'ready', function () {
-        //     // Obtém os elementos SVG do gráfico
-        //     var svg = document.querySelector('#chart_div svg');
-        //     if (svg) {
-        //         // Obtém todos os retângulos dentro do SVG
-        //         var rects = svg.querySelectorAll('rect');
-        //         // Aplica o raio de borda aos retângulos
-        //         rects.forEach(function (rect) {
-        //             rect.setAttribute('rx', '5');
-        //             rect.setAttribute('ry', '5');
-        //         });
-        //     }
-        // });
-
-        // Redesenhe o gráfico sempre que a janela for redimensionada
-        // $(window).on('resize', function () {
-        //     chart.draw(data, options);
-        // });
+   
     }
 </script>
 
-<script type="text/javascript">
-    // Função para redimensionar todos os gráficos
-    function redimensionarGraficos() {
-        // Redimensiona o gráfico de cadastros
-        var chartCadastro = new google.visualization.PieChart(document.getElementById('piechart_cadastros'));
-        chartCadastro.draw(data, options);
-
-        // Redimensiona o gráfico de carros
-        var chart = new google.visualization.PieChart(document.getElementById('piechart_carros'));
-        chart.draw(data, options);
-
-        // Redimensiona o gráfico de motoristas
-        var chart = new google.visualization.PieChart(document.getElementById('piechart_uso_motorista'));
-        chart.draw(data, options);
-
-        // Redimensiona o gráfico de barras
-        var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
-        chart.draw(data, options);
-    }
-
-    // Chama a função para redimensionar os gráficos quando a janela é redimensionada
-    $(window).on('resize', function () {
-        redimensionarGraficos();
-    });
-
-    // Chama a função para redimensionar os gráficos quando a página é carregada
-    $(document).ready(function () {
-        redimensionarGraficos();
-    });
-</script>
 
 
 
