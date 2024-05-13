@@ -53,7 +53,7 @@ namespace SistemaBoletimTransporteDigital.Dashboard
             var totalMotoristas = _bancoContext.Usuario.Count(u => u.Perfil == Enums.PerfilEnum.motorista);
 
             // Inicializar lista para armazenar os dados dos veículos e motoristas
-            var lista = new List<DashboardCadastros>();
+            var listaCadastro = new List<DashboardCadastros>();
 
             var dashboardCadastros = new DashboardCadastros
             {
@@ -61,9 +61,56 @@ namespace SistemaBoletimTransporteDigital.Dashboard
                 TotalMotorista = totalMotoristas
             };
 
-            lista.Add(dashboardCadastros);
+            listaCadastro.Add(dashboardCadastros);
 
-            return lista;
+            return listaCadastro;
+        }
+
+        public List<DashboardCarrosEmUso> GetCarrosEmUso()
+        {
+            // Buscar todos os veículos no contexto do banco de dados
+            var veiculos = _bancoContext.Veiculos.ToList();
+
+            // Contar o total de veículos em uso
+            var totalVeiculosEmUso = veiculos.Count(t => t.CarroEmUso == Enums.CarroEmUsoEnum.EmUso);
+
+            // Contar o total de veículos disponíveis
+            var totalVeiculosDisponivel = veiculos.Count(t => t.CarroEmUso == Enums.CarroEmUsoEnum.Disponivel);
+
+
+
+            // Inicializar lista para armazenar os dados dos veículos e motoristas
+            var listaCarros = new List<DashboardCarrosEmUso>();
+
+            var dashboardVeiculos = new DashboardCarrosEmUso
+            {
+                VeiculoEmUso = totalVeiculosEmUso,
+                VeiculoLivre = totalVeiculosDisponivel
+            };
+
+            listaCarros.Add(dashboardVeiculos);
+
+            return listaCarros;
+        }
+
+        public List<DashboardMotoristaEmCorrida> GetMotoristaEmCorridas()
+        {
+            var totalUsuariosEmCorrida = _bancoContext.Usuario.Count(u => u.CorridaStatus == Enums.PerfilEnum.Iniciada && u.Perfil == Enums.PerfilEnum.motorista);
+
+            var totalUsuariosDisponivel = _bancoContext.Usuario.Count(u => u.CorridaStatus == Enums.PerfilEnum.Finalizada && u.Perfil == Enums.PerfilEnum.motorista);
+
+            // Inicializar lista para armazenar os dados dos veículos e motoristas
+            var listaMotorista = new List<DashboardMotoristaEmCorrida>();
+
+            var dashboardMotorista = new DashboardMotoristaEmCorrida
+            {
+                EmCorrida= totalUsuariosEmCorrida,
+                Livre = totalUsuariosDisponivel
+            };
+
+            listaMotorista.Add(dashboardMotorista);
+
+            return listaMotorista;
         }
 
 

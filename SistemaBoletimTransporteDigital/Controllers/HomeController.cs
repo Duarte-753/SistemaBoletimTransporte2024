@@ -20,17 +20,47 @@ namespace SistemaBoletimTransporteDigital.Controllers
             _sessao = sessao;
         }
 
-        public JsonResult CorridasVeiculos(int dias)
-        {
-            var corridasVeiculos = _dashboardCorridas.GetCorridasFeitas(dias);       
-            return Json(corridasVeiculos);
-        }
+
 
         public JsonResult CadastrosV_M()
         {
             var cadastros = _dashboardCorridas.GetCadastros();
             return Json(cadastros);
         }
+        public JsonResult VeiculosEmUso()
+        {
+            var VeiculosUso = _dashboardCorridas.GetCarrosEmUso();
+            return Json(VeiculosUso);
+        }
+        public JsonResult MotoristaDisponivel()
+        {
+            var MotoristaDisponivel = _dashboardCorridas.GetMotoristaEmCorridas();
+            return Json(MotoristaDisponivel);
+        }
+        public JsonResult CorridasVeiculos(int dias)
+        {
+            var corridasVeiculos = _dashboardCorridas.GetCorridasFeitas(dias);
+            return Json(corridasVeiculos);
+        }
+
+        //public JsonResult DashboardData(int dias)
+        //{
+        //    var cadastros = _dashboardCorridas.GetCadastros();
+        //    var carrosEmUso = _dashboardCorridas.GetCarrosEmUso();
+        //    var motoristasEmCorrida = _dashboardCorridas.GetMotoristaEmCorridas();
+        //    var corridasFeitas = _dashboardCorridas.GetCorridasFeitas(dias);
+
+        //    var dashboardData = new DashboardData
+        //    {
+        //        Cadastros = cadastros,
+        //        CarrosEmUso = carrosEmUso,
+        //        MotoristasEmCorrida = motoristasEmCorrida,
+        //        CorridasFeitas = corridasFeitas
+        //    };
+
+        //    return Json(dashboardData);
+        //}
+
 
         [HttpGet]
         public IActionResult Index()
