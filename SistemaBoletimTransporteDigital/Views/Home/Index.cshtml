@@ -8,40 +8,37 @@
     .chart-container {
         border-radius: 8px;
         overflow: hidden;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adiciona sombra */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Adiciona sombra */
     }
 
     .piechart-container{
         border-radius: 8px;
         overflow: hidden;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adiciona sombra */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Adiciona sombra */
     }
 
     .custom-margin {
-        margin: 6px;
+        margin: 5px;
     }
 
 </style>
 
 <div class="container">
     <div class="row">
-        <div class="col-lg-3 col-md-6 col-sm-12 custom-margin">
+        <div class="col-lg-4 col-md-6 col-sm-12 custom-margin">
             <div class="piechart-container">
                 <div id="piechart_cadastros"></div> @* feito *@
             </div>
         </div>
-
         
-
+        <div class="col-lg-4 col-md-6 col-sm-12 custom-margin">
+            <div class="piechart-container">
+                <div id="piechart_carros"></div>
+            </div>
+        </div>
         <div class="col-lg-3 col-md-6 col-sm-12 custom-margin">
             <div class="piechart-container">
                 <div id="piechart_uso_motorista"></div>
-            </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6 col-sm-12 custom-margin">
-            <div class="piechart-container">
-                <div id="piechart_carros"></div>
             </div>
         </div>
     </div>
@@ -97,11 +94,20 @@
         var data = google.visualization.arrayToDataTable(dataArray);
 
         var options = {
-            legend: 'none',
+            
             pieSliceText: 'label',
             title: 'Cadastros Total em %',
+            titleTextStyle: {
+                fontSize: 16, // Tamanho da fonte do título do eixo x
+                bold: true, // Negrito
+                italic: false // Itálico
+            },
+            textStyle: {
+                fontSize: 14 // Tamanho da fonte dos rótulos do eixo x
+            },         
             pieStartAngle: 100,
-            colors: ['#0000FF', '#FF0000'], // Adicionei as cores aqui
+            colors: ['#A0522D', '#D2B48C'], // Adicionei as cores aqui
+           
         };
    
         var chart = new google.visualization.PieChart(document.getElementById('piechart_cadastros'));
@@ -149,11 +155,19 @@
         var data = google.visualization.arrayToDataTable(dataArray);
 
         var options = {
-            legend: 'none',
+            
             pieSliceText: 'label',
             title: 'Motorista em Corridas %',
+            titleTextStyle: {
+                fontSize: 16, // Tamanho da fonte do título do eixo x
+                bold: true, // Negrito
+                italic: false // Itálico
+            },
+            textStyle: {
+                fontSize: 14 // Tamanho da fonte dos rótulos do eixo x
+            },
             pieStartAngle: 100,
-            colors: ['#0000FF', '#FF0000'], // Adicionei as cores aqui
+            colors: ['#A0522D', '#D2B48C'], // Adicionei as cores aqui
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart_uso_motorista'));
@@ -207,11 +221,19 @@
 
             // Definindo as opções do gráfico
             var options = {
-                legend: 'none',
+               
                 pieSliceText: 'label',
                 title: 'Veículos em Corridas %',
+                titleTextStyle: {
+                    fontSize: 16, // Tamanho da fonte do título do eixo x
+                    bold: true, // Negrito
+                    italic: false // Itálico
+                },
+                textStyle: {
+                    fontSize: 14 // Tamanho da fonte dos rótulos do eixo x
+                },
                 pieStartAngle: 100,
-                colors: ['#0000FF', '#FF0000'], // Adicionei as cores aqui
+                colors: ['#A0522D', '#D2B48C'], // Adicionei as cores aqui
             };
 
             // Desenhando o gráfico
@@ -267,9 +289,9 @@
             chartArea: {
                 width: '70%'
             },
-            colors: ['#0000FF', '#FF0000'], // Adicionei as cores aqui
+            colors: ['#A0522D', '#D2B48C'], // Adicionei as cores aqui
             hAxis: {
-                title: 'Veículo',
+                title: 'Corridas/Manutenções',
                 titleTextStyle: {
                     fontSize: 16, // Tamanho da fonte do título do eixo x
                     bold: true, // Negrito
