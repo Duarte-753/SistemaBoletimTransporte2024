@@ -33,7 +33,7 @@ namespace SistemaBoletimTransporteDigital.Models
 
         public DateTime DataUltimaAtualizacao { get; set; } = DateTime.Now;
 
-        public CarroEmUsoEnum? CarroEmUso { get; set; } = CarroEmUsoEnum.Disponivel;
+        public CarroEmUsoEnum? CarroEmUso { get; set; } 
 
         public CarroEmUsoEnum? VinculadoCarroAcorrida { get; set; }
 

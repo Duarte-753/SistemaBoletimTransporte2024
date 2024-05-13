@@ -17,23 +17,27 @@
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adiciona sombra */
     }
 
+    .custom-margin {
+        margin: 6px;
+    }
+
 </style>
 
 <div class="container">
     <div class="row">
-        <div class="col-3">
+        <div class="col-lg-3 col-md-6 col-sm-12 custom-margin">
             <div class="piechart-container">
                 <div id="piechart_cadastros"></div> @* feito *@
             </div>
         </div>
 
-        <div class="col-3">
+        <div class="col-lg-3 col-md-6 col-sm-12 custom-margin">
             <div class="piechart-container">
                 <div id="piechart_Carros"></div>
             </div>
         </div>
 
-        <div class="col-3">
+        <div class="col-lg-3 col-md-6 col-sm-12 custom-margin">
             <div class="piechart-container">
                 <div id="piechart_uso_motorista"></div>
             </div>
@@ -41,11 +45,9 @@
     </div>
 </div>
 
-<br />
-
 <div class="container">
     <div class="row">
-        <div class="col-12">
+        <div class="col-12 custom-margin">
             <div class="chart-container">
                 <div id="chart_div"></div> @* feito *@
             </div>
@@ -90,7 +92,7 @@
         dataArray.push(['Veículos', TotalVeiculos]);
         dataArray.push(['Motoristas', TotalMotorista]);
 
-        var chartData = google.visualization.arrayToDataTable(dataArray);
+        var data = google.visualization.arrayToDataTable(dataArray);
 
         var options = {
             legend: 'none',
@@ -100,7 +102,7 @@
         };
    
         var chart = new google.visualization.PieChart(document.getElementById('piechart_cadastros'));
-        chart.draw(chartData, options);
+        chart.draw(data, options);
     }
 </script>
 
@@ -110,7 +112,7 @@
 
     function CarregaDadosVeiculosEmUso() {
         $.ajax({
-            url: '@Url.Action("VeiculosEmUso", "Home")',
+            url: '@Url.Action("VeiculosDisponivelDash", "Home")',
             dataType: "json",
             type: "GET",
             error: function (xhr, status, error) {
@@ -132,14 +134,12 @@
         ];
         var VeiculoEmCorrida = data[0].veiculoEmCorrida;
         var VeiculoLivre = data[0].veiculoLivre;
-
-        console.log("VeiculoEmCorrida:", VeiculoEmCorrida);
-        console.log("VeiculoLivre:", VeiculoLivre);
+      
 
         dataArray.push(['Em Corrida', VeiculoEmCorrida]);
         dataArray.push(['Livres', VeiculoLivre]);
 
-        var chartData = google.visualization.arrayToDataTable(dataArray);
+        var data = google.visualization.arrayToDataTable(dataArray);
 
         var options = {
             legend: 'none',
@@ -149,7 +149,7 @@
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart_Carros'));
-        chart.draw(chartData, options);
+        chart.draw(data, options);
     }
 </script>
 
@@ -186,17 +186,17 @@
         dataArray.push(['Em Corrida', EmCorrida]);
         dataArray.push(['Livres', Livre]);
 
-        var chartData = google.visualization.arrayToDataTable(dataArray);
+        var data = google.visualization.arrayToDataTable(dataArray);
 
         var options = {
             legend: 'none',
             pieSliceText: 'label',
-            title: 'Motorista em uso %',
+            title: 'Motorista em Corridas %',
             pieStartAngle: 100,
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart_uso_motorista'));
-        chart.draw(chartData, options);
+        chart.draw(data, options);
     }
 </script>
 
@@ -276,26 +276,59 @@
         var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
         chart.draw(data, options);
 
-        google.visualization.events.addListener(chart, 'ready', function () {
-            // Obtém os elementos SVG do gráfico
-            var svg = document.querySelector('#chart_div svg');
-            if (svg) {
-                // Obtém todos os retângulos dentro do SVG
-                var rects = svg.querySelectorAll('rect');
-                // Aplica o raio de borda aos retângulos
-                rects.forEach(function (rect) {
-                    rect.setAttribute('rx', '5');
-                    rect.setAttribute('ry', '5');
-                });
-            }
-        });
+        // google.visualization.events.addListener(chart, 'ready', function () {
+        //     // Obtém os elementos SVG do gráfico
+        //     var svg = document.querySelector('#chart_div svg');
+        //     if (svg) {
+        //         // Obtém todos os retângulos dentro do SVG
+        //         var rects = svg.querySelectorAll('rect');
+        //         // Aplica o raio de borda aos retângulos
+        //         rects.forEach(function (rect) {
+        //             rect.setAttribute('rx', '5');
+        //             rect.setAttribute('ry', '5');
+        //         });
+        //     }
+        // });
 
         // Redesenhe o gráfico sempre que a janela for redimensionada
-        $(window).on('resize', function () {
-            chart.draw(data, options);
-        });
+        // $(window).on('resize', function () {
+        //     chart.draw(data, options);
+        // });
     }
 </script>
+
+<script type="text/javascript">
+    // Função para redimensionar todos os gráficos
+    function redimensionarGraficos() {
+        // Redimensiona o gráfico de cadastros
+        var chartCadastro = new google.visualization.PieChart(document.getElementById('piechart_cadastros'));
+        chartCadastro.draw(data, options);
+
+        // Redimensiona o gráfico de carros
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_Carros'));
+        chart.draw(data, options);
+
+        // Redimensiona o gráfico de motoristas
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_uso_motorista'));
+        chart.draw(data, options);
+
+        // Redimensiona o gráfico de barras
+        var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+    }
+
+    // Chama a função para redimensionar os gráficos quando a janela é redimensionada
+    $(window).on('resize', function () {
+        redimensionarGraficos();
+    });
+
+    // Chama a função para redimensionar os gráficos quando a página é carregada
+    $(document).ready(function () {
+        redimensionarGraficos();
+    });
+</script>
+
+
 
    
 

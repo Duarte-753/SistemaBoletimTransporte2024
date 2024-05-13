@@ -67,17 +67,12 @@ namespace SistemaBoletimTransporteDigital.Dashboard
         }
 
         public List<DashboardCarrosEmUso> GetCarrosEmUso()
-        {
-            // Buscar todos os veículos no contexto do banco de dados
-            var veiculos = _bancoContext.Veiculos.ToList();
-
+        {       
             // Contar o total de veículos em uso
-            var totalVeiculosEmUso = veiculos.Count(t => t.CarroEmUso == Enums.CarroEmUsoEnum.EmUso);
+            var totalVeiculosEmUso = _bancoContext.Veiculos.Count(t => t.CarroEmUso == Enums.CarroEmUsoEnum.EmUso);
 
             // Contar o total de veículos disponíveis
-            var totalVeiculosDisponivel = veiculos.Count(t => t.CarroEmUso == Enums.CarroEmUsoEnum.Disponivel);
-
-
+            var totalVeiculosDisponivel = _bancoContext.Veiculos.Count(t => t.CarroEmUso == Enums.CarroEmUsoEnum.Disponivel);
 
             // Inicializar lista para armazenar os dados dos veículos e motoristas
             var listaCarros = new List<DashboardCarrosEmUso>();

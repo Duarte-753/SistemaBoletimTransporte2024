@@ -19,15 +19,8 @@ namespace SistemaBoletimTransporteDigital.Controllers
                 new ArgumentNullException(nameof(dashboardCorridas));
             _sessao = sessao;
         }
-
-
-
-        public JsonResult CadastrosV_M()
-        {
-            var cadastros = _dashboardCorridas.GetCadastros();
-            return Json(cadastros);
-        }
-        public JsonResult VeiculosEmUso()
+       
+        public JsonResult VeiculosDisponivelDash()
         {
             var VeiculosUso = _dashboardCorridas.GetCarrosEmUso();
             return Json(VeiculosUso);
@@ -41,6 +34,11 @@ namespace SistemaBoletimTransporteDigital.Controllers
         {
             var corridasVeiculos = _dashboardCorridas.GetCorridasFeitas(dias);
             return Json(corridasVeiculos);
+        }
+        public JsonResult CadastrosV_M()
+        {
+            var cadastros = _dashboardCorridas.GetCadastros();
+            return Json(cadastros);
         }
 
         //public JsonResult DashboardData(int dias)

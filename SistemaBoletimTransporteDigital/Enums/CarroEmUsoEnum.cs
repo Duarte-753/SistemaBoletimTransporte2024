@@ -2,8 +2,9 @@
 {
     public enum CarroEmUsoEnum
     {
-        Disponivel = 1,
+        
         EmUso = 2,
+        Disponivel = 1,
 
         VinculadoCarroAcorridaSim = 5,
         VinculadoCarroAcorridaNao = 6,
