@@ -31,15 +31,17 @@
             </div>
         </div>
 
+        
+
         <div class="col-lg-3 col-md-6 col-sm-12 custom-margin">
             <div class="piechart-container">
-                <div id="piechart_Carros"></div>
+                <div id="piechart_uso_motorista"></div>
             </div>
         </div>
 
         <div class="col-lg-3 col-md-6 col-sm-12 custom-margin">
             <div class="piechart-container">
-                <div id="piechart_uso_motorista"></div>
+                <div id="piechart_carros"></div>
             </div>
         </div>
     </div>
@@ -112,7 +114,7 @@
 
     function CarregaDadosVeiculosEmUso() {
         $.ajax({
-            url: '@Url.Action("VeiculosDisponivelDash", "Home")',
+            url: '@Url.Action("CarroDisponivelstatus", "Home")',
             dataType: "json",
             type: "GET",
             error: function (xhr, status, error) {
@@ -128,16 +130,18 @@
     }
 
     function DadosVeiculosUso(data) {
+        console.log(data); // Adicione esta linha
 
+        
         var dataArray = [
             ['Tipo', 'Total']
         ];
+
         var VeiculoEmCorrida = data[0].veiculoEmCorrida;
         var VeiculoLivre = data[0].veiculoLivre;
-      
 
-        dataArray.push(['Em Corrida', VeiculoEmCorrida]);
-        dataArray.push(['Livres', VeiculoLivre]);
+        dataArray.push(['Em Corrida',VeiculoEmCorrida]);
+        dataArray.push(['Livres',VeiculoLivre]);
 
         var data = google.visualization.arrayToDataTable(dataArray);
 
@@ -148,14 +152,14 @@
             pieStartAngle: 100,
         };
 
-        var chart = new google.visualization.PieChart(document.getElementById('piechart_Carros'));
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_carros'));
         chart.draw(data, options);
     }
 </script>
 
 <script type="text/javascript"> @*Pizza motorista ocupados*@
         google.charts.load("current", { packages: ["corechart"] });
-    google.charts.setOnLoadCallback(CarregaDadosMotoristasEmCorrida);
+        google.charts.setOnLoadCallback(CarregaDadosMotoristasEmCorrida);
 
     function CarregaDadosMotoristasEmCorrida() {
         $.ajax({
@@ -175,6 +179,7 @@
     }
 
     function DadosMotorista(data) {
+        console.log(data); // Adicione esta linha
 
         var dataArray = [
             ['Tipo', 'Total']
@@ -224,6 +229,7 @@
     }
 
     function DadosVeiculos(data) {
+        console.log(data); // Adicione esta linha
         var dataArray = [
             ['Veículo', 'Corridas', 'Manutenções']
         ];
@@ -305,7 +311,7 @@
         chartCadastro.draw(data, options);
 
         // Redimensiona o gráfico de carros
-        var chart = new google.visualization.PieChart(document.getElementById('piechart_Carros'));
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_carros'));
         chart.draw(data, options);
 
         // Redimensiona o gráfico de motoristas

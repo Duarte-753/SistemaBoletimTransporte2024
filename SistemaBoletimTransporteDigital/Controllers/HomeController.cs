@@ -20,7 +20,7 @@ namespace SistemaBoletimTransporteDigital.Controllers
             _sessao = sessao;
         }
        
-        public JsonResult VeiculosDisponivelDash()
+        public JsonResult CarroDisponivelstatus()
         {
             var VeiculosUso = _dashboardCorridas.GetCarrosEmUso();
             return Json(VeiculosUso);
