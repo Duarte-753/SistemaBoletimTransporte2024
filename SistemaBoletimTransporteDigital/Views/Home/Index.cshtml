@@ -54,10 +54,6 @@
     </div>
 </div>
 
-
-
-
-
 <script type="text/javascript"> @*Pizza Cadastro de carros e motorista*@
     google.charts.load("current", { packages: ["corechart"] });
     google.charts.setOnLoadCallback(CarregaDadosCadastro);
@@ -270,60 +266,108 @@
     }
 
     function DadosVeiculos(data) {
-        console.log(data); // Adicione esta linha
-        var dataArray = [
-            ['Veículo', 'Corridas', 'Manutenções']
-        ];
+        // Verifique se há dados na matriz recebida
+        if (data && data.length > 0) {
+            // Se houver dados, prossiga com o processamento normal
+            var dataArray = [
+                ['Veículo', 'Corridas', 'Manutenções']
+            ];
 
-        var nomesVeiculos = [];
+            var nomesVeiculos = [];
 
-        $.each(data, function (i, item) {
-            dataArray.push([item.veiculoNome, item.totalCorridas, item.totalManutencao]);
-            nomesVeiculos.push(item.veiculoNome);
-        });
+            $.each(data, function (i, item) {
+                dataArray.push([item.veiculoNome, item.totalCorridas, item.totalManutencao]);
+                nomesVeiculos.push(item.veiculoNome);
+            });
 
-        var data = google.visualization.arrayToDataTable(dataArray);
+            var data = google.visualization.arrayToDataTable(dataArray);
 
-        var options = {
-            title: 'Corridas - Corridas nos últimos 360 dias',
-            chartArea: {
-                width: '70%'
-            },
-            colors: ['#A0522D', '#D2B48C'], // Adicionei as cores aqui
-            hAxis: {
-                title: 'Corridas/Manutenções',
+            var options = {
+                title: 'Corridas - Corridas nos últimos 360 dias',
+                chartArea: {
+                    width: '70%'
+                },
+                colors: ['#A0522D', '#D2B48C'], // Adicionei as cores aqui
+                hAxis: {
+                    title: 'Corridas/Manutenções',
+                    titleTextStyle: {
+                        fontSize: 16, // Tamanho da fonte do título do eixo x
+                        bold: true, // Negrito
+                        italic: false // Itálico
+                    },
+                    textStyle: {
+                        fontSize: 14 // Tamanho da fonte dos rótulos do eixo x
+                    },
+                    ticks: nomesVeiculos
+                },
+                vAxis: {
+                    title: 'Veículos',
+                    titleTextStyle: {
+                        fontSize: 16, // Tamanho da fonte do título do eixo y
+                        bold: true, // Negrito
+                        italic: false // Itálico
+                    },
+                    textStyle: {
+                        fontSize: 14 // Tamanho da fonte dos rótulos do eixo y
+                    }
+                },
                 titleTextStyle: {
-                    fontSize: 16, // Tamanho da fonte do título do eixo x
+                    fontSize: 20, // Tamanho da fonte do título do gráfico
                     bold: true, // Negrito
                     italic: false // Itálico
-                },
-                textStyle: {
-                    fontSize: 14 // Tamanho da fonte dos rótulos do eixo x
-                },
-                ticks: nomesVeiculos
-            },
-            vAxis: {
-                title: 'Veículos',
-                titleTextStyle: {
-                    fontSize: 16, // Tamanho da fonte do título do eixo y
-                    bold: true, // Negrito
-                    italic: false // Itálico
-                },
-                textStyle: {
-                    fontSize: 14 // Tamanho da fonte dos rótulos do eixo y
                 }
-            },
-            titleTextStyle: {
-                fontSize: 20, // Tamanho da fonte do título do gráfico
-                bold: true, // Negrito
-                italic: false // Itálico
-            }
-        };
+            };
 
-        var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
-        chart.draw(data, options);
-   
+            var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+        } else {
+            // Se não houver dados, desenhe um gráfico vazio com a legenda "Sem dados para mostrar"
+            var data = google.visualization.arrayToDataTable([
+                ['Veículo', 'Corridas', 'Manutenções'],
+                ['Sem dados', 0, 0] // Dados fictícios para mostrar a legenda "Sem dados para mostrar"
+            ]);
+
+            var options = {
+                title: 'Corridas - Corridas nos últimos 360 dias',
+                chartArea: {
+                    width: '70%'
+                },
+                colors: ['#A0522D', '#D2B48C'], // Adicionei as cores aqui
+                hAxis: {
+                    title: 'Corridas/Manutenções',
+                    titleTextStyle: {
+                        fontSize: 16, // Tamanho da fonte do título do eixo x
+                        bold: true, // Negrito
+                        italic: false // Itálico
+                    },
+                    textStyle: {
+                        fontSize: 14 // Tamanho da fonte dos rótulos do eixo x
+                    },
+                    ticks: ['Sem dados']
+                },
+                vAxis: {
+                    title: 'Veículos',
+                    titleTextStyle: {
+                        fontSize: 16, // Tamanho da fonte do título do eixo y
+                        bold: true, // Negrito
+                        italic: false // Itálico
+                    },
+                    textStyle: {
+                        fontSize: 14 // Tamanho da fonte dos rótulos do eixo y
+                    }
+                },
+                titleTextStyle: {
+                    fontSize: 20, // Tamanho da fonte do título do gráfico
+                    bold: true, // Negrito
+                    italic: false // Itálico
+                }
+            };
+
+            var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+        }
     }
+
 </script>
 
 <script type="text/javascript">

@@ -33,9 +33,7 @@
 
     td.descricao {
         max-width: 300px; /* Defina a largura máxima da célula de descrição */
-        white-space: nowrap; /* Evita que o texto seja quebrado */
-        overflow: hidden; /* Oculta o texto que ultrapassa a largura */
-        text-overflow: ellipsis; /* Adiciona reticências (...) ao final do texto truncado */
+        max-width: 40ch; /* Defina a largura máxima em 40 caracteres */
     }
 
 </style>
@@ -101,9 +99,9 @@
                     <td class="formatted-quilometragem">@String.Format("{0:N0}", corrida.KmPercorrido)</td>
                     <td>@corrida.DataInicioCorrida.ToShortTimeString()</td>
                     <td>@corrida.DataFinalCorrida.Value.ToString("HH:mm")</td>
-                    <td>@corrida.LocalSaidaCorrida</td>
-                    <td>@corrida.LocalChegadaCorrida</td>
-                    <td>@corrida.DescricaoCorrida</td>
+                    <td class="descricao">@corrida.LocalSaidaCorrida</td>
+                    <td class="descricao">@corrida.LocalChegadaCorrida</td>
+                    <td class="descricao">@corrida.DescricaoCorrida</td>
                 </tr>
             }
         </tbody>
@@ -152,7 +150,7 @@
 <br />
 <br />
 <br />
-<div class="footer" style="position: fixed; bottom: 0; width: 100%; text-align: center; padding: 10px 0;">
+<div class="footer no-page-break" style="position: fixed; bottom: 0; width: 100%; text-align: center; padding: 10px 0;">
     <p class="no-page-break">
         &copy; @DateTime.Now.Year - Sistema Boletim de Transporte Digital<br>
         Contato: exemplo@boletimtransporte.com - Telefone: (11) 1234-5678

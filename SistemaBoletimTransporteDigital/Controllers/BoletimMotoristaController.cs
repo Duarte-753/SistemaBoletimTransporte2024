@@ -111,6 +111,7 @@ namespace SistemaBoletimTransporteDigital.Controllers
                 FileName = dataInicio.Date.ToString("dd-MM-yyyy") + "_" + dataFinal.Date.ToString("dd-MM-yyyy") + "_Boletim.pdf",
                 PageSize = Rotativa.AspNetCore.Options.Size.A4,
                 PageMargins = new Rotativa.AspNetCore.Options.Margins(10, 10, 10, 10),
+                PageOrientation = Rotativa.AspNetCore.Options.Orientation.Landscape // Define a orientação da página para paisagem
             };
 
             return pdfOptions;
