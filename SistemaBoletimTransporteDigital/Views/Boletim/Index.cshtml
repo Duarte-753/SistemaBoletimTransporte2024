@@ -13,6 +13,26 @@
     .form-control {
         border: 1px solid #5C4033;
     }
+
+    /* Altera o tamanho da fonte para todo o DataTable */
+    #table-boletim_wrapper {
+        font-size: 14px; /* Tamanho da fonte desejado */
+    }
+
+    /* Altera o tamanho da barra de pesquisa */
+    #table-boletim_filter input[type="search"] {
+        font-size: 14px; /* Tamanho da fonte desejado */
+        padding: 6px 10px; /* Ajuste o padding conforme necessário */
+        border-radius: 5px; /* Adiciona um leve arredondamento às bordas */
+    }
+
+    /* Altera o tamanho da seleção de quantidade de páginas */
+    #table-boletim_length select {
+        font-size: 14px; /* Tamanho da fonte desejado */
+        padding: 6px 10px; /* Ajuste o padding conforme necessário */
+        border-radius: 5px; /* Adiciona um leve arredondamento às bordas */
+        width: 60px; /* Largura desejada */
+    }
 </style>
 
 
@@ -101,8 +121,6 @@
                                                asp-route-dataFinal="@Model.Filtros.DataFinal?.ToString("yyyy-MM-dd")"
                                                asp-route-veiculoId="@corrida.VeiculoID">
                                                 <i class="fas fa-file-alt"></i>
-
-
                                             </a>
 
 

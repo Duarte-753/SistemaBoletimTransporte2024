@@ -5,6 +5,28 @@
 }
 @model List<CorridaModel>
 
+<style>
+    /* Altera o tamanho da fonte para todo o DataTable */
+    #table-corrida_wrapper {
+        font-size: 14px; /* Tamanho da fonte desejado */
+    }
+
+    /* Altera o tamanho da barra de pesquisa */
+    #table-corrida_filter input[type="search"] {
+        font-size: 14px; /* Tamanho da fonte desejado */
+        padding: 6px 10px; /* Ajuste o padding conforme necessário */
+        border-radius: 5px; /* Adiciona um leve arredondamento às bordas */
+    }
+
+    /* Altera o tamanho da seleção de quantidade de páginas */
+    #table-corrida_length select {
+        font-size: 14px; /* Tamanho da fonte desejado */
+        padding: 6px 10px; /* Ajuste o padding conforme necessário */
+        border-radius: 5px; /* Adiciona um leve arredondamento às bordas */
+        width: 60px; /* Largura desejada */
+    }
+</style>
+
 <div class="text-center">
     <br />
     <h1 class="display-4">Suas Corridas</h1>
@@ -32,7 +54,7 @@
         <div class="container">
             <div class="row">
                 <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                    <a class="btn btn-warning" role="button" asp-route-id="@corrida.Id" asp-controller="Manutencao" asp-action="CriarManutencao">Criar Manutenção/Avaria do Veículo</a>
+                    <a class="btn btn-warning" role="button" asp-route-id="@corrida.Id" asp-controller="Manutencao" asp-action="CriarManutencao">Criar Manutenção\Abastecimento do Veículo</a>
                 </div>
             </div>
         </div>
@@ -167,11 +189,11 @@
 
                                         @if (corrida.StatusDaCorrida == StatusCorridaEnum.Finalizada)
                                         {
-                                            <a class="btn btn-success" role="button">@corrida.StatusDaCorrida</a>
+                                            <a class="btn btn-success" role="button"><i class="fa-regular fa-circle-check"></i></a>
                                         }
                                         else
                                         {
-                                            <a class="btn btn-warning" role="button" asp-route-id="@corrida.Id" asp-controller="Corrida" asp-action="FinalizarCorrida">@corrida.StatusDaCorrida</a>
+                                            <a class="btn btn-warning" role="button" asp-route-id="@corrida.Id" asp-controller="Corrida" asp-action="FinalizarCorrida"><i class="fa-solid fa-person-running"></i></a>
                                         }
 
                                     }

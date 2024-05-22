@@ -4,6 +4,28 @@
 }
 @model List<ManutencaoModel>
 
+<style>
+    /* Altera o tamanho da fonte para todo o DataTable */
+    #table-manutencao_wrapper {
+        font-size: 14px; /* Tamanho da fonte desejado */
+    }
+
+    /* Altera o tamanho da barra de pesquisa */
+    #table-manutencao_filter input[type="search"] {
+        font-size: 14px; /* Tamanho da fonte desejado */
+        padding: 6px 10px; /* Ajuste o padding conforme necessário */
+        border-radius: 5px; /* Adiciona um leve arredondamento às bordas */
+    }
+
+    /* Altera o tamanho da seleção de quantidade de páginas */
+    #table-manutencao_length select {
+        font-size: 14px; /* Tamanho da fonte desejado */
+        padding: 6px 10px; /* Ajuste o padding conforme necessário */
+        border-radius: 5px; /* Adiciona um leve arredondamento às bordas */
+        width: 60px; /* Largura desejada */
+    }
+</style>
+
 <div class="text-center">
     <br />
     <h1 class="display-4">Suas Manutenções</h1>

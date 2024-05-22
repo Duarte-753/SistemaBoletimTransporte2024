@@ -38,7 +38,7 @@ function getDatatable(id) {
             "sInfoFiltered": "(Filtrar de _MAX_ total registros)",
             "sInfoPostFix": "",
             "sInfoThousands": ".",
-            "sLengthMenu": "Mostrar _MENU_ registros por pagina",
+            "sLengthMenu": "Mostrar _MENU_ registros por página",
             "sLoadingRecords": "Carregando...",
             "sProcessing": "Processando...",
             "sZeroRecords": "Nenhum registro encontrado",

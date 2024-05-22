@@ -112,7 +112,15 @@
     // Função para remover o ponto antes de enviar o formulário
     function removerPontoAntesSubmit() {
         var kmInput = document.getElementById('kminicial');
-        kmInput.value = kmInput.value.replace(/\./g, ''); // Remove todos os pontos
+        // Verifica se o valor do campo KM adicional é zero
+        if (parseInt(kmInput.value.replace(/\./g, ''), 10) === 0) {
+            // Se for zero, cancela o envio do formulário
+            alert('O valor do KM do Veículo não pode ser zero, coloque o KM válido.');
+            event.preventDefault(); // Impede o envio do formulário
+        } else {
+            // Se não for zero, remove todos os pontos
+            kmInput.value = kmInput.value.replace(/\./g, '');
+        }
     }
 
     // Adiciona um ouvinte de evento para chamar a função de formatação enquanto o usuário digita
@@ -124,11 +132,12 @@
 
         // Adiciona um ouvinte de evento para chamar a função de remoção do ponto antes do submit
         var form = document.getElementById('myForm');
-        form.addEventListener('submit', function () {
-            removerPontoAntesSubmit();
+        form.addEventListener('submit', function (event) {
+            removerPontoAntesSubmit(event);
         });
     });
 </script>
+
 
 
 

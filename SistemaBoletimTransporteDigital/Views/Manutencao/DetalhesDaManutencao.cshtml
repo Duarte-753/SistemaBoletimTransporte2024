@@ -60,7 +60,7 @@
                 if (extension != null && extension.Equals(".pdf", StringComparison.OrdinalIgnoreCase)) // Verifica se a extensão é .pdf (ignorando a diferenciação de maiúsculas e minúsculas)
                 {
                     <a class="btn btn-warning" href="~/ImagensManutencoes/@Model.CaminhoDaImagem" download>
-                        Baixar PDF
+                        Baixar <i class="fa-solid fa-file-pdf"></i>
                     </a>
             
                 }               
@@ -68,7 +68,7 @@
                 {
                     <img src="~/ImagensManutencoes/@Model.CaminhoDaImagem" alt="Imagem da Manutenção" style="max-width: 100%; height: auto;" />
                     <a class="btn btn-warning" href="~/ImagensManutencoes/@Model.CaminhoDaImagem" download>
-                        Baixar Imagem
+                        Baixar <i class="fa-regular fa-image"></i>
                     </a>
                 }
             }
