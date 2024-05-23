@@ -14,8 +14,7 @@
 > Redefinição de Senha (redifinição somente de usuários cadastrados no sistema)
 > ![redefinir senha](https://github.com/Duarte-753/SistemaBoletimTransporte2024/assets/102335457/8941f948-121b-49c4-856a-d672f8e95d6d)
 >
-> Tela de ADM com dashboard em Tempo Real das Corridas, ADM pode cadastrar Usuários do tipo Motorista ou Administradores e Gerir relatórios
-> de Corridas referente ao Veículo ou Referente ao motorista.
+> Tela de ADM com dashboard em Tempo Real das Corridas, ADM pode cadastrar Usuários do tipo Motorista ou Administradores e Gerir relatório de Corridas referente ao Veículo ou Referente ao motorista.
 > ![admin](https://github.com/Duarte-753/SistemaBoletimTransporte2024/assets/102335457/f7c5f94a-f11b-4d5b-ad9f-b851ca8276fc)
 >
 > Relatorios ADM
