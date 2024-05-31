@@ -117,7 +117,13 @@
             // Se for zero, cancela o envio do formulário
             alert('O valor do KM do Veículo não pode ser zero, coloque o KM válido.');
             event.preventDefault(); // Impede o envio do formulário
-        } else {
+        }
+        else if (parseInt(kmInput.value.replace(/\./g, ''), 10) === 999999) {
+            // Se for 999999, cancela o envio do formulário
+            alert('O valor do KM do Veículo não pode ser 999.999, coloque o KM válido.');
+            event.preventDefault(); // Impede o envio do formulário
+        } 
+        else {
             // Se não for zero, remove todos os pontos
             kmInput.value = kmInput.value.replace(/\./g, '');
         }
